@@ -1,0 +1,32 @@
+{
+  "APP": {
+    "NAME": "Classpip",
+    "CANCEL": "Cancelar",
+    "LOGOUT": "Logout",
+    "LEGAL": "Aviso Legal",
+    "PRIVACY": "Privacidad",
+    "MARK": "Classpip ©2016-2017. Code licensed under an Apache-2 License"
+  },
+  "HOME": {
+    "TITLE": "Home"
+  },
+  "LOGIN": {
+    "USERNAME": "Nombre de usuario",
+    "PASSWORD": "Contraseña",
+    "ROLE": "Rol",
+    "LOGIN": "Entrar",
+    "FORGOT": "Olvidé mi contraseña",
+    "REGISTER": "Necesito crear una nueva cuenta",
+    "TEACHER": "Docente",
+    "STUDENT": "Estudiante",
+    "SCHOOLADMIN": "Director de Escuela"
+  },
+  "GROUPS": {
+    "TITLE": "Grupos"
+  },
+  "ERROR": {
+    "LOGIN_FAILED": "El nombre de usuario y/o la contraseña son inválidas.",
+    "LOGIN_FAILED_EMAIL_NOT_VERIFIED": "Tu correo no ha sido verificado aún, por favor, revisa tu correo.",
+    "INTERNAL_ERROR": "Ha ocurrido un error interno en el servidor. Por favor contacta con tu administrador. "
+  }
+}
