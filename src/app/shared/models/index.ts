@@ -10,3 +10,19 @@ export * from './profile';
 export * from './grade';
 export * from './group';
 export * from './matter';
+export * from './answer';
+export * from './correctAnswer';
+export * from './question';
+export * from './questionnaire';
+export * from './resultQuestionnaire';
+export * from './point';
+export * from './badge';
+export * from './pointRelation';
+export * from './badgeRelation';
+export * from './card';
+export * from './collectionCard';
+export * from './resultPoints';
+export * from './resultBadges';
+
+
+

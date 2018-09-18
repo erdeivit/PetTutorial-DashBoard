@@ -5,7 +5,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Router } from '@angular/router';
 
 import { AppConfig } from '../../app.config';
-import { Error, Login, Role, School } from '../models/index';
+import { Error, Login, Role, School, Questionnaire, Question, Answer, CorrectAnswer } from '../models/index';
 
 @Injectable()
 export class UtilsService {
@@ -13,6 +13,10 @@ export class UtilsService {
   private _role: Role;
   private _currentUser: Login;
   private _currentSchool: School;
+  private _currentQuestionnaire: Questionnaire;
+  private _currentQuestion: Question;
+  private _currentAnswer: Answer;
+  private _currentCorrectAnswer: CorrectAnswer;
 
   constructor(
     public translateService: TranslateService,
@@ -126,6 +130,38 @@ export class UtilsService {
 
   public set currentSchool(value: School) {
     this._currentSchool = value;
+  }
+
+  public get currentQuestionnaire(): Questionnaire {
+    return this._currentQuestionnaire;
+  }
+
+  public set currentQuestionnaire(value: Questionnaire) {
+    this._currentQuestionnaire = value;
+  }
+
+  public get currentQuestion(): Question {
+    return this._currentQuestion;
+  }
+
+  public set currentQuestion(value: Question) {
+    this._currentQuestion = value;
+  }
+
+  public get currentAnswer(): Answer {
+    return this._currentAnswer;
+  }
+
+  public set currentAnswer(value: Answer) {
+    this._currentAnswer = value;
+  }
+
+  public get currentCorrectAnswer(): CorrectAnswer {
+    return this._currentCorrectAnswer;
+  }
+
+  public set currentCorrectAnswer(value: CorrectAnswer) {
+    this._currentCorrectAnswer = value;
   }
 
 }

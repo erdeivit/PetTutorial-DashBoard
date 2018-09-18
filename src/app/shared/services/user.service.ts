@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { AppConfig } from '../../app.config';
 
 import { UtilsService } from './utils.service';
 import { AvatarService } from './avatar.service';
-import { Profile, Role, Avatar } from '../models/index';
+import { Profile, Role, Avatar, Student } from '../models/index';
 
 @Injectable()
 export class UserService {
@@ -41,15 +42,41 @@ export class UserService {
    */
   private getProfile(): Observable<Profile> {
 
-    const options: RequestOptions = new RequestOptions({
+    let options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
-    const url: string = this.utilsService.getMyUrl();
+    var url: string = this.utilsService.getMyUrl();
 
     return this.http.get(url, options)
       .map((response: Response, index: number) => Profile.toObject(response.json()))
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 
+  public getStudentName(id: number): Observable<Student> {
+
+    let options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+
+    var url: string = this.utilsService.getMyUrl();
+
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => Student.toObject(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
+  public getStudentName2(id: number): Observable<Student> {
+
+    let options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+
+    var url: string = this.utilsService.getMyUrl();
+
+
+    return this.http.get(AppConfig.STUDENT_URL + '/' + id, options)
+      .map((response: Response, index: number) => Student.toObject(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
 }

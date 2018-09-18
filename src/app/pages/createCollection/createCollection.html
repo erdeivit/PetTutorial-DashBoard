@@ -1,0 +1,47 @@
+<div class="createCollection-content">
+
+  <br>
+    <mat-form-field hintLabel="{{'COMMON.MAX40CARACT' | translate}}">
+      <input matInput #input maxlength="40" [(ngModel)]="name" placeholder="{{'COLLECTIONS.NAME' | translate}}" >
+    </mat-form-field>
+    <br>
+    <br>
+
+    <mat-form-field hintLabel="{{'COMMON.INNUMBER' | translate}}">
+      <input matInput type="number" [(ngModel)]="num" placeholder="{{'COLLECTIONS.QUANTITY' | translate}}" >
+    </mat-form-field>
+    <br>
+    <br>
+    <mat-form-field *ngIf="badges">
+        <mat-select [(value)]="badgeSelected" placeholder="{{'COLLECTIONS.CHOOSEBADGEWON' | translate}}">
+            <mat-option value="none">
+              {{'BADGES.NOASSIGN' | translate}}
+            </mat-option>
+          <mat-option *ngFor="let badge of badges" [value]="badge.id">
+            <img style="vertical-align:middle;" aria-hidden src="{{badge.image}}" height="25" />
+            {{badge.name}}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+      <br>
+    <br>
+    <mat-form-field hintLabel="{{'COMMON.PASTEIMAGE' | translate}}">
+      <input matInput [(ngModel)]="image" placeholder="{{'COLLECTIONS.IMAGEOF' | translate}}" >
+    </mat-form-field>
+    <br>
+
+    <mat-card class="example-image" *ngIf = "image">
+      <mat-card-subtitle >{{'COLLECTIONS.IMAGENEW' | translate}}</mat-card-subtitle>
+        <div mat-card-avatar class="example-image"></div>
+
+        <img mat-card-lg-image src="{{image}}">
+    </mat-card>
+
+
+    <br>
+
+    <button mat-raised-button (click)="createNewCollection()">{{'COLLECTIONS.SAVE' | translate}}</button>
+    <button mat-raised-button (click)="cancel()">{{'COMMON.CANCEL' | translate}}</button>
+
+  </div>

@@ -1,0 +1,35 @@
+.questionnaires-content {
+  margin: 40px auto;
+  max-width: 800px;
+}
+
+.questionnaires-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.questionnaires-content > * {
+  width: 100%;
+}
+
+.mat-slide-toggle{
+  font-size: 6px;
+
+
+}
+.toggleActive{
+
+font-size: 8px;
+text-decoration-color: red;
+font-weight: 600;
+
+}
+.awards-but{
+
+  
+  margin-top: 10px;
+  width: 70px;
+  height: 25px;
+  margin: 0 auto;
+
+}

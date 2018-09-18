@@ -19,9 +19,13 @@
       <p>{{ school.description }}</p>
     </mat-card-content>
     <mat-card-actions>
-      <a mat-button href="{{ school.twitter }}" target="_blank">TWITTER</a>
-      <a mat-button href="{{ school.facebook }}" target="_blank">FACEBOOK</a>
-      <a mat-button href="{{ school.website }}" target="_blank">WEBSITE</a>
+      <a mat-button href="{{ school.twitter }}" target="_blank">{{ 'HOME.TWITTER' | translate }}</a>
+      <a mat-button href="{{ school.facebook }}" target="_blank">{{ 'HOME.FACEBOOK' | translate }}</a>
+      <a mat-button href="{{ school.website }}" target="_blank">{{ 'HOME.WEBSITE' | translate }}</a>
     </mat-card-actions>
   </mat-card>
+  <!-- LANGUAGE -->
+  <mat-card-content>
+    <button id="button" mat-raised-button (click)="choose()">{{ 'HOME.LANGUAGE' | translate }}</button>
+  </mat-card-content>
 </div>

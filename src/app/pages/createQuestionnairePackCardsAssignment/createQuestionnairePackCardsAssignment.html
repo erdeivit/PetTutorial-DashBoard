@@ -1,0 +1,63 @@
+<div class="createQuestionnaireBadgesAssignment-content">
+
+
+
+  <h3 mat-header>{{'CARDS.ASSIGN' | translate}}</h3>
+  <br>
+  <p *ngIf="stringData[2] == null">{{'CARDS.ASSIGNFAIL1' | translate}}</p>
+  <p *ngIf="collections.length == 0 && stringData[2] != null">{{'CARDS.ASSIGNFAIL2' | translate}}</p>
+  <mat-slide-toggle *ngIf="stringData[2] != null && collections.length !=0 " color = "secondary" [(ngModel)]="device[i]" (change)="onChange($event)"></mat-slide-toggle>
+    <br>
+    <mat-form-field *ngIf="stringData[2] != null && collections.length !=0">
+        <mat-select [(value)]="collectionSelected" placeholder="{{'COLLECTIONS.CHOOSE' | translate}}">
+
+          <mat-option *ngFor="let collectionCard of collections" [value]="collectionCard.id">
+            {{collectionCard.name}}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+      <br>
+  <mat-list *ngIf = "device[i] && collections.length !=0">
+
+        <mat-list-item>
+            <mat-form-field class="example-full-width">
+                <input  [(ngModel)]="ins1" placeholder="{{'QUESTIONNAIRE.MARK8' | translate}}" aria-label="Number" matInput [formControl]="myControl"  [matAutocomplete]="auto">
+                <mat-hint align="end">Quantitat de cromos del sobre</mat-hint>
+              </mat-form-field>
+        </mat-list-item>
+        <br>
+        <br>
+        <mat-list-item>
+            <mat-form-field class="example-full-width">
+                <input   [(ngModel)]="ins2" placeholder="{{'QUESTIONNAIRE.MARK9' | translate}}" aria-label="Number" matInput [formControl]="myControl"  [matAutocomplete]="auto">
+                <mat-hint align="end">Quantitat de cromos del sobre</mat-hint>
+              </mat-form-field>
+        </mat-list-item>
+        <br>
+        <br>
+        <mat-list-item>
+            <mat-form-field class="example-full-width">
+                <input [(ngModel)]="ins3" placeholder="{{'QUESTIONNAIRE.MARK10' | translate}}" aria-label="Number" matInput [formControl]="myControl"  [matAutocomplete]="auto">
+                <mat-hint align="end">Quantitat de cromos del sobre</mat-hint>
+
+              </mat-form-field>
+        </mat-list-item>
+
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of options" [value]="option">
+
+           <span> {{option}} {{'CARDS.TITLE' | translate}}</span>
+          </mat-option>
+        </mat-autocomplete>
+
+
+    </mat-list>
+
+
+
+
+    <br>
+
+    <button mat-raised-button (click)="createQuestionnaire()">{{ 'QUESTIONNAIRE.NEXT' | translate }}</button>
+    <button mat-raised-button (click)="cancel()">{{ 'QUESTIONNAIRE.BACK' | translate }}</button>

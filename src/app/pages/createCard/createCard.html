@@ -1,0 +1,48 @@
+<div class="createCard-content">
+
+  <br>
+    <mat-form-field hintLabel="{{'COMMON.MAX40CARACT' | translate}}">
+      <input matInput #input maxlength="40" [(ngModel)]="name" placeholder="{{'CARDS.NAME' | translate}}">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field hintLabel="{{'CARDS.CHOOSELEVEL' | translate}}">
+      <input [(ngModel)]="rank" placeholder="{{'CARDS.LEVELCARD' | translate}}" matInput [formControl]="myControl"  [matAutocomplete]="auto">
+    </mat-form-field>
+
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of ranks" [value]="option">
+       <span> {{ option}}</span>
+      </mat-option>
+    </mat-autocomplete>
+    <br>
+
+    <mat-form-field hintLabel="{{'CARDS.CHOOSERATIO' | translate}}">
+      <input [(ngModel)]="ratio" placeholder="{{'CARDS.RATIOCARD' | translate}}" matInput [formControl]="myControl"  [matAutocomplete]="auto2">
+    </mat-form-field>
+
+    <mat-autocomplete #auto2="matAutocomplete">
+      <mat-option *ngFor="let option of ratios" [value]="option">
+       <span> {{option}}</span>
+      </mat-option>
+    </mat-autocomplete>
+    <br>
+    <mat-form-field hintLabel="{{'COMMON.PASTEIMAGE' | translate}}">
+      <input matInput [(ngModel)]="image" placeholder="{{'CARDS.IMAGEOF' | translate}}">
+    </mat-form-field>
+    <br>
+
+    <mat-card class="example-image" *ngIf = "image">
+      <mat-card-subtitle >{{'CARDS.IMAGENEW' | translate}}</mat-card-subtitle>
+        <div mat-card-avatar class="example-image"></div>
+
+        <img mat-card-lg-image src="{{image}}">
+    </mat-card>
+
+
+    <br>
+
+    <button mat-raised-button (click)="createNewCard()">{{'CARDS.SAVE' | translate}}</button>
+    <button mat-raised-button (click)="cancel()">{{'COMMON.CANCEL' | translate}}</button>
+
+  </div>
