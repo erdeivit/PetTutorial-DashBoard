@@ -269,6 +269,7 @@
     "MAX40CARACT": "Max. 40 caràcters",
     "AWARDS": "Premis",
     "MAX1NUMBER": "Max. 1 xifra",
+    "MAX2NUMBER": "Max. 2 xifres",
     "MAX3NUMBER": "Max. 3 xifres",
     "PASTEIMAGE": "Copiar enllaç .jpg",
     "CANCEL": "Cancelar",
@@ -341,7 +342,9 @@
     "CANCEL": "Cancelar",
     "DELETE_QUESTION": "¿Está seguro de que desea eliminar esta competición?",
     "RETURN": "Volver a la página de la competición",
-    "RETURN2": "Volver a la página de competiciones"
+    "RETURN2": "Volver a la página de competiciones",
+    "POINTS_FIRST": "Puntos primer clasificado",
+    "POINTS_SECOND": "Puntos segundo clasificado"
   },
   "COMPETITION_CREATION": {
     "TITLE": "Creando competición de tipo",
@@ -382,6 +385,9 @@
     "LOST": "Perdidos",
     "POINTS": "Puntuación",
     "N": "No.",
+    "AWARDS1": "Asignar premios al primer clasificado",
+    "AWARDS2": "Asignar premios al segundo clasificado",
+    "NOAWARDS": "Para poder asignar premios primero deben haber resultados",
     "INFORMATION": "*Los participantes con un número menos de enfrentamientos realizados se debe a la irregularidad de ser un número impar de participantes totales en esta liga. Los descansos que deben realizarse en cada jornada por parte de algún participante conlleva a no sumar puntos en esa jornada."
   },
   "TOURNAMENTS": {
