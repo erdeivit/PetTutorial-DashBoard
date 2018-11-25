@@ -97,7 +97,7 @@ export class TeamService {
   * This method returns the list of students of a team
   * @return {Observable<Array<Student>>} returns the list of students
   */
-  public getStudentsTeam(teamId: number): Observable<Array<Student>> {
+  public getStudentsTeam(teamId: number | string): Observable<Array<Student>> {
     const options: RequestOptions = new RequestOptions({
      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
