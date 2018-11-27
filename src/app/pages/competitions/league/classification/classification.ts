@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { AppConfig } from '../../../../app.config';
-import { Login, Student, Role, Competition, Journey, Match, Team, Point, PointRelation, School } from '../../../../shared/models/index';
+import { Login, Student, Role, Competition, Journey, Match, Team, Point, PointRelation,
+  School, Badge, BadgeRelation } from '../../../../shared/models/index';
 import { TranslateService } from 'ng2-translate/ng2-translate';
-import {
-  LoadingService, UtilsService, AlertService, TeamService, CompetitionService,
-  JourneyService, PointRelationService, PointService, SchoolService, GroupService
-} from '../../../../shared/services/index';
+import { LoadingService, UtilsService, AlertService, TeamService, CompetitionService,
+  JourneyService, PointRelationService, PointService, SchoolService, GroupService,
+  BadgeService, BadgeRelationService } from '../../../../shared/services/index';
 
 @Component({
   selector: 'app-classification',
@@ -45,6 +45,14 @@ export class ClassificationComponent implements OnInit {
   public Segon_point: Point;
   public Segon_PointRelation: PointRelation;
 
+  // Badges
+  public Primer_b_value: number; // Valor del punto que se le enviará al 1er clasificado
+  public Primer_badge: Badge;
+  public Primer_BadgeRelation: BadgeRelation;
+  public Segon_b_value: number; // Valor del punto que se le enviará al 2do clasificado
+  public Segon_badge: Badge;
+  public Segon_BadgeRelation: BadgeRelation;
+
 
   public scores = new Array<Score>();
   public score: Score;
@@ -58,6 +66,8 @@ export class ClassificationComponent implements OnInit {
     public pointRelationService: PointRelationService,
     public groupService: GroupService,
     public translateService: TranslateService,
+    public badgeService: BadgeService,
+    public badgeRelationService: BadgeRelationService,
     private route: ActivatedRoute,
     private teamService: TeamService,
     private competitionService: CompetitionService) {
@@ -209,10 +219,13 @@ export class ClassificationComponent implements OnInit {
         this.Segon_Id = this.participants[_m].id.toString();
       }
     }
-    this.Primer_name = this.competition.name.toString() + '_1er Clasificado_' + this.scores[0].name.toString();
-    this.Segon_name = this.competition.name.toString() + '_2do Clasificado_' + this.scores[1].name.toString();
     this.GroupIdAwards = this.competition.groupId.toString();
+
     if (this.modeIndividual === true) {
+
+      this.Primer_name = 'Liga: ' + this.competition.name.toString() + ', 1er, ' + this.scores[0].name.toString();
+      this.Segon_name = 'Liga: ' + this.competition.name.toString() + ', 2do, ' + this.scores[1].name.toString();
+
       this.groupService.getMyGroupStudents(this.GroupIdAwards).subscribe(
         ((students: Array<Student>) => {
           for (let _n = 0; _n < students.length; _n++) {
@@ -227,6 +240,10 @@ export class ClassificationComponent implements OnInit {
           this.alertService.show(error.toString());
         }));
     } else {
+
+      this.Primer_name = 'Liga: ' + this.competition.name.toString() + ', 1er, Equipo ' + this.scores[0].name.toString();
+      this.Segon_name = 'Liga: ' + this.competition.name.toString() + ', 2do, Equipo ' + this.scores[1].name.toString();
+
       this.groupService.getGroupTeams(this.GroupIdAwards).subscribe(
         ((teams: Array<Team>) => {
           for (let _n = 0; _n < teams.length; _n++) {
@@ -251,6 +268,105 @@ export class ClassificationComponent implements OnInit {
         }));
     }
 
+  }
+
+  SendBadge1(): void {
+    if (this.scores[0].points !== 0) {
+    this.badgeService.saveBadge(this.Primer_name, this.Primer_b_value, '../../../assets/img/liga-icon.svg').subscribe(
+      ((newBadge: Badge) => {
+        this.Primer_badge = newBadge;
+        if (this.modeIndividual === true) {
+          this.badgeRelationService.postBadgeRelation(this.Primer_badge.id, this.Primer_Id, this.SchoolIdAwards,
+            this.GroupIdAwards, 1).subscribe(
+            ((responseBadgeRelation: BadgeRelation) => {
+              this.Primer_BadgeRelation = responseBadgeRelation;
+              this.loadingService.hide();
+              this.alertService.show(this.translateService.instant('BADGES.CORASSIGN'));
+            }),
+            ((error: Response) => {
+              this.loadingService.hide();
+              this.alertService.show(error.toString());
+            }));
+        } else {
+          this.teamService.getStudentsTeam(this.Primer_Id).subscribe(
+            ((students: Array<Student>) => {
+              this.Team1 = students;
+              for (let _n = 0; _n < this.Team1.length; _n++) {
+                this.badgeRelationService.postBadgeRelation(this.Primer_badge.id, this.Team1[_n].id, this.SchoolIdAwards,
+                  this.GroupIdAwards, 1).subscribe(
+                    ((responsePointRelation: BadgeRelation) => {
+                      this.Primer_BadgeRelation = responsePointRelation;
+                      this.loadingService.hide();
+                      this.alertService.show(this.translateService.instant('POINTS.CORASSIGN'));
+                    }),
+                    ((error: Response) => {
+                      this.loadingService.hide();
+                      this.alertService.show(error.toString());
+                    }));
+              }
+              this.loadingService.hide();
+            }),
+            ((error: Response) => {
+              this.loadingService.hide();
+              this.alertService.show(error.toString());
+            }));
+        }
+      }),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+      }));
+    } else { this.alertService.show(this.translateService.instant('CLASSIFICATION.NOAWARDS')); }
+
+  }
+
+  SendBadge2(): void {
+    if (this.scores[0].points !== 0) {
+      this.badgeService.saveBadge(this.Segon_name, this.Segon_b_value, '../../../assets/img/liga-icon.svg').subscribe(
+        ((newBadge: Badge) => {
+          this.Segon_badge = newBadge;
+          if (this.modeIndividual === true) {
+            this.badgeRelationService.postBadgeRelation(this.Segon_badge.id, this.Segon_Id, this.SchoolIdAwards,
+              this.GroupIdAwards, 1).subscribe(
+              ((responseBadgeRelation: BadgeRelation) => {
+                this.Segon_BadgeRelation = responseBadgeRelation;
+                this.loadingService.hide();
+                this.alertService.show(this.translateService.instant('BADGES.CORASSIGN'));
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
+          } else {
+            this.teamService.getStudentsTeam(this.Segon_Id).subscribe(
+              ((students: Array<Student>) => {
+                this.Team2 = students;
+                for (let _n = 0; _n < this.Team2.length; _n++) {
+                  this.badgeRelationService.postBadgeRelation(this.Segon_badge.id, this.Team2[_n].id, this.SchoolIdAwards,
+                    this.GroupIdAwards, 1).subscribe(
+                      ((responsePointRelation: BadgeRelation) => {
+                        this.Primer_BadgeRelation = responsePointRelation;
+                        this.loadingService.hide();
+                        this.alertService.show(this.translateService.instant('POINTS.CORASSIGN'));
+                      }),
+                      ((error: Response) => {
+                        this.loadingService.hide();
+                        this.alertService.show(error.toString());
+                      }));
+                }
+                this.loadingService.hide();
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
+          }
+        }),
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
+    } else { this.alertService.show(this.translateService.instant('CLASSIFICATION.NOAWARDS')); }
   }
 
   SendPoint1(): void {
@@ -326,7 +442,7 @@ export class ClassificationComponent implements OnInit {
       this.pointRelationService.postPointRelation(this.Segon_point.id, this.Segon_Id, this.SchoolIdAwards,
         this.GroupIdAwards, 1).subscribe(
           ((responsePointRelation: PointRelation) => {
-            this.Primer_PointRelation = responsePointRelation;
+            this.Segon_PointRelation = responsePointRelation;
             this.loadingService.hide();
             this.alertService.show(this.translateService.instant('POINTS.CORASSIGN'));
           }),
@@ -339,10 +455,10 @@ export class ClassificationComponent implements OnInit {
         ((students: Array<Student>) => {
           this.Team2 = students;
           for (let _n = 0; _n < this.Team2.length; _n++) {
-            this.pointRelationService.postPointRelation(this.Primer_point.id, this.Team2[_n].id, this.SchoolIdAwards,
+            this.pointRelationService.postPointRelation(this.Segon_point.id, this.Team2[_n].id, this.SchoolIdAwards,
               this.GroupIdAwards, 1).subscribe(
                 ((responsePointRelation: PointRelation) => {
-                  this.Primer_PointRelation = responsePointRelation;
+                  this.Segon_PointRelation = responsePointRelation;
                   this.loadingService.hide();
                   this.alertService.show(this.translateService.instant('POINTS.CORASSIGN'));
                 }),

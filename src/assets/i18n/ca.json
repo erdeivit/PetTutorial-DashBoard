@@ -344,7 +344,9 @@
     "RETURN": "Volver a la página de la competición",
     "RETURN2": "Volver a la página de competiciones",
     "POINTS_FIRST": "Puntos primer clasificado",
-    "POINTS_SECOND": "Puntos segundo clasificado"
+    "POINTS_SECOND": "Puntos segundo clasificado",
+    "BADGES_FIRST": "Insignia primer clasificado",
+    "BADGES_SECOND": "Insignia segundo clasificado"
   },
   "COMPETITION_CREATION": {
     "TITLE": "Creando competición de tipo",
