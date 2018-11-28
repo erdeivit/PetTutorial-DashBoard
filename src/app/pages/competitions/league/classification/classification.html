@@ -82,7 +82,43 @@
                   </button>
               <br>
             </mat-tab>
-            <mat-tab label= "{{ 'CARDS.TITLE' | translate }}"> <br> Content 3 <br> </mat-tab>
+            <mat-tab label= "{{ 'CARDS.TITLE' | translate }}">
+              <mat-form-field>
+                  <mat-select [(value)]="CollectionSelected" placeholder="{{'COLLECTIONS.CHOOSE' | translate}}"  [formControl]= "myControl">
+                      <mat-option *ngFor="let coleccion of collections" [value]="coleccion" (click)="showCards()">
+                          {{coleccion.name}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field *ngIf = "CollectionSelected">
+                  <mat-select [(value)]="optionType" placeholder="{{'COMMON.TYPEASSIGNMENTCHOOSE' | translate}}"  [formControl]= "myControl">
+                      <mat-option *ngFor="let option of options" [value]="option">
+                          {{option}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <mat-form-field *ngIf = "optionType == options[0] && studentSelected">
+                  <mat-select [(value)]="cardSelected" placeholder="{{'CARDS.CHOOSE' | translate}}"  [formControl]= "myControl">
+                      <mat-option *ngFor="let card of collectionCards" [value]="card.id">
+                          {{card.name}} ({{card.rank}})
+                        </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field *ngIf="optionType">
+                  <mat-select [(value)]="studentSelected" placeholder="{{'STUDIENTS.CHOOSE' | translate}}"  [formControl]= "myControl">
+                      <mat-option *ngFor="let student of collectionStudents" [value]="student.id">
+                          {{student.name}}
+                        </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <br>
+              <button mat-button (click)="assignCardsToStudent()" *ngIf="studentSelected">
+                  <mat-icon mat-list-icon >chevron_right</mat-icon>
+                  {{ 'CARDS.ASSIGN' | translate }}
+              </button>
+              </mat-tab>
             <br>
         </mat-tab-group>
     </mat-card>

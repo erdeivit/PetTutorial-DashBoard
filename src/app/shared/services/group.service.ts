@@ -7,7 +7,7 @@ import { AvatarService } from './avatar.service';
 import { GradeService } from './grade.service';
 import { MatterService } from './matter.service';
 import { AppConfig } from '../../app.config';
-import { Group, Grade, Matter, Student, Team } from '../models/index';
+import { Group, Grade, Matter, Student, Team, CollectionCard } from '../models/index';
 
 @Injectable()
 export class GroupService {
@@ -137,5 +137,21 @@ export class GroupService {
     .map((response: Response, index: number) => Team.toObjectArray(response.json()))
     .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
+
+  /**
+  * GET: Returns the list of collectionCards of a group
+  * @return {Observable<Array<CollectionCard>>} returns the list of teams
+  */
+ public getGroupCollectionCards(groupId: string | number): Observable<Array<CollectionCard>> {
+
+  const options: RequestOptions = new RequestOptions({
+   headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+  });
+  const url: string = AppConfig.GROUP_URL + '/' + groupId + AppConfig.COLLECTIONS_URL;
+
+  return this.http.get(url, options)
+   .map((response: Response, index: number) => Team.toObjectArray(response.json()))
+   .catch((error: Response) => this.utilsService.handleAPIError(error));
+ }
 
 }
