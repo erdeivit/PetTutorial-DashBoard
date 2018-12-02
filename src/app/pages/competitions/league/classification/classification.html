@@ -106,13 +106,20 @@
                   </mat-select>
               </mat-form-field>
               <br>
-              <mat-form-field *ngIf="optionType">
+              <mat-form-field *ngIf="optionType && modeIndividual === true">
                   <mat-select [(value)]="studentSelected" placeholder="{{'STUDIENTS.CHOOSE' | translate}}"  [formControl]= "myControl">
                       <mat-option *ngFor="let student of collectionStudents" [value]="student.id">
                           {{student.name}}
                         </mat-option>
                   </mat-select>
               </mat-form-field>
+              <mat-form-field *ngIf="optionType && modeIndividual === false">
+                <mat-select [(value)]="studentSelected" placeholder="{{'TEAMS.TEAM' | translate}}"  [formControl]= "myControl">
+                    <mat-option *ngFor="let student of collectionTeams" [value]="student.id">
+                        {{student.name}}
+                      </mat-option>
+                </mat-select>
+            </mat-form-field>
               <br>
               <button mat-button (click)="assignCardsToStudent()" *ngIf="studentSelected">
                   <mat-icon mat-list-icon >chevron_right</mat-icon>
