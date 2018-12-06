@@ -64,7 +64,7 @@ export class ClassificationComponent implements OnInit {
       // Asignar cromos
       public optionType: string; // selected option
       public options = [];
-      public cardSelected: string; //
+      public cardSelected: string;
       // Students
       public collectionStudents: Array<Student>;
       public collectionTeams: Array<Team>;
@@ -249,8 +249,8 @@ export class ClassificationComponent implements OnInit {
 
     if (this.modeIndividual === true) {
 
-      this.Primer_name = 'Liga: ' + this.competition.name.toString() + ', 1er, ' + this.scores[0].name.toString();
-      this.Segon_name = 'Liga: ' + this.competition.name.toString() + ', 2do, ' + this.scores[1].name.toString();
+      this.Primer_name = 'League: ' + this.competition.name.toString() + ', 1er, ' + this.scores[0].name.toString();
+      this.Segon_name = 'League: ' + this.competition.name.toString() + ', 2do, ' + this.scores[1].name.toString();
 
       this.groupService.getMyGroupStudents(this.GroupIdAwards).subscribe(
         ((students: Array<Student>) => {
@@ -267,8 +267,8 @@ export class ClassificationComponent implements OnInit {
         }));
     } else {
 
-      this.Primer_name = 'Liga: ' + this.competition.name.toString() + ', 1er, Equipo ' + this.scores[0].name.toString();
-      this.Segon_name = 'Liga: ' + this.competition.name.toString() + ', 2do, Equipo ' + this.scores[1].name.toString();
+      this.Primer_name = 'League: ' + this.competition.name.toString() + ', 1er, Equipo ' + this.scores[0].name.toString();
+      this.Segon_name = 'League: ' + this.competition.name.toString() + ', 2do, Equipo ' + this.scores[1].name.toString();
       this.teamService.getStudentsTeam(this.Primer_Id).subscribe(
         ((students: Array<Student>) => {
           this.Team1 = students;

@@ -36,12 +36,12 @@
   </mat-card>
 
     <mat-card *ngIf="competition">
-        <strong>Premios</strong>
+        <strong>{{ 'COMMON.AWARDS' | translate }}</strong>
         <mat-tab-group [dynamicHeight]="true" *ngIf="utilsService.role === 1">
             <mat-tab label ="{{ 'POINTS.TITLE' | translate }}">
                 <br>
-                  <mat-form-field hintLabel="{{'COMMON.MAX2NUMBER'| translate}}">
-                      <input matInput #input maxlength="2" [(ngModel)]="Primer_p_value" placeholder="{{'COMPETITIONS.POINTS_FIRST'| translate}}">
+                  <mat-form-field hintLabel="{{'COMMON.MAX1NUMBER'| translate}}">
+                      <input matInput #input maxlength="1" [(ngModel)]="Primer_p_value" placeholder="{{'COMPETITIONS.POINTS_FIRST'| translate}}">
                       <mat-hint align="end"></mat-hint>
                     </mat-form-field>
                     <button mat-button (click)="SendPoint1()" *ngIf="Primer_p_value">
@@ -50,8 +50,8 @@
                     </button>
                     <br>
 
-                  <mat-form-field hintLabel="{{'COMMON.MAX2NUMBER'| translate}}">
-                      <input matInput #input maxlength="2" [(ngModel)]="Segon_p_value" placeholder="{{'COMPETITIONS.POINTS_SECOND'| translate}}">
+                  <mat-form-field hintLabel="{{'COMMON.MAX1NUMBER'| translate}}">
+                      <input matInput #input maxlength="1" [(ngModel)]="Segon_p_value" placeholder="{{'COMPETITIONS.POINTS_SECOND'| translate}}">
                       <mat-hint align="end"></mat-hint>
                     </mat-form-field>
                     <button mat-button (click)="SendPoint2()" *ngIf="Segon_p_value">
@@ -83,6 +83,7 @@
               <br>
             </mat-tab>
             <mat-tab label= "{{ 'CARDS.TITLE' | translate }}">
+              <br>
               <mat-form-field>
                   <mat-select [(value)]="CollectionSelected" placeholder="{{'COLLECTIONS.CHOOSE' | translate}}"  [formControl]= "myControl">
                       <mat-option *ngFor="let coleccion of collections" [value]="coleccion" (click)="showCards()">
