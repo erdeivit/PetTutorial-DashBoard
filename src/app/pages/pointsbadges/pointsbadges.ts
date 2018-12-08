@@ -17,6 +17,7 @@ import { DeletePointComponent } from '../../pages/deletePoint/deletePoint';
 import { CreateBadgeComponent } from '../../pages/createBadge/createBadge';
 import { DeleteBadgeComponent } from '../../pages/deleteBadge/deleteBadge';
 import { TranslateService } from 'ng2-translate';
+import { ViewBadgesComponent } from '../viewbadges/viewbadges';
 
 
 
@@ -70,6 +71,10 @@ export class PointsBadgesComponent implements OnInit {
     public listStudentsPoints: Array<Student> = new Array<Student>();
     public valuePoints: Array<PointRelation> = new Array<PointRelation>();
     public totalPointsStudent: number;
+    public scores = new Array<Score>();
+    public nullpoints: boolean;
+    public puntoss: number;
+    public score: Score;
     // SendPointRelation() SendBadgeRelation()
     public responsePointRelation: PointRelation;
     public responseBadgeRelation: BadgeRelation;
@@ -193,51 +198,90 @@ export class PointsBadgesComponent implements OnInit {
   }
 
 
-  // public showStudents() {
-  //   this.listStudentsPoints = [];
-  //   if (this.groupSelectedList) {
+  public showStudents() {
+    this.scores = [];
+    this.nullpoints = true;
+    this.listStudentsPoints = [];
+    if (this.groupSelected) {
+      this.groupService.getMyGroupStudents(this.groupSelected).subscribe(
+        ((students: Array<Student>) => {
+          this.listStudents = students;
+          this.loadingService.hide();
+          for (let st of this.listStudents) {
+            this.pointRelationService.getStudentPoints(st.id).subscribe(
+              ((valuePoints: Array<PointRelation>) => {
+                this.valuePoints = valuePoints;
+                this.totalPointsStudent = 0;
+                st.totalPoints = 0;
+                this.puntoss = 0;
+                this.loadingService.hide();
+                for (let rel of this.valuePoints) {
+                  if (rel.groupId === +this.groupSelected) {
+                    this.pointService.getPoint(rel.pointId).subscribe(
+                      ((valuep: Point) => {
+                        this.loadingService.hide();
+                        st.totalPoints += Number(valuep.value) * Number(rel.value);
+                        this.puntoss += Number(valuep.value) * Number(rel.value);
+                        if (st.totalPoints !== 0) { this.nullpoints = false; }
+                        this.sortstudents();
+                      }),
+                      ((error: Response) => {
+                        this.loadingService.hide();
+                        this.alertService.show(error.toString());
+                      }));
+                  }
+                }
+                this.listStudentsPoints.push(st);
+                this.totalPointsStudent = 0;
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
+          }
+        }),
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
+    }
+  }
 
-  //   this.groupService.getMyGroupStudents(this.groupSelectedList).subscribe(
-  //     ((students: Array<Student>) => {
-  //       this.listStudents = students;
-  //       this.loadingService.hide();
+  public sortstudents() {
+    if (this.nullpoints === false) {
+      this.scores = [];
+      for (let st2 of this.listStudentsPoints) {
+        this.score = { position: 0, nameees: st2.name.concat(' ', st2.surname), points: 0, currentuser: false, studentId: st2.id };
+        this.score.points = st2.totalPoints;
+        this.score.position = 0;
+        this.scores.push(this.score);
+      }
+    } else {
+      this.scores = [];
+      for (let st3 of this.listStudents) {
+        this.score = { position: 0, nameees: st3.name.concat(' ', st3.surname), points: 0, currentuser: false, studentId: st3.id };
+        this.score.points = 0;
+        this.score.position = 0;
+        this.scores.push(this.score);
+      }
+    }
+    this.scores.sort(function (a, b) {
+      return (b.points - a.points);
+    });
+    for (let _s = 0; _s < this.scores.length; _s++) {
+      this.scores[_s].position = _s + 1;
+    }
+  }
 
-  //       for (let st of this.listStudents) {
-  //         this.pointRelationService.getStudentPoints(st.id).subscribe(
-  //           ((valuePoints: Array<PointRelation>) =>{
-  //               this.valuePoints = valuePoints;
-  //             this.totalPointsStudent = 0;
-  //             st.totalPoints = 0;
-  //             this.loadingService.hide();
-  //             for (let rel of this.valuePoints) {
-  //               this.pointService.getPoint(rel.pointId).subscribe(
-  //                 ((valuep: Point) => {
-  //                   this.loadingService.hide();
-  //                 // this.totalPointsStudent += Number(valuep.value) * Number(rel.value);
-  //                   st.totalPoints += Number(valuep.value) * Number(rel.value);
-  //                 }),
-  //                 ((error: Response) => {
-  //                   this.loadingService.hide();
-  //                   this.alertService.show(error.toString());
-  //                 }));
-  //               }
-  //               // st.totalPoints = this.totalPointsStudent;
-  //               this.listStudentsPoints.push(st);
-  //               this.totalPointsStudent = 0;
-  //           }
-  //         ),
-  //         ((error: Response) => {
-  //           this.loadingService.hide();
-  //           this.alertService.show(error.toString());
-  //         }));
-  //       }
-  //     }),
-  //     ((error: Response) => {
-  //       this.loadingService.hide();
-  //       this.alertService.show(error.toString());
-  //     }));
-  //   }
-  // }
+  public showAwards(studentId: string) {
+    const dialogRef = this.dialog.open(ViewBadgesComponent, {
+      height: '600px',
+      width: '700px',
+      data: { studentId: studentId }
+    });
+  }
+
+
   public GetStudents() {
     if (this.optionType && this.groupSelected) {
       switch (this.optionType) {
@@ -419,4 +463,12 @@ export class PointsBadgesComponent implements OnInit {
       });
     }
   }
+}
+
+export interface Score {
+  nameees: string;
+  position: number;
+  points: number;
+  currentuser: Boolean;
+  studentId: string;
 }

@@ -130,26 +130,39 @@
           </div>
       </mat-tab>
       <mat-tab label = "{{ 'POINTS.STUDIENTS' | translate }}" *ngIf="isTeacher">
-            <!-- <br>
-            <mat-card class="selectGroup" >
-            <mat-form-field>
-                <mat-select [(value)]="groupSelectedList" placeholder="{{ 'GROUPS.CHOOSE' | translate }}" >
-                  <mat-option *ngFor="let group of mygroups" [value]="group.id">
-                    {{group.name}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <button mat-raised-button (click)="showStudents()">{{ 'STUDIENTS.SHOW' | translate }}</button>
-            </mat-card>
-              <mat-nav-list *ngFor="let student of listStudentsPoints">
-                  <mat-list-item>
-                      <img matListAvatar src="{{student.avatar.image}}" >
-                      <h4 mat-line>{{student.name}}</h4>
-                      <p align="end">{{ 'POINTS.TOTAL' | translate }}: {{student.totalPoints}}</p>
-                      <p mat-line>{{student.surname}}</p>
-                      <p mat-line>ID: {{student.id}}</p>
-                  </mat-list-item>
-              </mat-nav-list> -->
+        <br>
+          <button mat-raised-button (click)="showStudents()">{{ 'STUDIENTS.SHOW' | translate }}</button>
+        <mat-card>
+          <table>
+            <thead>
+              <tr class="tableHeader">
+                <th class="positiontit">{{ 'CLASSIFICATION.POSITION' | translate }}</th>
+                <th class="studenttit">{{ 'CLASSIFICATION.STUDENT' | translate }}</th>
+                <th class="pointstit">{{ 'CLASSIFICATION.POINTS' | translate }}</th>
+                <!-- <th class="pointstit">{{ 'CLASSIFICATION.BADGES' | translate }}</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let score of scores; let i=index;">
+                <!-- <div *ngif="score.currentuser; else noCurrUser"> -->
+                <td id="position_{{i + 1}}" class="position">{{score.position}}</td>
+                <td>{{score.nameees}}</td>
+                <!-- <td class="pointscurrent">{{score.points}}</td> -->
+                <td>{{score.points}}</td>
+                <td>
+                  <button mat-raised-button color="primary" (click)="showAwards(score.studentId)">View Badges</button>
+                </td>
+                <!-- </div> -->
+                <!-- <ng-template #noCurrUser>
+                  <td id="position_{{i + 1}}" class="position">{{score.position}}</td>
+                  <td class="name">{{score.nameees}}</td>
+                  <td class="points">{{score.points}}</td> -->
+                <!-- <td class="points">{{score.points}}</td> -->
+                <!-- </ng-template> -->
+              </tr>
+            </tbody>
+          </table>
+        </mat-card>
       </mat-tab>
     </mat-tab-group>
   </div>
