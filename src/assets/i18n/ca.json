@@ -273,7 +273,10 @@
     "MAX3NUMBER": "Max. 3 xifres",
     "PASTEIMAGE": "Copiar enllaç .jpg",
     "CANCEL": "Cancelar",
-    "INNUMBER": "Introdueix una xifra"
+    "INNUMBER": "Introdueix una xifra",
+    "TEAMS": "Equipos",
+    "INDIVIDUAL": "Individual",
+    "ASSIGN":"Actualitzar grup i opció"
 
   },
   "COMPETITIONS": {
@@ -417,6 +420,7 @@
     "MORE": "Añadir otro equipo",
     "DELETE": "Eliminar equipo",
     "FINISHED": "Los equipos han sido creados correctamente",
-    "RETURN": "Volver a la página de la competición"
+    "RETURN": "Volver a la página de la competición",
+    "CHOOSE": "Tria l'equip"
   }
 }
