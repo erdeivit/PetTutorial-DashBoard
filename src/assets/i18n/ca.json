@@ -30,7 +30,8 @@
     "LIST": "Llistat de grups",
 	  "ID": "Id. Grup",
     "CHOOSE": "Tria el grup",
-	  "NOASSIGN": "No assignar grup"
+    "NOASSIGN": "No assignar grup",
+    "SINGULAR": "Grups"
 
   },
   "TEACHER": {
@@ -273,7 +274,10 @@
     "MAX3NUMBER": "Max. 3 xifres",
     "PASTEIMAGE": "Copiar enllaç .jpg",
     "CANCEL": "Cancelar",
-    "INNUMBER": "Introdueix una xifra"
+    "INNUMBER": "Introdueix una xifra",
+    "TEAMS": "Equipos",
+    "INDIVIDUAL": "Individual",
+    "ASSIGN":"Actualitzar grup i opció"
 
   },
   "COMPETITIONS": {
@@ -381,6 +385,7 @@
     "STUDENT": "Nombre del estudiante",
     "TEAM": "Nombre del equipo",
     "PLAYED": "Jugados",
+    "POSITION" : "Pos.",
     "WON": "Ganados",
     "DRAW": "Empatados",
     "DRAW2": "Empate",
@@ -417,6 +422,7 @@
     "MORE": "Añadir otro equipo",
     "DELETE": "Eliminar equipo",
     "FINISHED": "Los equipos han sido creados correctamente",
-    "RETURN": "Volver a la página de la competición"
+    "RETURN": "Volver a la página de la competición",
+    "CHOOSE": "Tria l'equip"
   }
 }

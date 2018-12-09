@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CdkTableModule } from '@angular/cdk/table';
+import { MatInputModule, MatTableModule, MatToolbarModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -55,6 +58,7 @@ import { CreateQuestionnaireTextArea2Component } from './pages/createQuestionnai
 
 import { CreatePointComponent } from './pages/createPoint/createPoint';
 import { DeletePointComponent } from './pages/deletePoint/deletePoint';
+import { ViewBadgesComponent } from './pages/viewbadges/viewbadges';
 import { CreateBadgeComponent } from './pages/createBadge/createBadge';
 import { DeleteBadgeComponent } from './pages/deleteBadge/deleteBadge';
 
@@ -130,6 +134,7 @@ export function createTranslateLoader(http: Http) {
     CreateQuestionnaireTextArea1Component,
     CreateQuestionnaireTextArea2Component,
     LanguageComponent,
+    ViewBadgesComponent,
 
     CompetitionsComponent,
     CreateTeamsComponent,
@@ -154,6 +159,14 @@ export function createTranslateLoader(http: Http) {
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    CommonModule,
+    MatToolbarModule,
+    CdkTableModule,
+    MatInputModule,
+    MatTableModule,
+    ReactiveFormsModule,
+    MatTableModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     AppMaterialModule,
