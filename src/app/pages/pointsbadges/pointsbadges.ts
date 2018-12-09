@@ -199,52 +199,55 @@ export class PointsBadgesComponent implements OnInit {
 
 
   public showStudents() {
-    this.scores = [];
-    this.nullpoints = true;
-    this.listStudentsPoints = [];
-    if (this.groupSelected) {
-      this.groupService.getMyGroupStudents(this.groupSelected).subscribe(
-        ((students: Array<Student>) => {
-          this.listStudents = students;
-          this.loadingService.hide();
-          for (let st of this.listStudents) {
-            this.pointRelationService.getStudentPoints(st.id).subscribe(
-              ((valuePoints: Array<PointRelation>) => {
-                this.valuePoints = valuePoints;
-                this.totalPointsStudent = 0;
-                st.totalPoints = 0;
-                this.puntoss = 0;
-                this.loadingService.hide();
-                for (let rel of this.valuePoints) {
-                  if (rel.groupId === +this.groupSelected) {
-                    this.pointService.getPoint(rel.pointId).subscribe(
-                      ((valuep: Point) => {
-                        this.loadingService.hide();
-                        st.totalPoints += Number(valuep.value) * Number(rel.value);
-                        this.puntoss += Number(valuep.value) * Number(rel.value);
-                        if (st.totalPoints !== 0) { this.nullpoints = false; }
-                        this.sortstudents();
-                      }),
-                      ((error: Response) => {
-                        this.loadingService.hide();
-                        this.alertService.show(error.toString());
-                      }));
+    if (this.optionType && this.groupSelected) {
+      this.scores = [];
+      this.nullpoints = true;
+      this.listStudentsPoints = [];
+      if (this.groupSelected) {
+        this.groupService.getMyGroupStudents(this.groupSelected).subscribe(
+          ((students: Array<Student>) => {
+            this.listStudents = students;
+            this.loadingService.hide();
+            for (let st of this.listStudents) {
+              this.pointRelationService.getStudentPoints(st.id).subscribe(
+                ((valuePoints: Array<PointRelation>) => {
+                  this.valuePoints = valuePoints;
+                  this.totalPointsStudent = 0;
+                  st.totalPoints = 0;
+                  this.puntoss = 0;
+                  this.loadingService.hide();
+                  for (let rel of this.valuePoints) {
+                    if (rel.groupId === +this.groupSelected) {
+                      this.pointService.getPoint(rel.pointId).subscribe(
+                        ((valuep: Point) => {
+                          this.loadingService.hide();
+                          st.totalPoints += Number(valuep.value) * Number(rel.value);
+                          this.puntoss += Number(valuep.value) * Number(rel.value);
+                          if (st.totalPoints !== 0) { this.nullpoints = false; }
+                          this.sortstudents();
+                        }),
+                        ((error: Response) => {
+                          this.loadingService.hide();
+                          this.alertService.show(error.toString());
+                        }));
+                    }
                   }
-                }
-                this.listStudentsPoints.push(st);
-                this.totalPointsStudent = 0;
-              }),
-              ((error: Response) => {
-                this.loadingService.hide();
-                this.alertService.show(error.toString());
-              }));
-          }
-        }),
-        ((error: Response) => {
-          this.loadingService.hide();
-          this.alertService.show(error.toString());
-        }));
-    }
+                  this.listStudentsPoints.push(st);
+                  this.totalPointsStudent = 0;
+                }),
+                ((error: Response) => {
+                  this.loadingService.hide();
+                  this.alertService.show(error.toString());
+                }));
+            }
+          }),
+          ((error: Response) => {
+            this.loadingService.hide();
+            this.alertService.show(error.toString());
+          }));
+        }
+    } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
+
   }
 
   public sortstudents() {
@@ -312,7 +315,7 @@ export class PointsBadgesComponent implements OnInit {
       }));
       break;
     }
-  } else {this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
+  }
 }
 
  public sendBadgeRelation() {

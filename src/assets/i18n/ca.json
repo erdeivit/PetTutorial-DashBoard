@@ -30,7 +30,8 @@
     "LIST": "Llistat de grups",
 	  "ID": "Id. Grup",
     "CHOOSE": "Tria el grup",
-	  "NOASSIGN": "No assignar grup"
+    "NOASSIGN": "No assignar grup",
+    "SINGULAR": "Grups"
 
   },
   "TEACHER": {
@@ -384,6 +385,7 @@
     "STUDENT": "Nombre del estudiante",
     "TEAM": "Nombre del equipo",
     "PLAYED": "Jugados",
+    "POSITION" : "Pos.",
     "WON": "Ganados",
     "DRAW": "Empatados",
     "DRAW2": "Empate",

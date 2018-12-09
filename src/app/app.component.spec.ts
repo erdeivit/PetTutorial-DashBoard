@@ -28,6 +28,7 @@ import { ClassificationComponent } from './pages/competitions/league/classificat
 import { JourneysLeagueComponent } from './pages/competitions/league/journeys-league/journeys-league';
 import { JourneysTennisComponent } from './pages/competitions/tennis/journeys-tennis/journeys-tennis';
 import { TournamentsComponent } from './pages/competitions/tennis/tournaments/tournaments';
+import { ViewBadgesComponent } from './pages/viewbadges/viewbadges';
 
 import { QuestionnairesComponent } from './pages/questionnaires/questionnaires';
 import { QuestionnaireAwardsComponent } from './pages/questionnaireAwards/questionnaireAwards';
@@ -102,8 +103,9 @@ describe('AppComponent', () => {
         CreateCollectionComponent,
         DeleteCollectionComponent,
         CreateCardComponent,
-	CompetitionsComponent,
+        CompetitionsComponent,
         CreateTeamsComponent,
+        ViewBadgesComponent,
         // pages (competitions)
         LeagueComponent,
         TennisComponent,
@@ -171,8 +173,8 @@ describe('AppComponent', () => {
         PointService,
         PointRelationService,
         BadgeService,
-        BadgeRelationService
-	CompetitionService,
+        BadgeRelationService,
+        CompetitionService,
         JourneyService,
         MatchesService,
         TeamService,

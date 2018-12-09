@@ -1,6 +1,6 @@
 <div class="point-content">
     <h3 mat-header>{{ 'POINTSBADGES.TITLE' | translate }}</h3>
-    <mat-card *ngIf="isTeacher">
+    <mat-card class="assign-content" *ngIf="isTeacher">
         <mat-form-field>
             <mat-select [(value)]="optionType" placeholder="{{'COMMON.TYPEASSIGNMENTCHOOSE' | translate}}"  [formControl]= "myControl">
                 <mat-option *ngFor="let option of options" [value]="option" (click)="GetStudents()">
@@ -33,6 +33,7 @@
     </mat-card>
     <mat-tab-group>
       <mat-tab label ="{{ 'POINTS.TITLE' | translate }}">
+        <br>
           <mat-card class="assign-content" *ngIf="isTeacher && (studentSelected || teamSelected)">
               <h5 mat-subheader>{{ 'POINTS.ASSIGN' | translate }}</h5>
               <mat-form-field >
@@ -65,7 +66,6 @@
                 </mat-list-item>
                 <mat-progress-bar mode="buffer"></mat-progress-bar>
               </mat-nav-list>
-
             <mat-nav-list *ngIf="points">
                 <h3 mat-subheader>{{ 'POINTS.LIST' | translate }}</h3>
                 <mat-list-item *ngFor="let point of points" >
@@ -75,7 +75,7 @@
                 </mat-list-item>
                 <mat-progress-bar mode="buffer"></mat-progress-bar>
               </mat-nav-list>
-
+              <br>
               <div *ngIf="isTeacher" >
                   <button mat-raised-button (click)="createPoint()">{{ 'POINTSBADGES.CREATEPOINT' | translate }}</button>
                   <br>
@@ -87,7 +87,7 @@
       </mat-tab>
 
       <mat-tab label= "{{ 'BADGES.TITLE' | translate }}">
-
+          <br>
           <mat-card class="assign-content" *ngIf="isTeacher && (studentSelected || teamSelected)">
               <h5 mat-subheader>{{ 'BADGES.ASSIGN' | translate }}</h5>
             <mat-form-field >
@@ -120,6 +120,7 @@
             </mat-list-item>
             <mat-progress-bar mode="buffer"></mat-progress-bar>
           </mat-nav-list>
+          <br>
           <div *ngIf="isTeacher">
               <button mat-raised-button (click)="createBadge()">{{ 'POINTSBADGES.CREATEBADGE' | translate }}</button>
               <br>
@@ -131,7 +132,10 @@
       </mat-tab>
       <mat-tab label = "{{ 'POINTS.STUDIENTS' | translate }}" *ngIf="isTeacher">
         <br>
+        <div>
           <button mat-raised-button (click)="showStudents()">{{ 'STUDIENTS.SHOW' | translate }}</button>
+        </div>
+          <br>
         <mat-card>
           <table>
             <thead>
@@ -139,26 +143,16 @@
                 <th class="positiontit">{{ 'CLASSIFICATION.POSITION' | translate }}</th>
                 <th class="studenttit">{{ 'CLASSIFICATION.STUDENT' | translate }}</th>
                 <th class="pointstit">{{ 'CLASSIFICATION.POINTS' | translate }}</th>
-                <!-- <th class="pointstit">{{ 'CLASSIFICATION.BADGES' | translate }}</th> -->
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let score of scores; let i=index;">
-                <!-- <div *ngif="score.currentuser; else noCurrUser"> -->
                 <td id="position_{{i + 1}}" class="position">{{score.position}}</td>
                 <td>{{score.nameees}}</td>
-                <!-- <td class="pointscurrent">{{score.points}}</td> -->
                 <td>{{score.points}}</td>
                 <td>
                   <button mat-raised-button color="primary" (click)="showAwards(score.studentId)">View Badges</button>
                 </td>
-                <!-- </div> -->
-                <!-- <ng-template #noCurrUser>
-                  <td id="position_{{i + 1}}" class="position">{{score.position}}</td>
-                  <td class="name">{{score.nameees}}</td>
-                  <td class="points">{{score.points}}</td> -->
-                <!-- <td class="points">{{score.points}}</td> -->
-                <!-- </ng-template> -->
               </tr>
             </tbody>
           </table>

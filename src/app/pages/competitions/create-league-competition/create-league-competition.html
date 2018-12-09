@@ -12,7 +12,7 @@
 
        <div class="form-group">
          <mat-form-field>
-           <mat-select class="form-control" placeholder="{{ 'GROUPS.SINGULAR' | translate }}" formControlName="groupId" required>
+           <mat-select class="form-control" placeholder="{{ 'GROUPS.CHOOSE' | translate }}" formControlName="groupId" required>
              <mat-option *ngFor="let group of groups" [value]="group.id">
               {{ group.grade.name + ' ' + group.matter.name}}
              </mat-option>
@@ -43,7 +43,7 @@
   </mat-step>
 
 
-  <mat-step label="Participantes" 
+  <mat-step label="Participantes"
             [stepControl]="participantsFormGroup" editable="false">
     <p>{{ 'COMPETITION_CREATION.PARTICIPANT' | translate }}</p>
     <p>{{ 'COMPETITION_CREATION.MIN_2' | translate }}</p>
@@ -54,7 +54,7 @@
       </mat-list-option>
     </mat-selection-list>
     <div>
-      <button mat-raised-button color="primary" matStepperNext 
+      <button mat-raised-button color="primary" matStepperNext
         (click)="participantStep(list)"
         [disabled]="list.selectedOptions.selected.length < 2">
         {{ 'COMPETITIONS.NEXT' | translate }}
