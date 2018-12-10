@@ -62,6 +62,8 @@ import { ViewBadgesComponent } from './pages/viewbadges/viewbadges';
 import { CreateBadgeComponent } from './pages/createBadge/createBadge';
 import { DeleteBadgeComponent } from './pages/deleteBadge/deleteBadge';
 
+import { AssistanceComponent } from './pages/assistance/assistance';
+
 import { LanguageComponent } from './pages/language/language';
 
 // shared (components)
@@ -102,6 +104,7 @@ export function createTranslateLoader(http: Http) {
 @NgModule({
   declarations: [
     AppComponent,
+
     // pages
     LoginComponent,
     HomeComponent,
@@ -115,7 +118,6 @@ export function createTranslateLoader(http: Http) {
     DeleteCardComponent,
     CreateCollectionComponent,
     DeleteCollectionComponent,
-
     CreateQuestionnairePointsAssignmentComponent,
     CreateQuestionnaireBadgesAssignmentComponent,
     CreateQuestionnairePackCardsAssignmentComponent,
@@ -135,10 +137,9 @@ export function createTranslateLoader(http: Http) {
     CreateQuestionnaireTextArea2Component,
     LanguageComponent,
     ViewBadgesComponent,
-
     CompetitionsComponent,
     CreateTeamsComponent,
-    // pages (competitions)
+    AssistanceComponent,
     LeagueComponent,
     TennisComponent,
     CreateLeagueCompetitionComponent,
@@ -149,6 +150,7 @@ export function createTranslateLoader(http: Http) {
     JourneysLeagueComponent,
     JourneysTennisComponent,
     TournamentsComponent,
+
     // shared
     NavBarComponent,
     FooterComponent,
