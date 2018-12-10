@@ -424,5 +424,12 @@
     "FINISHED": "Los equipos han sido creados correctamente",
     "RETURN": "Volver a la página de la competición",
     "CHOOSE": "Tria l'equip"
-  }
+  },
+
+  "ASSISTANCE": {
+    "TITLE": "Assistencia",
+    "GROUPS": "Escull un grup",
+    "GROUP": "Id del grup",
+    "AWARDS": "Passar llista i assignar premis per puntualitat"
+   }
 }
