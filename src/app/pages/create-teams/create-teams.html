@@ -50,6 +50,28 @@
       [disabled]="!firstFormGroup.valid">{{ 'COMPETITIONS.NEXT' | translate }}</button>
   </div>
   </form>
+  <br>
+
+  <h3 mat-subheader>{{ 'TEAMS.VIEW' | translate }}</h3>
+    <mat-card>
+        <mat-form-field>
+            <mat-select [(value)]="groupSelected" placeholder="{{ 'GROUPS.CHOOSE' | translate }}" [formControl]= "myControl">
+              <mat-option *ngFor="let group of groups" [value]="group.id" (click)="GetTeams()">
+                {{group.name}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="groupSelected">
+          <mat-select [(value)]="teamSelected" placeholder="{{ 'TEAMS.CHOOSE' | translate }}" [formControl]= "myControl">
+            <mat-option *ngFor="let team of Teams" [value]="team" (click)="GetTeam()">
+              {{team.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </mat-card>
+    <div class="sbt-btn">
+      <button mat-raised-button color="primary" (click)="ShowTeam()">{{ 'TEAMS.GOTEAM' | translate }}</button>
+    </div>
 
  </div>
 
@@ -77,6 +99,39 @@
    </mat-card>
   </form>
  </div>
+
+
+
+ <div *ngIf="show === 5">
+   <h3 mat-subheader>{{ 'TEAMS.GROUPNAME' | translate }} {{' '}}{{groupSelected.name}} {{', '}} {{ 'TEAMS.TEAM' | translate }} {{' '}}{{teamSelected.name}}</h3>
+   <br>
+   <table>
+    <tr>
+      <th mat-sort-header="name">Student</th>
+    </tr>
+
+    <tr *ngFor="let student of StudentsTeam">
+      <td>{{student.name}}</td>
+    </tr>
+  </table>
+    <!-- <mat-card>
+        <table>
+          <thead>
+            <tr>
+              <th>{{ 'TEAMS.POSITION' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of StudentsTeam; let i=index;">
+              <td>{{student.team}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card> -->
+    <div class="sbt-btn">
+        <button mat-raised-button color="primary" (click)="GoBack()">{{ 'TEAMS.BACK' | translate }}</button>
+      </div>
+  </div>
 
  <div *ngIf="show === 4">
 

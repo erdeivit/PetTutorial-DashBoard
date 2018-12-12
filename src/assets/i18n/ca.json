@@ -423,7 +423,11 @@
     "DELETE": "Eliminar equipo",
     "FINISHED": "Los equipos han sido creados correctamente",
     "RETURN": "Volver a la página de la competición",
-    "CHOOSE": "Tria l'equip"
+    "CHOOSE": "Tria l'equip",
+    "VIEW": "Visualizar equipos",
+    "GOTEAM": "Ver equipo",
+    "BACK": "Volver a creación de equipos",
+    "GROUPNAME": "Grupo"
   },
 
   "ASSISTANCE": {

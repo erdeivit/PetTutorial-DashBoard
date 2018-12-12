@@ -6,6 +6,7 @@ import { AlertService, UtilsService, LoadingService, GroupService,
 import { Login, Role, Group, Student, Team } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { Response } from '@angular/http/src/static_response';
+import {FormControl, FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-create-teams',
@@ -23,6 +24,13 @@ export class CreateTeamsComponent implements OnInit {
 
   public students = new Array<Student>();
   public numStudents: number;
+
+  // Show Teams
+  myControl = new FormControl();
+  public groupSelected: string;
+  public Teams: Array<Team>;
+  public teamSelected: Team;
+  public StudentsTeam: Array<Student>;
 
   constructor( public alertService: AlertService,
     public utilsService: UtilsService,
@@ -72,6 +80,40 @@ export class CreateTeamsComponent implements OnInit {
         }));
     }
   }
+
+  GetTeams(): void {
+    this.groupService.getGroupTeams(this.groupSelected).subscribe(
+      ((teams: Array<Team>) => {
+      this.Teams = teams;
+      this.loadingService.hide();
+    }),
+    ((error: Response) => {
+      this.loadingService.hide();
+      this.alertService.show(error.toString());
+    }));
+  }
+
+  GetTeam(): void {
+    this.teamService.getStudentsTeam(this.teamSelected.id).subscribe(
+      ((students: Array<Student>) => {
+        this.StudentsTeam = students;
+        this.loadingService.hide();
+      }),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+      }));
+  }
+
+  ShowTeam(): void {
+    this.show = 5;
+  }
+
+  GoBack(): void {
+    this.show = 1;
+  }
+
+
     /**
    * This method submits the list of teams with the group
    * and gets the students for the next step
