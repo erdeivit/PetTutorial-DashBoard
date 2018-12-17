@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA , MatSnackBar} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { AppConfig } from '../../../../app.config';
-import { Login, Student, Role, Competition, Journey, Match, Team, Point, PointRelation,
-  School, Badge, BadgeRelation, CollectionCard, Card} from '../../../../shared/models/index';
+import {
+  Login, Student, Role, Competition, Journey, Match, Team, Point, PointRelation,
+  School, Badge, BadgeRelation, CollectionCard, Card
+} from '../../../../shared/models/index';
 import { TranslateService } from 'ng2-translate/ng2-translate';
-import { LoadingService, UtilsService, AlertService, TeamService, CompetitionService,
+import {
+  LoadingService, UtilsService, AlertService, TeamService, CompetitionService,
   JourneyService, PointRelationService, PointService, SchoolService, GroupService,
-  BadgeService, BadgeRelationService, CollectionService } from '../../../../shared/services/index';
+  BadgeService, BadgeRelationService, CollectionService
+} from '../../../../shared/services/index';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -28,48 +32,48 @@ export class ClassificationComponent implements OnInit {
   public matchesJourneys: Array<Array<Match>>;
 
   // PREMIOS
-    // BestParticipants
-    public GroupIdAwards: string;
-    public SchoolIdAwards: string;
-    public Primer_name: string;
-    public Primer_Id: string;
-    public Segon_name: string;
-    public Segon_Id: string;
-    public Team1: Array<Student>;
-    public Team2: Array<Student>;
+  // BestParticipants
+  public GroupIdAwards: string;
+  public SchoolIdAwards: string;
+  public Primer_name: string;
+  public Primer_Id: string;
+  public Segon_name: string;
+  public Segon_Id: string;
+  public Team1: Array<Student>;
+  public Team2: Array<Student>;
 
-    // Point
-    public Primer_p_value: number; // Valor del punto que se le enviará al 1er clasificado
-    public Primer_point: Point;
-    public Primer_PointRelation: PointRelation;
-    public Segon_p_value: number; // Valor del punto que se le enviará al 2do clasificado
-    public Segon_point: Point;
-    public Segon_PointRelation: PointRelation;
+  // Point
+  public Primer_p_value: number; // Valor del punto que se le enviará al 1er clasificado
+  public Primer_point: Point;
+  public Primer_PointRelation: PointRelation;
+  public Segon_p_value: number; // Valor del punto que se le enviará al 2do clasificado
+  public Segon_point: Point;
+  public Segon_PointRelation: PointRelation;
 
-    // Badges
-    public Primer_b_value: number; // Valor del punto que se le enviará al 1er clasificado
-    public Primer_badge: Badge;
-    public Primer_BadgeRelation: BadgeRelation;
-    public Segon_b_value: number; // Valor del punto que se le enviará al 2do clasificado
-    public Segon_badge: Badge;
-    public Segon_BadgeRelation: BadgeRelation;
+  // Badges
+  public Primer_b_value: number; // Valor del punto que se le enviará al 1er clasificado
+  public Primer_badge: Badge;
+  public Primer_BadgeRelation: BadgeRelation;
+  public Segon_b_value: number; // Valor del punto que se le enviará al 2do clasificado
+  public Segon_badge: Badge;
+  public Segon_BadgeRelation: BadgeRelation;
 
-    // Collections
-    myControl = new FormControl();
-    public count: number;
-      // Sacar collections del grupo
-      public collections: Array<CollectionCard>; // collections of the group
-      public CollectionSelected: CollectionCard; // selected collection in the mat-select
-      public collectionCards: Array<Card>; // cards of the CollectionSelected, options[0]
-      // Asignar cromos
-      public optionType: string; // selected option
-      public options = [];
-      public cardSelected: string;
-      // Students
-      public collectionStudents: Array<Student>;
-      public collectionTeams: Array<Team>;
-      public studentSelected: string;
-      public Team: Array<Student>;
+  // Collections
+  myControl = new FormControl();
+  public count: number;
+  // Sacar collections del grupo
+  public collections: Array<CollectionCard>; // collections of the group
+  public CollectionSelected: CollectionCard; // selected collection in the mat-select
+  public collectionCards: Array<Card>; // cards of the CollectionSelected, options[0]
+  // Asignar cromos
+  public optionType: string; // selected option
+  public options = [];
+  public cardSelected: string;
+  // Students
+  public collectionStudents: Array<Student>;
+  public collectionTeams: Array<Team>;
+  public studentSelected: string;
+  public Team: Array<Student>;
 
 
   public scores = new Array<Score>();
@@ -170,10 +174,10 @@ export class ClassificationComponent implements OnInit {
           }
           this.getScores();
         }),
-          ((error: Response) => {
-            this.loadingService.hide();
-            this.alertService.show(error.toString());
-          }));
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
     } else {
       this.modeIndividual = false;
       this.teamService.getTeamsCompetition(this.competitionId).subscribe(
@@ -188,10 +192,10 @@ export class ClassificationComponent implements OnInit {
           }
           this.getScores();
         }),
-          ((error: Response) => {
-            this.loadingService.hide();
-            this.alertService.show(error.toString());
-          }));
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
     }
   }
 
@@ -285,7 +289,7 @@ export class ClassificationComponent implements OnInit {
 
   getCollections(): void {
     this.groupService.getGroupCollectionCards(this.GroupIdAwards).subscribe(
-      ( (coleccion: Array<CollectionCard>) => {
+      ((coleccion: Array<CollectionCard>) => {
         this.collections = coleccion;
         this.loadingService.hide();
       }),
@@ -309,140 +313,140 @@ export class ClassificationComponent implements OnInit {
   }
 
   public assignCardsToStudent(): void {
-        switch (this.optionType) {
-          case this.translateService.instant('CARDS.ASSIGNMENTTYPE1'):
-          if (this.cardSelected && this.studentSelected) {
-            if (this.modeIndividual === true) {
-              this.collectionService.assignCardToStudent(this.studentSelected, this.cardSelected).subscribe(
-                ((collectionCards: Array<Card>) => {
-                  this.loadingService.hide();
-                  this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
-                }),
-                ((error: Response) => {
-                  this.loadingService.hide();
-                  this.alertService.show(error.toString());
-                }));
-            } else {
-              this.teamService.getStudentsTeam(this.studentSelected).subscribe(
-                ((students: Array<Student>) => {
-                  this.Team = students;
-                  for (let _n = 0; _n < this.Team.length; _n++) {
-                    this.collectionService.assignCardToStudent(this.Team[_n].id, this.cardSelected).subscribe(
-                      ((collectionCards: Array<Card>) => {
-                        this.loadingService.hide();
-                        this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
-                      }),
-                      ((error: Response) => {
-                        this.loadingService.hide();
-                        this.alertService.show(error.toString());
-                      }));
-                  }
-                  this.loadingService.hide();
-                }),
-                ((error: Response) => {
-                  this.loadingService.hide();
-                  this.alertService.show(error.toString());
-                }));
-            }
-          } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
-          break;
-          case this.translateService.instant('CARDS.ASSIGNMENTTYPE2'):
-          if (this.studentSelected) {
-            var numcard = this.randomNumber(1, this.collectionCards.length - 1);
-            this.snackbar.open(String(numcard) + '/' + String(this.count));
-            if (this.modeIndividual === true) {
-              this.collectionService.assignCardToStudent(this.studentSelected, numcard).subscribe(
-                ((collectionCards: Array<Card>) => {
-                  this.loadingService.hide();
-                  this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
-                }),
-                ((error: Response) => {
-                  this.loadingService.hide();
-                  this.alertService.show(error.toString());
-                }));
-            } else {
-              this.teamService.getStudentsTeam(this.studentSelected).subscribe(
-                ((students: Array<Student>) => {
-                  this.Team = students;
-                  for (let _n = 0; _n < this.Team.length; _n++) {
-                    this.collectionService.assignCardToStudent(this.Team[_n].id, numcard).subscribe(
-                      ((collectionCards: Array<Card>) => {
-                        this.loadingService.hide();
-                        this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
-                      }),
-                      ((error: Response) => {
-                        this.loadingService.hide();
-                        this.alertService.show(error.toString());
-                      }));
-                  }
-                  this.loadingService.hide();
-                }),
-                ((error: Response) => {
-                  this.loadingService.hide();
-                  this.alertService.show(error.toString());
-                }));
-            }
-
-          } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
-          break;
-          case this.translateService.instant('CARDS.ASSIGNMENTTYPE3'):
-          if (this.studentSelected) {
-            if (this.modeIndividual === true) {
-                for (let i = 0; i < 3; i++) {
-                  var numcard = this.randomNumber(1, this.collectionCards.length - 1);
-                  this.collectionService.assignCardToStudent(this.studentSelected, numcard).subscribe(
+    switch (this.optionType) {
+      case this.translateService.instant('CARDS.ASSIGNMENTTYPE1'):
+        if (this.cardSelected && this.studentSelected) {
+          if (this.modeIndividual === true) {
+            this.collectionService.assignCardToStudent(this.studentSelected, this.cardSelected).subscribe(
+              ((collectionCards: Array<Card>) => {
+                this.loadingService.hide();
+                this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
+          } else {
+            this.teamService.getStudentsTeam(this.studentSelected).subscribe(
+              ((students: Array<Student>) => {
+                this.Team = students;
+                for (let _n = 0; _n < this.Team.length; _n++) {
+                  this.collectionService.assignCardToStudent(this.Team[_n].id, this.cardSelected).subscribe(
                     ((collectionCards: Array<Card>) => {
-                      this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
                       this.loadingService.hide();
+                      this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
                     }),
                     ((error: Response) => {
                       this.loadingService.hide();
                       this.alertService.show(error.toString());
                     }));
                 }
-              } else {
-                this.teamService.getStudentsTeam(this.studentSelected).subscribe(
-                  ((students: Array<Student>) => {
-                    this.Team = students;
-                    for (let _n = 0; _n < this.Team.length; _n++) {
-                      for (let i = 0; i < 3; i++) {
-                        var numcard = this.randomNumber(1, this.collectionCards.length - 1);
-                        this.collectionService.assignCardToStudent(this.Team[_n].id, numcard).subscribe(
-                          ((collectionCards: Array<Card>) => {
-                            this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
-                            this.loadingService.hide();
-                          }),
-                          ((error: Response) => {
-                            this.loadingService.hide();
-                            this.alertService.show(error.toString());
-                          }));
-                      }
-                    }
-                    this.loadingService.hide();
-                  }),
-                  ((error: Response) => {
-                    this.loadingService.hide();
-                    this.alertService.show(error.toString());
-                  }));
-              }
-            } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
-          break;
-          case this.translateService.instant('CARDS.ASSIGNMENTTYPE4'):
-          if (this.studentSelected) {
-            if (this.modeIndividual === true) {
-              for (let i = 0; i < 5; i++) {
-                var numcard = this.randomNumber(1, this.collectionCards.length - 1);
-                this.collectionService.assignCardToStudent(this.studentSelected, +numcard).subscribe(
-                  ((collectionCards: Array<Card>) => {
-                    this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
-                    this.loadingService.hide();
-                    this.count ++;
-                  }),
-                  ((error: Response) => {
-                    this.loadingService.hide();
-                    this.alertService.show(error.toString());
-                  }));
-              }
+                this.loadingService.hide();
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
+          }
+        } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
+        break;
+      case this.translateService.instant('CARDS.ASSIGNMENTTYPE2'):
+        if (this.studentSelected) {
+          var numcard = this.randomNumber(1, this.collectionCards.length - 1);
+          this.snackbar.open(String(numcard) + '/' + String(this.count));
+          if (this.modeIndividual === true) {
+            this.collectionService.assignCardToStudent(this.studentSelected, numcard).subscribe(
+              ((collectionCards: Array<Card>) => {
+                this.loadingService.hide();
+                this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
+          } else {
+            this.teamService.getStudentsTeam(this.studentSelected).subscribe(
+              ((students: Array<Student>) => {
+                this.Team = students;
+                for (let _n = 0; _n < this.Team.length; _n++) {
+                  this.collectionService.assignCardToStudent(this.Team[_n].id, numcard).subscribe(
+                    ((collectionCards: Array<Card>) => {
+                      this.loadingService.hide();
+                      this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
+                    }),
+                    ((error: Response) => {
+                      this.loadingService.hide();
+                      this.alertService.show(error.toString());
+                    }));
+                }
+                this.loadingService.hide();
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
+          }
+
+        } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
+        break;
+      case this.translateService.instant('CARDS.ASSIGNMENTTYPE3'):
+        if (this.studentSelected) {
+          if (this.modeIndividual === true) {
+            for (let i = 0; i < 3; i++) {
+              var numcard = this.randomNumber(1, this.collectionCards.length - 1);
+              this.collectionService.assignCardToStudent(this.studentSelected, numcard).subscribe(
+                ((collectionCards: Array<Card>) => {
+                  this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
+                  this.loadingService.hide();
+                }),
+                ((error: Response) => {
+                  this.loadingService.hide();
+                  this.alertService.show(error.toString());
+                }));
+            }
+          } else {
+            this.teamService.getStudentsTeam(this.studentSelected).subscribe(
+              ((students: Array<Student>) => {
+                this.Team = students;
+                for (let _n = 0; _n < this.Team.length; _n++) {
+                  for (let i = 0; i < 3; i++) {
+                    var numcard = this.randomNumber(1, this.collectionCards.length - 1);
+                    this.collectionService.assignCardToStudent(this.Team[_n].id, numcard).subscribe(
+                      ((collectionCards: Array<Card>) => {
+                        this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
+                        this.loadingService.hide();
+                      }),
+                      ((error: Response) => {
+                        this.loadingService.hide();
+                        this.alertService.show(error.toString());
+                      }));
+                  }
+                }
+                this.loadingService.hide();
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
+          }
+        } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
+        break;
+      case this.translateService.instant('CARDS.ASSIGNMENTTYPE4'):
+        if (this.studentSelected) {
+          if (this.modeIndividual === true) {
+            for (let i = 0; i < 5; i++) {
+              var numcard = this.randomNumber(1, this.collectionCards.length - 1);
+              this.collectionService.assignCardToStudent(this.studentSelected, +numcard).subscribe(
+                ((collectionCards: Array<Card>) => {
+                  this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
+                  this.loadingService.hide();
+                  this.count++;
+                }),
+                ((error: Response) => {
+                  this.loadingService.hide();
+                  this.alertService.show(error.toString());
+                }));
+            }
           } else {
             this.teamService.getStudentsTeam(this.studentSelected).subscribe(
               ((students: Array<Student>) => {
@@ -468,12 +472,12 @@ export class ClassificationComponent implements OnInit {
                 this.alertService.show(error.toString());
               }));
           }
-          } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
-          break;
-        }
-        this.studentSelected = "";
-        this.optionType = "";
+        } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
+        break;
     }
+    this.studentSelected = "";
+    this.optionType = "";
+  }
 
   // Creación de un numero random para  asignar cromos aletorios
   public randomNumber(min, max) {
@@ -482,50 +486,50 @@ export class ClassificationComponent implements OnInit {
 
   SendBadge1(): void {
     if (this.scores[0].points !== 0) {
-    this.badgeService.saveBadge(this.Primer_name, this.Primer_b_value, '../../../assets/img/liga-icon.svg').subscribe(
-      ((newBadge: Badge) => {
-        this.Primer_badge = newBadge;
-        if (this.modeIndividual === true) {
-          this.badgeRelationService.postBadgeRelation(this.Primer_badge.id, this.Primer_Id, this.SchoolIdAwards,
-            this.GroupIdAwards, 1).subscribe(
-            ((responseBadgeRelation: BadgeRelation) => {
-              this.Primer_BadgeRelation = responseBadgeRelation;
-              this.loadingService.hide();
-              this.alertService.show(this.translateService.instant('BADGES.CORASSIGN'));
-            }),
-            ((error: Response) => {
-              this.loadingService.hide();
-              this.alertService.show(error.toString());
-            }));
-        } else {
-          this.teamService.getStudentsTeam(this.Primer_Id).subscribe(
-            ((students: Array<Student>) => {
-              this.Team1 = students;
-              for (let _n = 0; _n < this.Team1.length; _n++) {
-                this.badgeRelationService.postBadgeRelation(this.Primer_badge.id, this.Team1[_n].id, this.SchoolIdAwards,
-                  this.GroupIdAwards, 1).subscribe(
-                    ((responsePointRelation: BadgeRelation) => {
-                      this.Primer_BadgeRelation = responsePointRelation;
-                      this.loadingService.hide();
-                      this.alertService.show(this.translateService.instant('POINTS.CORASSIGN'));
-                    }),
-                    ((error: Response) => {
-                      this.loadingService.hide();
-                      this.alertService.show(error.toString());
-                    }));
-              }
-              this.loadingService.hide();
-            }),
-            ((error: Response) => {
-              this.loadingService.hide();
-              this.alertService.show(error.toString());
-            }));
-        }
-      }),
-      ((error: Response) => {
-        this.loadingService.hide();
-        this.alertService.show(error.toString());
-      }));
+      this.badgeService.saveBadge(this.Primer_name, this.Primer_b_value, '../../../assets/img/liga-icon.svg').subscribe(
+        ((newBadge: Badge) => {
+          this.Primer_badge = newBadge;
+          if (this.modeIndividual === true) {
+            this.badgeRelationService.postBadgeRelation(this.Primer_badge.id, this.Primer_Id, this.SchoolIdAwards,
+              this.GroupIdAwards, 1).subscribe(
+                ((responseBadgeRelation: BadgeRelation) => {
+                  this.Primer_BadgeRelation = responseBadgeRelation;
+                  this.loadingService.hide();
+                  this.alertService.show(this.translateService.instant('BADGES.CORASSIGN'));
+                }),
+                ((error: Response) => {
+                  this.loadingService.hide();
+                  this.alertService.show(error.toString());
+                }));
+          } else {
+            this.teamService.getStudentsTeam(this.Primer_Id).subscribe(
+              ((students: Array<Student>) => {
+                this.Team1 = students;
+                for (let _n = 0; _n < this.Team1.length; _n++) {
+                  this.badgeRelationService.postBadgeRelation(this.Primer_badge.id, this.Team1[_n].id, this.SchoolIdAwards,
+                    this.GroupIdAwards, 1).subscribe(
+                      ((responsePointRelation: BadgeRelation) => {
+                        this.Primer_BadgeRelation = responsePointRelation;
+                        this.loadingService.hide();
+                        this.alertService.show(this.translateService.instant('POINTS.CORASSIGN'));
+                      }),
+                      ((error: Response) => {
+                        this.loadingService.hide();
+                        this.alertService.show(error.toString());
+                      }));
+                }
+                this.loadingService.hide();
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
+          }
+        }),
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
     } else { this.alertService.show(this.translateService.instant('CLASSIFICATION.NOAWARDS')); }
 
   }
@@ -538,15 +542,15 @@ export class ClassificationComponent implements OnInit {
           if (this.modeIndividual === true) {
             this.badgeRelationService.postBadgeRelation(this.Segon_badge.id, this.Segon_Id, this.SchoolIdAwards,
               this.GroupIdAwards, 1).subscribe(
-              ((responseBadgeRelation: BadgeRelation) => {
-                this.Segon_BadgeRelation = responseBadgeRelation;
-                this.loadingService.hide();
-                this.alertService.show(this.translateService.instant('BADGES.CORASSIGN'));
-              }),
-              ((error: Response) => {
-                this.loadingService.hide();
-                this.alertService.show(error.toString());
-              }));
+                ((responseBadgeRelation: BadgeRelation) => {
+                  this.Segon_BadgeRelation = responseBadgeRelation;
+                  this.loadingService.hide();
+                  this.alertService.show(this.translateService.instant('BADGES.CORASSIGN'));
+                }),
+                ((error: Response) => {
+                  this.loadingService.hide();
+                  this.alertService.show(error.toString());
+                }));
           } else {
             this.teamService.getStudentsTeam(this.Segon_Id).subscribe(
               ((students: Array<Student>) => {
@@ -581,7 +585,7 @@ export class ClassificationComponent implements OnInit {
 
   SendPoint1(): void {
     if (this.scores[0].points !== 0) {
-      this.pointService.savePoint(this.Primer_name, this.Primer_p_value, '../../../assets/img/liga-icon.svg').subscribe(
+      this.pointService.savePoint(this.Primer_name, this.Primer_p_value).subscribe(
         ((newPoint: Point) => {
           this.Primer_point = newPoint;
           this.SetPoint1();
@@ -595,7 +599,7 @@ export class ClassificationComponent implements OnInit {
 
   SendPoint2(): void {
     if (this.scores[0].points !== 0) {
-      this.pointService.savePoint(this.Segon_name, this.Segon_p_value, '../../../assets/img/liga-icon.svg').subscribe(
+      this.pointService.savePoint(this.Segon_name, this.Segon_p_value).subscribe(
         ((newPoint: Point) => {
           this.Segon_point = newPoint;
           this.SetPoint2();

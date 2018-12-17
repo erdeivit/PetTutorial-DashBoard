@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA , MatSnackBar} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { AppConfig } from '../../../../app.config';
-import { Login, Role, Team, Student, Competition, Journey, Match, Point, PointRelation,
-  School, Badge, BadgeRelation, CollectionCard, Card } from '../../../../shared/models/index';
+import {
+  Login, Role, Team, Student, Competition, Journey, Match, Point, PointRelation,
+  School, Badge, BadgeRelation, CollectionCard, Card
+} from '../../../../shared/models/index';
 import { TranslateService } from 'ng2-translate/ng2-translate';
-import { LoadingService, UtilsService, AlertService, JourneyService, MatchesService,
-        CompetitionService, TeamService, PointRelationService, PointService, SchoolService, GroupService,
-        BadgeService, BadgeRelationService, CollectionService} from '../../../../shared/services/index';
+import {
+  LoadingService, UtilsService, AlertService, JourneyService, MatchesService,
+  CompetitionService, TeamService, PointRelationService, PointService, SchoolService, GroupService,
+  BadgeService, BadgeRelationService, CollectionService
+} from '../../../../shared/services/index';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -57,16 +61,16 @@ export class TournamentsComponent implements OnInit {
   public Primer_badge: Badge;
   public Primer_BadgeRelation: BadgeRelation;
   // Collections
-    // Get Collection (and Card if options[0])
+  // Get Collection (and Card if options[0])
   public collections: Array<CollectionCard>; // collections of the group
   public CollectionSelected: CollectionCard; // selected collection in the mat-select
   public collectionCards: Array<Card>; // cards of the CollectionSelected, options[0]
-    // Set option
+  // Set option
   public options = [];
   public optionType: string; // selected option
   public cardSelected: string; // options[0]
-    //
-    public count: number;
+  //
+  public count: number;
 
   constructor(public alertService: AlertService,
     public utilsService: UtilsService,
@@ -85,9 +89,9 @@ export class TournamentsComponent implements OnInit {
     public collectionService: CollectionService,
     public snackbar: MatSnackBar,
     private route: ActivatedRoute) {
-      this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
-      this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
-     }
+    this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
+    this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
+  }
 
   ngOnInit() {
     if (this.utilsService.role === Role.TEACHER || this.utilsService.role === Role.STUDENT) {
@@ -122,8 +126,8 @@ export class TournamentsComponent implements OnInit {
       ((journeys: Array<Journey>) => {
         this.journeys = journeys;
         this.journeys.sort(function (a, b) { return (a.number - b.number); });
-                    // tslint:disable-next-line:no-console
-                    console.log(this.journeys);
+        // tslint:disable-next-line:no-console
+        console.log(this.journeys);
         this.getMatches();
       }),
       ((error: Response) => {
@@ -140,25 +144,25 @@ export class TournamentsComponent implements OnInit {
     let journeysCompleted = 0;
     for (let _n = 0; _n < this.journeys.length; _n++) {
       this.journeyService.getMatchesJourneyDetails(this.journeys[_n].id, this.competition).subscribe(
-      ((matches: Array<Match>) => {
-        this.matchesJourneys[_n] = [];
-        for (let _m = 0; _m < matches.length; _m++) {
-          this.matchesJourneys[_n][_m] = new Match();
-          this.matchesJourneys[_n][_m] = matches[_m];
-        }
-        journeysCompleted++;
-        if (this.matchesJourneys[_n][0].winner === 0) { this.lastJourney = _n; }
-        if ( journeysCompleted === this.lastJourney + 1 || this.matchesJourneys.length === this.journeys.length) {
-          if ( this.lastJourney === undefined ) { this.lastJourney = this.journeys.length - 1; }
-          // tslint:disable-next-line:no-console
-          console.log(this.matchesJourneys);
-          this.getParticipants();
-         }
-      }),
-      ((error: Response) => {
-        this.loadingService.hide();
-        this.alertService.show(error.toString());
-      }));
+        ((matches: Array<Match>) => {
+          this.matchesJourneys[_n] = [];
+          for (let _m = 0; _m < matches.length; _m++) {
+            this.matchesJourneys[_n][_m] = new Match();
+            this.matchesJourneys[_n][_m] = matches[_m];
+          }
+          journeysCompleted++;
+          if (this.matchesJourneys[_n][0].winner === 0) { this.lastJourney = _n; }
+          if (journeysCompleted === this.lastJourney + 1 || this.matchesJourneys.length === this.journeys.length) {
+            if (this.lastJourney === undefined) { this.lastJourney = this.journeys.length - 1; }
+            // tslint:disable-next-line:no-console
+            console.log(this.matchesJourneys);
+            this.getParticipants();
+          }
+        }),
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
     }
   }
   /**
@@ -171,38 +175,38 @@ export class TournamentsComponent implements OnInit {
       this.modeIndividual = true;
       this.competitionService.getStudentsCompetition(this.competition.id).subscribe(
         ((students: Array<Student>) => {
-        this.collectionStudents = students;
-        this.SchoolIdAwards = students[0].schoolId.toString();
-        for (let _s = 0; _s < students.length; _s++) {
-          this.participants[_s] = {
-            id: +students[_s].id,
-            name: students[_s].name.concat(' ', students[_s].surname)
-          };
-        }
-        this.getTournamentStatus();
-      }),
-      ((error: Response) => {
-        this.loadingService.hide();
-        this.alertService.show(error.toString());
-      }));
-      } else {
+          this.collectionStudents = students;
+          this.SchoolIdAwards = students[0].schoolId.toString();
+          for (let _s = 0; _s < students.length; _s++) {
+            this.participants[_s] = {
+              id: +students[_s].id,
+              name: students[_s].name.concat(' ', students[_s].surname)
+            };
+          }
+          this.getTournamentStatus();
+        }),
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
+    } else {
       this.modeIndividual = false;
       this.teamService.getTeamsCompetition(this.competitionId).subscribe(
         ((teams: Array<Team>) => {
-        this.collectionTeams = teams;
-        for (let _t = 0; _t < teams.length; _t++) {
-          this.participants[_t] = {
-            id: +teams[_t].id,
-            name: teams[_t].name
-          };
-        }
-        this.getTournamentStatus();
-      }),
-      ((error: Response) => {
-        this.loadingService.hide();
-        this.alertService.show(error.toString());
-      }));
-      }
+          this.collectionTeams = teams;
+          for (let _t = 0; _t < teams.length; _t++) {
+            this.participants[_t] = {
+              id: +teams[_t].id,
+              name: teams[_t].name
+            };
+          }
+          this.getTournamentStatus();
+        }),
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
+    }
   }
   /**
    * This method divides the participants between the main tournament,
@@ -210,50 +214,50 @@ export class TournamentsComponent implements OnInit {
    */
   private getTournamentStatus(): void {
 
-   this.participantsPrimary = [];
-   this.participantsSecondary = [];
+    this.participantsPrimary = [];
+    this.participantsSecondary = [];
 
     for (let _m = 0; _m < this.matchesJourneys[this.lastJourney].length; _m++) {
-     if ( this.lastJourney === 0 ) {
-      this.participantsPrimary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerOne);
-      this.participantsPrimary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerTwo);
-     } else if ( (this.lastJourney + 1) % 2 === 0 && this.lastJourney + 1 !== this.journeys.length ) {
-       if ( _m < this.matchesJourneys[this.lastJourney].length / 2 ) {
+      if (this.lastJourney === 0) {
         this.participantsPrimary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerOne);
         this.participantsPrimary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerTwo);
-       } else {
+      } else if ((this.lastJourney + 1) % 2 === 0 && this.lastJourney + 1 !== this.journeys.length) {
+        if (_m < this.matchesJourneys[this.lastJourney].length / 2) {
+          this.participantsPrimary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerOne);
+          this.participantsPrimary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerTwo);
+        } else {
+          this.participantsSecondary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerOne);
+          this.participantsSecondary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerTwo);
+        }
+      } else if ((this.lastJourney + 1) % 2 !== 0) {
+        this.matchesJourneys[this.lastJourney - 1][_m].winner === this.matchesJourneys[this.lastJourney - 1][_m].playerOne ?
+          this.participantsPrimary.push(this.matchesJourneys[this.lastJourney - 1][_m].namePlayerOne) :
+          this.participantsPrimary.push(this.matchesJourneys[this.lastJourney - 1][_m].namePlayerTwo);
         this.participantsSecondary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerOne);
         this.participantsSecondary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerTwo);
-       }
-     } else if ( (this.lastJourney + 1) % 2 !== 0 ) {
-      this.matchesJourneys[this.lastJourney - 1][_m].winner === this.matchesJourneys[this.lastJourney - 1][_m].playerOne ?
-      this.participantsPrimary.push(this.matchesJourneys[this.lastJourney - 1][_m].namePlayerOne) :
-      this.participantsPrimary.push(this.matchesJourneys[this.lastJourney - 1][_m].namePlayerTwo);
-      this.participantsSecondary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerOne);
-      this.participantsSecondary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerTwo);
-     } else if ( this.lastJourney + 1 === this.journeys.length ) {
-      this.final = true;
-      if ( this.matchesJourneys[this.lastJourney][0].winner !== 0) {
-        this.tournamentCompleted = true;
-        this.matchesJourneys[this.lastJourney][0].winner === this.matchesJourneys[this.lastJourney][0].playerOne ?
-        this.winner = this.matchesJourneys[this.lastJourney][0].namePlayerOne :
-        this.winner = this.matchesJourneys[this.lastJourney][0].namePlayerTwo;
+      } else if (this.lastJourney + 1 === this.journeys.length) {
+        this.final = true;
+        if (this.matchesJourneys[this.lastJourney][0].winner !== 0) {
+          this.tournamentCompleted = true;
+          this.matchesJourneys[this.lastJourney][0].winner === this.matchesJourneys[this.lastJourney][0].playerOne ?
+            this.winner = this.matchesJourneys[this.lastJourney][0].namePlayerOne :
+            this.winner = this.matchesJourneys[this.lastJourney][0].namePlayerTwo;
+        }
+        this.participantsPrimary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerOne);
+        this.participantsPrimary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerTwo);
       }
-      this.participantsPrimary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerOne);
-      this.participantsPrimary.push(this.matchesJourneys[this.lastJourney][_m].namePlayerTwo);
-     }
     }
 
     // Deleting ghosts to show
     this.ghostIndex = 0;
-    while ( this.ghostIndex < this.participantsPrimary.length) {
+    while (this.ghostIndex < this.participantsPrimary.length) {
       if (this.participantsPrimary[this.ghostIndex] === 'Ghost') {
         this.participantsPrimary.splice(this.ghostIndex, 1);
         this.ghostIndex = 0;
       } else { this.ghostIndex++; }
     }
     this.ghostIndex = 0;
-    while ( this.ghostIndex < this.participantsSecondary.length) {
+    while (this.ghostIndex < this.participantsSecondary.length) {
       if (this.participantsSecondary[this.ghostIndex] === 'Ghost') {
         this.participantsSecondary.splice(this.ghostIndex, 1);
         this.ghostIndex = 0;
@@ -265,7 +269,7 @@ export class TournamentsComponent implements OnInit {
     for (let _d = 0; _d < this.participants.length; _d++) {
       let count = 0;
       for (let _p = 0; _p < this.participantsPrimary.length; _p++) {
-        if ( this.participants[_d].name === this.participantsPrimary[_p] ) {
+        if (this.participants[_d].name === this.participantsPrimary[_p]) {
           count = 1;
         }
       }
@@ -276,13 +280,13 @@ export class TournamentsComponent implements OnInit {
     while (_q < this.participantsEliminated.length) {
       let count = 0;
       for (let _p = 0; _p < this.participantsSecondary.length; _p++) {
-        if ( this.participantsEliminated[_q] === this.participantsSecondary[_p] ) {
+        if (this.participantsEliminated[_q] === this.participantsSecondary[_p]) {
           count = 1;
         }
       }
       if (count === 1) {
-       this.participantsEliminated.splice(_q, 1);
-       _q = 0;
+        this.participantsEliminated.splice(_q, 1);
+        _q = 0;
       } else { _q++; }
     }
     this.loadingService.hide();
@@ -301,15 +305,15 @@ export class TournamentsComponent implements OnInit {
   }
 
   SendPoint(): void {
-      this.pointService.savePoint(this.Primer_name, this.Primer_p_value, '../../../assets/img/tenis-icon.svg').subscribe(
-        ((newPoint: Point) => {
-          this.Primer_point = newPoint;
-          this.SetPoint();
-        }),
-        ((error: Response) => {
-          this.loadingService.hide();
-          this.alertService.show(error.toString());
-        }));
+    this.pointService.savePoint(this.Primer_name, this.Primer_p_value).subscribe(
+      ((newPoint: Point) => {
+        this.Primer_point = newPoint;
+        this.SetPoint();
+      }),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+      }));
   }
 
   SetPoint(): void {
@@ -358,15 +362,15 @@ export class TournamentsComponent implements OnInit {
         if (this.modeIndividual === true) {
           this.badgeRelationService.postBadgeRelation(this.Primer_badge.id, this.studentSelected.id, this.SchoolIdAwards,
             this.GroupIdAwards, 1).subscribe(
-            ((responseBadgeRelation: BadgeRelation) => {
-              this.Primer_BadgeRelation = responseBadgeRelation;
-              this.loadingService.hide();
-              this.alertService.show(this.translateService.instant('BADGES.CORASSIGN'));
-            }),
-            ((error: Response) => {
-              this.loadingService.hide();
-              this.alertService.show(error.toString());
-            }));
+              ((responseBadgeRelation: BadgeRelation) => {
+                this.Primer_BadgeRelation = responseBadgeRelation;
+                this.loadingService.hide();
+                this.alertService.show(this.translateService.instant('BADGES.CORASSIGN'));
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
         } else {
           this.teamService.getStudentsTeam(this.teamSelected.id).subscribe(
             ((students: Array<Student>) => {
@@ -400,7 +404,7 @@ export class TournamentsComponent implements OnInit {
 
   getCollections(): void {
     this.groupService.getGroupCollectionCards(this.GroupIdAwards).subscribe(
-      ( (coleccion: Array<CollectionCard>) => {
+      ((coleccion: Array<CollectionCard>) => {
         this.collections = coleccion;
         this.loadingService.hide();
       }),
@@ -430,41 +434,41 @@ export class TournamentsComponent implements OnInit {
   public assignCardsToStudent(): void {
     switch (this.optionType) {
       case this.translateService.instant('CARDS.ASSIGNMENTTYPE1'):
-      if (this.cardSelected) {
-        if (this.modeIndividual === true) {
-          this.collectionService.assignCardToStudent(this.studentSelected.id, this.cardSelected).subscribe(
-            ((collectionCards: Array<Card>) => {
-              this.loadingService.hide();
-              this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
-            }),
-            ((error: Response) => {
-              this.loadingService.hide();
-              this.alertService.show(error.toString());
-            }));
-        } else {
-          this.teamService.getStudentsTeam(this.teamSelected.id).subscribe(
-            ((students: Array<Student>) => {
-              this.Team = students;
-              for (let _n = 0; _n < this.Team.length; _n++) {
-                this.collectionService.assignCardToStudent(this.Team[_n].id, this.cardSelected).subscribe(
-                  ((collectionCards: Array<Card>) => {
-                    this.loadingService.hide();
-                    this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
-                  }),
-                  ((error: Response) => {
-                    this.loadingService.hide();
-                    this.alertService.show(error.toString());
-                  }));
-              }
-              this.loadingService.hide();
-            }),
-            ((error: Response) => {
-              this.loadingService.hide();
-              this.alertService.show(error.toString());
-            }));
-        }
-      } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
-      break;
+        if (this.cardSelected) {
+          if (this.modeIndividual === true) {
+            this.collectionService.assignCardToStudent(this.studentSelected.id, this.cardSelected).subscribe(
+              ((collectionCards: Array<Card>) => {
+                this.loadingService.hide();
+                this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
+          } else {
+            this.teamService.getStudentsTeam(this.teamSelected.id).subscribe(
+              ((students: Array<Student>) => {
+                this.Team = students;
+                for (let _n = 0; _n < this.Team.length; _n++) {
+                  this.collectionService.assignCardToStudent(this.Team[_n].id, this.cardSelected).subscribe(
+                    ((collectionCards: Array<Card>) => {
+                      this.loadingService.hide();
+                      this.alertService.show(this.translateService.instant('CARDS.CORASSIGN2'));
+                    }),
+                    ((error: Response) => {
+                      this.loadingService.hide();
+                      this.alertService.show(error.toString());
+                    }));
+                }
+                this.loadingService.hide();
+              }),
+              ((error: Response) => {
+                this.loadingService.hide();
+                this.alertService.show(error.toString());
+              }));
+          }
+        } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
+        break;
       case this.translateService.instant('CARDS.ASSIGNMENTTYPE2'):
         var numcard = this.randomNumber(1, this.collectionCards.length - 1);
         this.snackbar.open(String(numcard) + '/' + String(this.count));
@@ -500,39 +504,14 @@ export class TournamentsComponent implements OnInit {
               this.alertService.show(error.toString());
             }));
         }
-      break;
+        break;
       case this.translateService.instant('CARDS.ASSIGNMENTTYPE3'):
         if (this.modeIndividual === true) {
-            for (let i = 0; i < 3; i++) {
-              var numcard = this.randomNumber(1, this.collectionCards.length - 1);
-              this.collectionService.assignCardToStudent(this.studentSelected.id, numcard).subscribe(
-                ((collectionCards: Array<Card>) => {
-                  this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
-                  this.loadingService.hide();
-                }),
-                ((error: Response) => {
-                  this.loadingService.hide();
-                  this.alertService.show(error.toString());
-                }));
-            }
-          } else {
-            this.teamService.getStudentsTeam(this.teamSelected.id).subscribe(
-              ((students: Array<Student>) => {
-                this.Team = students;
-                for (let _n = 0; _n < this.Team.length; _n++) {
-                  for (let i = 0; i < 3; i++) {
-                    var numcard = this.randomNumber(1, this.collectionCards.length - 1);
-                    this.collectionService.assignCardToStudent(this.Team[_n].id, numcard).subscribe(
-                      ((collectionCards: Array<Card>) => {
-                        this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
-                        this.loadingService.hide();
-                      }),
-                      ((error: Response) => {
-                        this.loadingService.hide();
-                        this.alertService.show(error.toString());
-                      }));
-                  }
-                }
+          for (let i = 0; i < 3; i++) {
+            var numcard = this.randomNumber(1, this.collectionCards.length - 1);
+            this.collectionService.assignCardToStudent(this.studentSelected.id, numcard).subscribe(
+              ((collectionCards: Array<Card>) => {
+                this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
                 this.loadingService.hide();
               }),
               ((error: Response) => {
@@ -540,7 +519,32 @@ export class TournamentsComponent implements OnInit {
                 this.alertService.show(error.toString());
               }));
           }
-      break;
+        } else {
+          this.teamService.getStudentsTeam(this.teamSelected.id).subscribe(
+            ((students: Array<Student>) => {
+              this.Team = students;
+              for (let _n = 0; _n < this.Team.length; _n++) {
+                for (let i = 0; i < 3; i++) {
+                  var numcard = this.randomNumber(1, this.collectionCards.length - 1);
+                  this.collectionService.assignCardToStudent(this.Team[_n].id, numcard).subscribe(
+                    ((collectionCards: Array<Card>) => {
+                      this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
+                      this.loadingService.hide();
+                    }),
+                    ((error: Response) => {
+                      this.loadingService.hide();
+                      this.alertService.show(error.toString());
+                    }));
+                }
+              }
+              this.loadingService.hide();
+            }),
+            ((error: Response) => {
+              this.loadingService.hide();
+              this.alertService.show(error.toString());
+            }));
+        }
+        break;
       case this.translateService.instant('CARDS.ASSIGNMENTTYPE4'):
         if (this.modeIndividual === true) {
           for (let i = 0; i < 5; i++) {
@@ -549,40 +553,40 @@ export class TournamentsComponent implements OnInit {
               ((collectionCards: Array<Card>) => {
                 this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
                 this.loadingService.hide();
-                this.count ++;
+                this.count++;
               }),
               ((error: Response) => {
                 this.loadingService.hide();
                 this.alertService.show(error.toString());
               }));
           }
-      } else {
-        this.teamService.getStudentsTeam(this.teamSelected.id).subscribe(
-          ((students: Array<Student>) => {
-            this.Team = students;
-            for (let _n = 0; _n < this.Team.length; _n++) {
-              for (let i = 0; i < 5; i++) {
-                var numcard = this.randomNumber(1, this.collectionCards.length - 1);
-                this.collectionService.assignCardToStudent(this.Team[_n].id, +numcard).subscribe(
-                  ((collectionCards: Array<Card>) => {
-                    this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
-                    this.loadingService.hide();
-                  }),
-                  ((error: Response) => {
-                    this.loadingService.hide();
-                    this.alertService.show(error.toString());
-                  }));
+        } else {
+          this.teamService.getStudentsTeam(this.teamSelected.id).subscribe(
+            ((students: Array<Student>) => {
+              this.Team = students;
+              for (let _n = 0; _n < this.Team.length; _n++) {
+                for (let i = 0; i < 5; i++) {
+                  var numcard = this.randomNumber(1, this.collectionCards.length - 1);
+                  this.collectionService.assignCardToStudent(this.Team[_n].id, +numcard).subscribe(
+                    ((collectionCards: Array<Card>) => {
+                      this.alertService.show(this.translateService.instant('CARDS.CORASSIGN'));
+                      this.loadingService.hide();
+                    }),
+                    ((error: Response) => {
+                      this.loadingService.hide();
+                      this.alertService.show(error.toString());
+                    }));
+                }
               }
-            }
-            this.loadingService.hide();
-          }),
-          ((error: Response) => {
-            this.loadingService.hide();
-            this.alertService.show(error.toString());
-          }));
-      }
-      break;
+              this.loadingService.hide();
+            }),
+            ((error: Response) => {
+              this.loadingService.hide();
+              this.alertService.show(error.toString());
+            }));
+        }
+        break;
     }
     this.optionType = "";
-}
+  }
 }
