@@ -28,7 +28,7 @@
   "GROUPS": {
     "TITLE": "Grups",
     "LIST": "Llistat de grups",
-	  "ID": "Id. Grup",
+    "ID": "Id. Grup",
     "CHOOSE": "Tria el grup",
     "NOASSIGN": "No assignar grup",
     "SINGULAR": "Grups"
@@ -41,26 +41,26 @@
   "STUDIENTS": {
     "ID": "Id. Estudiant",
     "NAME": "Nom",
-    "AVATAR":"Avatar",
-    "SURNAME":"Cognom",
+    "AVATAR": "Avatar",
+    "SURNAME": "Cognom",
     "EMAIL": "Email",
     "TITLE": "Estudiants",
-	"CHOOSE": "Tria l'estudiant",
-	"SHOW": "Mostrar estudiants"
+    "CHOOSE": "Tria l'estudiant",
+    "SHOW": "Mostrar estudiants"
   },
   "QUESTIONNAIRES": {
     "TITLE": "Qüestionaris",
     "ID": "ID del Qüestionari:",
     "DELETE": "Eliminar Qüestionaris",
     "CREATE": "Crear nou Qüestionaris",
-	"LIST": "Llista de qüestionaris",
-	"MYQUESTIONNAIRES": "Els meus qüestionaris"
+    "LIST": "Llista de qüestionaris",
+    "MYQUESTIONNAIRES": "Els meus qüestionaris"
   },
   "QUESTIONNAIRE": {
     "RESULTS": "Resultats Qüestionaris",
     "STUDENT": "Estudiant",
-    "ACTIVE":" activat correctament",
-    "DEACTIVATE":" desactivat correctament",
+    "ACTIVE": " activat correctament",
+    "DEACTIVATE": " desactivat correctament",
     "CREATED": "Qüestionari creat correctament!",
     "DELETED": "Qüestionari eliminat correctament!",
     "NOTDELETED": "El qüestionari seleccionat no existeix.",
@@ -114,12 +114,12 @@
 
   },
   "ERROR": {
-    "EMPTYFIELDS":"Cal omplir tots els camps correctament",
+    "EMPTYFIELDS": "Cal omplir tots els camps correctament",
     "LOGIN_FAILED": "El nom d'usuari i/o contrasenya són invàlides.",
     "LOGIN_FAILED_EMAIL_NOT_VERIFIED": "El teu correu no ha estat verificat encara, si us plau, revisa el teu correu.",
     "INTERNAL_ERROR": "Hi ha hagut un error intern al servidor. Si us plau contacta amb el teu administrador. "
   },
-  "POINTSBADGES":{
+  "POINTSBADGES": {
     "TITLE": "Punts i insígnies ",
     "POINTSTITLE": "Punts",
     "BADGESTITLE": "Insígnies",
@@ -180,15 +180,15 @@
     "ASSIGN": "Assignar insígnies",
     "SEND": "Enviar insígnia",
     "SINGULAR": "Insígnia",
-    "MAXVALUE" : "Insígnia de màxim valor",
-    "MEDIUMVALUE" : "Insígnia de valor mig",
-    "LOWVALUE" : "Insígnia de valor baix",
+    "MAXVALUE": "Insígnia de màxim valor",
+    "MEDIUMVALUE": "Insígnia de valor mig",
+    "LOWVALUE": "Insígnia de valor baix",
     "DELETE": "Eliminar insígnia",
     "CORASSIGN": "Insígnia assignada correctament",
     "NOASSIGN": "No assignar cap insígnia",
     "CONFIRMDELETE": "Segur que vols eliminar la Insígnia"
   },
-  "COLLECTIONS":{
+  "COLLECTIONS": {
     "ID": "Id. Col·lecció",
     "FINISHCOLLECTION": "Premi per acabar la col·lecció",
     "CREATE": "Crear nova col·lecció",
@@ -218,7 +218,7 @@
 
 
   },
-  "CARDS":{
+  "CARDS": {
     "ID": "Id. Cromo",
     "CREATED": "Cromo creat correctament!",
     "DELETED": "Cromo eliminat correctament!",
@@ -251,20 +251,20 @@
     "ASSIGNMENTTYPE2": "Assignar un cromo aleatori",
     "ASSIGNMENTTYPE3": "Assignar tres cromos aleatoris",
     "ASSIGNMENTTYPE4": "Assignar cinc cromos aleatoris",
-    "CHOOSEASSIGN":"Cal escollir un tipus d'assignació",
-    "RANK1":"Bronze",
-    "RANK2":"Plata",
-    "RANK3":"Or",
-    "RANK4":"Diamant",
-    "RATIO1":"Alt",
-    "RATIO2":"Mig",
-    "RATIO3":"Baix",
-    "RATIO4":"Rar",
-    "UNKNOWN":"Desconegut"
+    "CHOOSEASSIGN": "Cal escollir un tipus d'assignació",
+    "RANK1": "Bronze",
+    "RANK2": "Plata",
+    "RANK3": "Or",
+    "RANK4": "Diamant",
+    "RATIO1": "Alt",
+    "RATIO2": "Mig",
+    "RATIO3": "Baix",
+    "RATIO4": "Rar",
+    "UNKNOWN": "Desconegut"
 
 
   },
-  "COMMON":{
+  "COMMON": {
     "TYPEASSIGNMENTCHOOSE": "Tria el tipus d'assignació",
     "CHOOSEAMOUNT": "Tria la quantitat",
     "MAX40CARACT": "Max. 40 caràcters",
@@ -277,7 +277,7 @@
     "INNUMBER": "Introdueix una xifra",
     "TEAMS": "Equipos",
     "INDIVIDUAL": "Individual",
-    "ASSIGN":"Actualitzar grup i opció"
+    "ASSIGN": "Actualitzar grup i opció"
 
   },
   "COMPETITIONS": {
@@ -335,8 +335,8 @@
     "INTR_RESULT5": "Los resultados de la jornada",
     "NO_MODIFY": "No puedes modificar sus fechas",
     "RESULTS_SUCCESS": "han sido registrados con éxito.",
-    "MOD_TEXT":"Texto informativo",
-    "MOD_TEXT2":"Modifique el texto",
+    "MOD_TEXT": "Texto informativo",
+    "MOD_TEXT2": "Modifique el texto",
     "SHOW_INFO": "Mostrar información sobre esta competición",
     "HIDE_INFO": "Ocultar la información",
     "INFO_COMP": "Información referente a la competición",
@@ -360,7 +360,12 @@
     "DATE": "Nueva fecha",
     "UPDATED_JOURNEY": "Jornada actualizada",
     "UPDATED_INFORMATION": "Información actualizada",
-    "UPDATED_RESULTS": "Todos los resultados han sido registrados"
+    "UPDATED_RESULTS": "Todos los resultados han sido registrados",
+    "DONE": "Finalitzar",
+    "AUTOMATION_TITLE": "Premis Automatitzables",
+    "AUTOMATION1": "Assignar 1 punt de competició al primer i segon classificats (al finalitzar cada jornada)",
+    "AUTOMATION2": "Assignar 1 cromo aleatori al primer i segon classificats (al finalitzar cada jornada)",
+    "CHOOSE": "Tria els premis"
   },
   "TENNIS": {
     "TITLE": "Torneo de Tenis",
@@ -382,10 +387,11 @@
   "CLASSIFICATION": {
     "TITLE": "Clasificación",
     "LEAGUE": "Clasificación de la liga:",
+    "AUTOMATIONS": "Ver premios automàticos",
     "STUDENT": "Nombre del estudiante",
     "TEAM": "Nombre del equipo",
     "PLAYED": "Jugados",
-    "POSITION" : "Pos.",
+    "POSITION": "Pos.",
     "WON": "Ganados",
     "DRAW": "Empatados",
     "DRAW2": "Empate",
@@ -435,5 +441,5 @@
     "GROUPS": "Escull un grup",
     "GROUP": "Id del grup",
     "AWARDS": "Passar llista i assignar premis per puntualitat"
-   }
+  }
 }
