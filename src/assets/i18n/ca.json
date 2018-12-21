@@ -441,5 +441,11 @@
     "GROUPS": "Escull un grup",
     "GROUP": "Id del grup",
     "AWARDS": "Passar llista i assignar premis per puntualitat"
+  },
+
+  "AUTOMATION": {
+    "TITLE": "Premis Automàtics",
+    "INFORMATION": "S'han assignat els premis automàtics",
+    "NOCOL": "No hi ha cap col·lecció de cromos assignada a aquest grup"
   }
 }

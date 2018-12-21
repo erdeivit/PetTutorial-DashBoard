@@ -136,13 +136,6 @@ export class CreateLeagueCompetitionComponent implements OnInit {
         this.newCompetition.automation = '00';
       }
     }
-    // Add the journeys to the next step
-    for (let _n = 0; _n < this.newCompetition.numJourneys - 1; _n++) {
-      let journeys = <FormArray>this.journeysFormGroup.get('journeys');
-      journeys.push(this._formBuilder.group({
-        date: ['']
-      }));
-    }
     this.loadingService.hide();
   }
 

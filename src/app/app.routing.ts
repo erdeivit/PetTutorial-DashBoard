@@ -45,6 +45,7 @@ import { CreateLeagueCompetitionComponent } from './pages/competitions/create-le
 import { CreateTennisCompetitionComponent } from './pages/competitions/create-tennis-competition/create-tennis-competition';
 import { TeamsComponent } from './pages/competitions/teams/teams';
 import { ClassificationComponent } from './pages/competitions/league/classification/classification';
+import { AutomationComponent } from './pages/competitions/league/automation/automation';
 import { JourneysLeagueComponent } from './pages/competitions/league/journeys-league/journeys-league';
 import { JourneysTennisComponent } from './pages/competitions/tennis/journeys-tennis/journeys-tennis';
 import { TournamentsComponent } from './pages/competitions/tennis/tournaments/tournaments';
@@ -67,6 +68,7 @@ const appRoutes: Routes = [
   { path: 'competition/league/create', component: CreateLeagueCompetitionComponent, canActivate: [AuthGuard]},
   { path: 'competition/league/:id', component: LeagueComponent, canActivate: [AuthGuard]},
   { path: 'competition/league/:id/classification', component: ClassificationComponent, canActivate: [AuthGuard]},
+  { path: 'competition/league/:id/automation', component: AutomationComponent, canActivate: [AuthGuard]},
   { path: 'competition/league/:id/journeys', component: JourneysLeagueComponent, canActivate: [AuthGuard]},
   { path: 'competition/league/:id/teams', component: TeamsComponent, canActivate: [AuthGuard]},
   { path: 'competition/tennis/:id', component: TennisComponent, canActivate: [AuthGuard]},
