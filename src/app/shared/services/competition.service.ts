@@ -140,6 +140,19 @@ export class CompetitionService {
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 
+  public ReplaceCompetition (competition: Competition): Observable<Competition> {
+
+    const options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+
+    let url: string = AppConfig.COMPETITION_URL + '/' + competition.id + '/replace';
+
+    return this.http.post(url, competition, options)
+      .map((response: Response, index: number) => Competition.toObject(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
   /**
   * PUT: add new information to the competition
   * @return {Observable<Competition>} returns the competition
@@ -154,6 +167,21 @@ export class CompetitionService {
       .map((response: Response, index: number) => Competition.toObject(response.json()))
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
+
+  /**
+  * PUT: add new automation to the competition
+  * @return {Observable<Competition>} returns the competition
+  */
+ public putAutomation (automation: string, id: string | number): Observable<Competition> {
+
+  const options: RequestOptions = new RequestOptions({
+    headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+  });
+
+  return this.http.put(AppConfig.COMPETITION_URL + '/' + id, automation, options)
+    .map((response: Response, index: number) => Competition.toObject(response.json()))
+    .catch((error: Response) => this.utilsService.handleAPIError(error));
+}
 
   /**
   * PUT: made the relation between a student and a competition
