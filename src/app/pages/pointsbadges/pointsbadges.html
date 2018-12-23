@@ -148,12 +148,25 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <div>
-        <button mat-raised-button (click)="showStudents()">{{ 'STUDIENTS.SHOW' | translate }}</button>
-      </div>
       <br>
+      <mat-card *ngIf="!isTeacher">
+        Individual
+        <mat-slide-toggle (change)="individualorteam()" [checked]="teamsmode" [formControl]="myControl">
+          Teams
+        </mat-slide-toggle>
+        <div>
+          <button *ngIf="!teammode" mat-raised-button (click)="showStudents()">{{ 'STUDIENTS.SHOW' | translate }}</button>
+          <button *ngIf="teammode" mat-raised-button (click)="showTeams()">{{ 'STUDIENTS.TEAMSHOW' | translate }}</button>
+        </div>
+      </mat-card>
+      <mat-card *ngIf="isTeacher">
+        <div>
+          <button *ngIf="!teammode" mat-raised-button (click)="showStudents()">{{ 'STUDIENTS.SHOW' | translate }}</button>
+          <button *ngIf="teammode" mat-raised-button (click)="showTeams()">{{ 'STUDIENTS.TEAMSHOW' | translate }}</button>
+        </div>
+      </mat-card>
       <mat-card>
-        <table>
+        <table *ngIf="!teammode">
           <thead>
             <tr class="tableHeader">
               <th class="positiontit">{{ 'CLASSIFICATION.POSITION' | translate }}</th>
@@ -169,6 +182,22 @@
               <td>
                 <button mat-raised-button color="primary" (click)="showAwards(score.studentId)">View Badges</button>
               </td>
+            </tr>
+          </tbody>
+        </table>
+        <table *ngIf="teammode">
+          <thead>
+            <tr class="tableHeader">
+              <th class="positiontit">{{ 'CLASSIFICATION.POSITION' | translate }}</th>
+              <th class="studenttit">{{ 'CLASSIFICATION.STUDENT' | translate }}</th>
+              <th class="pointstit">{{ 'CLASSIFICATION.POINTS' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let scoreteam of scoresteam; let i=index;">
+              <td id="position_{{i + 1}}" class="position">{{scoreteam.position}}</td>
+              <td>{{scoreteam.name}}</td>
+              <td>{{scoreteam.points}}</td>
             </tr>
           </tbody>
         </table>

@@ -46,7 +46,8 @@
     "EMAIL": "Email",
     "TITLE": "Estudiants",
     "CHOOSE": "Tria l'estudiant",
-    "SHOW": "Mostrar estudiants"
+    "SHOW": "Mostrar estudiants",
+    "TEAMSHOW": "Mostrar equips"
   },
   "QUESTIONNAIRES": {
     "TITLE": "Qüestionaris",

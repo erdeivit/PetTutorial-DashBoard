@@ -76,11 +76,15 @@ export class PointsBadgesComponent implements OnInit {
   public resultDeletePoint: number;
   // showStudents()
   public listStudents: Array<Student> = new Array<Student>();
+  public teamslist: Array<Team> = new Array<Team>();
+
   public listStudentsPoints: Array<Student> = new Array<Student>();
   public valuePoints: Array<PointRelation> = new Array<PointRelation>();
   public totalPointsStudent: number;
   public teams = new Array();
   public scores = new Array<Score>();
+  public scoresteam = new Array<ScoreTeam>();
+  public scoreteam: ScoreTeam;
   public nullpoints: boolean;
   public puntoss: number;
   public score: Score;
@@ -218,10 +222,12 @@ export class PointsBadgesComponent implements OnInit {
   public individualorteam() {
     if (this.teammode == true) {
       this.teammode = false;
+      this.modeIndividual = true;
       this.individ = true;
     } else {
       this.teammode = true;
       this.individ = false;
+      this.modeIndividual = false;
       this.GetTeams();
     }
   }
@@ -329,6 +335,75 @@ export class PointsBadgesComponent implements OnInit {
     for (let _s = 0; _s < this.scores.length; _s++) {
       this.scores[_s].position = _s + 1;
     }
+  }
+
+  public sortteams() {
+    this.scoresteam = [];
+    for (let team1 of this.teamslist) {
+      this.scoreteam = { position: 0, name: team1.name, points: 0 };
+      this.scoreteam.points = team1.totalpoints / team1.numPlayers;
+      this.scoreteam.position = 0;
+      this.scoresteam.push(this.scoreteam);
+    }
+    this.scoresteam.sort(function (a, b) {
+      return (b.points - a.points);
+    });
+    for (let _s = 0; _s < this.scoresteam.length; _s++) {
+      this.scoresteam[_s].position = _s + 1;
+    }
+  }
+
+  showTeams() {
+    this.groupService.getGroupTeams(this.groupSelected).subscribe(
+      ((teams: Array<Team>) => {
+        this.teamslist = teams;
+        this.loadingService.hide();
+        for (let tteam of this.teamslist) {
+          this.teamService.getStudentsTeam(tteam.id).subscribe(
+            ((students: Array<Student>) => {
+              this.listStudents = students;
+              tteam.numPlayers = this.listStudents.length;
+              this.loadingService.hide();
+              for (let st of this.listStudents) {
+                this.pointRelationService.getStudentPoints(st.id).subscribe(
+                  ((valuePoints: Array<PointRelation>) => {
+                    this.valuePoints = valuePoints;
+                    this.totalPointsStudent = 0;
+                    tteam.totalpoints = 0;
+                    this.puntoss = 0;
+                    this.loadingService.hide();
+                    for (let rel of this.valuePoints) {
+                      if (rel.groupId === +this.groupSelected) {
+                        this.pointService.getPoint(rel.pointId).subscribe(
+                          ((valuep: Point) => {
+                            this.loadingService.hide();
+                            this.puntoss += Number(valuep.value) * Number(rel.value);
+                            tteam.totalpoints += Number(valuep.value) * Number(rel.value);
+                            this.sortteams();
+                          }),
+                          ((error: Response) => {
+                            this.loadingService.hide();
+                            this.alertService.show(error.toString());
+                          }));
+                      }
+                    }
+                    this.listStudentsPoints.push(st);
+                    this.totalPointsStudent = 0;
+                  }),
+                  ((error: Response) => {
+                    this.loadingService.hide();
+                    this.alertService.show(error.toString());
+                  }));
+              }
+
+            })
+          )
+        }
+      }),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+      }));
   }
 
   public showAwards(studentId: string) {
@@ -460,7 +535,9 @@ export class PointsBadgesComponent implements OnInit {
             this.loadingService.hide();
             this.alertService.show(error.toString());
           }));
-      } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
+      } else {
+        this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
+      }
     }
   }
 
@@ -533,4 +610,9 @@ export interface Score {
   points: number;
   currentuser: Boolean;
   studentId: string;
+}
+export interface ScoreTeam {
+  name: string;
+  position: number;
+  points: number;
 }
