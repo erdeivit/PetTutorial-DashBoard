@@ -7,14 +7,6 @@
           {{option}}
         </mat-option>
       </mat-select> -->
-    Individual
-    <mat-slide-toggle (change)="individualorteam()" [checked]="teamsmode" [formControl]="myControl">
-      Teams
-    </mat-slide-toggle>
-    <!-- </mat-form-field> -->
-    <br>
-    <br>
-    <br>
     <mat-form-field>
       <mat-select [(value)]="groupSelected" placeholder="{{ 'GROUPS.CHOOSE' | translate }}" [formControl]="myControl">
         <mat-option *ngFor="let group of mygroups" [value]="group.id" (click)="GetStudents()">
@@ -22,6 +14,16 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <!-- </mat-form-field> -->
+    <br>
+    <br>
+    <br>
+    Individual
+    <mat-slide-toggle (change)="individualorteam()" [checked]="teamsmode" [formControl]="myControl">
+      Teams
+    </mat-slide-toggle>
+    <br>
     <br>
     <mat-form-field *ngIf="individ && groupSelected">
       <mat-select [(value)]="studentSelected" placeholder="{{ 'STUDIENTS.CHOOSE' | translate }}" [formControl]="myControl">
@@ -30,7 +32,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field *ngIf="teamsmode && groupSelected">
+    <mat-form-field *ngIf="teammode && groupSelected && !groupnoteams">
       <mat-select [(value)]="teamSelected" placeholder="{{ 'TEAMS.CHOOSE' | translate }}" [formControl]="myControl">
         <mat-option *ngFor="let team of Teams" [value]="team" (click)="GetTeam()">
           {{team.name}}
@@ -73,12 +75,12 @@
         </mat-list-item>
         <mat-progress-bar mode="buffer"></mat-progress-bar>
       </mat-nav-list>
-      <mat-nav-list *ngIf="points">
+      <mat-nav-list *ngIf="points && isTeacher">
         <h3 mat-subheader>{{ 'POINTS.LIST' | translate }}</h3>
         <mat-list-item *ngFor="let point of points">
           <!-- <img matListAvatar src={{point.image}}> -->
           <h4 mat-line>{{point.name}}</h4>
-          <p mat-line>{{ 'POINTSBADGES.POINTID' | translate }}{{point.id}}</p>
+          <p mat-line>{{ 'POINTSBADGES.POINTID' | translate }}{{': '}}{{point.id}}</p>
         </mat-list-item>
         <mat-progress-bar mode="buffer"></mat-progress-bar>
       </mat-nav-list>
@@ -118,12 +120,12 @@
         <mat-progress-bar mode="buffer"></mat-progress-bar>
       </mat-nav-list>
       <br>
-      <mat-nav-list *ngIf="badges">
+      <mat-nav-list *ngIf="badges && isTeacher">
         <h3 mat-subheader>{{ 'BADGES.LIST' | translate }}</h3>
         <mat-list-item *ngFor="let badge of badges">
           <img matListAvatar src={{badge.image}}>
           <h4 mat-line>{{badge.name}}</h4>
-          <p mat-line>{{ 'POINTSBADGES.BADGEID' | translate }}{{badge.id}}</p>
+          <p mat-line>{{ 'POINTSBADGES.BADGEID' | translate }}{{': '}}{{badge.id}}</p>
         </mat-list-item>
         <mat-progress-bar mode="buffer"></mat-progress-bar>
       </mat-nav-list>
@@ -137,8 +139,15 @@
         <button mat-raised-button (click)="deleteBadge()">{{ 'BADGES.DELETE' | translate }}</button>
       </div>
     </mat-tab>
-    <mat-tab label="{{ 'POINTS.STUDIENTS' | translate }}" *ngIf="isTeacher">
+    <mat-tab label="{{ 'POINTS.STUDIENTS' | translate }}">
       <br>
+      <mat-form-field *ngIf="!isTeacher">
+        <mat-select [(value)]="groupSelected" placeholder="{{ 'GROUPS.CHOOSE' | translate }}" [formControl]="myControl">
+          <mat-option *ngFor="let group of mygroups" [value]="group.id" (click)="GetStudents()">
+            {{group.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       <div>
         <button mat-raised-button (click)="showStudents()">{{ 'STUDIENTS.SHOW' | translate }}</button>
       </div>
@@ -156,7 +165,7 @@
             <tr *ngFor="let score of scores; let i=index;">
               <td id="position_{{i + 1}}" class="position">{{score.position}}</td>
               <td>{{score.nameees}}</td>
-              <td>{{score.points}}</td>
+              <td (click)="showPoints(score.studentId)">{{score.points}}</td>
               <td>
                 <button mat-raised-button color="primary" (click)="showAwards(score.studentId)">View Badges</button>
               </td>

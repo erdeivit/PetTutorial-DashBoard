@@ -20,10 +20,10 @@ import { QuestionnaireAwardsComponent } from './pages/questionnaireAwards/questi
 
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
 import { CreateQuestionnaireComponent } from './pages/createQuestionnaire/createQuestionnaire';
-import { CreateQuestionnaireBadgesAssignmentComponent} from './pages/createQuestionnaireBadgesAssignment/createQuestionnaireBadgesAssignment';
-import { CreateQuestionnairePackCardsAssignmentComponent} from './pages/createQuestionnairePackCardsAssignment/createQuestionnairePackCardsAssignment';
+import { CreateQuestionnaireBadgesAssignmentComponent } from './pages/createQuestionnaireBadgesAssignment/createQuestionnaireBadgesAssignment';
+import { CreateQuestionnairePackCardsAssignmentComponent } from './pages/createQuestionnairePackCardsAssignment/createQuestionnairePackCardsAssignment';
 
-import { CreateQuestionnairePointsAssignmentComponent} from './pages/createQuestionnairePointsAssignment/createQuestionnairePointsAssignment';
+import { CreateQuestionnairePointsAssignmentComponent } from './pages/createQuestionnairePointsAssignment/createQuestionnairePointsAssignment';
 import { CreateQuestionnaireTest1Component } from './pages/createQuestionnaireTest1/createQuestionnaireTest1';
 import { CreateQuestionnaireTest2Component } from './pages/createQuestionnaireTest2/createQuestionnaireTest2';
 import { CreateQuestionnaireTextArea1Component } from './pages/createQuestionnaireTextArea1/createQuestionnaireTextArea1';
@@ -31,15 +31,17 @@ import { CreateQuestionnaireTextArea2Component } from './pages/createQuestionnai
 import { CreatePointComponent } from './pages/createPoint/createPoint';
 import { DeletePointComponent } from './pages/deletePoint/deletePoint';
 import { ViewBadgesComponent } from './pages/viewbadges/viewbadges';
+import { ViewPointsComponent } from './pages/viewpoints/viewpoints';
 import { CreateBadgeComponent } from './pages/createBadge/createBadge';
 import { DeleteBadgeComponent } from './pages/deleteBadge/deleteBadge';
 import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollection';
+import { ViewCardComponent } from './pages/viewcard/viewcard';
 
 import { CreateTeamsComponent } from './pages/create-teams/create-teams';
 // Competitions
-import { CompetitionsComponent} from './pages/competitions/competitions';
+import { CompetitionsComponent } from './pages/competitions/competitions';
 import { LeagueComponent } from './pages/competitions/league/league';
-import { TennisComponent} from './pages/competitions/tennis/tennis';
+import { TennisComponent } from './pages/competitions/tennis/tennis';
 import { DeleteCompetitionComponent } from './pages/competitions/delete-competition/delete-competition';
 import { CreateLeagueCompetitionComponent } from './pages/competitions/create-league-competition/create-league-competition';
 import { CreateTennisCompetitionComponent } from './pages/competitions/create-tennis-competition/create-tennis-competition';
@@ -60,19 +62,19 @@ const appRoutes: Routes = [
   // authenticated pages
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'groups', component: GroupsComponent, canActivate: [AuthGuard] },
-  { path: 'create-teams', component: CreateTeamsComponent, canActivate: [AuthGuard]},
-  { path: 'competitions', component: CompetitionsComponent, canActivate: [AuthGuard]},
-  { path: 'competition/delete', component: DeleteCompetitionComponent, canActivate: [AuthGuard]},
-  { path: 'competition/tennis/create', component: CreateTennisCompetitionComponent, canActivate: [AuthGuard]},
-  { path: 'competition/league/create', component: CreateLeagueCompetitionComponent, canActivate: [AuthGuard]},
-  { path: 'competition/league/:id', component: LeagueComponent, canActivate: [AuthGuard]},
-  { path: 'competition/league/:id/classification', component: ClassificationComponent, canActivate: [AuthGuard]},
-  { path: 'competition/league/:id/journeys', component: JourneysLeagueComponent, canActivate: [AuthGuard]},
-  { path: 'competition/league/:id/teams', component: TeamsComponent, canActivate: [AuthGuard]},
-  { path: 'competition/tennis/:id', component: TennisComponent, canActivate: [AuthGuard]},
-  { path: 'competition/tennis/:id/tournaments', component: TournamentsComponent, canActivate: [AuthGuard]},
-  { path: 'competition/tennis/:id/journeys', component: JourneysTennisComponent, canActivate: [AuthGuard]},
-  { path: 'competition/tennis/:id/teams', component: TeamsComponent, canActivate: [AuthGuard]},
+  { path: 'create-teams', component: CreateTeamsComponent, canActivate: [AuthGuard] },
+  { path: 'competitions', component: CompetitionsComponent, canActivate: [AuthGuard] },
+  { path: 'competition/delete', component: DeleteCompetitionComponent, canActivate: [AuthGuard] },
+  { path: 'competition/tennis/create', component: CreateTennisCompetitionComponent, canActivate: [AuthGuard] },
+  { path: 'competition/league/create', component: CreateLeagueCompetitionComponent, canActivate: [AuthGuard] },
+  { path: 'competition/league/:id', component: LeagueComponent, canActivate: [AuthGuard] },
+  { path: 'competition/league/:id/classification', component: ClassificationComponent, canActivate: [AuthGuard] },
+  { path: 'competition/league/:id/journeys', component: JourneysLeagueComponent, canActivate: [AuthGuard] },
+  { path: 'competition/league/:id/teams', component: TeamsComponent, canActivate: [AuthGuard] },
+  { path: 'competition/tennis/:id', component: TennisComponent, canActivate: [AuthGuard] },
+  { path: 'competition/tennis/:id/tournaments', component: TournamentsComponent, canActivate: [AuthGuard] },
+  { path: 'competition/tennis/:id/journeys', component: JourneysTennisComponent, canActivate: [AuthGuard] },
+  { path: 'competition/tennis/:id/teams', component: TeamsComponent, canActivate: [AuthGuard] },
 
   { path: 'groupStudents/:id', component: GroupStudentsComponent, canActivate: [AuthGuard] },
 
@@ -89,9 +91,11 @@ const appRoutes: Routes = [
   { path: 'assistance', component: AssistanceComponent, canActivate: [AuthGuard] },
 
   { path: 'questionnaires', component: QuestionnairesComponent, canActivate: [AuthGuard] },
-  { path: 'questionnaireAwards', component: QuestionnaireAwardsComponent, canActivate: [AuthGuard]},
+  { path: 'questionnaireAwards', component: QuestionnaireAwardsComponent, canActivate: [AuthGuard] },
   { path: 'questionnaire/:id', component: QuestionnaireComponent, canActivate: [AuthGuard] },
+  { path: 'viewpoints', component: ViewPointsComponent, canActivate: [AuthGuard] },
   { path: 'viewbadges', component: ViewBadgesComponent, canActivate: [AuthGuard] },
+  { path: 'viewcard', component: ViewCardComponent, canActivate: [AuthGuard] },
   { path: 'questionnaireResults/:id', component: QuestionnaireResultsComponent, canActivate: [AuthGuard] },
   { path: 'deleteQuestionnaire', component: DeleteQuestionnaireComponent, canActivate: [AuthGuard] },
   { path: 'createQuestionnaire', component: CreateQuestionnaireComponent, canActivate: [AuthGuard] },
@@ -106,7 +110,7 @@ const appRoutes: Routes = [
   { path: 'createPoint', component: CreatePointComponent, canActivate: [AuthGuard] },
 
   { path: 'deletePoint', component: DeletePointComponent, canActivate: [AuthGuard] },
-  { path: 'createBadge', component: CreateBadgeComponent, canActivate: [AuthGuard]},
+  { path: 'createBadge', component: CreateBadgeComponent, canActivate: [AuthGuard] },
   { path: 'deleteBadge', component: DeleteBadgeComponent, canActivate: [AuthGuard] },
 
   { path: 'language', component: LanguageComponent, canActivate: [AuthGuard] },

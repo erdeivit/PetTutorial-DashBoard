@@ -22,6 +22,7 @@ import { CreateBadgeComponent } from '../../pages/createBadge/createBadge';
 import { DeleteBadgeComponent } from '../../pages/deleteBadge/deleteBadge';
 import { TranslateService } from 'ng2-translate';
 import { ViewBadgesComponent } from '../viewbadges/viewbadges';
+import { ViewPointsComponent } from '../viewpoints/viewpoints';
 
 
 
@@ -39,7 +40,7 @@ export class PointsBadgesComponent implements OnInit {
   public modeIndividual: boolean;
   public options = [];
   public teammode: boolean = false;
-
+  public groupnoteams: boolean;
   public Teams: Array<Team>;
   public teamSelected: Team;
   public StudentsTeam: Array<Student>;
@@ -202,6 +203,16 @@ export class PointsBadgesComponent implements OnInit {
           this.loadingService.hide();
           this.alertService.show(error.toString());
         }));
+    } else {
+      this.groupService.getMyGroups().subscribe(
+        ((mygroups: Array<Group>) => {
+          this.mygroups = mygroups;
+          this.loadingService.hide();
+        }),
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
     }
   }
   public individualorteam() {
@@ -219,6 +230,10 @@ export class PointsBadgesComponent implements OnInit {
     this.groupService.getGroupTeams(this.groupSelected).subscribe(
       ((teams: Array<Team>) => {
         this.Teams = teams;
+        if (this.Teams.length == 0) {
+          this.alertService.show(this.translateService.instant('TEAMS.GROUPNOTEAMS'));
+          this.groupnoteams = true;
+        }
         this.loadingService.hide();
       }),
       ((error: Response) => {
@@ -321,6 +336,13 @@ export class PointsBadgesComponent implements OnInit {
       height: '600px',
       width: '700px',
       data: { studentId: studentId }
+    });
+  }
+  public showPoints(studentId: string) {
+    const dialogRef = this.dialog.open(ViewPointsComponent, {
+      height: '600px',
+      width: '700px',
+      data: { studentId: studentId, selectedGroup: this.groupSelected }
     });
   }
 
