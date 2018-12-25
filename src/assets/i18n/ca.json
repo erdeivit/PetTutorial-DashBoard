@@ -46,7 +46,8 @@
     "EMAIL": "Email",
     "TITLE": "Estudiants",
     "CHOOSE": "Tria l'estudiant",
-    "SHOW": "Mostrar estudiants"
+    "SHOW": "Mostrar estudiants",
+    "TEAMSHOW": "Mostrar equips"
   },
   "QUESTIONNAIRES": {
     "TITLE": "Qüestionaris",
@@ -213,9 +214,8 @@
     "CONFIRMDELETE": "Segur que vols eliminar la Col·lecció",
     "CORASSIGN": "Col·lecció assignada correctament",
     "NOTOWNER": "No pots eliminar una col·lecció que no has creat tu",
-    "NOTEDITABLE": "No pots modificar aquesta col·lecció perquè no l'has creat tu"
-
-
+    "NOTEDITABLE": "No pots modificar aquesta col·lecció perquè no l'has creat tu",
+    "EXCHANGE": "Intercanviar cromo"
 
   },
   "CARDS": {

@@ -4,12 +4,14 @@ export class Team {
   private _name: string;
   private _numPlayers: number;
   private _groupId: number;
+  private _totalpoints: number;
 
-  constructor(id?: string, name?: string, numPlayers?: number, groupId?: number) {
+  constructor(id?: string, name?: string, numPlayers?: number, groupId?: number, totalpoints?: number) {
     this._id = id;
     this._name = name;
     this._numPlayers = numPlayers;
     this._groupId = groupId;
+    this._totalpoints = totalpoints;
   }
 
   /* tslint:disable */
@@ -21,6 +23,7 @@ export class Team {
       result.name = object.name;
       result.numPlayers = object.numPlayers;
       result.groupId = object.groupId;
+      result.totalpoints = object.totalpoints;
     }
     return result;
   }
@@ -54,6 +57,14 @@ export class Team {
 
   public set name(value: string) {
     this._name = value;
+  }
+
+  public get totalpoints(): number {
+    return this._totalpoints;
+  }
+
+  public set totalpoints(value: number) {
+    this._totalpoints = value;
   }
 
   public get numPlayers(): number {
