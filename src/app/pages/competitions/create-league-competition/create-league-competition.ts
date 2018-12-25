@@ -6,6 +6,7 @@ import { AlertService, UtilsService, LoadingService, GroupService, CompetitionSe
 import { Login, Role, Group, Competition, Student, Journey, Match, Team } from '../../../shared/models/index';
 import { AppConfig } from '../../../app.config';
 import { Response } from '@angular/http/src/static_response';
+import { TranslateService } from 'ng2-translate/ng2-translate';
 
 
 @Component({
@@ -22,13 +23,17 @@ export class CreateLeagueCompetitionComponent implements OnInit {
   public journeysFormGroup: FormGroup;
   public participantsFormGroup: FormGroup;
   public informationFormGroup: FormGroup;
+  public AutomationFormGroup: FormGroup;
   public groups = [];
 
   public participant: any;
   public participants = new Array<any>();
+  public Automations = new Array<any>();
+
   // forms
   public newCompetition: Competition;
   public selectedParticipants: Array<number>;
+  public selectedAutomations: Array<number>;
   public newJourneys: Array<any>;
   public newInformation: string;
   public newCompetitionPost: Competition;
@@ -42,6 +47,7 @@ export class CreateLeagueCompetitionComponent implements OnInit {
     public competitionService: CompetitionService,
     public journeyService: JourneyService,
     public matchesService: MatchesService,
+    public translateService: TranslateService,
     public teamService: TeamService,
     private _formBuilder: FormBuilder) {
       this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
@@ -60,9 +66,13 @@ export class CreateLeagueCompetitionComponent implements OnInit {
       numJourneys: ['', Validators.required]
     });
 
-    this.participantsFormGroup = this._formBuilder.group({
-      participantId: ['']
-    });
+      this.participantsFormGroup = this._formBuilder.group({
+        participantId: ['']
+      });
+
+      this.AutomationFormGroup = this._formBuilder.group({
+        automation: ['']
+      });
 
     this.journeysFormGroup = this._formBuilder.group({
       journeys: this._formBuilder.array([
@@ -89,6 +99,42 @@ export class CreateLeagueCompetitionComponent implements OnInit {
         }));
     }
   }
+  AutomationStep(list) {
+    this.loadingService.show();
+    this.selectedAutomations = list.selectedOptions.selected.map(item => item.value);
+    let checked1: boolean;
+    checked1 = false;
+    let checked2: boolean;
+    checked2 = false;
+    for (let _n = 0; _n < this.selectedAutomations.length; _n++) {
+      if (this.selectedAutomations[_n] === 0) {
+        // automation 1
+        checked1 = true;
+      }
+      if (this.selectedAutomations[_n] === 1) {
+        // automation 1
+        checked2 = true;
+      }
+    }
+    if (checked1 === true) {
+      if (checked2 === true) {
+        // checked1 & 2 true
+        this.newCompetition.automation = '11';
+      } else {
+        // checked1 true and 2 false
+        this.newCompetition.automation = '10';
+      }
+    } else {
+      if (checked2 === true) {
+        // checked1 false & 2 true
+        this.newCompetition.automation = '01';
+      } else {
+        // checked1 and 2 false
+        this.newCompetition.automation = '00';
+      }
+    }
+    this.loadingService.hide();
+  }
   /**
    * This method saves the competition in a variable
    * and calls the method to get participants
@@ -97,6 +143,10 @@ export class CreateLeagueCompetitionComponent implements OnInit {
     this.loadingService.show();
     this.newCompetition = value;
     this.newCompetition.type = 'Liga';
+    // automation options:
+    this.Automations.push(this.translateService.instant('COMPETITION_CREATION.AUTOMATION1'));
+    this.Automations.push(this.translateService.instant('COMPETITION_CREATION.AUTOMATION2'));
+    // ---
     this.getParticipants(); // getting participants for the next step
   }
   /**

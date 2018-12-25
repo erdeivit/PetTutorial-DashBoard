@@ -43,24 +43,36 @@
   </mat-step>
 
 
-  <mat-step label="Participantes"
-            [stepControl]="participantsFormGroup" editable="false">
-    <p>{{ 'COMPETITION_CREATION.PARTICIPANT' | translate }}</p>
-    <p>{{ 'COMPETITION_CREATION.MIN_2' | translate }}</p>
-    <mat-selection-list #list>
-      <mat-list-option *ngFor="let participant of participants"
-           [selected]="participant.selected" [value]="participant.id">
-            {{participant.name}} {{participant.surname}}
-      </mat-list-option>
-    </mat-selection-list>
-    <div>
-      <button mat-raised-button color="primary" matStepperNext
-        (click)="participantStep(list)"
-        [disabled]="list.selectedOptions.selected.length < 2">
-        {{ 'COMPETITIONS.NEXT' | translate }}
-      </button>
-    </div>
-  </mat-step>
+    <mat-step label="Participantes" [stepControl]="participantsFormGroup" editable="false">
+      <p>{{ 'COMPETITION_CREATION.PARTICIPANT' | translate }}</p>
+      <p>{{ 'COMPETITION_CREATION.MIN_2' | translate }}</p>
+      <mat-selection-list #list>
+        <mat-list-option *ngFor="let participant of participants" [selected]="participant.selected" [value]="participant.id">
+          {{participant.name}} {{participant.surname}}
+        </mat-list-option>
+      </mat-selection-list>
+      <div>
+        <button mat-raised-button color="primary" matStepperNext (click)="participantStep(list)" [disabled]="list.selectedOptions.selected.length < 2">
+          {{ 'COMPETITIONS.NEXT' | translate }}
+        </button>
+      </div>
+    </mat-step>
+
+    <mat-step label="{{ 'COMPETITION_CREATION.AUTOMATION_TITLE' | translate }}" [stepControl]="AutomationFormGroup"
+      editable="false">
+      <p>{{ 'COMPETITION_CREATION.CHOOSE' | translate }}</p>
+      <mat-selection-list #list2>
+        <mat-list-option *ngFor="let participant of Automations; let i = index;" [selected]="participant.selected"
+          [value]="i">
+          {{participant}}
+        </mat-list-option>
+      </mat-selection-list>
+      <div>
+        <button mat-raised-button color="primary" matStepperNext (click)="AutomationStep(list2)">
+          {{ 'COMPETITIONS.NEXT' | translate }}
+        </button>
+      </div>
+    </mat-step>
 
 
   <mat-step label="{{ 'COMPETITIONS.JOURNEYS' | translate }}" class="mat-horizontal-step" [stepControl]="journeysFormGroup" editable="false">

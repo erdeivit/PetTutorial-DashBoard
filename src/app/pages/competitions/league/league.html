@@ -107,9 +107,6 @@
                 <button [disabled]="option === 'Aleatoriamente'" class="btn-rnd" mat-raised-button (click)="showResults()">
                   <b>{{ 'COMPETITIONS.RANDOM' | translate }}</b>
                 </button>
-                <button [disabled]="option === 'Cuestionario'" class="btn-rnd" mat-raised-button (click)="showResults()">
-                  <b>{{ 'COMPETITIONS.CUESTIONARIO' | translate }}</b>
-                </button>
                 <p>{{ 'COMPETITIONS.SELECTED' | translate }}: <b>{{option}}</b> </p>
 
                 <mat-card *ngIf="option === 'Manualmente'">
@@ -143,13 +140,6 @@
                   </form>
                 </mat-card>
                 <mat-card *ngIf="option === 'Aleatoriamente'">
-                  <p><b>{{ 'COMPETITIONS.RANDOM2' | translate }} {{ journeyMatch.number }} {{ 'COMPETITIONS.RANDOM3' |
-                      translate }} {{ 'COMPETITIONS.INTR_RESULT1' | translate }}:</b></p>
-                  <button mat-raised-button class="edit-btn" (click)="onSubmitResults()">
-                    <b>{{ 'COMPETITIONS.INTR_RESULT1' | translate }}</b>
-                  </button>
-                </mat-card>
-                <mat-card *ngIf="option === 'Cuestionario'">
                   <p><b>{{ 'COMPETITIONS.RANDOM2' | translate }} {{ journeyMatch.number }} {{ 'COMPETITIONS.RANDOM3' |
                       translate }} {{ 'COMPETITIONS.INTR_RESULT1' | translate }}:</b></p>
                   <button mat-raised-button class="edit-btn" (click)="onSubmitResults()">

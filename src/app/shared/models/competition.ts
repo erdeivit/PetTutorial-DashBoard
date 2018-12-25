@@ -12,11 +12,12 @@ export class Competition {
   private _groupId: number;
   private _grade: Grade;
   private _matter: Matter;
+  private _automation: string;
 
 
   constructor(id?: string, name?: string, type?: string, mode?: string,
     numParticipants?: number, numJourneys?: number, information?: string,
-    groupId?: number, grade?: Grade, matter?: Matter) {
+    groupId?: number, grade?: Grade, matter?: Matter, automation?: string) {
     this._id = id;
     this._name = name;
     this._type = type;
@@ -27,6 +28,7 @@ export class Competition {
     this._groupId = groupId;
     this._grade = grade;
     this._matter = matter;
+    this._automation = automation;
   }
 
   /* tslint:disable */
@@ -42,6 +44,7 @@ export class Competition {
       result.numJourneys = object.numJourneys;
       result.information = object.information;
       result.groupId = object.groupId;
+      result.automation = object.automation;
     }
     return result;
   }
@@ -139,5 +142,12 @@ export class Competition {
 
   public set matter(value: Matter) {
     this._matter = value;
+  }
+  public get automation(): string {
+    return this._automation;
+  }
+
+  public set automation(value: string) {
+    this._automation = value;
   }
 }

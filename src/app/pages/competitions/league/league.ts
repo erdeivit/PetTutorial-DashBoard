@@ -300,6 +300,8 @@ export class LeagueComponent implements OnInit {
             this.alertService.show(error.toString());
           }));
     }
+    this.url = this.route.snapshot.url.join('/') + '/automation';
+    this.router.navigate([this.url]);
   }
 
   deleteCompetition() {
