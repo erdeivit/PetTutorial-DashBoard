@@ -6,6 +6,7 @@ import { Http, HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 import { NgxLoremIpsumModule } from 'ngx-lorem-ipsum';
+import { MatSortModule } from '@angular/material/sort';
 
 // aplication
 import { AppComponent } from './app.component';
@@ -146,6 +147,7 @@ export function createTranslateLoader(http: Http) {
     FormsModule,
     HttpModule,
     routing,
+    MatSortModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: createTranslateLoader,
