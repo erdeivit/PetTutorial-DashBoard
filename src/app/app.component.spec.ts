@@ -18,8 +18,8 @@ import { CollectionComponent } from './pages/collection/collection';
 import { CreateCardComponent } from './pages/createCard/createCard';
 import { CompetitionsComponent } from './pages/competitions/competitions';
 import { CreateTeamsComponent } from './pages/create-teams/create-teams';
-import { LeagueComponent} from './pages/competitions/league/league';
-import { TennisComponent} from './pages/competitions/tennis/tennis';
+import { LeagueComponent } from './pages/competitions/league/league';
+import { TennisComponent } from './pages/competitions/tennis/tennis';
 import { CreateLeagueCompetitionComponent } from './pages/competitions/create-league-competition/create-league-competition';
 import { CreateTennisCompetitionComponent } from './pages/competitions/create-tennis-competition/create-tennis-competition';
 import { DeleteCompetitionComponent } from './pages/competitions/delete-competition/delete-competition';
@@ -29,6 +29,8 @@ import { JourneysLeagueComponent } from './pages/competitions/league/journeys-le
 import { JourneysTennisComponent } from './pages/competitions/tennis/journeys-tennis/journeys-tennis';
 import { TournamentsComponent } from './pages/competitions/tennis/tournaments/tournaments';
 import { ViewBadgesComponent } from './pages/viewbadges/viewbadges';
+import { ViewCardComponent } from './pages/viewcard/viewcard';
+import { ViewPointsComponent } from './pages/viewpoints/viewpoints';
 
 import { QuestionnairesComponent } from './pages/questionnaires/questionnaires';
 import { QuestionnaireAwardsComponent } from './pages/questionnaireAwards/questionnaireAwards';
@@ -38,8 +40,8 @@ import { QuestionnaireResultsComponent } from './pages/questionnaireResults/ques
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
 import { CreateQuestionnaireComponent } from './pages/createQuestionnaire/createQuestionnaire';
 import { CreateQuestionnairePointsAssignmentComponent } from './pages/createQuestionnairePointsAssignment/createQuestionnairePointsAssignment';
-import { CreateQuestionnaireBadgesAssignmentComponent} from './pages/createQuestionnaireBadgesAssignment/createQuestionnaireBadgesAssignment';
-import { CreateQuestionnairePackCardsAssignmentComponent} from './pages/createQuestionnairePackCardsAssignment/createQuestionnairePackCardsAssignment';
+import { CreateQuestionnaireBadgesAssignmentComponent } from './pages/createQuestionnaireBadgesAssignment/createQuestionnaireBadgesAssignment';
+import { CreateQuestionnairePackCardsAssignmentComponent } from './pages/createQuestionnairePackCardsAssignment/createQuestionnairePackCardsAssignment';
 
 import { CreateQuestionnaireTest1Component } from './pages/createQuestionnaireTest1/createQuestionnaireTest1';
 import { CreateQuestionnaireTest2Component } from './pages/createQuestionnaireTest2/createQuestionnaireTest2';
@@ -69,7 +71,7 @@ import {
   AvatarService, AlertService, LoadingService, SchoolService, LoginService,
   UserService, GradeService, GroupService, UtilsService,
   MatterService, QuestionnaireService, PointService,
-   PointRelationService, BadgeService, BadgeRelationService, CollectionService,
+  PointRelationService, BadgeService, BadgeRelationService, CollectionService,
   CompetitionService, JourneyService, MatchesService, TeamService
 } from './shared/services/index';
 import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
@@ -98,7 +100,9 @@ describe('AppComponent', () => {
         GroupsComponent,
         GroupStudentsComponent,
         CollectionsComponent,
+        ViewCardComponent,
         CollectionComponent,
+        ViewPointsComponent,
         CollectionStudentComponent,
         CreateCollectionComponent,
         DeleteCollectionComponent,

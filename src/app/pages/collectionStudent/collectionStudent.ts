@@ -7,17 +7,16 @@ import { AppConfig } from '../../app.config';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import {
-  LoadingService, UtilsService, BadgeService,
-  GroupService, AlertService, CollectionService, SchoolService
+  LoadingService, UtilsService, BadgeService, GroupService,
+  AlertService, CollectionService, SchoolService
 } from '../../shared/services/index';
 import { CreateCardComponent } from '../createCard/createCard';
 import { DeleteCardComponent } from '../deleteCard/deleteCard';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from 'ng2-translate';
 
+
 import { ViewCardComponent } from '../viewcard/viewcard';
-
-
 
 
 @Component({
@@ -91,21 +90,30 @@ export class CollectionStudentComponent implements OnInit {
             ((badgeWon: Badge) => {
               this.badgeWon = badgeWon;
               this.loadingService.hide();
+
+
             }),
             ((error: Response) => {
               this.loadingService.hide();
               this.alertService.show(error.toString());
             }));
+
+
         }
+
       }),
       ((error: Response) => {
         this.loadingService.hide();
         this.alertService.show(error.toString());
       }));
+
+
     this.collectionService.getCollectionDetails(this.collectionCardId).subscribe(
       ((collectionCards: Array<Card>) => {
         this.collectionCards = collectionCards;
         this.loadingService.hide();
+
+
       }),
       ((error: Response) => {
         this.loadingService.hide();
@@ -115,7 +123,7 @@ export class CollectionStudentComponent implements OnInit {
     this.collectionService.getCollectionDetails(this.collectionCardId).subscribe(
       ((value: Array<Card>) => {
         let allCards: Array<Card> = value;
-        this.cards = allCards.sort((n1, n2) => +n1.id - +n2.id);
+        this.cards = allCards.sort((n1, n2) => +n1.id - +n2.id)
         let unknownCard = new Card();
 
         unknownCard.name = this.translateService.instant('CARDS.UNKNOWN');
@@ -128,22 +136,29 @@ export class CollectionStudentComponent implements OnInit {
           });
           this.myCards = 0;
           this.cards.forEach((allCard) => {
-            if (this.assignedCardsIds.indexOf(allCard.id) === -1) {
+            if (this.assignedCardsIds.indexOf(allCard.id) == -1) {
               this.finalCards.push(unknownCard);
-            } else {
+            }
+            else {
               this.finalCards.push(allCard);
               this.myCards++;
             }
           });
 
         });
+
+
+
+
       }),
       ((error: Response) => {
         this.loadingService.hide();
         this.alertService.show(error.toString());
       }));
-  }
 
+
+
+  }
   public showcard(selectedCardId: string) {
     const dialogRef = this.dialog.open(ViewCardComponent, {
       height: '700px',

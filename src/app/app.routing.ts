@@ -31,9 +31,11 @@ import { CreateQuestionnaireTextArea2Component } from './pages/createQuestionnai
 import { CreatePointComponent } from './pages/createPoint/createPoint';
 import { DeletePointComponent } from './pages/deletePoint/deletePoint';
 import { ViewBadgesComponent } from './pages/viewbadges/viewbadges';
+import { ViewPointsComponent } from './pages/viewpoints/viewpoints';
 import { CreateBadgeComponent } from './pages/createBadge/createBadge';
 import { DeleteBadgeComponent } from './pages/deleteBadge/deleteBadge';
 import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollection';
+import { ViewCardComponent } from './pages/viewcard/viewcard';
 
 import { CreateTeamsComponent } from './pages/create-teams/create-teams';
 // Competitions
@@ -49,9 +51,6 @@ import { AutomationComponent } from './pages/competitions/league/automation/auto
 import { JourneysLeagueComponent } from './pages/competitions/league/journeys-league/journeys-league';
 import { JourneysTennisComponent } from './pages/competitions/tennis/journeys-tennis/journeys-tennis';
 import { TournamentsComponent } from './pages/competitions/tennis/tournaments/tournaments';
-
-import { ViewCardComponent } from './pages/viewcard/viewcard';
-import { ViewPointsComponent } from './pages/viewpoints/viewpoints';
 
 import { LanguageComponent } from './pages/language/language';
 import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
@@ -98,7 +97,9 @@ const appRoutes: Routes = [
   { path: 'questionnaires', component: QuestionnairesComponent, canActivate: [AuthGuard] },
   { path: 'questionnaireAwards', component: QuestionnaireAwardsComponent, canActivate: [AuthGuard] },
   { path: 'questionnaire/:id', component: QuestionnaireComponent, canActivate: [AuthGuard] },
+  { path: 'viewpoints', component: ViewPointsComponent, canActivate: [AuthGuard] },
   { path: 'viewbadges', component: ViewBadgesComponent, canActivate: [AuthGuard] },
+  { path: 'viewcard', component: ViewCardComponent, canActivate: [AuthGuard] },
   { path: 'questionnaireResults/:id', component: QuestionnaireResultsComponent, canActivate: [AuthGuard] },
   { path: 'deleteQuestionnaire', component: DeleteQuestionnaireComponent, canActivate: [AuthGuard] },
   { path: 'createQuestionnaire', component: CreateQuestionnaireComponent, canActivate: [AuthGuard] },

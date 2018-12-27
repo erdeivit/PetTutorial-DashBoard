@@ -36,7 +36,6 @@
   },
   "TEACHER": {
     "ID": "Id. Professor"
-
   },
   "STUDIENTS": {
     "ID": "Id. Estudiant",
@@ -112,7 +111,6 @@
     "TEXTBADGES": "Insígnia guanyada  segons la nota del qüestionari",
     "TEXTCARDS1": "guanyades  segons la nota del qüestionari",
     "NOASSIGNEDCOLLECTION": "S'ha d'escollir una col·lecció"
-
   },
   "ERROR": {
     "EMPTYFIELDS": "Cal omplir tots els camps correctament",
@@ -128,8 +126,6 @@
     "CREATEBADGE": "Crear insígnia",
     "POINTID": "Id. Punt",
     "BADGEID": "Id. Insígnia"
-
-
   },
   "POINTS": {
     "TITLE": "Punts",
@@ -216,7 +212,6 @@
     "NOTOWNER": "No pots eliminar una col·lecció que no has creat tu",
     "NOTEDITABLE": "No pots modificar aquesta col·lecció perquè no l'has creat tu",
     "EXCHANGE": "Intercanviar cromo"
-
   },
   "CARDS": {
     "ID": "Id. Cromo",
@@ -236,7 +231,6 @@
     "IMAGENEW": "Imatge del nou cromo",
     "CREATE": "Crear nou cromo",
     "SAVE": "Guardar nou cromo",
-
     "DELETE": "Eliminar cromo de la col·lecció",
     "OFCOLLECTION": "Cromos de la col·lecció",
     "CHOOSE": "Tria el cromo",
@@ -261,8 +255,6 @@
     "RATIO3": "Baix",
     "RATIO4": "Rar",
     "UNKNOWN": "Desconegut"
-
-
   },
   "COMMON": {
     "TYPEASSIGNMENTCHOOSE": "Tria el tipus d'assignació",
@@ -278,7 +270,6 @@
     "TEAMS": "Equipos",
     "INDIVIDUAL": "Individual",
     "ASSIGN": "Actualitzar grup i opció"
-
   },
   "COMPETITIONS": {
     "TITLE": "Competiciones",
@@ -347,8 +338,7 @@
     "DELETE_QUESTION": "¿Está seguro de que desea eliminar esta competición?",
     "RETURN": "Volver a la página de la competición",
     "RETURN2": "Volver a la página de competiciones",
-    "POINTS_FIRST": "Puntos primer clasificado",
-    "POINTS_SECOND": "Puntos segundo clasificado",
+    "POINTS_FIRST": "Número de puntos",
     "BADGES_FIRST": "Valor insignia primer clasificado",
     "BADGES_SECOND": "Valor insignia segundo clasificado"
   },
@@ -387,7 +377,7 @@
   "CLASSIFICATION": {
     "TITLE": "Clasificación",
     "LEAGUE": "Clasificación de la liga:",
-    "AUTOMATIONS": "Ver premios automàticos",
+    "AUTOMATIONS": "Ver premios automáticos",
     "STUDENT": "Nombre del estudiante",
     "TEAM": "Nombre del equipo",
     "PLAYED": "Jugados",
@@ -433,7 +423,8 @@
     "VIEW": "Visualizar equipos",
     "GOTEAM": "Ver equipo",
     "BACK": "Volver a creación de equipos",
-    "GROUPNAME": "Grupo"
+    "GROUPNAME": "Grupo",
+    "GROUPNOTEAMS": "No hay equipos en este grupo"
   },
 
   "ASSISTANCE": {
@@ -445,7 +436,8 @@
 
   "AUTOMATION": {
     "TITLE": "Premis Automàtics",
-    "INFORMATION": "S'han assignat els premis automàtics",
+    "INFORMATION": "S'han assignat els premis automàtics.",
+    "INFORMATION2": "No s'han assignat els premis automàtics:",
     "NOCOL": "No hi ha cap col·lecció de cromos assignada a aquest grup"
   }
 }

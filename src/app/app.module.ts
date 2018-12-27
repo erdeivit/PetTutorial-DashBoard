@@ -60,8 +60,8 @@ import { CreateQuestionnaireTextArea2Component } from './pages/createQuestionnai
 
 import { CreatePointComponent } from './pages/createPoint/createPoint';
 import { DeletePointComponent } from './pages/deletePoint/deletePoint';
-import { ViewBadgesComponent } from './pages/viewbadges/viewbadges';
 import { ViewPointsComponent } from './pages/viewpoints/viewpoints';
+import { ViewBadgesComponent } from './pages/viewbadges/viewbadges';
 import { CreateBadgeComponent } from './pages/createBadge/createBadge';
 import { DeleteBadgeComponent } from './pages/deleteBadge/deleteBadge';
 
@@ -137,12 +137,14 @@ export function createTranslateLoader(http: Http) {
     DeleteBadgeComponent,
     CreateQuestionnaireTest1Component,
     CreateQuestionnaireTest2Component,
+    ViewCardComponent,
     CreateQuestionnaireTextArea1Component,
     CreateQuestionnaireTextArea2Component,
     ViewCardComponent,
     ViewPointsComponent,
     LanguageComponent,
     ViewBadgesComponent,
+    ViewPointsComponent,
     CompetitionsComponent,
     CreateTeamsComponent,
     AssistanceComponent,
