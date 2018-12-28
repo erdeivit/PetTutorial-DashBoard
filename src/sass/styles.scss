@@ -30,6 +30,14 @@ body {
   margin: 0;
 }
 
+app-root>.container {
+  height: 100%;
+
+  >div {
+    max-height: 100% !important; // sass-lint:disable-line no-important
+  }
+}
+
 .student-profile {
   .student-name {
     display: inline-block;

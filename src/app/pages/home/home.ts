@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   public myPoints: Number;
   public isStudentProfile = false;
   public isTeacherProfile = false;
+  public isAdminProfile = false;
   public level: Number;
   public rank: Rango;
   public allRanks: Array<Rango>;
@@ -97,7 +98,7 @@ export class HomeComponent implements OnInit {
     }
 
     if (this.utilsService.role === Role.SCHOOLADMIN) {
-      // do something
+      this.isAdminProfile = true;
     }
   }
 

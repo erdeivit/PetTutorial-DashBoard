@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Sort } from '@angular/material';
 import { Profile, School, Point, Student } from '../../shared/models';
 import { RewardService } from '../../shared/services';
+import { TranslateService } from 'ng2-translate/ng2-translate';
+import { AppConfig } from '../../app.config';
 
 @Component({
   selector: 'app-teacher-home',
@@ -19,6 +21,7 @@ export class TeacherHomeComponent implements OnInit {
   public objectKeys = Object.keys;
 
   constructor(
+    public translateService: TranslateService,
     public rewardService: RewardService
   ) { }
 
@@ -33,8 +36,6 @@ export class TeacherHomeComponent implements OnInit {
       response => {
         this.studentsWithRewards = this.parseObjects(response);
         this.sortedData = this.studentsWithRewards;
-        console.log(this.studentsWithRewards);
-
       }
     );
   }
@@ -65,7 +66,6 @@ export class TeacherHomeComponent implements OnInit {
   sortData(sort: Sort) {
     const data = this.studentsWithRewards;
     if (!sort.active || sort.direction === '') {
-      console.log('sin ordenacion');
       this.sortedData = data;
       return;
     }
@@ -88,29 +88,16 @@ export class TeacherHomeComponent implements OnInit {
       if (sort.active === 'rank') {
         return compare(a.rewards.rank, b.rewards.rank, isAsc);
       }
-      Object.keys(points_array).forEach(
-        function (index) {
-          if (parseInt(points_array[index].id, 10) === parseInt(sort.active, 10)) {
-            return compare(
-              a['points'][points_array[index].id],
-              b['points'][points_array[index].id],
-              isAsc
-            );
-          }
-        }
-      );
-      console.log(this.sortedData);
 
-      /*
-      switch (sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'surname': return compare(a.surname, b.surname, isAsc);
-        case 'points': return compare(a.rewards.points, b.rewards.points, isAsc);
-        case 'level': return compare(a.rewards.level, b.rewards.level, isAsc);
-        case 'rank': return compare(a.rewards.rank, b.rewards.rank, isAsc);
-        default: return 0;
+      for (const index of Object.keys(points_array)) {
+        if (parseInt(points_array[index].id, 10) === parseInt(sort.active, 10)) {
+          return compare(
+            a['points'][points_array[index].id],
+            b['points'][points_array[index].id],
+            isAsc
+          );
+        }
       }
-      */
     });
   }
 }
