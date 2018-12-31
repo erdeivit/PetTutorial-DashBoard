@@ -264,6 +264,8 @@
     "MAX3NUMBER": "Max. 3 numbers",
     "PASTEIMAGE": "Copy link  .jpg",
     "CANCEL": "Cancel",
-    "INNUMBER": "Enter a number"
+    "INNUMBER": "Enter a number",
+    "SCHOOL": "School",
+    "SCHOOLS": "Schools"
   }
 }

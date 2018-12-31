@@ -230,7 +230,6 @@
     "IMAGENEW": "Imagen del nuevo cromo",
     "CREATE": "Crear nuevo cromo",
     "SAVE": "Guardar nuevo cromo",
-
     "DELETE": "Eliminar cromo de la colección",
     "OFCOLLECTION": "Cromos de la colección",
     "CHOOSE": "Escoge el cromo",
@@ -265,6 +264,8 @@
     "MAX3NUMBER": "Max. 3 cifras",
     "PASTEIMAGE": "Copiar enlace .jpg",
     "CANCEL": "Cancelar",
-    "INNUMBER": "Introduce una cifra"
+    "INNUMBER": "Introduce una cifra",
+    "SCHOOL": "Escuela",
+    "SCHOOLS": "Escuelas"
   }
 }

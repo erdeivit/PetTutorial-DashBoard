@@ -255,6 +255,30 @@
     "RATIO4": "Rar",
     "UNKNOWN": "Desconegut"
   },
+  "SCHOOL": {
+    "NAME": "Nom de l'escola",
+    "ADDRESS": "Direcció de l'escola",
+    "IMAGE": "Imatge petita per a l'avatar de l'escola",
+    "IMAGEBIG": "Imatge gran de l'escola",
+    "ZIPCODE": "Codi Postal",
+    "CITY": "Ciutat",
+    "COUNTRY": "Pais",
+    "LATITUDE": "Latitud",
+    "LONGITUDE": "Longitud",
+    "CIF": "CIF",
+    "PHONE": "Telèfon",
+    "WEBSITE": "Pàgina Web",
+    "FACEBOOK": "Compte de Facebook",
+    "TWITTER": "Compte de Twitter",
+    "DESCRIPTION": "Descripció",
+    "NEWSCHOOL": "Crear nova escola",
+    "CREATED": "Nova escola creada amb èxit",
+    "EDITED": "Escola modificada amb èxit",
+    "DELETED": "Escola esborrada correctament",
+    "CONFIRMDELETE": "¿Seguro que quieres borrar la escuela con id {{schoolId}}?",
+    "SAVE": "Guardar",
+    "NEWSCHOOLFORM": "Formulari d'escola"
+  },
   "COMMON": {
     "TYPEASSIGNMENTCHOOSE": "Tria el tipus d'assignació",
     "CHOOSEAMOUNT": "Tria la quantitat",
@@ -264,6 +288,9 @@
     "MAX3NUMBER": "Max. 3 xifres",
     "PASTEIMAGE": "Copiar enllaç .jpg",
     "CANCEL": "Cancelar",
-    "INNUMBER": "Introdueix una xifra"
+    "INNUMBER": "Introdueix una xifra",
+    "SCHOOL": "Escola",
+    "SCHOOLS": "Escoles",
+    "DELETE": "Eliminar"
   }
 }
