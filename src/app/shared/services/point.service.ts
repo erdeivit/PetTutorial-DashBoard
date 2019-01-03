@@ -53,22 +53,22 @@ export class PointService {
    */
   public getPoint(id: number): Observable<Point> {
 
-    let options: RequestOptions = new RequestOptions({
+    const options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
     return this.http.get(AppConfig.POINT_URL + '/' + id, options)
-      .map((response: Response, index: number) => Point.toObject(response.json()))
+      .map((response: Response, index: number) => Point.toObject(response.json()));
   }
 
   public getPointName(id: number): Observable<Point> {
 
-    let options: RequestOptions = new RequestOptions({
+    const options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
     return this.http.get(AppConfig.POINT_URL + '/' + id, options)
-      .map((response: Response, index: number) => Point.toObject(response.json()))
+      .map((response: Response, index: number) => Point.toObject(response.json()));
   }
 
 
@@ -80,14 +80,14 @@ export class PointService {
      */
   private getMySchoolPoints(): Observable<Array<Point>> {
 
-    let options: RequestOptions = new RequestOptions({
+    const options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
-    var url: string = this.utilsService.getMySchoolUrl() + AppConfig.POINTS_URL;
+    const url: string = this.utilsService.getMySchoolUrl() + AppConfig.POINTS_URL;
 
     return this.http.get(url, options)
-      .map((response: Response, index: number) => Point.toObjectArray(response.json()))
+      .map((response: Response, index: number) => Point.toObjectArray(response.json()));
   }
 
 
@@ -99,11 +99,19 @@ export class PointService {
    */
   public postPoint(point: Point): Observable<Response> {
 
+<<<<<<< HEAD
     let options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
     var url: string;
+=======
+    const options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+
+    let url: string;
+>>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
     url = AppConfig.POINT_URL;
 
     return this.http.post(url, point)
@@ -114,12 +122,13 @@ export class PointService {
   }
   public savePoint(name: string, value: number): Observable<Point> {
 
-    let options: RequestOptions = new RequestOptions({
+    const options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
     let url: string;
     url = AppConfig.POINT_URL;
+<<<<<<< HEAD
     let postParams = {
       name: name,
       // value: value,
@@ -127,6 +136,15 @@ export class PointService {
       teacherId: this.utilsService.currentUser.userId,
       schoolId: this.utilsService.currentSchool.id
     }
+=======
+    const postParams = {
+      name: name,
+      value: value,
+      image: image,
+      teacherId: this.utilsService.currentUser.userId,
+      schoolId: this.utilsService.currentSchool.id
+    };
+>>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
 
     return this.http.post(url, postParams, options)
       .map(response => {
@@ -139,13 +157,24 @@ export class PointService {
 
 
   public deletePoint(id: string): Observable<Point> {
-    let options: RequestOptions = new RequestOptions({
+    const options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
     return this.http.delete(AppConfig.POINT_URL + '/' + id, options)
       .map(response => {
         return response;
       })
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
+  public getAllPoints(): Observable<Point[]> {
+
+    const options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+
+    return this.http.get(AppConfig.POINT_URL, options)
+      .map((response: Response, index: number) => Point.toObjectArray(response.json()))
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 

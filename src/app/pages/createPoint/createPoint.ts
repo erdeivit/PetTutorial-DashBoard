@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Login, Group, Role, Questionnaire, Point } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
-import { LoadingService, UtilsService,PointService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
+import { LoadingService, UtilsService, PointService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
 import { TranslateService } from 'ng2-translate';
 
 
@@ -44,13 +44,17 @@ export class CreatePointComponent implements OnInit {
   }
   createPoint(): void {
 
+<<<<<<< HEAD
     if(this.name == "" || !this.value)
     {
+=======
+    if (this.name == "" || !this.value || this.image == "") {
+>>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
       this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
     }
-    else
-    {
+    else {
 
+<<<<<<< HEAD
     this.pointService.savePoint(this.name, this.value).subscribe(
       ((newPoint: Point) => {
         this.newPoint = newPoint;
@@ -61,8 +65,20 @@ export class CreatePointComponent implements OnInit {
         this.loadingService.hide();
         this.alertService.show(error.toString());
       }));
+=======
+      this.pointService.savePoint(this.name, this.value, this.image).subscribe(
+        ((newPoint: Point) => {
+          this.newPoint = newPoint;
+          this.alertService.show(this.translateService.instant('POINTS.CREATED'));
+          this.loadingService.hide();
+        }),
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
+>>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
 
-    this.cancel();
+      this.cancel();
 
     }
   }

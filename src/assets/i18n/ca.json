@@ -12,7 +12,10 @@
     "TWITTER": "TWITTER",
     "FACEBOOK": "FACEBOOK",
     "WEBSITE": "WEBSITE",
-    "LANGUAGE": "Tria l'idioma"
+    "LANGUAGE": "Idioma",
+    "RANKING": "Ranking d'estudiants",
+    "NEXTLEVELPOINTS": "Punts per a el seguent nivell: ",
+    "LEVEL": "Nivell"
   },
   "LOGIN": {
     "USERNAME": "Nom d'usuari",
@@ -30,9 +33,13 @@
     "LIST": "Llistat de grups",
     "ID": "Id. Grup",
     "CHOOSE": "Tria el grup",
+<<<<<<< HEAD
     "NOASSIGN": "No assignar grup",
     "SINGULAR": "Grups"
 
+=======
+    "NOASSIGN": "No assignar grup"
+>>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
   },
   "TEACHER": {
     "ID": "Id. Professor"
@@ -45,8 +52,12 @@
     "EMAIL": "Email",
     "TITLE": "Estudiants",
     "CHOOSE": "Tria l'estudiant",
+<<<<<<< HEAD
     "SHOW": "Mostrar estudiants",
     "TEAMSHOW": "Mostrar equips"
+=======
+    "SHOW": "Mostrar estudiants"
+>>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
   },
   "QUESTIONNAIRES": {
     "TITLE": "Qüestionaris",
@@ -210,8 +221,12 @@
     "CONFIRMDELETE": "Segur que vols eliminar la Col·lecció",
     "CORASSIGN": "Col·lecció assignada correctament",
     "NOTOWNER": "No pots eliminar una col·lecció que no has creat tu",
+<<<<<<< HEAD
     "NOTEDITABLE": "No pots modificar aquesta col·lecció perquè no l'has creat tu",
     "EXCHANGE": "Intercanviar cromo"
+=======
+    "NOTEDITABLE": "No pots modificar aquesta col·lecció perquè no l'has creat tu"
+>>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
   },
   "CARDS": {
     "ID": "Id. Cromo",
@@ -256,6 +271,33 @@
     "RATIO4": "Rar",
     "UNKNOWN": "Desconegut"
   },
+<<<<<<< HEAD
+=======
+  "SCHOOL": {
+    "NAME": "Nom de l'escola",
+    "ADDRESS": "Direcció de l'escola",
+    "IMAGE": "Imatge petita per a l'avatar de l'escola",
+    "IMAGEBIG": "Imatge gran de l'escola",
+    "ZIPCODE": "Codi Postal",
+    "CITY": "Ciutat",
+    "COUNTRY": "Pais",
+    "LATITUDE": "Latitud",
+    "LONGITUDE": "Longitud",
+    "CIF": "CIF",
+    "PHONE": "Telèfon",
+    "WEBSITE": "Pàgina Web",
+    "FACEBOOK": "Compte de Facebook",
+    "TWITTER": "Compte de Twitter",
+    "DESCRIPTION": "Descripció",
+    "NEWSCHOOL": "Crear nova escola",
+    "CREATED": "Nova escola creada amb èxit",
+    "EDITED": "Escola modificada amb èxit",
+    "DELETED": "Escola esborrada correctament",
+    "CONFIRMDELETE": "¿Seguro que quieres borrar la escuela con id {{schoolId}}?",
+    "SAVE": "Guardar",
+    "NEWSCHOOLFORM": "Formulari d'escola"
+  },
+>>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
   "COMMON": {
     "TYPEASSIGNMENTCHOOSE": "Tria el tipus d'assignació",
     "CHOOSEAMOUNT": "Tria la quantitat",
@@ -267,6 +309,7 @@
     "PASTEIMAGE": "Copiar enllaç .jpg",
     "CANCEL": "Cancelar",
     "INNUMBER": "Introdueix una xifra",
+<<<<<<< HEAD
     "TEAMS": "Equipos",
     "INDIVIDUAL": "Individual",
     "ASSIGN": "Actualitzar grup i opció"
@@ -439,5 +482,10 @@
     "INFORMATION": "S'han assignat els premis automàtics.",
     "INFORMATION2": "No s'han assignat els premis automàtics:",
     "NOCOL": "No hi ha cap col·lecció de cromos assignada a aquest grup"
+=======
+    "SCHOOL": "Escola",
+    "SCHOOLS": "Escoles",
+    "DELETE": "Eliminar"
+>>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
   }
 }
