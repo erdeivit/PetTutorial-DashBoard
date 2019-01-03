@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormsModule, FormBuilder, FormGroup, FormArray, Validators, ControlValueAccessor } from '@angular/forms';
 import {
   AlertService, UtilsService, LoadingService, GroupService, CompetitionService,
-  JourneyService, TeamService, MatchesService
+  JourneyService, TeamService, MatchesService, PointService
 } from '../../../shared/services/index';
-import { Login, Role, Group, Competition, Student, Journey, Match, Team } from '../../../shared/models/index';
+import { Login, Role, Group, Competition, Student, Journey, Match, Team, Point } from '../../../shared/models/index';
 import { AppConfig } from '../../../app.config';
 import { Response } from '@angular/http/src/static_response';
 import { TranslateService } from 'ng2-translate/ng2-translate';
@@ -47,6 +47,7 @@ export class CreateLeagueCompetitionComponent implements OnInit {
     public loadingService: LoadingService,
     public groupService: GroupService,
     public competitionService: CompetitionService,
+    public pointService: PointService,
     public journeyService: JourneyService,
     public matchesService: MatchesService,
     public translateService: TranslateService,
@@ -101,7 +102,6 @@ export class CreateLeagueCompetitionComponent implements OnInit {
         }));
     }
   }
-
   AutomationStep(list) {
     this.loadingService.show();
     this.selectedAutomations = list.selectedOptions.selected.map(item => item.value);
@@ -138,7 +138,6 @@ export class CreateLeagueCompetitionComponent implements OnInit {
     }
     this.loadingService.hide();
   }
-
   /**
    * This method saves the competition in a variable
    * and calls the method to get participants
@@ -151,7 +150,20 @@ export class CreateLeagueCompetitionComponent implements OnInit {
     this.Automations.push(this.translateService.instant('COMPETITION_CREATION.AUTOMATION1'));
     this.Automations.push(this.translateService.instant('COMPETITION_CREATION.AUTOMATION2'));
     // ---
-    this.getParticipants(); // getting participants for the next step
+    this.pointid();
+  }
+
+  pointid(): void {
+    this.pointService.savePoint(this.newCompetition.name.toString(), 1).subscribe(
+      ((newPoint: Point) => {
+        let Id = newPoint.id.toString();
+        this.newCompetition.pointId = Id;
+        this.getParticipants(); // getting participants for the next step
+      }),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+      }));
   }
   /**
    * This method gets the participants of the group
