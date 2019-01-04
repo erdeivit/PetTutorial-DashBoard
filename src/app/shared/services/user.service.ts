@@ -42,11 +42,9 @@ export class UserService {
    */
   private getProfile(): Observable<Profile> {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
+    const options = this.utilsService.getOptions();
 
-    var url: string = this.utilsService.getMyUrl();
+    const url: string = this.utilsService.getMyUrl();
 
     return this.http.get(url, options)
       .map((response: Response, index: number) => Profile.toObject(response.json()))
@@ -55,11 +53,9 @@ export class UserService {
 
   public getStudentName(id: number): Observable<Student> {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
+    const options = this.utilsService.getOptions();
 
-    var url: string = this.utilsService.getMyUrl();
+    const url: string = this.utilsService.getMyUrl();
 
     return this.http.get(url, options)
       .map((response: Response, index: number) => Student.toObject(response.json()))
@@ -68,11 +64,9 @@ export class UserService {
 
   public getStudentName2(id: number): Observable<Student> {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
+    const options = this.utilsService.getOptions();
 
-    var url: string = this.utilsService.getMyUrl();
+    const url: string = this.utilsService.getMyUrl();
 
 
     return this.http.get(AppConfig.STUDENT_URL + '/' + id, options)
