@@ -15,7 +15,9 @@
     "LANGUAGE": "Idioma",
     "RANKING": "Ranking de estudiantes",
     "NEXTLEVELPOINTS": "Puntos para el siguiente nivel: ",
-    "LEVEL": "Nivel"
+    "LEVEL": "Nivel",
+    "MYPOS": "Mi posición",
+    "RANK": "Rango"
   },
   "LOGIN": {
     "USERNAME": "Nombre de usuario",
@@ -315,6 +317,7 @@
     "EDIT": "Editar",
     "DELETE": "Eliminar",
     "SELECTAVATAR": "Selecciona un avatar",
-    "GOBACK": "Volver"
+    "GOBACK": "Volver",
+    "ME": "Yo"
   }
 }

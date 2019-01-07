@@ -33,8 +33,6 @@ export class TeacherHomeComponent implements OnInit {
     this.getStudentWithRewards();
   }
 
-  // filter:  ?filter=%7B%22include%22%3A%5B%22rewards%22%2C%22avatar%22%5D%7D
-
   getStudentWithRewards() {
     this.rewardService.getAllStudentsWithRewards(this.school.id).subscribe(
       response => {
@@ -53,17 +51,17 @@ export class TeacherHomeComponent implements OnInit {
     const points_array = this.allPoints;
     Object.keys(students).forEach(
       function (index) {
-        students[index]['points'] = JSON.parse(students[index].rewards.points_obj);
+        students[index].rewards.points_obj = JSON.parse(students[index].rewards.points_obj);
         Object.keys(points_array).forEach(
           function (index_2) {
-            if (students[index]['points'][points_array[index_2].id] === undefined) {
-              students[index]['points'][points_array[index_2].id] = 0;
+            if (students[index].rewards.points_obj[points_array[index_2].id] === undefined) {
+              students[index].rewards.points_obj[points_array[index_2].id] = 0;
             }
 
-            students[index]['points'][points_array[index_2].id] =
-              students[index]['points'][points_array[index_2].id] * points_array[index_2].value;
-            if (students[index]['points'][points_array[index_2].id] === -0) {
-              students[index]['points'][points_array[index_2].id] = 0;
+            students[index].rewards.points_obj[points_array[index_2].id] =
+              students[index].rewards.points_obj[points_array[index_2].id] * points_array[index_2].value;
+            if (students[index].rewards.points_obj[points_array[index_2].id] === -0) {
+              students[index].rewards.points_obj[points_array[index_2].id] = 0;
             }
           });
         students[index].rewards.badges_obj = JSON.parse(students[index].rewards.badges_obj);
