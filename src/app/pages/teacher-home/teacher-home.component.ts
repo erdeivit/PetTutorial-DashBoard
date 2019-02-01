@@ -99,8 +99,8 @@ export class TeacherHomeComponent implements OnInit {
       for (const index of Object.keys(points_array)) {
         if (parseInt(points_array[index].id, 10) === parseInt(sort.active, 10)) {
           return compare(
-            a['points'][points_array[index].id],
-            b['points'][points_array[index].id],
+            a.rewards.points_obj[points_array[index].id],
+            b.rewards.points_obj[points_array[index].id],
             isAsc
           );
         }

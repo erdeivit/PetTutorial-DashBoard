@@ -73,7 +73,6 @@ export class HomeComponent implements OnInit {
 
     this.levelService.getAllRanks()
       .subscribe((allRanks: Rango[]) => {
-        allRanks.sort(this.levelService.sortFunction);
         this.allRanks = allRanks;
       });
 
@@ -124,6 +123,7 @@ export class HomeComponent implements OnInit {
     let actualRank: Rango;
     const rangos = this.allRanks;
     const reward = this.reward;
+
     Object.keys(rangos).forEach(
       function (index) {
         if (reward.rank === rangos[index].nombreRango) {
