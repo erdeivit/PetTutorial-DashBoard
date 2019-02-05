@@ -20,10 +20,13 @@ import { QuestionnaireAwardsComponent } from './pages/questionnaireAwards/questi
 
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
 import { CreateQuestionnaireComponent } from './pages/createQuestionnaire/createQuestionnaire';
+
+// tslint:disable
 import { CreateQuestionnaireBadgesAssignmentComponent } from './pages/createQuestionnaireBadgesAssignment/createQuestionnaireBadgesAssignment';
 import { CreateQuestionnairePackCardsAssignmentComponent } from './pages/createQuestionnairePackCardsAssignment/createQuestionnairePackCardsAssignment';
-
 import { CreateQuestionnairePointsAssignmentComponent } from './pages/createQuestionnairePointsAssignment/createQuestionnairePointsAssignment';
+// tslint:enable
+
 import { CreateQuestionnaireTest1Component } from './pages/createQuestionnaireTest1/createQuestionnaireTest1';
 import { CreateQuestionnaireTest2Component } from './pages/createQuestionnaireTest2/createQuestionnaireTest2';
 import { CreateQuestionnaireTextArea1Component } from './pages/createQuestionnaireTextArea1/createQuestionnaireTextArea1';
@@ -56,6 +59,7 @@ import { LanguageComponent } from './pages/language/language';
 import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
 import { CreateCollectionComponent } from './pages/createCollection/createCollection';
 import { GroupStudentsComponent } from './pages/groupStudents/groupStudents';
+import { SchoolDetailsComponent } from './pages/school-details/school-details.component';
 
 const appRoutes: Routes = [
 
@@ -78,6 +82,7 @@ const appRoutes: Routes = [
   { path: 'competition/tennis/:id/teams', component: TeamsComponent, canActivate: [AuthGuard] },
 
   { path: 'groupStudents/:id', component: GroupStudentsComponent, canActivate: [AuthGuard] },
+  { path: 'schooldetails/:id', component: SchoolDetailsComponent, canActivate: [AuthGuard] },
 
   { path: 'pointsbadges', component: PointsBadgesComponent, canActivate: [AuthGuard] },
   { path: 'collections', component: CollectionsComponent, canActivate: [AuthGuard] },

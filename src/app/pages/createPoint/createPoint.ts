@@ -19,6 +19,7 @@ export class CreatePointComponent implements OnInit {
   public name: string;
   public value: number;
   public newPoint: Point;
+  public image: string;
   constructor(
     public translateService: TranslateService,
     public alertService: AlertService,
@@ -29,8 +30,7 @@ export class CreatePointComponent implements OnInit {
     public snackbar: MatSnackBar,
     public dialogRef: MatDialogRef<CreatePointComponent>,
 
-
-
+    // tslint:disable-next-line:no-any
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
@@ -44,28 +44,9 @@ export class CreatePointComponent implements OnInit {
   }
   createPoint(): void {
 
-<<<<<<< HEAD
-    if(this.name == "" || !this.value)
-    {
-=======
-    if (this.name == "" || !this.value || this.image == "") {
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
+    if (this.name === '' || !this.value || this.image === '') {
       this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
-    }
-    else {
-
-<<<<<<< HEAD
-    this.pointService.savePoint(this.name, this.value).subscribe(
-      ((newPoint: Point) => {
-        this.newPoint = newPoint;
-        this.alertService.show(this.translateService.instant('POINTS.CREATED'));
-        this.loadingService.hide();
-      }),
-      ((error: Response) => {
-        this.loadingService.hide();
-        this.alertService.show(error.toString());
-      }));
-=======
+    } else {
       this.pointService.savePoint(this.name, this.value, this.image).subscribe(
         ((newPoint: Point) => {
           this.newPoint = newPoint;
@@ -76,7 +57,6 @@ export class CreatePointComponent implements OnInit {
           this.loadingService.hide();
           this.alertService.show(error.toString());
         }));
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
 
       this.cancel();
 

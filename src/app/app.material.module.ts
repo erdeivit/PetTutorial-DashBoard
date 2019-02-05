@@ -1,26 +1,22 @@
 import { NgModule } from '@angular/core';
-<<<<<<< HEAD
-import {MatSlideToggleModule, MatTabsModule,
-  MatToolbarModule, MatInputModule, MatButtonModule, MatMenuModule,
-  MatSelectModule, MatCardModule, MatGridListModule, MatProgressSpinnerModule,
-  MatProgressBarModule, MatSnackBarModule, MatListModule, MatIconModule, MatAutocompleteModule,MatDatepickerModule,
-  MatNativeDateModule, MatExpansionModule,
-  MatRadioModule, MatStepperModule
-=======
 import {
-  MatSlideToggleModule, MatTabsModule,
-  MatFormFieldModule, MatToolbarModule, MatInputModule, MatButtonModule, MatMenuModule,
-  MatSelectModule, MatCardModule, MatGridListModule, MatProgressSpinnerModule,
-  MatProgressBarModule, MatSnackBarModule, MatListModule, MatIconModule, MatAutocompleteModule, MatTableModule
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
+  MatSlideToggleModule, MatTabsModule, MatFormFieldModule,
+  MatToolbarModule, MatInputModule, MatButtonModule,
+  MatMenuModule, MatSelectModule, MatCardModule,
+  MatGridListModule, MatProgressSpinnerModule, MatProgressBarModule,
+  MatSnackBarModule, MatListModule, MatIconModule,
+  MatAutocompleteModule, MatSortModule,
+  MatPaginatorModule, MatDatepickerModule, MatNativeDateModule,
+  MatExpansionModule, MatRadioModule, MatStepperModule
 } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
+    MatFormFieldModule,
     MatTabsModule,
     MatTableModule,
     MatSlideToggleModule,
@@ -44,9 +40,13 @@ import {MatTableModule} from '@angular/material/table';
     MatNativeDateModule,
     MatExpansionModule,
     MatRadioModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDialogModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   exports: [
+    MatFormFieldModule,
     MatTabsModule,
     MatSlideToggleModule,
     MatAutocompleteModule,
@@ -70,7 +70,10 @@ import {MatTableModule} from '@angular/material/table';
     MatDialogModule,
     MatExpansionModule,
     MatRadioModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDialogModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
 })
 export class AppMaterialModule { }

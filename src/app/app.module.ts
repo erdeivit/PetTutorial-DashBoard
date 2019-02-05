@@ -9,11 +9,8 @@ import { Http, HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 import { NgxLoremIpsumModule } from 'ngx-lorem-ipsum';
-<<<<<<< HEAD
 import { DatePipe } from '@angular/common';
-=======
 import { MatSortModule } from '@angular/material/sort';
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
 
 // aplication
 import { AppComponent } from './app.component';
@@ -52,11 +49,6 @@ import { QuestionnaireComponent } from './pages/questionnaire/questionnaire';
 import { QuestionnaireResultsComponent } from './pages/questionnaireResults/questionnaireResults';
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
 import { CreateQuestionnaireComponent } from './pages/createQuestionnaire/createQuestionnaire';
-<<<<<<< HEAD
-import { CreateQuestionnairePointsAssignmentComponent } from './pages/createQuestionnairePointsAssignment/createQuestionnairePointsAssignment';
-import { CreateQuestionnaireBadgesAssignmentComponent } from './pages/createQuestionnaireBadgesAssignment/createQuestionnaireBadgesAssignment';
-import { CreateQuestionnairePackCardsAssignmentComponent } from './pages/createQuestionnairePackCardsAssignment/createQuestionnairePackCardsAssignment';
-=======
 import {
   CreateQuestionnairePointsAssignmentComponent
 } from './pages/createQuestionnairePointsAssignment/createQuestionnairePointsAssignment';
@@ -66,7 +58,6 @@ import {
 import {
   CreateQuestionnairePackCardsAssignmentComponent
 } from './pages/createQuestionnairePackCardsAssignment/createQuestionnairePackCardsAssignment';
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
 
 import { ViewCardComponent } from './pages/viewcard/viewcard';
 import { CreateQuestionnaireTest1Component } from './pages/createQuestionnaireTest1/createQuestionnaireTest1';
@@ -99,16 +90,11 @@ import { LoadingComponent } from './shared/loading/loading';
 import {
   UtilsService, LoginService, LoadingService, AlertService,
   SchoolService, AvatarService, UserService, GroupService,
-<<<<<<< HEAD
-  GradeService, MatterService, QuestionnaireService, CollectionService,
-  PointService, PointRelationService, BadgeService, BadgeRelationService,
-  CompetitionService, JourneyService, MatchesService, TeamService
-=======
   GradeService, MatterService, QuestionnaireService,
   CollectionService, PointService, PointRelationService,
   BadgeService, BadgeRelationService, LevelService,
-  RewardService
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
+  RewardService, CompetitionService, JourneyService,
+  MatchesService, TeamService, TeacherService
 } from './shared/services/index';
 
 // rxjs
@@ -122,19 +108,23 @@ import { CreateCollectionComponent } from './pages/createCollection/createCollec
 import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollection';
 import { QuestionnaireAwardsComponent } from './pages/questionnaireAwards/questionnaireAwards';
 import { GroupStudentsComponent } from './pages/groupStudents/groupStudents';
-<<<<<<< HEAD
 import { from } from 'rxjs/observable/from';
-=======
 import { StudentHomeComponent } from './pages/student-home/student-home.component';
 import { SchoolComponent } from './pages/school/school.component';
 import { TeacherHomeComponent } from './pages/teacher-home/teacher-home.component';
 import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
-import { SchoolFormComponent } from './pages/school-form/school-form.component';
-import { MatPaginatorModule, MatDialogModule } from '@angular/material';
+import { SchoolFormComponent } from './pages/forms/school-form/school-form.component';
+import { MatPaginatorModule, MatDialogModule, MatFormFieldModule } from '@angular/material';
 import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 import { SchoolDetailsComponent } from './pages/school-details/school-details.component';
+import { TeacherFormComponent } from './pages/forms/teacher-form/teacher-form.component';
+import { GradeFormComponent } from './pages/forms/grade-form/grade-form.component';
+import { MatterFormComponent } from './pages/forms/matter-form/matter-form.component';
+import { RankFormComponent } from './pages/forms/rank-form/rank-form.component';
+import { StudentFormComponent } from './pages/forms/student-form/student-form.component';
+import { StudentService } from './shared/services/student.service';
+import { GradeMatterRelComponent } from './pages/forms/grade-matter-rel/grade-matter-rel.component';
 
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, AppConfig.LANG_PATH, AppConfig.LANG_EXT);
@@ -208,7 +198,13 @@ export function createTranslateLoader(http: Http) {
     AdminHomeComponent,
     SchoolFormComponent,
     ConfirmationDialogComponent,
-    SchoolDetailsComponent
+    SchoolDetailsComponent,
+    TeacherFormComponent,
+    GradeFormComponent,
+    MatterFormComponent,
+    RankFormComponent,
+    StudentFormComponent,
+    GradeMatterRelComponent
   ],
   imports: [
     BrowserModule,
@@ -227,9 +223,6 @@ export function createTranslateLoader(http: Http) {
     FormsModule,
     HttpModule,
     routing,
-    MatSortModule,
-    MatPaginatorModule,
-    MatDialogModule,
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: createTranslateLoader,
@@ -255,16 +248,15 @@ export function createTranslateLoader(http: Http) {
     BadgeService,
     BadgeRelationService,
     CollectionService,
-<<<<<<< HEAD
     CompetitionService,
     JourneyService,
     MatchesService,
     TeamService,
-    DatePipe
-=======
+    DatePipe,
     LevelService,
-    RewardService
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
+    RewardService,
+    TeacherService,
+    StudentService
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmationDialogComponent]

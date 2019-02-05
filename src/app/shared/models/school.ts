@@ -1,3 +1,9 @@
+import { Teacher } from './teacher';
+import { Student } from './student';
+import { Grade } from './grade';
+import { Matter } from './matter';
+import { Rango } from './rango';
+
 export class School {
 
   private _id: string;
@@ -16,6 +22,11 @@ export class School {
   private _twitter: string;
   private _description: string;
   private _website: string;
+  private _teachers: Teacher[];
+  private _students: Student[];
+  private _grades: Grade[];
+  private _matters: Matter[];
+  private _ranges: Rango[];
 
   constructor(id?: string, name?: string, address?: string, image?: string,
     zipCode?: string, city?: string, country?: string, cif?: string,
@@ -61,6 +72,11 @@ export class School {
       result.twitter = object.twitter;
       result.description = object.description;
       result.website = object.website;
+      result.teachers = object.teachers;
+      result.students = object.students;
+      result.grades = object.grades;
+      result.matters = object.matters;
+      result.ranges = object.ranges;
     }
     return result;
   }
@@ -205,4 +221,43 @@ export class School {
     this._website = value;
   }
 
+  public get teachers(): Teacher[] {
+    return this._teachers;
+  }
+
+  public set teachers(value: Teacher[]) {
+    this._teachers = value;
+  }
+
+  public get students(): Student[] {
+    return this._students;
+  }
+
+  public set students(value: Student[]) {
+    this._students = value;
+  }
+
+  public get grades(): Grade[] {
+    return this._grades;
+  }
+
+  public set grades(value: Grade[]) {
+    this._grades = value;
+  }
+
+  public get matters(): Matter[] {
+    return this._matters;
+  }
+
+  public set matters(value: Matter[]) {
+    this._matters = value;
+  }
+
+  public get ranges(): Rango[] {
+    return this._ranges;
+  }
+
+  public set ranges(value: Rango[]) {
+    this._ranges = value;
+  }
 }

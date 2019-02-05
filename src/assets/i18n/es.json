@@ -15,7 +15,10 @@
     "LANGUAGE": "Idioma",
     "RANKING": "Ranking de estudiantes",
     "NEXTLEVELPOINTS": "Puntos para el siguiente nivel: ",
-    "LEVEL": "Nivel"
+    "LEVEL": "Nivel",
+    "MYPOS": "Mi posición",
+    "RANK": "Rango",
+    "POINTS": "Puntos"
   },
   "LOGIN": {
     "USERNAME": "Nombre de usuario",
@@ -33,8 +36,7 @@
     "LIST": "Lista de grupos",
     "ID": "Id. Grupo",
     "CHOOSE": "Escoge el grupo",
-<<<<<<< HEAD
-	  "NOASSIGN": "No asignar grupo"
+    "NOASSIGN": "No asignar grupo"
   },
   "COMPETITIONS": {
     "TITLE": "Competiciones",
@@ -91,8 +93,8 @@
     "INTR_RESULT5": "Los resultados de la jornada",
     "NO_MODIFY": "No puedes modificar sus fechas",
     "RESULTS_SUCCESS": "han sido registrados con éxito.",
-    "MOD_TEXT":"Texto informativo",
-    "MOD_TEXT2":"Modifique el texto",
+    "MOD_TEXT": "Texto informativo",
+    "MOD_TEXT2": "Modifique el texto",
     "SHOW_INFO": "Mostrar información sobre esta competición",
     "HIDE_INFO": "Ocultar la información",
     "INFO_COMP": "Información referente a la competición",
@@ -172,13 +174,56 @@
     "FINISHED": "Los equipos han sido creados correctamente",
     "RETURN": "Volver a la página de la competición"
   },
-
-=======
-    "NOASSIGN": "No asignar grupo"
+  "GRADE": {
+    "GRADE": "Curso",
+    "GRADELIST": "Listado de cursos",
+    "NEWGRADE": "Nuevo curso",
+    "NEWGRADEFORM": "Formulario de Curso",
+    "CREATINGGRADE": "Creando un nuevo Curso",
+    "EDITINGGRADE": "Editando curso",
+    "NAME": "Nombre del curso",
+    "CREATED": "Curso creado correctamente",
+    "EDITED": "Curso editado correctamente",
+    "DELETED": "Curso borrado correctamente",
+    "CONFIRMDELETE": "Seguro que quieres borrar el curso con id {{elementId}}?",
+    "CONFIRMRELDELETE": "Si aceptas, borraras la relación de este curso con la materia con id {{elementId}}. Estas seguro?",
+    "SELECTMATTER": "Selecciona una materia"
   },
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
+  "MATTER": {
+    "MATTER": "Materia",
+    "MATTERLIST": "Listado de materias",
+    "NEWMATTER": "Nueva asignatura",
+    "NEWMATTERFORM": "Formulario de asignatura",
+    "CREATINGMATTER": "Creando nueva asignatura",
+    "EDITINGMATTER": "Editando asignatura",
+    "NAME": "Nombre de la asignatura",
+    "CREATED": "Asignatura creada correctamente",
+    "EDITED": "Asignatura editada correctamente",
+    "DELETED": "Asignatura borrada correctamente",
+    "CONFIRMDELETE": "Seguro que quieres borrar la asignatura con id {{elementId}}?",
+    "SELECTGRADE": "Selecciona un curso"
+  },
   "TEACHER": {
-    "ID": "Id. Profesor"
+    "ID": "Id. Profesor",
+    "TEACHER": "Profesor",
+    "TEACHERS": "Profesores",
+    "TEACHERSLIST": "Lista de profesores",
+    "NAME": "Nombre",
+    "SURNAME": "Apellidos",
+    "EMAIL": "Email",
+    "USERNAME": "Nombre de usuario",
+    "PASSWORD": "Contraseña",
+    "NEWPASSWORD": "Introduce una nueva contraseña",
+    "CONFIRMPASSWORD": "Confirmar contraseña",
+    "PROFILEIMAGE": "Imagen de perfil",
+    "NEWTEACHERFORM": "Formulario de profesor",
+    "CREATINGTEACHER": "Creando un nuevo profesor",
+    "EDITINGTEACHER": "Editando profesor con id ",
+    "CREATED": "Nuevo profesor creado correctamente",
+    "EDITED": "Profesor editado correctamente",
+    "DELETED": "Profesor borrado correctamente",
+    "CONFIRMDELETE": "¿Seguro que quieres borrar el profesor con id {{elementId}}?",
+    "NEWTEACHER": "Crear nuevo profesor"
   },
   "STUDIENTS": {
     "ID": "Id. Estudiante",
@@ -188,7 +233,21 @@
     "EMAIL": "Email",
     "TITLE": "Estudiantes",
     "CHOOSE": "Escoge el estudiante",
-    "SHOW": "Mostrar estudiantes"
+    "SHOW": "Mostrar estudiantes",
+    "STUDENTSLIST": "Listado de estudiantes",
+    "USERNAME": "Nombre de usuario",
+    "PASSWORD": "Contraseña",
+    "NEWPASSWORD": "Introduce una nueva contraseña",
+    "CONFIRMPASSWORD": "Confirmar contraseña",
+    "PROFILEIMAGE": "Imagen de perfil",
+    "NEWSTUDENTSFORM": "Formulario de estudiante",
+    "CREATINGSTUDENT": "Creando nuevo estudiante",
+    "EDITINGSTUDENT": "Editando estudiante con id ",
+    "CREATED": "Nuevo estudante creado correctamente",
+    "EDITED": "Estudiante modificado con exito",
+    "DELETED": "Estudiante borrado correctamente",
+    "CONFIRMDELETE": "¿Seguro que quieres borrar el estudiante con id {{elementId}}?",
+    "NEWSTUDENT": "Crear un nuevo Estudiante"
   },
   "QUESTIONNAIRES": {
     "TITLE": "Cuestionarios",
@@ -397,6 +456,48 @@
     "RATIO4": "Raro",
     "UNKNOWN": "Unknown"
   },
+  "SCHOOL": {
+    "NAME": "Nombre de la escuela",
+    "ADDRESS": "Dirección de la escuela",
+    "IMAGE": "Imagen pequeña para el avatar de la escuela",
+    "IMAGEBIG": "Imagen grande de la escuela",
+    "ZIPCODE": "Codigo Postal",
+    "CITY": "Ciudad",
+    "COUNTRY": "Pais",
+    "LATITUDE": "Latitud",
+    "LONGITUDE": "Longitud",
+    "CIF": "CIF",
+    "PHONE": "Teléfono",
+    "WEBSITE": "Página Web",
+    "FACEBOOK": "Cuenta de Facebook",
+    "TWITTER": "Cuenta de Twitter",
+    "DESCRIPTION": "Descripción",
+    "NEWSCHOOL": "Crear nueva escuela",
+    "CREATED": "Nueva escuela creada con éxito",
+    "EDITED": "Escuela modificada con éxito",
+    "DELETED": "Escuela borrada correctamente",
+    "CONFIRMDELETE": "¿Seguro que quieres borrar la escuela con id {{schoolId}}?",
+    "SAVE": "Guardar",
+    "NEWSCHOOLFORM": "Formulario de escuela",
+    "CREATINGSCHOOL": "Creando escuela nueva",
+    "EDITINGSCHOOL": "Editando escuela con id "
+  },
+  "RANKS": {
+    "RANK": "Rango",
+    "RANKS": "Rangos",
+    "RANKSLIST": "Llistado de rangos",
+    "NEWRANK": "Nuevo Rango",
+    "NEWRANKFORM": "Formulario de Rango",
+    "CREATINGRANK": "Creando nuevo rango",
+    "EDITINGRANK": "Editando rango",
+    "NAME": "Nombre del rango",
+    "POINTS": "Número de puntos para conseguir el rango",
+    "IMAGE": "Url de la imagen del rango",
+    "CREATED": "Rango creado correctamente",
+    "EDITED": "Rango editado correctamente",
+    "DELETED": "Rango borrado correctamente",
+    "CONFIRMDELETE": "¿Seguro que quieres borrar el rango con id {{elementId}}?"
+  },
   "COMMON": {
     "TYPEASSIGNMENTCHOOSE": "Escoge el tipo de asignación",
     "CHOOSEAMOUNT": "Escoge la cantidad",
@@ -408,6 +509,13 @@
     "CANCEL": "Cancelar",
     "INNUMBER": "Introduce una cifra",
     "SCHOOL": "Escuela",
-    "SCHOOLS": "Escuelas"
+    "SCHOOLS": "Escuelas",
+    "EDIT": "Editar",
+    "DELETE": "Eliminar",
+    "SELECTAVATAR": "Selecciona un avatar",
+    "GOBACK": "Volver",
+    "ME": "Yo",
+    "OF": "de",
+    "ADD": "Añadir"
   }
 }

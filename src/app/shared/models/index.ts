@@ -28,3 +28,4 @@ export * from './competition';
 export * from './journey';
 export * from './match';
 export * from './team';
+export * from './reward';

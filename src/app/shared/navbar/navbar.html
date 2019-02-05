@@ -3,27 +3,23 @@
     <img class="docs-classpip-logo" src="../../../assets/img/classpip-icon.svg" alt="angular">
     <span>{{ 'APP.NAME' | translate }}</span>
   </a>
-<<<<<<< HEAD
-  <a mat-button class="docs-navbar-hide-small docs-button" routerLink="/home">{{ 'HOME.TITLE' | translate }}</a>
-  <a mat-button class="docs-navbar-hide-small docs-button" routerLink="/groups">{{ 'GROUPS.TITLE' | translate }}</a>
-  <a mat-button class="docs-navbar-hide-small docs-button" routerLink="/assistance">{{ 'ASSISTANCE.TITLE' | translate }}</a>
-  <a mat-button class="docs-navbar-hide-small docs-button" routerLink="/questionnaires">{{ 'QUESTIONNAIRES.TITLE' | translate }}</a>
-  <a mat-button class="docs-navbar-hide-small docs-button" routerLink="/pointsbadges">{{ 'POINTSBADGES.TITLE' | translate }}</a>
-  <a mat-button class="docs-navbar-hide-small docs-button" routerLink="/collections">{{ 'COLLECTIONS.TITLE' | translate }}</a>
-  <a mat-button class="docs-navbar-hide-small docs-button" routerLink="/competitions">{{ 'COMPETITIONS.TITLE' | translate }}</a>
-  <a mat-button class="docs-navbar-hide-small docs-button" routerLink="/create-teams">{{ 'TEAMS.TITLE' | translate }}</a>
-  <a mat-button class="docs-navbar-hide-small docs-button" routerLink="/login" >{{ 'APP.LOGOUT' | translate }}</a>
-=======
+
   <a *ngIf="isLoggedIn" mat-button class="docs-navbar-hide-small docs-button" routerLink="/home">{{ 'HOME.TITLE' |
     translate }}</a>
   <a *ngIf="isLoggedIn" mat-button class="docs-navbar-hide-small docs-button" routerLink="/groups">{{ 'GROUPS.TITLE' |
     translate }}</a>
+  <a *ngIf="isLoggedIn" mat-button class="docs-navbar-hide-small docs-button" routerLink="/assistance">{{
+    'ASSISTANCE.TITLE' | translate }}</a>
   <a *ngIf="isLoggedIn" mat-button class="docs-navbar-hide-small docs-button" routerLink="/questionnaires">{{
     'QUESTIONNAIRES.TITLE' | translate }}</a>
   <a *ngIf="isLoggedIn" mat-button class="docs-navbar-hide-small docs-button" routerLink="/pointsbadges">{{
     'POINTSBADGES.TITLE' | translate }}</a>
   <a *ngIf="isLoggedIn" mat-button class="docs-navbar-hide-small docs-button" routerLink="/collections">{{
     'COLLECTIONS.TITLE' | translate }}</a>
+  <a *ngIf="isLoggedIn" mat-button class="docs-navbar-hide-small docs-button" routerLink="/competitions">{{
+    'COMPETITIONS.TITLE' | translate }}</a>
+  <a *ngIf="isLoggedIn" mat-button class="docs-navbar-hide-small docs-button" routerLink="/create-teams">{{
+    'TEAMS.TITLE' | translate }}</a>
 
   <a *ngIf="isLoggedIn" mat-button class="docs-navbar-hide-small docs-button nav-close-session" routerLink="/login">{{
     'APP.LOGOUT' | translate }}</a>
@@ -32,5 +28,4 @@
       <div class="mat-select-arrow"></div>
     </div>
   </button>
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
 </nav>

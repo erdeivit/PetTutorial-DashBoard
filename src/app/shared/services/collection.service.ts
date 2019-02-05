@@ -3,11 +3,11 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { UtilsService } from './utils.service';
-import { CollectionCard } from "../models/collectionCard";
-import { AppConfig } from "../../app.config";
-import { Card } from "../models/card";
-import { Group } from "../models/group";
-import { Student } from "../models/student";
+import { CollectionCard } from '../models/collectionCard';
+import { AppConfig } from '../../app.config';
+import { Card } from '../models/card';
+import { Group } from '../models/group';
+import { Student } from '../models/student';
 
 
 @Injectable()
@@ -22,12 +22,10 @@ export class CollectionService {
   */
   public getCollection(id: number): Observable<CollectionCard> {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
+    const options = this.utilsService.getOptions();
 
     return this.http.get(AppConfig.COLLECTION_URL + '/' + id, options)
-      .map((response: Response, index: number) => CollectionCard.toObject(response.json()))
+      .map((response: Response, index: number) => CollectionCard.toObject(response.json()));
   }
   /**
    * This method returns the list of CollectionCards in the school
@@ -35,11 +33,8 @@ export class CollectionService {
    */
   public getCollections(): Observable<Array<CollectionCard>> {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    let url: string = AppConfig.COLLECTION_URL;
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.COLLECTION_URL;
 
     return this.http.get(url, options)
       .map((response: Response, index: number) => CollectionCard.toObjectArray(response.json()));
@@ -53,11 +48,8 @@ export class CollectionService {
    */
   public getMyCollections(): Observable<Array<CollectionCard>> {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    let url: string = this.utilsService.getMyUrl() + AppConfig.COLLECTIONS_URL;
+    const options = this.utilsService.getOptions();
+    const url: string = this.utilsService.getMyUrl() + AppConfig.COLLECTIONS_URL;
 
     return this.http.get(url, options)
       .map((response: Response, index: number) => CollectionCard.toObjectArray(response.json()));
@@ -69,11 +61,8 @@ export class CollectionService {
    */
   public getCollectionDetails(id): Observable<Array<Card>> {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    let url: string = AppConfig.COLLECTION_URL + "/" + id + AppConfig.CARDS_URL;
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.COLLECTION_URL + '/' + id + AppConfig.CARDS_URL;
 
     return this.http.get(url, options)
       .map((response: Response, index: number) => Card.toObjectArray(response.json()));
@@ -87,27 +76,28 @@ export class CollectionService {
    */
   public postCollection(collectionCard: CollectionCard) {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
+    const options = this.utilsService.getOptions();
+    const url = this.utilsService.getMyUrl() + AppConfig.COLLECTIONS_URL;
 
-
-    let url: string = this.utilsService.getMyUrl() + AppConfig.COLLECTIONS_URL;
-
-    let body = {
+    const body = {
+      // tslint:disable-next-line:quotemark
       "name": collectionCard.name,
+      // tslint:disable-next-line:quotemark
       "num": collectionCard.num,
+      // tslint:disable-next-line:quotemark
       "image": collectionCard.image,
+      // tslint:disable-next-line:quotemark
       "createdBy": collectionCard.createdBy,
+      // tslint:disable-next-line:quotemark
       "badgeId": collectionCard.badgeId,
-      //"teacherId": this.utilsService.currentUser.userId
+      // "teacherId": this.utilsService.currentUser.userId
     };
 
 
 
     return this.http.post(url, body, options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
@@ -120,13 +110,13 @@ export class CollectionService {
    * @returns {Observable<any>}
    */
   public assignCollection(collectionId, groupId) {
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id),
-    });
-    let url: string = AppConfig.COLLECTION_URL + '/' + collectionId + AppConfig.GROUPS_URL + '/rel/' + groupId;
+
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.COLLECTION_URL + '/' + collectionId + AppConfig.GROUPS_URL + '/rel/' + groupId;
+
     return this.http.put(url, options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
@@ -139,12 +129,8 @@ export class CollectionService {
    */
   public deleteCollection(collectionId) {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    let url: string = AppConfig.COLLECTION_URL + '/' + collectionId;
-
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.COLLECTION_URL + '/' + collectionId;
 
     return this.http.delete(url, options)
       .map(response => {
@@ -161,47 +147,43 @@ export class CollectionService {
    */
   public deleteCollectionRelation(collectionId) {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    let url: string = this.utilsService.getMyUrl() + AppConfig.COLLECTIONS_URL + '/rel/' + collectionId;
+    const options = this.utilsService.getOptions();
+    const url = this.utilsService.getMyUrl() + AppConfig.COLLECTIONS_URL + '/rel/' + collectionId;
 
     return this.http.delete(url, options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 
   public editCollection(collectionCard: CollectionCard) {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
+    const options = this.utilsService.getOptions();
 
-    let url: string = this.utilsService.getMyUrl() + AppConfig.COLLECTIONS_URL + '/' + collectionCard.id;
-    let body = {
+    const url = this.utilsService.getMyUrl() + AppConfig.COLLECTIONS_URL + '/' + collectionCard.id;
+    const body = {
+      // tslint:disable-next-line:quotemark
       "name": collectionCard.name,
+      // tslint:disable-next-line:quotemark
       "image": collectionCard.image,
+      // tslint:disable-next-line:quotemark
       "num": collectionCard.num,
+      // tslint:disable-next-line:quotemark
       "createdBy": collectionCard.createdBy
     };
 
     return this.http.put(url, body, options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 
   public getAssignedGroups(collectionId): Observable<Array<Group>> {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    let url: string = AppConfig.COLLECTION_URL + '/' + collectionId + AppConfig.GROUPS_URL;
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.COLLECTION_URL + '/' + collectionId + AppConfig.GROUPS_URL;
 
     return this.http.get(url, options)
       .map((response: Response, index: number) => Group.toObjectArray(response.json()));
@@ -209,125 +191,114 @@ export class CollectionService {
 
   public deleteAssignedGroup(collectionId, groupId) {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    let url: string = AppConfig.COLLECTION_URL + '/' + collectionId + AppConfig.GROUPS_URL + '/rel/' + groupId;
+    const options = this.utilsService.getOptions();
+    const url = AppConfig.COLLECTION_URL + '/' + collectionId + AppConfig.GROUPS_URL + '/rel/' + groupId;
 
     return this.http.delete(url, options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 
   public postCard(card: Card) {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    let url: string = AppConfig.COLLECTION_URL + '/' + card.collectionId + AppConfig.CARDS_URL;
-    let body = {
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.COLLECTION_URL + '/' + card.collectionId + AppConfig.CARDS_URL;
+    const body = {
+      // tslint:disable-next-line:quotemark
       "name": card.name,
+      // tslint:disable-next-line:quotemark
       "ratio": card.ratio,
+      // tslint:disable-next-line:quotemark
       "rank": card.rank,
+      // tslint:disable-next-line:quotemark
       "image": card.image
     };
 
     return this.http.post(url, body, options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 
   public assignCollectionToStudent(studentId, collectionId) {
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-    let url: string = AppConfig.COLLECTION_URL + '/' + collectionId + AppConfig.STUDENTS_URL + '/rel/' + studentId;
+
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.COLLECTION_URL + '/' + collectionId + AppConfig.STUDENTS_URL + '/rel/' + studentId;
 
     return this.http.put(url, null, options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 
   public deleteCard(cardId) {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    let url: string = AppConfig.CARD_URL + '/' + cardId;
-
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.CARD_URL + '/' + cardId;
 
     return this.http.delete(url, options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
   public editCard(card: Card) {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    let url: string = AppConfig.CARD_URL + '/' + card.id;
-    let body = {
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.CARD_URL + '/' + card.id;
+    const body = {
+      // tslint:disable-next-line:quotemark
       "name": card.name,
+      // tslint:disable-next-line:quotemark
       "image": card.image,
+      // tslint:disable-next-line:quotemark
       "ratio": card.ratio,
+      // tslint:disable-next-line:quotemark
       "rank": card.rank
     };
 
     return this.http.put(url, body, options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
   public getAssignedCards() {
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
 
-    let url: string = this.utilsService.getMyUrl() + AppConfig.CARDS_URL;
+    const options = this.utilsService.getOptions();
+    const url: string = this.utilsService.getMyUrl() + AppConfig.CARDS_URL;
 
     return this.http.get(url, options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 
   public deletemycard(cardId) {
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
 
-    let url: string = AppConfig.CARD_URL + '/' + cardId + AppConfig.STUDENTS_URL + '/rel/' + this.utilsService.currentUser.userId;
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.CARD_URL + '/' + cardId + AppConfig.STUDENTS_URL + '/rel/' + this.utilsService.currentUser.userId;
 
     return this.http.delete(url, options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 
   public assignCardToStudent(studentId, cardId) {
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-    let url: string = AppConfig.CARD_URL + '/' + cardId + AppConfig.STUDENTS_URL + '/rel/' + studentId;
+
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.CARD_URL + '/' + cardId + AppConfig.STUDENTS_URL + '/rel/' + studentId;
 
     return this.http.put(url, null, options)
       .map(response => {
-        return response.json()
+        return response.json();
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }

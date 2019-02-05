@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { LoginService } from '../services/login.service';
 import { UtilsService } from '../services/utils.service';
 import { UserService } from '../services/user.service';
-
-import { Profile } from '../models/index';
+import { AppConfig } from '../../app.config';
+import { Profile, Login } from '../models/index';
 import { MatDialog } from '@angular/material';
 
 import { LanguageComponent } from '../../pages/language/language';
@@ -23,10 +23,20 @@ export class NavBarComponent implements OnInit {
     public utilsService: UtilsService,
     public userService: UserService,
     public dialog: MatDialog
-  ) { }
+  ) {
+    this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
+    this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
+  }
 
   ngOnInit(): void {
     this.userIsLoggedIn();
+    /*
+    if (this.utilsService.currentUser.id) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
+    */
   }
 
   userIsLoggedIn() {

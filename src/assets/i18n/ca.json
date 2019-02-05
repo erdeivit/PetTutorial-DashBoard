@@ -15,7 +15,10 @@
     "LANGUAGE": "Idioma",
     "RANKING": "Ranking d'estudiants",
     "NEXTLEVELPOINTS": "Punts per a el seguent nivell: ",
-    "LEVEL": "Nivell"
+    "LEVEL": "Nivell",
+    "MYPOS": "La meva posició",
+    "RANK": "Rang",
+    "POINTS": "Punts"
   },
   "LOGIN": {
     "USERNAME": "Nom d'usuari",
@@ -33,16 +36,59 @@
     "LIST": "Llistat de grups",
     "ID": "Id. Grup",
     "CHOOSE": "Tria el grup",
-<<<<<<< HEAD
     "NOASSIGN": "No assignar grup",
     "SINGULAR": "Grups"
-
-=======
-    "NOASSIGN": "No assignar grup"
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
+  },
+  "GRADE": {
+    "GRADE": "Curs",
+    "GRADELIST": "Llistat de cursos",
+    "NEWGRADE": "Nou curs",
+    "NEWGRADEFORM": "Formulari de Curs",
+    "CREATINGGRADE": "Creant Nou Curs",
+    "EDITINGGRADE": "Editant curs",
+    "NAME": "Nom del curs",
+    "CREATED": "Curs creat correctament",
+    "EDITED": "Curs editat correctament",
+    "DELETED": "Curs esborrat correctament",
+    "CONFIRMDELETE": "Segur que vols esborrar el curs amb id {{elementId}}?",
+    "CONFIRMRELDELETE": "Si acceptes, esborraras la relació d'aquest curs amb la materia amb id {{elementId}}. Estas segur?",
+    "SELECTMATTER": "Sel·leciona una materia"
+  },
+  "MATTER": {
+    "MATTER": "Matèria",
+    "MATTERLIST": "Llistat d'assignatures",
+    "NEWMATTER": "Nova assignatura",
+    "NEWMATTERFORM": "Formulari d'assignatura",
+    "CREATINGMATTER": "Creant Nova assignatura",
+    "EDITINGMATTER": "Editant assignatura",
+    "NAME": "Nom de la assignatura",
+    "CREATED": "Assignatura creada correctament",
+    "EDITED": "Assignatura editada correctament",
+    "DELETED": "Assignatura esborrada correctament",
+    "CONFIRMDELETE": "Segur que vols esborrar l'assignatura amb id {{elementId}}?",
+    "SELECTGRADE": "Sel·lecciona un curs"
   },
   "TEACHER": {
-    "ID": "Id. Professor"
+    "ID": "Id. Professor",
+    "TEACHER": "Professor",
+    "TEACHERS": "Professors",
+    "TEACHERSLIST": "Llistat de professors",
+    "NAME": "Nom",
+    "SURNAME": "Cognom",
+    "EMAIL": "Email",
+    "USERNAME": "Nom d'usuari",
+    "PASSWORD": "Contrasenya",
+    "NEWPASSWORD": "Introdueix una nova contrasenya",
+    "CONFIRMPASSWORD": "Confirmar contrasenya",
+    "PROFILEIMAGE": "Imatge de perfil",
+    "NEWTEACHERFORM": "Formulari de professor",
+    "CREATINGTEACHER": "Creant nou professor",
+    "EDITINGTEACHER": "Editant professor amb id ",
+    "CREATED": "Nou professor creat correctament",
+    "EDITED": "Professor modificat amb èxit",
+    "DELETED": "Professor esborrat correctament",
+    "CONFIRMDELETE": "Segur que vols esborrar el professor amb id {{elementId}}?",
+    "NEWTEACHER": "Crear un nou professor"
   },
   "STUDIENTS": {
     "ID": "Id. Estudiant",
@@ -52,12 +98,22 @@
     "EMAIL": "Email",
     "TITLE": "Estudiants",
     "CHOOSE": "Tria l'estudiant",
-<<<<<<< HEAD
     "SHOW": "Mostrar estudiants",
-    "TEAMSHOW": "Mostrar equips"
-=======
-    "SHOW": "Mostrar estudiants"
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
+    "TEAMSHOW": "Mostrar equips",
+    "STUDENTSLIST": "Llistat d'estudiants",
+    "USERNAME": "Nom d'usuari",
+    "PASSWORD": "Contrasenya",
+    "NEWPASSWORD": "Introdueix una nova contrasenya",
+    "CONFIRMPASSWORD": "Confirmar contrasenya",
+    "PROFILEIMAGE": "Imatge de perfil",
+    "NEWSTUDENTSFORM": "Formulari d'estudiant",
+    "CREATINGSTUDENT": "Creant nou estudiant",
+    "EDITINGSTUDENT": "Editant Estudiant amb id ",
+    "CREATED": "Nou Estudiant creat correctament",
+    "EDITED": "Estudiant modificat amb èxit",
+    "DELETED": "Estudiant esborrat correctament",
+    "CONFIRMDELETE": "Segur que vols esborrar el Estudiant amb id {{elementId}}?",
+    "NEWSTUDENT": "Crear un nou Estudiant"
   },
   "QUESTIONNAIRES": {
     "TITLE": "Qüestionaris",
@@ -221,12 +277,8 @@
     "CONFIRMDELETE": "Segur que vols eliminar la Col·lecció",
     "CORASSIGN": "Col·lecció assignada correctament",
     "NOTOWNER": "No pots eliminar una col·lecció que no has creat tu",
-<<<<<<< HEAD
     "NOTEDITABLE": "No pots modificar aquesta col·lecció perquè no l'has creat tu",
     "EXCHANGE": "Intercanviar cromo"
-=======
-    "NOTEDITABLE": "No pots modificar aquesta col·lecció perquè no l'has creat tu"
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
   },
   "CARDS": {
     "ID": "Id. Cromo",
@@ -271,8 +323,6 @@
     "RATIO4": "Rar",
     "UNKNOWN": "Desconegut"
   },
-<<<<<<< HEAD
-=======
   "SCHOOL": {
     "NAME": "Nom de l'escola",
     "ADDRESS": "Direcció de l'escola",
@@ -293,11 +343,28 @@
     "CREATED": "Nova escola creada amb èxit",
     "EDITED": "Escola modificada amb èxit",
     "DELETED": "Escola esborrada correctament",
-    "CONFIRMDELETE": "¿Seguro que quieres borrar la escuela con id {{schoolId}}?",
+    "CONFIRMDELETE": "Segur que vols esborrar l'escola amb id {{schoolId}}?",
     "SAVE": "Guardar",
-    "NEWSCHOOLFORM": "Formulari d'escola"
+    "NEWSCHOOLFORM": "Formulari d'escola",
+    "CREATINGSCHOOL": "Creant nova escola",
+    "EDITINGSCHOOL": "Editant escola amb id "
   },
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
+  "RANKS": {
+    "RANK": "Rang",
+    "RANKS": "Rangs",
+    "RANKSLIST": "Llistat de rangs",
+    "NEWRANK": "Nou Rang",
+    "NEWRANKFORM": "Formulari de Rang",
+    "CREATINGRANK": "Creant Nou rang",
+    "EDITINGRANK": "Editant rang",
+    "NAME": "Nom del rang",
+    "POINTS": "Número de punts per asolir el rang",
+    "IMAGE": "Url de la imatge del rang",
+    "CREATED": "Rang creat correctament",
+    "EDITED": "Rang editat correctament",
+    "DELETED": "Rang esborrat correctament",
+    "CONFIRMDELETE": "Segur que vols esborrar el Rang amb id {{elementId}}?"
+  },
   "COMMON": {
     "TYPEASSIGNMENTCHOOSE": "Tria el tipus d'assignació",
     "CHOOSEAMOUNT": "Tria la quantitat",
@@ -309,7 +376,16 @@
     "PASTEIMAGE": "Copiar enllaç .jpg",
     "CANCEL": "Cancelar",
     "INNUMBER": "Introdueix una xifra",
-<<<<<<< HEAD
+    "SCHOOL": "Escola",
+    "SCHOOLS": "Escoles",
+    "EDIT": "Editar",
+    "DELETE": "Eliminar",
+    "SAVE": "Guardar",
+    "SELECTAVATAR": "Sel·lecciona un avatar",
+    "GOBACK": "Tornar",
+    "ME": "Jo",
+    "OF": "de",
+    "ADD": "Afegir",
     "TEAMS": "Equipos",
     "INDIVIDUAL": "Individual",
     "ASSIGN": "Actualitzar grup i opció"
@@ -482,10 +558,5 @@
     "INFORMATION": "S'han assignat els premis automàtics.",
     "INFORMATION2": "No s'han assignat els premis automàtics:",
     "NOCOL": "No hi ha cap col·lecció de cromos assignada a aquest grup"
-=======
-    "SCHOOL": "Escola",
-    "SCHOOLS": "Escoles",
-    "DELETE": "Eliminar"
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
   }
 }

@@ -12,10 +12,6 @@ export class PointRelation {
   private _student: Student;
   private _point: Point;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> f691e2abc3c6555394436b2cc444995653e1f1b8
   constructor(value?: number, pointId?: number, groupId?: number, studentId?: number, schoolId?: number) {
     this._value = value;
     this._pointId = pointId;
