@@ -29,10 +29,9 @@ export class CreatePointComponent implements OnInit {
     public dialog: MatDialog,
     public snackbar: MatSnackBar,
     public dialogRef: MatDialogRef<CreatePointComponent>,
-
     // tslint:disable-next-line:no-any
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
     this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
   }
@@ -47,6 +46,7 @@ export class CreatePointComponent implements OnInit {
     if (this.name === '' || !this.value || this.image === '') {
       this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
     } else {
+
       this.pointService.savePoint(this.name, this.value, this.image).subscribe(
         ((newPoint: Point) => {
           this.newPoint = newPoint;

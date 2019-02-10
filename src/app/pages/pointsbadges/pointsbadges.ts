@@ -5,20 +5,16 @@ import { MatListModule } from '@angular/material/list';
 import { FormControl, FormsModule } from '@angular/forms';
 
 import {
-  Login, Group, Role,
-  Questionnaire, ResultPoints, Point,
-  Badge, Student, PointRelation,
-  BadgeRelation, ResultBadges,
-  Team
+  Login, Group, Role, Questionnaire, ResultPoints, Team,
+  Point, Badge, Student, PointRelation, BadgeRelation, ResultBadges
 } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import {
   LoadingService, UtilsService, BadgeRelationService,
-  GroupService, AlertService, PointRelationService,
-  PointService, BadgeService, SchoolService,
-  TeamService
+  GroupService, AlertService, PointRelationService, PointService,
+  BadgeService, SchoolService, TeamService
 } from '../../shared/services/index';
 import { CreatePointComponent } from '../../pages/createPoint/createPoint';
 import { DeletePointComponent } from '../../pages/deletePoint/deletePoint';
@@ -65,7 +61,6 @@ export class PointsBadgesComponent implements OnInit {
   public mystudents: Array<Student>; // List of group students
   public collectionTeams: Array<Team>; // List of group teams
   public groupSelected: string; // points group select
-  public groupSelected2: string; // points group select
   public studentSelected: string; // student selected Points
   public Team: Array<Student>;
   public pointSelected: string; // Point to send
@@ -75,6 +70,8 @@ export class PointsBadgesComponent implements OnInit {
   // Methods
   // deletePoint()
   public questionnairePoint = '100001';
+  public totalsum = true;
+  public average = false;
   public badgeId: string;
   public resultDeleteBadge: number;
   public pointId: string;
@@ -135,14 +132,12 @@ export class PointsBadgesComponent implements OnInit {
         ((studentPoints: Array<PointRelation>) => {
           this.studentPoints = studentPoints;
           this.loadingService.hide();
-
           for (const relpoint of this.studentPoints) {
             this.pointService.getPoint(+relpoint.pointId).subscribe(
               ((value: Point) => {
                 // this.loadingService.hide();
                 this.totalPoints += Number(value.value) * Number(relpoint.value);
                 this.listPoints.push(new ResultPoints(relpoint, value));
-
               }),
               ((error: Response) => {
                 this.loadingService.hide();
@@ -254,6 +249,17 @@ export class PointsBadgesComponent implements OnInit {
         this.alertService.show(error.toString());
       }));
   }
+  public SumorAverage() {
+    if (this.totalsum === false) {
+      this.totalsum = true;
+      this.average = false;
+      this.sortteams();
+    } else {
+      this.totalsum = false;
+      this.average = true;
+      this.sortteams();
+    }
+  }
 
   GetTeam(): void {
     this.teamService.getStudentsTeam(this.teamSelected.id).subscribe(
@@ -266,7 +272,6 @@ export class PointsBadgesComponent implements OnInit {
         this.alertService.show(error.toString());
       }));
   }
-
   public showStudents() {
     if (this.individ && this.groupSelected) {
       this.scores = [];
@@ -317,16 +322,6 @@ export class PointsBadgesComponent implements OnInit {
       }
     } else { this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS')); }
 
-    this.schoolService.getMySchoolPoints().subscribe(
-      ((points: Array<Point>) => {
-        this.points = points;
-        this.loadingService.hide();
-      }),
-      ((error: Response) => {
-        this.loadingService.hide();
-        this.alertService.show(error.toString());
-      }));
-
   }
 
   public sortstudents() {
@@ -359,7 +354,11 @@ export class PointsBadgesComponent implements OnInit {
     this.scoresteam = [];
     for (const team1 of this.teamslist) {
       this.scoreteam = { position: 0, name: team1.name, points: 0 };
-      this.scoreteam.points = team1.totalpoints / team1.numPlayers;
+      if (this.average === true) {
+        this.scoreteam.points = team1.totalpoints / team1.numPlayers;
+      } else {
+        this.scoreteam.points = team1.totalpoints;
+      }
       this.scoreteam.position = 0;
       this.scoresteam.push(this.scoreteam);
     }
@@ -514,24 +513,6 @@ export class PointsBadgesComponent implements OnInit {
     }
   }
 
-  public openStudents2() {
-
-    if (this.groupSelected2) {
-      this.groupService.getMyGroupStudents(this.groupSelected2).subscribe(
-        ((mystudents: Array<Student>) => {
-          this.mystudents = mystudents;
-          this.loadingService.hide();
-
-
-        }),
-        ((error: Response) => {
-          this.loadingService.hide();
-          this.alertService.show(error.toString());
-        }));
-    }
-
-  }
-
   public sendPointRelation() {
     if (!this.groupSelected || !this.pointSelected || !this.valueSelected) {
       this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
@@ -566,28 +547,18 @@ export class PointsBadgesComponent implements OnInit {
                   }));
             }
             this.loadingService.hide();
+          }),
+          ((error: Response) => {
+            this.loadingService.hide();
+            this.alertService.show(error.toString());
           }));
-
       } else {
-
-        this.pointRelationService.postPointRelation(
-          this.pointSelected, this.studentSelected, this.utilsService.currentSchool.id, this.groupSelected, this.valueSelected).subscribe(
-            ((responsePointRelation: PointRelation) => {
-              this.responsePointRelation = responsePointRelation;
-              this.loadingService.hide();
-
-              this.alertService.show(this.translateService.instant('POINTS.CORASSIGN'));
-            }),
-            ((error: Response) => {
-              this.loadingService.hide();
-              this.alertService.show(error.toString());
-            }));
+        this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
       }
     }
   }
 
   public createPoint() {
-
     const dialogRef = this.dialog.open(CreatePointComponent, {
       height: '600px',
       width: '700px',
@@ -597,14 +568,12 @@ export class PointsBadgesComponent implements OnInit {
       this.resultCreate = result;
       this.ngOnInit();
     });
-
   }
 
   public deletePoint() {
 
     if (!this.pointId) {
       this.alertService.show(this.translateService.instant('POINTS.NOTSELECTED'));
-
     } else if (this.pointId === this.questionnairePoint) {
       this.alertService.show(this.translateService.instant('POINTS.QUESTIONNAIRE'));
     } else {

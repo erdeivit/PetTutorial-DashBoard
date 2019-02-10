@@ -37,7 +37,16 @@
     "ID": "Id. Grup",
     "CHOOSE": "Tria el grup",
     "NOASSIGN": "No assignar grup",
-    "SINGULAR": "Grups"
+    "SINGULAR": "Grups",
+    "CONFIRMDELETE": "Segur que vols esborrar el grup amb id {{elementId}}?",
+    "RELATION": "relació grups/estudiants",
+    "STUDENTSLIST": "Llistat d'estudiants per grup",
+    "NAME": "Nom del grup",
+    "CREATED": "Nou grup creat correctament",
+    "DELETED": "Grup esborrat correctament",
+    "STUDENTDELETED": "Estudiant eliminat del grup amb èxit",
+    "CONFIRMREMOVAL": "Segur que vols treure a l'estudiant amb id {{elementId}} del grup?",
+    "STUDENTADDED": "Estudiant afegit al grup correctament"
   },
   "GRADE": {
     "GRADE": "Curs",
@@ -52,7 +61,10 @@
     "DELETED": "Curs esborrat correctament",
     "CONFIRMDELETE": "Segur que vols esborrar el curs amb id {{elementId}}?",
     "CONFIRMRELDELETE": "Si acceptes, esborraras la relació d'aquest curs amb la materia amb id {{elementId}}. Estas segur?",
-    "SELECTMATTER": "Sel·leciona una materia"
+    "SELECTMATTER": "Sel·leciona una materia",
+    "RELATION": "relació curs/materia",
+    "ADDMATTER": "Materia afegida al curs correctament",
+    "REMOVEMATTER": "Materia eliminada del curs correctament"
   },
   "MATTER": {
     "MATTER": "Matèria",
@@ -88,7 +100,8 @@
     "EDITED": "Professor modificat amb èxit",
     "DELETED": "Professor esborrat correctament",
     "CONFIRMDELETE": "Segur que vols esborrar el professor amb id {{elementId}}?",
-    "NEWTEACHER": "Crear un nou professor"
+    "NEWTEACHER": "Crear un nou professor",
+    "SELECTTEACHER": "Selecciona un professor"
   },
   "STUDIENTS": {
     "ID": "Id. Estudiant",
@@ -113,7 +126,8 @@
     "EDITED": "Estudiant modificat amb èxit",
     "DELETED": "Estudiant esborrat correctament",
     "CONFIRMDELETE": "Segur que vols esborrar el Estudiant amb id {{elementId}}?",
-    "NEWSTUDENT": "Crear un nou Estudiant"
+    "NEWSTUDENT": "Crear un nou Estudiant",
+    "SELECT": "Selecciona un estudiant"
   },
   "QUESTIONNAIRES": {
     "TITLE": "Qüestionaris",
@@ -388,7 +402,8 @@
     "ADD": "Afegir",
     "TEAMS": "Equipos",
     "INDIVIDUAL": "Individual",
-    "ASSIGN": "Actualitzar grup i opció"
+    "ASSIGN": "Actualitzar grup i opció",
+    "CONFIRM": "Confirmar"
   },
   "COMPETITIONS": {
     "TITLE": "Competiciones",
@@ -557,6 +572,7 @@
     "TITLE": "Premis Automàtics",
     "INFORMATION": "S'han assignat els premis automàtics.",
     "INFORMATION2": "No s'han assignat els premis automàtics:",
-    "NOCOL": "No hi ha cap col·lecció de cromos assignada a aquest grup"
+    "NOCOL": "No hi ha cap col·lecció de cromos assignada a aquest grup",
+    "CONFIRM": "Confirmar"
   }
 }

@@ -5,7 +5,7 @@
   <app-teacher-home *ngIf="isTeacherProfile && (profile && school && allPoints)" [profile]="profile" [school]="school"
     [allPoints]="allPoints"></app-teacher-home>
 
-  <app-student-home *ngIf="isStudentProfile && (profile && reward && rank && studentPoints)" [profile]="profile"
+  <app-student-home *ngIf="isStudentProfile && (profile && reward && rank && studentPoints && school)" [profile]="profile"
     [reward]="reward" [rank]="rank" [studentPoints]="studentPoints" [school]="school"></app-student-home>
 
 </div>
