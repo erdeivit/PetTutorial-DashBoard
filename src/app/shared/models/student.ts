@@ -1,4 +1,5 @@
 import { Avatar } from './avatar';
+import { Reward } from './reward';
 
 export class Student {
 
@@ -6,16 +7,19 @@ export class Student {
   private _name: string;
   private _surname: string;
   private _username: string;
+  private _profileImage: string;
   private _email: string;
   private _schoolId: number;
   private _avatarId: number;
   private _avatar: Avatar;
+  private _rewards: Reward;
   private _totalPoints: number;
 
-  constructor(name?: string, surname?: string, username?: string,
+  constructor(name?: string, surname?: string, profileImage?: string, username?: string,
     email?: string, schoolId?: number, avatarId?: number) {
     this._name = name;
     this._surname = surname;
+    this._profileImage = profileImage;
     this._username = username;
     this._email = email;
     this._schoolId = schoolId;
@@ -30,11 +34,14 @@ export class Student {
       result.id = object.id;
       result.name = object.name;
       result.surname = object.surname;
+      result.profileImage = object.profileImage;
       result.username = object.username;
       result.email = object.email;
       result.schoolId = object.schoolId;
       result.avatarId = object.avatarId;
       result.totalPoints = object.totalPoints;
+      result.avatar = object.avatar;
+      result.rewards = object.rewards;
     }
     return result;
   }
@@ -73,6 +80,14 @@ export class Student {
 
   public set surname(value: string) {
     this._surname = value;
+  }
+
+  public get profileImage(): string {
+    return this._profileImage;
+  }
+
+  public set profileImage(value: string) {
+    this._profileImage = value;
   }
 
   public get username(): string {
@@ -114,6 +129,15 @@ export class Student {
   public set avatar(value: Avatar) {
     this._avatar = value;
   }
+
+  public get rewards(): Reward {
+    return this._rewards;
+  }
+
+  public set rewards(value: Reward) {
+    this._rewards = value;
+  }
+
   public get totalPoints(): number {
     return this._totalPoints;
   }

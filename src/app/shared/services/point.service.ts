@@ -21,30 +21,9 @@ export class PointService {
   constructor(
     public http: Http,
     public translateService: TranslateService,
+    public utilsService: UtilsService
+  ) { }
 
-    public utilsService: UtilsService) { }
-
-  /**
-   * This method returns the profile information of the current logged
-   * in user on the platform
-   * @return {Observable<Profile>} returns an observable with the profile
-   */
-
-
-  /**public getPoints(): Observable<Array<Point>> {
-
-    var count = 0;
-
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    let url: string = this.utilsService.getMySchoolUrl() + AppConfig.POINTS_URL;
-
-
-
-  }
- */
   /**
    * Returns a grade object with all the information from a grade
    * identifier. This method is used to fill all the information
@@ -53,41 +32,34 @@ export class PointService {
    */
   public getPoint(id: number): Observable<Point> {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
+    const options = this.utilsService.getOptions();
 
     return this.http.get(AppConfig.POINT_URL + '/' + id, options)
-      .map((response: Response, index: number) => Point.toObject(response.json()))
+      .map((response: Response, index: number) => Point.toObject(response.json()));
   }
 
   public getPointName(id: number): Observable<Point> {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
+    const options = this.utilsService.getOptions();
 
     return this.http.get(AppConfig.POINT_URL + '/' + id, options)
-      .map((response: Response, index: number) => Point.toObject(response.json()))
+      .map((response: Response, index: number) => Point.toObject(response.json()));
   }
 
 
 
 
-/**
-   * Returns the list of students by a group id.
-   * @return {Array<Point>} returns the list of points
-   */
-   private getMySchoolPoints(): Observable<Array<Point>> {
+  /**
+     * Returns the list of students by a group id.
+     * @return {Array<Point>} returns the list of points
+     */
+  private getMySchoolPoints(): Observable<Array<Point>> {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    var url: string = this.utilsService.getMySchoolUrl() + AppConfig.POINTS_URL;
+    const options = this.utilsService.getOptions();
+    const url: string = this.utilsService.getMySchoolUrl() + AppConfig.POINTS_URL;
 
     return this.http.get(url, options)
-      .map((response: Response, index: number) => Point.toObjectArray(response.json()))
+      .map((response: Response, index: number) => Point.toObjectArray(response.json()));
   }
 
 
@@ -99,12 +71,8 @@ export class PointService {
    */
   public postPoint(point: Point): Observable<Response> {
 
-	let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-	var url: string;
-	url = AppConfig.POINT_URL;
+    const options = this.utilsService.getOptions();
+    const url = AppConfig.POINT_URL;
 
     return this.http.post(url, point)
       .map(response => {
@@ -112,21 +80,20 @@ export class PointService {
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
-  public savePoint(name: string, value: number, image: string): Observable<Point> {
+  public savePoint(name: string, value: number, image: string = ''): Observable<Point> {
 
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
+    const options = this.utilsService.getOptions();
 
     let url: string;
     url = AppConfig.POINT_URL;
-    let postParams = {
-        name: name,
-        value: value,
-        image: image,
-        teacherId: this.utilsService.currentUser.userId,
-        schoolId: this.utilsService.currentSchool.id
-      }
+    const postParams = {
+      name: name,
+      // value: value,
+      value: 1,
+      teacherId: this.utilsService.currentUser.userId,
+      schoolId: this.utilsService.currentSchool.id,
+      image: image
+    };
 
     return this.http.post(url, postParams, options)
       .map(response => {
@@ -139,13 +106,22 @@ export class PointService {
 
 
   public deletePoint(id: string): Observable<Point> {
-    let options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
+
+    const options = this.utilsService.getOptions();
+
     return this.http.delete(AppConfig.POINT_URL + '/' + id, options)
       .map(response => {
         return response;
       })
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
+  public getAllPoints(): Observable<Point[]> {
+
+    const options = this.utilsService.getOptions();
+
+    return this.http.get(AppConfig.POINT_URL, options)
+      .map((response: Response, index: number) => Point.toObjectArray(response.json()))
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 

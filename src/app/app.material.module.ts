@@ -1,19 +1,26 @@
 import { NgModule } from '@angular/core';
-import {MatSlideToggleModule, MatTabsModule,
-  MatFormFieldModule, MatToolbarModule, MatInputModule, MatButtonModule, MatMenuModule,
-  MatSelectModule, MatCardModule, MatGridListModule, MatProgressSpinnerModule,
-  MatProgressBarModule, MatSnackBarModule, MatListModule, MatIconModule, MatAutocompleteModule
+import {
+  MatSlideToggleModule, MatTabsModule, MatFormFieldModule,
+  MatToolbarModule, MatInputModule, MatButtonModule,
+  MatMenuModule, MatSelectModule, MatCardModule,
+  MatGridListModule, MatProgressSpinnerModule, MatProgressBarModule,
+  MatSnackBarModule, MatListModule, MatIconModule,
+  MatAutocompleteModule, MatSortModule,
+  MatPaginatorModule, MatDatepickerModule, MatNativeDateModule,
+  MatExpansionModule, MatRadioModule, MatStepperModule
 } from '@angular/material';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
+    MatFormFieldModule,
     MatTabsModule,
+    MatTableModule,
     MatSlideToggleModule,
     MatAutocompleteModule,
-    MatFormFieldModule,
     MatToolbarModule,
     MatInputModule,
     MatSelectModule,
@@ -26,14 +33,22 @@ import { CommonModule } from '@angular/common';
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    MatTableModule,
     MatListModule,
     MatIconModule,
-    MatDialogModule
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatExpansionModule,
+    MatRadioModule,
+    MatStepperModule,
+    MatDialogModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   exports: [
+    MatFormFieldModule,
     MatTabsModule,
     MatSlideToggleModule,
-    MatFormFieldModule,
     MatAutocompleteModule,
     MatToolbarModule,
     MatInputModule,
@@ -44,12 +59,21 @@ import { CommonModule } from '@angular/common';
     RouterModule,
     CommonModule,
     MatGridListModule,
+    MatTableModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatSnackBarModule,
     MatListModule,
     MatIconModule,
-    MatDialogModule
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatRadioModule,
+    MatStepperModule,
+    MatDialogModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
 })
 export class AppMaterialModule { }

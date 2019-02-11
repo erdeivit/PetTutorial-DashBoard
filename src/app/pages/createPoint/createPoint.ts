@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Login, Group, Role, Questionnaire, Point } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
-import { LoadingService, UtilsService,PointService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
+import { LoadingService, UtilsService, PointService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
 import { TranslateService } from 'ng2-translate';
 
 
@@ -18,8 +18,8 @@ export class CreatePointComponent implements OnInit {
 
   public name: string;
   public value: number;
-  public image: string;
   public newPoint: Point;
+  public image: string;
   constructor(
     public translateService: TranslateService,
     public alertService: AlertService,
@@ -29,11 +29,9 @@ export class CreatePointComponent implements OnInit {
     public dialog: MatDialog,
     public snackbar: MatSnackBar,
     public dialogRef: MatDialogRef<CreatePointComponent>,
-
-
-
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-
+    // tslint:disable-next-line:no-any
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
     this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
   }
@@ -45,25 +43,22 @@ export class CreatePointComponent implements OnInit {
   }
   createPoint(): void {
 
-    if(this.name == "" || !this.value || this.image == "")
-    {
+    if (this.name === '' || !this.value || this.image === '') {
       this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
-    }
-    else
-    {
+    } else {
 
-    this.pointService.savePoint(this.name, this.value, this.image).subscribe(
-      ((newPoint: Point) => {
-        this.newPoint = newPoint;
-        this.alertService.show(this.translateService.instant('POINTS.CREATED'));
-        this.loadingService.hide();
-      }),
-      ((error: Response) => {
-        this.loadingService.hide();
-        this.alertService.show(error.toString());
-      }));
+      this.pointService.savePoint(this.name, this.value, this.image).subscribe(
+        ((newPoint: Point) => {
+          this.newPoint = newPoint;
+          this.alertService.show(this.translateService.instant('POINTS.CREATED'));
+          this.loadingService.hide();
+        }),
+        ((error: Response) => {
+          this.loadingService.hide();
+          this.alertService.show(error.toString());
+        }));
 
-    this.cancel();
+      this.cancel();
 
     }
   }

@@ -7,7 +7,7 @@ import { AvatarService } from './avatar.service';
 import { GradeService } from './grade.service';
 import { MatterService } from './matter.service';
 import { AppConfig } from '../../app.config';
-import { Group, Grade, Matter, Student } from '../models/index';
+import { Group, Grade, Matter, Student, Team, CollectionCard } from '../models/index';
 
 @Injectable()
 export class GroupService {
@@ -53,7 +53,7 @@ export class GroupService {
    * Returns the list of students by a group id.
    * @return {Array<Stuent>} returns the list of students
    */
-  public getMyGroupStudents(id: string): Observable<Array<Student>> {
+  public getMyGroupStudents(id: string | number): Observable<Array<Student>> {
 
     const ret: Array<Student> = new Array<Student>();
 
@@ -78,13 +78,10 @@ export class GroupService {
    * Returns the list of students by a group id.
    * @return {Array<Stuent>} returns the list of students
    */
-  private getGroupStudents(id: string): Observable<Array<Student>> {
+  private getGroupStudents(id: string | number): Observable<Array<Student>> {
 
-    const options: RequestOptions = new RequestOptions({
-      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
-    });
-
-    const url: string = AppConfig.GROUP_URL + '/' + id + AppConfig.STUDENTS_URL;
+    const options = this.utilsService.getOptions();
+    const url = AppConfig.GROUP_URL + '/' + id + AppConfig.STUDENTS_URL;
 
     return this.http.get(url, options)
       .map((response: Response, index: number) => Student.toObjectArray(response.json()));
@@ -97,14 +94,119 @@ export class GroupService {
    */
   private getGroups(): Observable<Array<Group>> {
 
+    const options = this.utilsService.getOptions();
+    const url = this.utilsService.getMyUrl() + AppConfig.GROUPS_URL;
+
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => Group.toObjectArray(response.json()));
+  }
+
+  /**
+   * Returns the information of the group by a group id
+   * @return {Group} returns the group
+   */
+  public getGroup(id: number): Observable<Group> {
+
     const options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
 
-    const url: string = this.utilsService.getMyUrl() + AppConfig.GROUPS_URL;
+    return this.http.get(AppConfig.GROUP_URL + '/' + id, options)
+      .map((response: Response, index: number) => Group.toObject(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
+  /**
+  * GET: Returns the list of teams of a group
+  * @return {Observable<Array<Team>>} returns the list of teams
+  */
+  public getGroupTeams(groupId: string | number): Observable<Array<Team>> {
+
+    const options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+    const url: string = AppConfig.GROUP_URL + '/' + groupId + AppConfig.TEAMS_URL;
 
     return this.http.get(url, options)
+      .map((response: Response, index: number) => Team.toObjectArray(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
+  /**
+  * GET: Returns the list of collectionCards of a group
+  * @return {Observable<Array<CollectionCard>>} returns the list of teams
+  */
+  public getGroupCollectionCards(groupId: string | number): Observable<Array<CollectionCard>> {
+
+    const options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+    const url: string = AppConfig.GROUP_URL + '/' + groupId + AppConfig.COLLECTIONS_URL;
+
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => Team.toObjectArray(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
+  public getGroupsBySchool(schoolId: number): Observable<Group[]> {
+    const options = this.utilsService.getOptions();
+    const url = AppConfig.GROUP_URL;
+    // tslint:disable-next-line:max-line-length
+    const params = '?filter=%7B%22include%22%3A%5B%22teachers%22%2C%22grades%22%2C%22matters%22%2C%22students%22%5D%2C%20%22where%22%3A%20%7B%22schoolId%22%3A' + schoolId + '%7D%7D';
+
+    return this.http.get(url + params, options)
       .map((response: Response, index: number) => Group.toObjectArray(response.json()));
+  }
+
+  public addStudentToGroup(postParams: {}): Observable<Response> {
+    const options = this.utilsService.getOptions();
+    const url = AppConfig.GROUP_URL + '/' + postParams['groupId'] + '/students/rel/' + postParams['studentId'];
+
+    return this.http.put(url, options)
+      .map((response: Response, index: number) => response.json());
+  }
+
+  public removeStudentFromGroup(studentId: number, groupId: number): Observable<Response> {
+    const options = this.utilsService.getOptions();
+    const url = AppConfig.GROUP_URL + '/' + groupId + '/students/rel/' + studentId;
+
+    return this.http.delete(url, options)
+      .map((response: Response, index: number) => response.json());
+  }
+
+  public postGroup(postParams: Group): Observable<Group> {
+    const options = this.utilsService.getOptions();
+    const url = AppConfig.GROUP_URL;
+
+    const postGroup = {
+      // tslint:disable-next-line:quotemark
+      "name": postParams.name,
+      // tslint:disable-next-line:quotemark
+      "schoolId": postParams.schoolId,
+      // tslint:disable-next-line:quotemark
+      "teacherId": postParams.teacherId,
+      // tslint:disable-next-line:quotemark
+      "gradeId": postParams.gradeId,
+      // tslint:disable-next-line:quotemark
+      "matterId": postParams.matterId
+    };
+
+    return this.http.post(url, postGroup, options)
+      .map((response: Response) => {
+        return Group.toObject(response.json());
+      })
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
+  deleteGroup(groupId: number): Observable<Group> {
+    const options = this.utilsService.getOptions();
+    const url = AppConfig.GROUP_URL + '/' + groupId;
+
+    return this.http.delete(url, options)
+      .map((response: Response) => {
+        return Group.toObject(response.json());
+      })
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 
 }
