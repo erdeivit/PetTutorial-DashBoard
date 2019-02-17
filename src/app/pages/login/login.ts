@@ -4,7 +4,6 @@ import { MatSelectChange } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Response } from '@angular/http';
-
 import { Credentials, Role, Login } from '../../shared/models/index';
 import { UtilsService, LoginService, LoadingService, AlertService } from '../../shared/services/index';
 import { AppConfig } from '../../app.config';
