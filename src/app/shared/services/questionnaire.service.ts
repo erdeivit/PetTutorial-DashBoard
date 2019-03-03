@@ -104,6 +104,11 @@ export class QuestionnaireService {
     console.error(errMsg);
     return Observable.throw(errMsg);
   }
+
+
+  /*
+
+
   public updateQuestionnaire(
     id: string,
     name: string,
@@ -129,9 +134,6 @@ export class QuestionnaireService {
       badges: badges,
       active: active,
     };
-
-
-
 
     return this.http.patch(url, postParams, options)
       .map(response => {
@@ -280,7 +282,12 @@ export class QuestionnaireService {
    * @return Observable{Array<Question>} returns the list of questions
    * that include the four possible answers and the correct answer
    */
-  public getMyQuestionnaireQuestions(idQuestionnaire: string): Observable<Array<Question>> {
+
+
+  /*
+
+
+   public getMyQuestionnaireQuestions(idQuestionnaire: string): Observable<Array<Question>> {
 
     const ret: Array<Question> = new Array<Question>();
 
@@ -311,55 +318,80 @@ export class QuestionnaireService {
    * Returns the list of questions by a questionnaire id.
    * @return Observable{Array<Question>} returns the list of questions
    */
-  private getQuestionnaireQuestions(idQuestionnaire: string): Observable<Array<Question>> {
 
-    const options = this.utilsService.getOptions();
-    const count = 0;
-    const url: string = AppConfig.QUESTIONNAIRE_URL + '/' + idQuestionnaire + AppConfig.QUESTIONS_URL;
 
-    return this.http.get(url, options)
-      .map((response: Response, index: number) => Question.toObjectArray(response.json()));
-  }
 
-  /**
-   * Returns the list of answers by a questionnaire id.
-   * @return Observable{Array<Answer>} returns the list of answers
-   */
-  public getQuestionAnswers(id: string): Observable<Array<Answer>> {
+  /*
 
-    const options = this.utilsService.getOptions();
 
-    const count = 0;
-    const url: string = AppConfig.QUESTION_URL + '/' + id + AppConfig.ANSWERS_URL;
 
-    return this.http.get(url, options)
-      .map((response: Response, index: number) => Answer.toObjectArray(response.json()));
-  }
+ private getQuestionnaireQuestions(idQuestionnaire: string): Observable<Array<Question>> {
 
-  /**
-   * Returns the list of correct answers by a questionnaire id.
-   * @return Observable{Array<CorrectAnswer>} returns the list of correct answers
-   */
-  public getQuestionCorrectAnswers(id: string): Observable<Array<CorrectAnswer>> {
+   const options = this.utilsService.getOptions();
+   const count = 0;
+   const url: string = AppConfig.QUESTIONNAIRE_URL + '/' + idQuestionnaire + AppConfig.QUESTIONS_URL;
 
-    const options = this.utilsService.getOptions();
+   return this.http.get(url, options)
+     .map((response: Response, index: number) => Question.toObjectArray(response.json()));
+ }
 
-    const count = 0;
-    const url: string = AppConfig.QUESTION_URL + '/' + id + AppConfig.CORRECTANSWERS_URL;
+ /**
+  * Returns the list of answers by a questionnaire id.
+  * @return Observable{Array<Answer>} returns the list of answers
+  */
 
-    return this.http.get(url, options)
-      .map((response: Response, index: number) => CorrectAnswer.toObjectArray(response.json()));
-  }
 
-  public getResultsQuestionnaire(idQuestionnaire: string): Observable<Array<ResultQuestionnaire>> {
+  /*
 
-    const options = this.utilsService.getOptions();
 
-    const count = 0;
-    const url: string = AppConfig.RESULTQUESTIONNAIRE_URL + '?filter[where][questionnaireId]=' + idQuestionnaire;
+ public getQuestionAnswers(id: string): Observable<Array<Answer>> {
 
-    return this.http.get(url, options)
-      .map((response: Response, index: number) => ResultQuestionnaire.toObjectArray(response.json()));
-  }
+   const options = this.utilsService.getOptions();
+
+   const count = 0;
+   const url: string = AppConfig.QUESTION_URL + '/' + id + AppConfig.ANSWERS_URL;
+
+   return this.http.get(url, options)
+     .map((response: Response, index: number) => Answer.toObjectArray(response.json()));
+ }
+
+ /**
+  * Returns the list of correct answers by a questionnaire id.
+  * @return Observable{Array<CorrectAnswer>} returns the list of correct answers
+  */
+
+
+
+  /*
+
+
+
+ public getQuestionCorrectAnswers(id: string): Observable<Array<CorrectAnswer>> {
+
+   const options = this.utilsService.getOptions();
+
+   const count = 0;
+   const url: string = AppConfig.QUESTION_URL + '/' + id + AppConfig.CORRECTANSWERS_URL;
+
+   return this.http.get(url, options)
+     .map((response: Response, index: number) => CorrectAnswer.toObjectArray(response.json()));
+ }
+
+ public getResultsQuestionnaire(idQuestionnaire: string): Observable<Array<ResultQuestionnaire>> {
+
+   const options = this.utilsService.getOptions();
+
+   const count = 0;
+   const url: string = AppConfig.RESULTQUESTIONNAIRE_URL + '?filter[where][questionnaireId]=' + idQuestionnaire;
+
+   return this.http.get(url, options)
+     .map((response: Response, index: number) => ResultQuestionnaire.toObjectArray(response.json()));
+ }
+
+
+
+ */
+
+
 
 }

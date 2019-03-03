@@ -10,16 +10,16 @@ export class QuestionnaireGame {
   private _finish_date: Date;
   private _question_time: number;
   private _questionnaire_time: number;
-  private _results: [];
-  private _points: [];
-  private _prizes: [];
-  private _student: Student[];
+  private _results: Array<string>;
+  private _points: Array<number>;
+  private _prizes: Array<string>;
+  private _student: Array<Student>;
   private _teacher: Teacher;
   private _questionnaire: Questionnaire;
 
 
   constructor(id?: string, name?: string, start_date?: Date, finish_date?: Date, question_time?: number, questionnaire_time?: number,
-    results?: [], points?: [], prizes?: []) {
+    results?: Array<string>, /*points?: Array<number>,*/ prizes?: Array<string>) {
     this._id = id;
     this._name = name;
     this._start_date = start_date;
@@ -27,7 +27,7 @@ export class QuestionnaireGame {
     this._question_time = question_time;
     this._questionnaire_time = questionnaire_time;
     this._results = results;
-    this._points = points;
+    // this._points = points;
     this._prizes = prizes;
   }
 
@@ -43,7 +43,7 @@ export class QuestionnaireGame {
       result.question_time = object.question_time;
       result.questionnaire_time = object.questionnaire_time;
       result.results = object.results;
-      result.points = object.points;
+      // result.points = object.points;
       result.prizes = object.prizes;
       result.student = object.student;
       result.teacher = object.teacher;
@@ -108,25 +108,28 @@ export class QuestionnaireGame {
   public set questionnaire_time(value: number) {
     this._questionnaire_time = value;
   }
-  public get results(): [] {
+  public get results(): Array<string> {
     return this._results;
   }
 
-  public set results(value: []) {
+  public set results(value: Array<string>) {
     this._results = value;
   }
-  public get points(): [] {
+  public get points(): Array<number> {
     return this._points;
   }
 
-  public set points(value: []) {
-    this._points = value;
-  }
-  public get prizes(): [] {
+  /*
+    public set points(value: Array<nmber> {
+      this._points = value;
+    }
+    */
+
+  public get prizes(): Array<string> {
     return this._prizes;
   }
 
-  public set prizes(value: []) {
+  public set prizes(value: Array<string>) {
     this._prizes = value;
   }
   public get student(): Student[] {

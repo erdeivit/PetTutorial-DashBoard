@@ -44,11 +44,13 @@ import { TournamentsComponent } from './pages/competitions/tennis/tournaments/to
 
 import { CreateCardComponent } from './pages/createCard/createCard';
 
-import { QuestionnairesComponent } from './pages/questionnaires/questionnaires';
+//import { QuestionnairesComponent } from './pages/questionnaires/questionnaires';
 import { QuestionnaireComponent } from './pages/questionnaire/questionnaire';
-import { QuestionnaireResultsComponent } from './pages/questionnaireResults/questionnaireResults';
+//import { QuestionnaireResultsComponent } from './pages/questionnaireResults/questionnaireResults';
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
-import { CreateQuestionnaireComponent } from './pages/createQuestionnaire/createQuestionnaire';
+//import { CreateQuestionnaireComponent } from './pages/createQuestionnaire/createQuestionnaire';
+/*
+
 import {
   CreateQuestionnairePointsAssignmentComponent
 } from './pages/createQuestionnairePointsAssignment/createQuestionnairePointsAssignment';
@@ -59,11 +61,18 @@ import {
   CreateQuestionnairePackCardsAssignmentComponent
 } from './pages/createQuestionnairePackCardsAssignment/createQuestionnairePackCardsAssignment';
 
+*/
 import { ViewCardComponent } from './pages/viewcard/viewcard';
+
+/*
+
 import { CreateQuestionnaireTest1Component } from './pages/createQuestionnaireTest1/createQuestionnaireTest1';
 import { CreateQuestionnaireTest2Component } from './pages/createQuestionnaireTest2/createQuestionnaireTest2';
 import { CreateQuestionnaireTextArea1Component } from './pages/createQuestionnaireTextArea1/createQuestionnaireTextArea1';
 import { CreateQuestionnaireTextArea2Component } from './pages/createQuestionnaireTextArea2/createQuestionnaireTextArea2';
+
+*/
+
 
 import { CreatePointComponent } from './pages/createPoint/createPoint';
 import { DeletePointComponent } from './pages/deletePoint/deletePoint';
@@ -106,7 +115,7 @@ import 'rxjs/add/operator/finally';
 import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
 import { CreateCollectionComponent } from './pages/createCollection/createCollection';
 import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollection';
-import { QuestionnaireAwardsComponent } from './pages/questionnaireAwards/questionnaireAwards';
+// import { QuestionnaireAwardsComponent } from './pages/questionnaireAwards/questionnaireAwards';
 import { GroupStudentsComponent } from './pages/groupStudents/groupStudents';
 import { from } from 'rxjs/observable/from';
 import { StudentHomeComponent } from './pages/student-home/student-home.component';
@@ -149,24 +158,24 @@ export function createTranslateLoader(http: Http) {
     DeleteCardComponent,
     CreateCollectionComponent,
     DeleteCollectionComponent,
-    CreateQuestionnairePointsAssignmentComponent,
-    CreateQuestionnaireBadgesAssignmentComponent,
-    CreateQuestionnairePackCardsAssignmentComponent,
-    QuestionnairesComponent,
+    // CreateQuestionnairePointsAssignmentComponent,
+    // CreateQuestionnaireBadgesAssignmentComponent,
+    // CreateQuestionnairePackCardsAssignmentComponent,
+    // QuestionnairesComponent,
     QuestionnaireComponent,
-    QuestionnaireAwardsComponent,
-    QuestionnaireResultsComponent,
+    // QuestionnaireAwardsComponent,
+    // QuestionnaireResultsComponent,
     DeleteQuestionnaireComponent,
-    CreateQuestionnaireComponent,
+    // CreateQuestionnaireComponent,
     CreatePointComponent,
     DeletePointComponent,
     CreateBadgeComponent,
     DeleteBadgeComponent,
-    CreateQuestionnaireTest1Component,
-    CreateQuestionnaireTest2Component,
+    // CreateQuestionnaireTest1Component,
+    // CreateQuestionnaireTest2Component,
     ViewCardComponent,
-    CreateQuestionnaireTextArea1Component,
-    CreateQuestionnaireTextArea2Component,
+    // CreateQuestionnaireTextArea1Component,
+    // CreateQuestionnaireTextArea2Component,
     ViewCardComponent,
     ViewPointsComponent,
     LanguageComponent,
