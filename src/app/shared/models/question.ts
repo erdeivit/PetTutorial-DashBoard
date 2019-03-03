@@ -1,22 +1,23 @@
-import { Answer} from './answer'
-import { CorrectAnswer} from './correctAnswer'
 
 export class Question {
 
+  private _statement: string;
   private _id: string;
-  private _name: string;
-  private _type: string;
+  private _answer: (string | boolean); // DEFINIR UN ARRAY DE DOS TIPOS DE DATOS.
   private _image: string;
-  private _time: number;
-  private _answer: Array<Answer>;
-  private _correctAnswer: Array<CorrectAnswer>;
+  private _difficulty: string;
+  private _category: string;
+  private _explanation: string;
 
-  constructor( id?: string, name?: string, type?: string, image?: string, time?: number ) {
+  constructor(id?: string, statement?: string, answer?: (string | boolean), image?: string, difficulty?: string, category?: string,
+    explanation?: string) {
     this._id = id;
-    this._name = name;
-    this._type = type;
+    this._statement = statement;
+    this._answer = answer;
     this._image = image;
-    this._time = time;
+    this._difficulty = difficulty;
+    this._category = category;
+    this._explanation = explanation;
   }
 
   /* tslint:disable */
@@ -25,10 +26,12 @@ export class Question {
     let result: Question = new Question();
     if (object != null) {
       result.id = object.id;
-      result.name = object.name;
-      result.type = object.type;
+      result.statement = object.statement;
+      result.answer = object.name;
       result.image = object.image;
-      result.time = object.time;
+      result.difficulty = object.difficulty;
+      result.category = object.category;
+      result.explanation = object.explanation;
     }
     return result;
   }
@@ -53,20 +56,20 @@ export class Question {
     this._id = value;
   }
 
-  public get name(): string {
-    return this._name;
+  public get statement(): string {
+    return this._statement;
   }
 
-  public set name(value: string) {
-    this._name = value;
+  public set statement(value: string) {
+    this._statement = value;
   }
 
-  public get type(): string {
-    return this._type;
+  public get answer(): (string | boolean) {
+    return this._answer;
   }
 
-  public set type(value: string) {
-    this._type = value;
+  public set answer(value: (string | boolean)) {
+    this._answer = value;
   }
 
   public get image(): string {
@@ -76,28 +79,25 @@ export class Question {
   public set image(value: string) {
     this._image = value;
   }
-
-  public get time(): number {
-    return this._time;
+  public get difficulty(): string {
+    return this._difficulty;
   }
 
-  public set time(value: number) {
-    this._time = value;
+  public set difficulty(value: string) {
+    this._difficulty = value;
+  }
+  public get category(): string {
+    return this._category;
   }
 
-  public get answer(): Array<Answer> {
-    return this._answer;
+  public set category(value: string) {
+    this._category = value;
+  }
+  public get explanation(): string {
+    return this._explanation;
   }
 
-  public set answer(value: Array<Answer>) {
-    this._answer = value;
-  }
-
-  public get correctAnswer(): Array<CorrectAnswer> {
-    return this._correctAnswer;
-  }
-
-  public set correctAnswer(value: Array<CorrectAnswer>) {
-    this._correctAnswer = value;
+  public set explanation(value: string) {
+    this._explanation = value;
   }
 }

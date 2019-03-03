@@ -8,12 +8,11 @@ import { Role } from '../models/role';
 import { Login } from '../models/login';
 import { Question } from '../models/question';
 import { Questionnaire } from '../models/questionnaire';
-import { Answer } from '../models/answer';
+import { QuestionnaireGame } from '../models/questionnaireGame';
 import { Student } from '../models/student';
 import { CorrectAnswer } from '../models/correctAnswer';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 /*import { GetQuestionnairePage } from '../pages/getQuestionnaire/getQuestionnaire';*/
-import { ResultQuestionnaire } from '../models/resultQuestionnaire';
 
 @Injectable()
 export class QuestionnaireService {
@@ -22,7 +21,6 @@ export class QuestionnaireService {
     public http: Http,
     public translateService: TranslateService,
     public utilsService: UtilsService) {
-
   }
 
   /**
