@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import { Login, Group, Role, Questionnaire, ResultPoints,
-        Point, Badge, Student, PointRelation, BadgeRelation, ResultBadges } from '../../shared/models/index';
+import {
+  Login, Group, Role, Questionnaire, ResultPoints,
+  Point, Badge, Student, PointRelation, BadgeRelation, ResultBadges
+} from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoadingService, UtilsService, BadgeRelationService, GroupService,
-        AlertService, PointRelationService, PointService, BadgeService, SchoolService } from '../../shared/services/index';
+import {
+  LoadingService, UtilsService, BadgeRelationService, GroupService,
+  AlertService, PointRelationService, PointService, BadgeService, SchoolService
+} from '../../shared/services/index';
 import { TranslateService } from 'ng2-translate';
 
 @Component({
@@ -99,20 +103,22 @@ export class AssistanceComponent implements OnInit {
     this.AssList = [];
     for (let asiste of this.Assistancelist) {
       if (asiste.checked) {
-        this.As2 = { name: asiste.name, studentId: asiste.studentId, groupId: this.groupSelected,
-                    schoolId: this.utilsService.currentSchool.id };
+        this.As2 = {
+          name: asiste.name, studentId: asiste.studentId, groupId: this.groupSelected,
+          schoolId: this.utilsService.currentSchool.id
+        };
         this.AssList.push(this.As2);
         this.pointRelationService.postPointRelation('100002', asiste.studentId,
           this.utilsService.currentSchool.id, this.groupSelected, 1).subscribe(
-        ((responsePointRelation: PointRelation) => {
-          this.responsePointRelation = responsePointRelation;
-          this.loadingService.hide();
-          this.alertService.show(this.translateService.instant('POINTS.CORASSIGN'));
-        }),
-        ((error: Response) => {
-          this.loadingService.hide();
-          this.alertService.show(error.toString());
-        }));
+            ((responsePointRelation: PointRelation) => {
+              this.responsePointRelation = responsePointRelation;
+              this.loadingService.hide();
+              this.alertService.show(this.translateService.instant('POINTS.CORASSIGN'));
+            }),
+            ((error: Response) => {
+              this.loadingService.hide();
+              this.alertService.show(error.toString());
+            }));
       }
     }
   }

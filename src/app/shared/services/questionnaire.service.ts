@@ -24,15 +24,34 @@ export class QuestionnaireService {
   }
 
   /**
+   * Returns the questionnaires with the one level information of the current
+   * logged in user into the application
+   * @return {Array<Questionnaire>} returns the list of questionnaires
+   */
+  public getMyQuestionnaireGame(): Observable<QuestionnaireGame[]> {
+
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.QUESTIONNAIREGAME_URL;
+
+
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => QuestionnaireGame.toObjectArray(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
+
+
+
+  /**
    * This method returns all questionnaires of the logged
    * in user.
    * @return {Observable<Array<Questionnaire>} returns an observable array with the result
    * of the operation
    */
-  public getMyQuestionnaire(id: string): Observable<Questionnaire> {
+  public FuncionAntigua(id: string): Observable<Questionnaire> {
 
     const options = this.utilsService.getOptions();
-    const url: string = AppConfig.QUESTIONNAIRE_URL + '/' + id;
+    const url: string = AppConfig.QUESTIONNAIRE_URL;
 
     return this.http.get(url, options)
       .map((response: Response, index: number) => {
@@ -41,21 +60,6 @@ export class QuestionnaireService {
         return questionnaire;
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
-  }
-
-  /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
-  public getQuestionnaires(): Observable<Array<Questionnaire>> {
-
-    const options = this.utilsService.getOptions();
-    const url: string = this.utilsService.getMyUrl() + AppConfig.QUESTIONNAIRES_URL;
-
-
-    return this.http.get(url, options)
-      .map((response: Response, index: number) => Questionnaire.toObjectArray(response.json()));
   }
 
   /**

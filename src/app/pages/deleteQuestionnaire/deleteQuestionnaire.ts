@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Login, Group, Role, Questionnaire } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
@@ -32,20 +32,21 @@ export class DeleteQuestionnaireComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*
+        if (this.utilsService.role === Role.TEACHER) {
 
-    if (this.utilsService.role === Role.TEACHER) {
-
-      this.loadingService.show();
-      this.questionnaireService.getQuestionnaires().subscribe(
-        ((questionnaires: Array<Questionnaire>) => {
-          this.questionnaires = questionnaires;
-          this.loadingService.hide();
-        }),
-        ((error: Response) => {
-          this.loadingService.hide();
-          this.alertService.show(error.toString());
-        }));
-    }
+          this.loadingService.show();
+          this.questionnaireService.getQuestionnaires().subscribe(
+            ((questionnaires: Array<Questionnaire>) => {
+              this.questionnaires = questionnaires;
+              this.loadingService.hide();
+            }),
+            ((error: Response) => {
+              this.loadingService.hide();
+              this.alertService.show(error.toString());
+            }));
+        }
+        */
   }
 
   cancel(): void {
@@ -58,9 +59,8 @@ export class DeleteQuestionnaireComponent implements OnInit {
 
       this.loadingService.show();
       this.questionnaireService.deleteQuestionnaire(this.data.name).subscribe(
-        ((value: any)  =>{
-          switch(value.count)
-          {
+        ((value: any) => {
+          switch (value.count) {
             case 1:
               this.alertService.show(this.translateService.instant('QUESTIONNAIRE.DELETED'))
               break;
@@ -68,13 +68,13 @@ export class DeleteQuestionnaireComponent implements OnInit {
               this.alertService.show(this.translateService.instant('QUESTIONNAIRE.NOTDELETED'))
               break;
             default:
-            break;
+              break;
           }
         }));
-        this.cancel();
+      this.cancel();
 
 
 
-      }
     }
+  }
 }

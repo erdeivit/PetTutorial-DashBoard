@@ -101,7 +101,7 @@ const appRoutes: Routes = [
 
   // { path: 'questionnaires', component: QuestionnairesComponent, canActivate: [AuthGuard] },
   // { path: 'questionnaireAwards', component: QuestionnaireAwardsComponent, canActivate: [AuthGuard] },
-  { path: 'questionnaire/:id', component: QuestionnaireComponent, canActivate: [AuthGuard] },
+  { path: 'questionnaire', component: QuestionnaireComponent, canActivate: [AuthGuard] },
   { path: 'viewpoints', component: ViewPointsComponent, canActivate: [AuthGuard] },
   { path: 'viewbadges', component: ViewBadgesComponent, canActivate: [AuthGuard] },
   { path: 'viewcard', component: ViewCardComponent, canActivate: [AuthGuard] },
