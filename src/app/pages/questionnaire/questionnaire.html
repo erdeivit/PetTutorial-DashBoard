@@ -1,6 +1,7 @@
 <div class="questionnaire-content">
-  <ol>
-    <button mat-raised-button (click)="goToResultQuestionnaire()">{{ 'QUESTIONNAIRE.RESULTS' | translate }}</button>
-  </ol>
-
+  <button mat-raised-button routerLink="/questionnaire/viewquestionaires">{{ 'QUESTIONNAIRES.MYQUESTIONNAIRES'
+    |translate }}</button>
+  <button mat-raised-button routerLink="/questionnaire/createquestionnaire">{{ 'QUESTIONNAIRES.CREATE' | translate }}</button>
+  <button mat-raised-button routerLink="/questionnaire/viewquestions">{{ 'QUESTIONNAIRES.MYQUESTIONS' | translate }}</button>
+  <button mat-raised-button routerLink="/questionnaire/createquestion">{{ 'QUESTIONNAIRES.NEWQUESTION' | translate }}</button>
 </div>

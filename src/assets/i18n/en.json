@@ -45,7 +45,8 @@
     "DELETED": "Group deletd successfully",
     "STUDENTDELETED": "Student removed from group successfully",
     "CONFIRMREMOVAL": "Are you sure that you want to remove student with id {{elementId}} from group?",
-    "STUDENTADDED": "Student added to group successfully"
+    "STUDENTADDED": "Student added to group successfully",
+    "MYGAMES": "Games"
   },
   "GRADE": {
     "GRADE": "Grade",
@@ -133,8 +134,9 @@
     "ID": "Questionnaire Id",
     "DELETE": "Delete questionnaire",
     "CREATE": "Create new questionnaire",
-    "LIST": "List of questionnaires",
-    "MYQUESTIONNAIRES": "My questionnaires"
+    "MYQUESTIONNAIRES": "My questionnaires",
+    "MYQUESTIONS": "My questions",
+    "NEWQUESTION": "New question"
   },
   "QUESTIONNAIRE": {
     "RESULTS": "Results Questionnaire",

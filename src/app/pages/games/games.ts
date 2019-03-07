@@ -5,14 +5,16 @@ import { LoadingService, UtilsService, GroupService, AlertService } from '../../
 import { Route, ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-groups',
-  templateUrl: './groups.html',
-  styleUrls: ['./groups.scss']
+  selector: 'app-games',
+  templateUrl: './games.html',
+  styleUrls: ['./games.scss']
 })
-export class GroupsComponent implements OnInit {
+export class GamesComponent implements OnInit {
   public returnUrl: string;
+  public groupId: string;
   public groups: Array<Group>;
   public isTeacher = false;
+  public sub: {};
 
   constructor(
     public route: ActivatedRoute,
@@ -28,6 +30,13 @@ export class GroupsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sub = this.route.params.subscribe(params => {
+      this.groupId = params['id'];
+      console.log(this.groupId);
+    });
+
+
+    /*
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/groupStudents';
 
 
@@ -44,10 +53,7 @@ export class GroupsComponent implements OnInit {
           this.alertService.show(error.toString());
         }));
     }
-  }
-
-  showStudents(group: Group) {
-    this.router.navigate([this.returnUrl, group.id]);
+    */
   }
 
 }

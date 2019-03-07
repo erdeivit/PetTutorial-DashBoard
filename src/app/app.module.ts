@@ -41,37 +41,23 @@ import { AutomationComponent } from './pages/competitions/league/automation/auto
 import { JourneysLeagueComponent } from './pages/competitions/league/journeys-league/journeys-league';
 import { JourneysTennisComponent } from './pages/competitions/tennis/journeys-tennis/journeys-tennis';
 import { TournamentsComponent } from './pages/competitions/tennis/tournaments/tournaments';
-
 import { CreateCardComponent } from './pages/createCard/createCard';
 
-//import { QuestionnairesComponent } from './pages/questionnaires/questionnaires';
+import { GamesComponent } from './pages/games/games';
+
 import { QuestionnaireComponent } from './pages/questionnaire/questionnaire';
-//import { QuestionnaireResultsComponent } from './pages/questionnaireResults/questionnaireResults';
+import { ViewQuestionnariesComponent } from './pages/questionnaire/view_questionnaires/view_questionnaires';
+import { ViewQuestionsComponent } from './pages/questionnaire/view_questions/view_questions';
+import { CreateQuestionComponent } from './pages/questionnaire/create_question/create_question';
+import { CreateQuestionnaireComponent } from './pages/questionnaire/create_questionnaire/create_questionnaire';
+
+
+
+
+
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
-//import { CreateQuestionnaireComponent } from './pages/createQuestionnaire/createQuestionnaire';
-/*
 
-import {
-  CreateQuestionnairePointsAssignmentComponent
-} from './pages/createQuestionnairePointsAssignment/createQuestionnairePointsAssignment';
-import {
-  CreateQuestionnaireBadgesAssignmentComponent
-} from './pages/createQuestionnaireBadgesAssignment/createQuestionnaireBadgesAssignment';
-import {
-  CreateQuestionnairePackCardsAssignmentComponent
-} from './pages/createQuestionnairePackCardsAssignment/createQuestionnairePackCardsAssignment';
-
-*/
 import { ViewCardComponent } from './pages/viewcard/viewcard';
-
-/*
-
-import { CreateQuestionnaireTest1Component } from './pages/createQuestionnaireTest1/createQuestionnaireTest1';
-import { CreateQuestionnaireTest2Component } from './pages/createQuestionnaireTest2/createQuestionnaireTest2';
-import { CreateQuestionnaireTextArea1Component } from './pages/createQuestionnaireTextArea1/createQuestionnaireTextArea1';
-import { CreateQuestionnaireTextArea2Component } from './pages/createQuestionnaireTextArea2/createQuestionnaireTextArea2';
-
-*/
 
 
 import { CreatePointComponent } from './pages/createPoint/createPoint';
@@ -115,7 +101,6 @@ import 'rxjs/add/operator/finally';
 import { DeleteCardComponent } from './pages/deleteCard/deleteCard';
 import { CreateCollectionComponent } from './pages/createCollection/createCollection';
 import { DeleteCollectionComponent } from './pages/deleteCollection/deleteCollection';
-// import { QuestionnaireAwardsComponent } from './pages/questionnaireAwards/questionnaireAwards';
 import { GroupStudentsComponent } from './pages/groupStudents/groupStudents';
 import { from } from 'rxjs/observable/from';
 import { StudentHomeComponent } from './pages/student-home/student-home.component';
@@ -158,24 +143,23 @@ export function createTranslateLoader(http: Http) {
     DeleteCardComponent,
     CreateCollectionComponent,
     DeleteCollectionComponent,
-    // CreateQuestionnairePointsAssignmentComponent,
-    // CreateQuestionnaireBadgesAssignmentComponent,
-    // CreateQuestionnairePackCardsAssignmentComponent,
-    // QuestionnairesComponent,
+
+    GamesComponent,
+
     QuestionnaireComponent,
-    // QuestionnaireAwardsComponent,
-    // QuestionnaireResultsComponent,
+    ViewQuestionnariesComponent,
+    CreateQuestionnaireComponent,
+    CreateQuestionComponent,
+    ViewQuestionsComponent,
+
+
+
     DeleteQuestionnaireComponent,
-    // CreateQuestionnaireComponent,
     CreatePointComponent,
     DeletePointComponent,
     CreateBadgeComponent,
     DeleteBadgeComponent,
-    // CreateQuestionnaireTest1Component,
-    // CreateQuestionnaireTest2Component,
     ViewCardComponent,
-    // CreateQuestionnaireTextArea1Component,
-    // CreateQuestionnaireTextArea2Component,
     ViewCardComponent,
     ViewPointsComponent,
     LanguageComponent,

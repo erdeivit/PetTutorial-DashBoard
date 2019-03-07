@@ -45,7 +45,8 @@
     "DELETED": "Grupo borrado correctamente",
     "STUDENTDELETED": "Estudiante eliminado del grupo con éxito",
     "CONFIRMREMOVAL": "Seguro que quieres quitar el estudiante con id {{elementId}} del grupo?",
-    "STUDENTADDED": "Estudiante añadido al grupo correctamente"
+    "STUDENTADDED": "Estudiante añadido al grupo correctamente",
+    "MYGAMES": "Juegos"
   },
   "COMPETITIONS": {
     "TITLE": "Competiciones",
@@ -267,9 +268,10 @@
     "TITLE": "Cuestionarios",
     "ID": "ID del Cuestionario",
     "DELETE": "Eliminar Cuestionario",
-    "CREATE": "Crear nuevo Cuestionario",
-    "LIST": "Lista de cuestionarios",
-    "MYQUESTIONNAIRES": "Mis cuestionarios"
+    "CREATE": "Crear nuevo cuestionario",
+    "MYQUESTIONNAIRES": "Mis cuestionarios",
+    "MYQUESTIONS": "Mis preguntas",
+    "NEWQUESTION": "Crear nueva pregunta"
   },
   "QUESTIONNAIRE": {
     "RESULTS": "Resultados Cuestionario",

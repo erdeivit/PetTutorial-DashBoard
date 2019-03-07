@@ -46,7 +46,8 @@
     "DELETED": "Grup esborrat correctament",
     "STUDENTDELETED": "Estudiant eliminat del grup amb èxit",
     "CONFIRMREMOVAL": "Segur que vols treure a l'estudiant amb id {{elementId}} del grup?",
-    "STUDENTADDED": "Estudiant afegit al grup correctament"
+    "STUDENTADDED": "Estudiant afegit al grup correctament",
+    "MYGAMES": "Jocs"
   },
   "GRADE": {
     "GRADE": "Curs",
@@ -134,8 +135,9 @@
     "ID": "ID del Qüestionari:",
     "DELETE": "Eliminar Qüestionaris",
     "CREATE": "Crear nou Qüestionaris",
-    "LIST": "Llista de qüestionaris",
-    "MYQUESTIONNAIRES": "Els meus qüestionaris"
+    "MYQUESTIONNAIRES": "Els meus qüestionaris",
+    "MYQUESTIONS": "Les meves preguntes",
+    "NEWQUESTION": "Crear una nova pregunta"
   },
   "QUESTIONNAIRE": {
     "RESULTS": "Resultats Qüestionaris",

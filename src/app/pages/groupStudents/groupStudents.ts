@@ -11,6 +11,7 @@ import { Route, ActivatedRoute, Router } from '@angular/router';
 })
 export class GroupStudentsComponent implements OnInit {
   public groupId: string;
+  public returnUrl: string;
   public students: Array<Student>;
   public sub: any;
 
@@ -28,6 +29,7 @@ export class GroupStudentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/myGames';
 
     this.sub = this.route.params.subscribe(params => {
       this.groupId = params['id'];
@@ -45,6 +47,12 @@ export class GroupStudentsComponent implements OnInit {
           this.alertService.show(error.toString());
         }));
     }
+  }
+
+  showGroups() {
+    this.router.navigate([this.returnUrl, this.groupId]);
+
+
   }
 
 
