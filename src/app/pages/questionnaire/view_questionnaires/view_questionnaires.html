@@ -1,3 +1,22 @@
 <div class="questionnaire-content">
   <h5>View Questionnaires</h5>
+
+  <table>
+    <tr width="35">
+      <th>{{ 'STUDIENTS.AVATAR' | translate }}</th>
+      <th>{{ 'STUDIENTS.ID' | translate }}</th>
+      <th>{{ 'STUDIENTS.NAME' | translate }}</th>
+      <th>{{ 'STUDIENTS.SURNAME' | translate }}</th>
+      <th>{{ 'STUDIENTS.EMAIL' | translate }}</th>
+
+    </tr>
+
+    <tr *ngFor="let student of students">
+      <td><img src="{{student.avatar.image}}" width="50" height="50"></td>
+      <td>{{student.id}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.surname}}</td>
+      <td>{{student.email}}</td>
+    </tr>
+  </table>
 </div>

@@ -1,32 +1,29 @@
-<div class="groupStudent-content">
-  <html>
+<head>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
 
-  <head>
-    <style>
-      table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
 
-      td,
-      th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
 
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
+  </style>
+</head>
 
-    </style>
-  </head>
-
-  <body>
-
-    <button mat-raised-button (click)="showGames()">{{ GROUPS.MYGAMES |translate }}</button>
-
+<body>
+  <!-- ME PETA AQUI Y NO SE PORQUE-->
+  <div class="groupStudent-content">
+    <button mat-raised-button (click)="showGames()">{{ 'GROUPS.MYGAMES' |translate }}</button>
     <table>
       <tr width="35">
         <th>{{ 'STUDIENTS.AVATAR' | translate }}</th>
@@ -45,7 +42,5 @@
         <td>{{student.email}}</td>
       </tr>
     </table>
-  </body>
-
-  </html>
-</div>
+  </div>
+</body>

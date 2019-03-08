@@ -5,7 +5,7 @@ import { LoadingService, UtilsService, GroupService, AlertService } from '../../
 import { Route, ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  // selector: 'app-groups',
+  selector: 'app-groups',
   templateUrl: './groupStudents.html',
   styleUrls: ['./groupStudents.scss']
 })
@@ -49,7 +49,7 @@ export class GroupStudentsComponent implements OnInit {
     }
   }
 
-  showGroups() {
+  showGames() {
     this.router.navigate([this.returnUrl, this.groupId]);
 
 

@@ -6,7 +6,7 @@ import { AuthGuard } from './shared/auth/auth.guard';
 import { LoginComponent } from './pages/login/login';
 import { HomeComponent } from './pages/home/home';
 import { GroupsComponent } from './pages/groups/groups';
-import { GamesComponent } from './pages/games/games'
+import { GamesComponent } from './pages/games/games';
 import { PointsBadgesComponent } from './pages/pointsbadges/pointsbadges';
 import { CollectionsComponent } from './pages/collections/collections';
 import { CollectionStudentComponent } from './pages/collectionStudent/collectionStudent';
