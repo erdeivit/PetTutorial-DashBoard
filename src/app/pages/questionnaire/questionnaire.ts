@@ -10,16 +10,14 @@ import { LoadingService, UtilsService, GroupService, AlertService, Questionnaire
 
 export interface DialogData {
   // PARA SI QUIERO LLEVARME ALGUNA INFORMACION AL DIALOG
-  animal: string;
-  name: string;
+  questionnaireshtml: Array<Questionnaire>;
+
 }
 @Component({
   selector: 'app-viewquestionnairesdialog',
   templateUrl: 'viewQuestionnairesDialog.html',
 })
 export class ViewQuestionnairesDialogComponent {
-
-
   constructor(
     public dialogRef: MatDialogRef<ViewQuestionnairesDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
@@ -27,7 +25,6 @@ export class ViewQuestionnairesDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }
 
 @Component({
@@ -37,7 +34,7 @@ export class ViewQuestionnairesDialogComponent {
 })
 export class QuestionnaireComponent implements OnInit {
 
-  public questionnaireGame: Array<QuestionnaireGame>;
+  public questionnaires: Array<Questionnaire>;
   public animal: string;
   public name: string;
 
@@ -48,8 +45,6 @@ export class QuestionnaireComponent implements OnInit {
   // tslint:disable-next-line:no-any
   //private sub: any;
   //public items: string[] = [];
-
-
 
   constructor(
     public route: ActivatedRoute,
@@ -63,34 +58,36 @@ export class QuestionnaireComponent implements OnInit {
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
   }
   public openDialog(): void {
-    const dialogRef = this.dialog.open(ViewQuestionnairesDialogComponent, {
-      width: '250px',
-      data: { name: this.name, animal: this.animal }
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
-  }
-
-  public ngOnInit(): void {
-
-    this.questionnaireService.getMyQuestionnaireGame().subscribe(
-      ((QuestGame: QuestionnaireGame[]) => {
-        this.questionnaireGame = QuestGame;
-        console.log(this.questionnaireGame);
+    this.questionnaireService.getMyQuestionnaires(this.utilsService.currentUser.userId).subscribe(
+      ((Quest: Questionnaire[]) => {
+        this.questionnaires = Quest;
+        console.log(this.questionnaires);
+        this.name = 'DAVID';
       }),
       ((error: Response) => {
         this.loadingService.hide();
         this.alertService.show(error.toString());
       }));
 
+    const dialogRef = this.dialog.open(ViewQuestionnairesDialogComponent,
+      {
+        width: '3000px',
+        data: { questionnaireshtml: this.questionnaires }
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //RECOGER DATOS AL CERRAR
+    });
+  }
+
+  public ngOnInit(): void {
+
+
   }
 
 }
-
-
 
 
 /*

@@ -12,6 +12,7 @@ import { QuestionnaireGame } from '../models/questionnaireGame';
 import { Student } from '../models/student';
 import { CorrectAnswer } from '../models/correctAnswer';
 import { TranslateService } from 'ng2-translate/ng2-translate';
+import { identifierModuleUrl } from '@angular/compiler';
 /*import { GetQuestionnairePage } from '../pages/getQuestionnaire/getQuestionnaire';*/
 
 @Injectable()
@@ -28,19 +29,15 @@ export class QuestionnaireService {
    * logged in user into the application
    * @return {Array<Questionnaire>} returns the list of questionnaires
    */
-  public getMyQuestionnaireGame(): Observable<QuestionnaireGame[]> {
+  public getMyQuestionnaires(id: number): Observable<Questionnaire[]> {
 
     const options = this.utilsService.getOptions();
-    const url: string = AppConfig.QUESTIONNAIREGAME_URL;
-
-
+    const url: string = AppConfig.TEACHER_URL + "/" + String(id) + AppConfig.QUESTIONNAIRES_URL;
+    console.log(url);
     return this.http.get(url, options)
-      .map((response: Response, index: number) => QuestionnaireGame.toObjectArray(response.json()))
+      .map((response: Response, index: number) => Questionnaire.toObjectArray(response.json()))
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
-
-
-
 
   /**
    * This method returns all questionnaires of the logged

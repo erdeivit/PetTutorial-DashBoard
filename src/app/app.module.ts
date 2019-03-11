@@ -45,7 +45,7 @@ import { CreateCardComponent } from './pages/createCard/createCard';
 
 import { GamesComponent } from './pages/games/games';
 
-import { QuestionnaireComponent,ViewQuestionnairesDialogComponent } from './pages/questionnaire/questionnaire';
+import { QuestionnaireComponent, ViewQuestionnairesDialogComponent } from './pages/questionnaire/questionnaire';
 import { ViewQuestionnariesComponent } from './pages/questionnaire/view_questionnaires/view_questionnaires';
 import { ViewQuestionsComponent } from './pages/questionnaire/view_questions/view_questions';
 import { CreateQuestionComponent } from './pages/questionnaire/create_question/create_question';
