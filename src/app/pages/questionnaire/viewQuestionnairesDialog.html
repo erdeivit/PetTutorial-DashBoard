@@ -10,26 +10,23 @@
   }
 
 </style>
-
-<mat-accordion class="example-headers-align">
-  <mat-expansion-panel *ngFor="let Questionnaire of data.questionnaireshtml" hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{Questionnaire.name}}
-      </mat-panel-title>
-      <mat-panel-description>
-        {{Questionnaire.description}}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-
-    <mat-form-field>
-      <input matInput placeholder="First name">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput type="number" min="1" placeholder="Age">
-    </mat-form-field>
-  </mat-expansion-panel>
-</mat-accordion>
+<div *ngIf="data.questionnaireshtml">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel *ngFor="let Questionnaire of data.questionnaireshtml" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{Questionnaire.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{Questionnaire.description}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div mat-dialog>
+        {{Questionnaire.question}}
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
 
 <!-- https://material.angular.io/components/expansion/examples -->
 <!-- TAMBIEN TENGO UN EJEMPLO DE DATE -->

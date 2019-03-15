@@ -22,9 +22,9 @@ export class Questionnaire {
     if (object != null) {
       result.id = object.id;
       result.name = object.name;
-      result.description = object.description;
+      result.description = object.description; // el campo object.DESCRIPTION tiene que ser el mismo que en  la BBDD
       result.image = object.image;
-      result.question = object.questions;
+      result.question = object.questionId;
     }
     return result;
   }
