@@ -39,6 +39,17 @@ export class QuestionnaireService {
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
 
+  public getMyQuestions(id: number): Observable<Question[]> {
+
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.TEACHER_URL + "/" + String(id) + AppConfig.QUESTIONS_URL;
+    console.log(url);
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => Question.toObjectArray(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+
+  }
+
   /**
    * This method returns all questionnaires of the logged
    * in user.

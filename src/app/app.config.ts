@@ -45,8 +45,8 @@ export class AppConfig {
   public static get GROUPS_URL(): string { return '/groups'; }
   public static get ASSISTANCE_URL(): string { return '/assistance'; }
   public static get QUESTIONNAIRES_URL(): string { return '/questionnaire'; }
+  public static get QUESTIONS_URL(): string { return '/question'; }
 
-  public static get QUESTIONS_URL(): string { return '/questions'; }
   public static get ANSWERS_URL(): string { return '/answers'; }
   public static get CORRECTANSWERS_URL(): string { return '/correctAnswers'; }
   public static get POINTS_URL(): string { return '/points'; }

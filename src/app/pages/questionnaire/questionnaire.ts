@@ -35,8 +35,9 @@ export class ViewQuestionnairesDialogComponent {
 export class QuestionnaireComponent implements OnInit {
 
   public questionnaires: Array<Questionnaire>;
+  public question: Array<Question>;
   public animal: string;
-  public questionsId: Array<string>;
+  public QuestionnaireNumber: string;
 
   //public myQuestions: Array<Question>;
   //public snackbar: MatSnackBar;
@@ -70,18 +71,18 @@ export class QuestionnaireComponent implements OnInit {
         data: { questionnaireshtml: this.questionnaires }
       });
 
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       //RECOGER DATOS AL CERRAR
     });
+
   }
 
   public ngOnInit(): void {
 
     this.questionnaireService.getMyQuestionnaires(this.utilsService.currentUser.userId).subscribe(
-      ((Quest: Questionnaire[]) => {
-        this.questionnaires = Quest;
+      ((Questionnaires: Questionnaire[]) => {
+        this.questionnaires = Questionnaires;
         console.log(this.questionnaires);
       }),
       ((error: Response) => {
@@ -89,13 +90,17 @@ export class QuestionnaireComponent implements OnInit {
         this.alertService.show(error.toString());
       }));
 
+    this.questionnaireService.getMyQuestions(this.utilsService.currentUser.userId).subscribe(
+      ((Question: Question[]) => {
+        this.question = Question;
+        console.log(this.question);
+      }),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+      }));
 
-
-  }
-
-  public MOSTRARQUESTIONS(questionsId: Array<string>) {
-
-  }
+    }
 
 }
 

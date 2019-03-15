@@ -27,7 +27,7 @@ export class Question {
     if (object != null) {
       result.id = object.id;
       result.statement = object.statement;
-      result.answer = object.name;
+      result.answer = object.answers;
       result.image = object.image;
       result.difficulty = object.difficulty;
       result.category = object.category;
