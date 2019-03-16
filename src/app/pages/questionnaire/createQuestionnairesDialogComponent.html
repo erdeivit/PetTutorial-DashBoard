@@ -1,0 +1,36 @@
+<style>
+  .example-headers-align .mat-expansion-panel-header-title,
+  .example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+</style>
+
+<div class="form-group">
+  <mat-form-field>
+    <mat-select placeholder="{{ 'QUESTIONNAIRES.TYPEOFQUESTION' | translate }}">
+      <mat-option (click)="eleccion0()" value="ninguna">{{ 'QUESTIONNAIRES.TYPEOFQUESTION1' | translate }}</mat-option>
+      <mat-option (click)="eleccion1()" value="multirespuesta">{{ 'QUESTIONNAIRES.TYPEOFQUESTION2' | translate
+        }}</mat-option>
+      <mat-option value="pregunta abierta" (click)="eleccion2()">{{ 'QUESTIONNAIRES.TYPEOFQUESTION3' | translate }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <div *ngIf="option1">
+    <mat-form-field appearance="outline">
+      <input matInput [(ngModel)]="data.cardId" placeholder="DATO1">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <input matInput [(ngModel)]="data.cardId2" placeholder="DATO2">
+    </mat-form-field>
+    <button [mat-dialog-close]="data" mat-raised-button color="primary">Crear</button>
+  </div>
+
+  <!-- https://material.angular.io/components/expansion/examples -->
+  <!-- TAMBIEN TENGO UN EJEMPLO DE DATE -->

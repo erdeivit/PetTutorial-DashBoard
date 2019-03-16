@@ -1,0 +1,42 @@
+<style>
+  .example-headers-align .mat-expansion-panel-header-title,
+  .example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+</style>
+
+<div class="form-group">
+  <mat-form-field appearance="outline">
+    <input matInput [(ngModel)]="data.statement" placeholder="Enunciado de la pregunta">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <input matInput [(ngModel)]="data.answers" placeholder="Introduzca la respuesta">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <input matInput [(ngModel)]="data.image" placeholder="Introduzca la url de la imagen">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <input matInput [(ngModel)]="data.difficulty" placeholder="Dificultad de la pregunta">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <input matInput [(ngModel)]="data.category" placeholder="Categoria de la pregunta">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <input matInput [(ngModel)]="data.explanation" placeholder="Argumente la respuesta">
+  </mat-form-field>
+  <button [mat-dialog-close]="data" mat-raised-button color="primary">Crear</button>
+</div>
+
+<!-- https://material.angular.io/components/expansion/examples -->
+<!-- TAMBIEN TENGO UN EJEMPLO DE DATE -->
