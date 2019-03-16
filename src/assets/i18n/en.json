@@ -136,7 +136,11 @@
     "CREATE": "Create new questionnaire",
     "MYQUESTIONNAIRES": "My questionnaires",
     "MYQUESTIONS": "My questions",
-    "NEWQUESTION": "New question"
+    "NEWQUESTION": "New question",
+    "TYPEOFQUESTION": "¿What type of question?",
+    "TYPEOFQUESTION1": "None",
+    "TYPEOFQUESTION2": "Multiple-choice",
+    "TYPEOFQUESTION3": "Open question"
   },
   "QUESTIONNAIRE": {
     "RESULTS": "Results Questionnaire",

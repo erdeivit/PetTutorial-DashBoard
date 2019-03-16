@@ -117,6 +117,22 @@ export class QuestionnaireService {
     return Observable.throw(errMsg);
   }
 
+  public saveQuestion(stringData: JSON): Observable<Questionnaire> {
+
+    const options = this.utilsService.getOptions();
+
+    let url: string;
+    url = AppConfig.QUESTION_URL;
+    const postParams = stringData;
+    return this.http.post(url, postParams, options)
+      .map(response => {
+        this.utilsService.currentQuestionnaire = Questionnaire.toObject(response.json());
+        return Questionnaire;
+      })
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+
+  }
+
 
   /*
 

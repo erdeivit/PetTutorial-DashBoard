@@ -271,7 +271,11 @@
     "CREATE": "Crear nuevo cuestionario",
     "MYQUESTIONNAIRES": "Mis cuestionarios",
     "MYQUESTIONS": "Mis preguntas",
-    "NEWQUESTION": "Crear nueva pregunta"
+    "NEWQUESTION": "Crear nueva pregunta",
+    "TYPEOFQUESTION": "¿Que tipo de pregunta?",
+    "TYPEOFQUESTION1": "Ninguna",
+    "TYPEOFQUESTION2": "Multi-respuesta",
+    "TYPEOFQUESTION3": "Respuesta abierta"
   },
   "QUESTIONNAIRE": {
     "RESULTS": "Resultados Cuestionario",

@@ -13,7 +13,7 @@
 <div *ngIf="data.questionnaireshtml">
   <mat-accordion class="example-headers-align">
     <mat-expansion-panel *ngFor="let Questionnaire of data.questionnaireshtml" hideToggle>
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header (click)="getInformation(Questionnaire.id)">
         <mat-panel-title>
           {{Questionnaire.name}}
         </mat-panel-title>

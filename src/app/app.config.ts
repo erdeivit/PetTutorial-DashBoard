@@ -13,7 +13,7 @@ export class AppConfig {
   public static get GRADES_URL(): string { return this.SERVER_URL + '/api/grades'; }
   public static get GROUP_URL(): string { return this.SERVER_URL + '/api/groups'; }
   public static get QUESTIONNAIRE_URL(): string { return this.SERVER_URL + '/api/questionnaires'; }
-  public static get QUESTION_URL(): string { return this.SERVER_URL + '/api/questions'; }
+  public static get QUESTION_URL(): string { return this.SERVER_URL + '/api/Questions'; }
   public static get QUESTIONNAIREGAME_URL(): string { return this.SERVER_URL + '/api/NO LA USO'; }
 
 

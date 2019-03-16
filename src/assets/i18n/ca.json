@@ -137,7 +137,11 @@
     "CREATE": "Crear nou Qüestionaris",
     "MYQUESTIONNAIRES": "Els meus qüestionaris",
     "MYQUESTIONS": "Les meves preguntes",
-    "NEWQUESTION": "Crear una nova pregunta"
+    "NEWQUESTION": "Crear una nova pregunta",
+    "TYPEOFQUESTION": "¿Quin tipus de pregunta vols?",
+    "TYPEOFQUESTION1": "Cap",
+    "TYPEOFQUESTION2": "Multiresposta",
+    "TYPEOFQUESTION3": "Pregunta oberta"
   },
   "QUESTIONNAIRE": {
     "RESULTS": "Resultats Qüestionaris",

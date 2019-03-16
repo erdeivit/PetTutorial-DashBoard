@@ -45,12 +45,13 @@ import { CreateCardComponent } from './pages/createCard/createCard';
 
 import { GamesComponent } from './pages/games/games';
 
-import { QuestionnaireComponent, ViewQuestionnairesDialogComponent } from './pages/questionnaire/questionnaire';
+// tslint:disable-next-line: max-line-length
+import { QuestionnaireComponent, ViewQuestionnairesDialogComponent, CreateQuestionnairesDialogComponent } from './pages/questionnaire/questionnaire';
+import { CreateQuestionsDialogComponent } from './pages/questionnaire/questionnaire';
 import { ViewQuestionnariesComponent } from './pages/questionnaire/view_questionnaires/view_questionnaires';
 import { ViewQuestionsComponent } from './pages/questionnaire/view_questions/view_questions';
 import { CreateQuestionComponent } from './pages/questionnaire/create_question/create_question';
 import { CreateQuestionnaireComponent } from './pages/questionnaire/create_questionnaire/create_questionnaire';
-
 
 
 
@@ -151,6 +152,8 @@ export function createTranslateLoader(http: Http) {
     CreateQuestionComponent,
     ViewQuestionsComponent,
     ViewQuestionnairesDialogComponent,
+    CreateQuestionnairesDialogComponent,
+    CreateQuestionsDialogComponent,
 
     DeleteQuestionnaireComponent,
     CreatePointComponent,
@@ -218,6 +221,7 @@ export function createTranslateLoader(http: Http) {
     FormsModule,
     HttpModule,
     MatDialogModule,
+    MatFormFieldModule,
     routing,
     TranslateModule.forRoot({
       provide: TranslateLoader,
@@ -256,6 +260,8 @@ export function createTranslateLoader(http: Http) {
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmationDialogComponent,
-    ViewQuestionnairesDialogComponent]
+    ViewQuestionnairesDialogComponent,
+    CreateQuestionnairesDialogComponent,
+    CreateQuestionsDialogComponent]
 })
 export class AppModule { }
