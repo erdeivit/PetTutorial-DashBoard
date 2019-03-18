@@ -1,0 +1,49 @@
+<style>
+  .example-headers-align .mat-expansion-panel-header-title,
+  .example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+</style>
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel *ngFor="let quest of data.questionshtml" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title *ngIf="quest.category">
+        Categoria: {{quest.category}}
+      </mat-panel-title>
+      <mat-panel-description *ngIf="quest.statement">
+        Descripcion: {{quest.statement}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div mat-dialog *ngIf="quest.difficulty">
+      Dificultad de la pregunta: {{quest.difficulty}}
+    </div>
+    <div mat-dialog *ngIf="quest.answer1">
+      Respuesta 1: {{quest.answer1}}
+    </div>
+    <div mat-dialog *ngIf="quest.answer2">
+      Respuesta 2: {{quest.answer2}}
+    </div>
+    <div mat-dialog *ngIf="quest.answer3">
+      Respuesta 3: {{quest.answer3}}
+    </div>
+    <div mat-dialog *ngIf="quest.answer4">
+      Respuesta 4: {{quest.answer4}}
+    </div>
+    <div mat-dialog *ngIf="quest.answer5">
+      Respuesta 5: {{quest.answer5}}
+    </div>
+    <div mat-dialog *ngIf="quest.asnwer6">
+      Respuesta 6: {{quest.answer6}}
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+<!-- https://material.angular.io/components/expansion/examples -->
+<!-- TAMBIEN TENGO UN EJEMPLO DE DATE -->
