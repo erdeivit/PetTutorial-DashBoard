@@ -1,7 +1,7 @@
 <div class="questionnaire-content">
   <button mat-raised-button (click)=openViewQuestionnairesDialog()>{{ 'QUESTIONNAIRES.MYQUESTIONNAIRES'|translate }}</button>
   <button mat-raised-button (click)="openCreateQuestionnairesDialog()">{{ 'QUESTIONNAIRES.CREATE' | translate }}</button>
-  <button mat-raised-button routerLink="/questionnaire/viewquestions">{{ 'QUESTIONNAIRES.MYQUESTIONS' | translate }}</button>
+  <button mat-raised-button (click)="openViewQuestionsDialog()">{{ 'QUESTIONNAIRES.MYQUESTIONS' | translate }}</button>
   <button mat-raised-button (click)="openCreateQuestionsDialog()">{{ 'QUESTIONNAIRES.NEWQUESTION' | translate }}</button>
 </div>
 
@@ -47,14 +47,32 @@
       <mat-expansion-panel *ngFor="let quest of question" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{quest.category}}
+            Categoria: {{quest.category}}
           </mat-panel-title>
           <mat-panel-description>
-            {{quest.statement}}
+            Descripcion: {{quest.statement}}
           </mat-panel-description>
         </mat-expansion-panel-header>
         <div mat-dialog>
-          {{quest.difficulty}}
+          Dificultad de la pregunta: {{quest.difficulty}}
+        </div>
+        <div mat-dialog>
+          La respuesta 1: {{quest.answer1}}
+        </div>
+        <div mat-dialog>
+          La respuesta 2: {{quest.answer2}}
+        </div>
+        <div mat-dialog>
+          La respuesta 3: {{quest.answer3}}
+        </div>
+        <div mat-dialog>
+          La respuesta 4: {{quest.answer4}}
+        </div>
+        <div mat-dialog>
+          La respuesta 5: {{quest.answer5}}
+        </div>
+        <div mat-dialog>
+          La respuesta 6: {{quest.answer6}}
         </div>
       </mat-expansion-panel>
     </mat-accordion>

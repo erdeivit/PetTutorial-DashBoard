@@ -31,9 +31,27 @@ export class ViewQuestionnairesDialogComponent {
   }
 }
 
+export interface DialogViewQuestions {
+  // PARA SI QUIERO LLEVARME ALGUNA INFORMACION AL DIALOG
+  questionshtml: Array<Question>;
+
+}
+@Component({
+  selector: 'app-viewquestionsdialogcomponent',
+  templateUrl: 'viewQuestionsDialogComponent.html',
+})
+export class ViewQuestionsDialogComponent {
+  constructor(
+    public dialogRef: MatDialogRef<ViewQuestionsDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogViewQuestions) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
 export interface DialogCreateQuestionnaires {
   // PARA SI QUIERO LLEVARME ALGUNA INFORMACION AL DIALOG
-
 }
 @Component({
   selector: 'app-createquestionnairesdialogcomponent',
@@ -67,10 +85,7 @@ export class CreateQuestionnairesDialogComponent {
   }
 }
 
-export interface DialogCreateQuestions {
-  // PARA SI QUIERO LLEVARME ALGUNA INFORMACION AL DIALOG
-
-}
+export interface DialogCreateQuestions { }
 @Component({
   selector: 'app-createquestionsdialogcomponent',
   templateUrl: 'createQuestionsDialogComponent.html',
@@ -79,11 +94,23 @@ export interface DialogCreateQuestions {
 export class CreateQuestionsDialogComponent {
   public option1: boolean;
   public option2: boolean;
+  public respuesta1: boolean;
+  public respuesta2: boolean;
+  public respuesta3: boolean;
+  public respuesta4: boolean;
+  public respuesta5: boolean;
+  public respuesta6: boolean;
   constructor(
     public dialogRef: MatDialogRef<CreateQuestionsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogCreateQuestions) {
     this.option1 = false;
     this.option2 = false;
+    this.respuesta1 = false;
+    this.respuesta2 = false;
+    this.respuesta3 = false;
+    this.respuesta4 = false;
+    this.respuesta5 = false;
+    this.respuesta6 = false;
   }
 
   onNoClick(): void {
@@ -100,6 +127,73 @@ export class CreateQuestionsDialogComponent {
   public eleccion2() {
     this.option1 = false;
     this.option2 = true;
+  }
+
+  public numrespuestas(i: number) {
+    console.log(i);
+    switch (i) {
+      case 0:
+        this.respuesta1 = false;
+        this.respuesta2 = false;
+        this.respuesta3 = false;
+        this.respuesta4 = false;
+        this.respuesta5 = false;
+        this.respuesta6 = false;
+        break;
+      case 1:
+        this.respuesta1 = true;
+        this.respuesta2 = false;
+        this.respuesta3 = false;
+        this.respuesta4 = false;
+        this.respuesta5 = false;
+        this.respuesta6 = false;
+        break;
+      case 2:
+        this.respuesta1 = true;
+        this.respuesta2 = true;
+        this.respuesta3 = false;
+        this.respuesta4 = false;
+        this.respuesta5 = false;
+        this.respuesta6 = false;
+        break;
+      case 3:
+        this.respuesta1 = true;
+        this.respuesta2 = true;
+        this.respuesta3 = true;
+        this.respuesta4 = false;
+        this.respuesta5 = false;
+        this.respuesta6 = false;
+        break;
+      case 4:
+        this.respuesta1 = true;
+        this.respuesta2 = true;
+        this.respuesta3 = true;
+        this.respuesta4 = true;
+        this.respuesta5 = false;
+        this.respuesta6 = false;
+        break;
+      case 5:
+        this.respuesta1 = true;
+        this.respuesta2 = true;
+        this.respuesta3 = true;
+        this.respuesta4 = true;
+        this.respuesta5 = true;
+        this.respuesta6 = false;
+        break;
+      case 6:
+        this.respuesta1 = true;
+        this.respuesta2 = true;
+        this.respuesta3 = true;
+        this.respuesta4 = true;
+        this.respuesta5 = true;
+        this.respuesta6 = true;
+        break;
+
+
+
+
+    }
+
   }
 }
 
@@ -155,6 +249,25 @@ export class QuestionnaireComponent implements OnInit {
     });
 
   }
+  public openViewQuestionsDialog(): void {
+    console.log('ViewQuestionsDialogComponent');
+    const dialogRef = this.dialog.open(ViewQuestionsDialogComponent,
+      {
+        height: 'auto',
+        width: '700px',
+        position: {
+          top: '70px',
+          right: '300px'
+        },
+        data: { questionshtml: this.question }
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //RECOGER DATOS AL CERRAR
+    });
+
+  }
 
   public openCreateQuestionnairesDialog(): void {
     console.log('openCreateQuestionnairesDialog');
@@ -190,8 +303,11 @@ export class QuestionnaireComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The CreateQuestionsDialogComponent was closed');
-      result["teacherId"] = this.utilsService.currentUser.userId;
       console.log(result);
+
+      //var obj = Object.values(result);
+      result["teacherId"] = this.utilsService.currentUser.userId;
+
       this.questionnaireService.saveQuestion(result).subscribe(
         (() => {
         }),
@@ -200,11 +316,20 @@ export class QuestionnaireComponent implements OnInit {
           this.alertService.show(error.toString());
         }));
       //RECOGER DATOS AL CERRAR
+
+      this.getMyQuestions();
     });
 
   }
 
   public ngOnInit(): void {
+
+    this.getMyQuestionnaires();
+    this.getMyQuestions();
+
+  }
+
+  public getMyQuestionnaires() {
     this.questionnaireService.getMyQuestionnaires(this.utilsService.currentUser.userId).subscribe(
       ((Questionnaires: Questionnaire[]) => {
         this.questionnaires = Questionnaires;
@@ -214,7 +339,9 @@ export class QuestionnaireComponent implements OnInit {
         this.loadingService.hide();
         this.alertService.show(error.toString());
       }));
+  }
 
+  public getMyQuestions() {
     this.questionnaireService.getMyQuestions(this.utilsService.currentUser.userId).subscribe(
       ((Question: Question[]) => {
         this.question = Question;
@@ -224,41 +351,6 @@ export class QuestionnaireComponent implements OnInit {
         this.loadingService.hide();
         this.alertService.show(error.toString());
       }));
-
   }
 
-
 }
-
-
-
-/*
-    public goToResultQuestionnaire(): void {
-
-      this.router.navigate([this.returnUrl, this.questionnaireId]);
-    }
-    */
-/*
-
-if (this.utilsService.role === Role.TEACHER) {
-
-  this.questionnaireService.getMyQuestionnaire(this.questionnaireId).subscribe(
-    ((questionnaire: Questionnaire) => {
-      this.myQuestionnaire = questionnaire;
-      this.loadingService.hide();
-    }),
-    ((error: Response) => {
-      this.loadingService.hide();
-      this.alertService.show(error.toString());
-    }));
-  /*
-        this.questionnaireService.getMyQuestionnaireQuestions(this.questionnaireId).subscribe(
-          ((questions: Array<Question>) => {
-            this.myQuestions = questions;
-            this.loadingService.hide();
-          }),
-          ((error: Response) => {
-            this.loadingService.hide();
-            this.alertService.show(error.toString());
-          }));
-          */

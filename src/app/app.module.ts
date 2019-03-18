@@ -47,7 +47,7 @@ import { GamesComponent } from './pages/games/games';
 
 // tslint:disable-next-line: max-line-length
 import { QuestionnaireComponent, ViewQuestionnairesDialogComponent, CreateQuestionnairesDialogComponent } from './pages/questionnaire/questionnaire';
-import { CreateQuestionsDialogComponent } from './pages/questionnaire/questionnaire';
+import { CreateQuestionsDialogComponent, ViewQuestionsDialogComponent } from './pages/questionnaire/questionnaire';
 import { ViewQuestionnariesComponent } from './pages/questionnaire/view_questionnaires/view_questionnaires';
 import { ViewQuestionsComponent } from './pages/questionnaire/view_questions/view_questions';
 import { CreateQuestionComponent } from './pages/questionnaire/create_question/create_question';
@@ -154,7 +154,8 @@ export function createTranslateLoader(http: Http) {
     ViewQuestionnairesDialogComponent,
     CreateQuestionnairesDialogComponent,
     CreateQuestionsDialogComponent,
-
+    ViewQuestionsDialogComponent,
+    
     DeleteQuestionnaireComponent,
     CreatePointComponent,
     DeletePointComponent,
@@ -262,6 +263,7 @@ export function createTranslateLoader(http: Http) {
   entryComponents: [ConfirmationDialogComponent,
     ViewQuestionnairesDialogComponent,
     CreateQuestionnairesDialogComponent,
-    CreateQuestionsDialogComponent]
+    CreateQuestionsDialogComponent,
+    ViewQuestionsDialogComponent]
 })
 export class AppModule { }
