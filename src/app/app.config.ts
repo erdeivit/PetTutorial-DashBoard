@@ -12,9 +12,9 @@ export class AppConfig {
   public static get MATTERS_URL(): string { return this.SERVER_URL + '/api/matters'; }
   public static get GRADES_URL(): string { return this.SERVER_URL + '/api/grades'; }
   public static get GROUP_URL(): string { return this.SERVER_URL + '/api/groups'; }
-  public static get QUESTIONNAIRE_URL(): string { return this.SERVER_URL + '/api/questionnaires'; }
+  public static get QUESTIONNAIRE_URL(): string { return this.SERVER_URL + '/api/Questionnaires'; }
   public static get QUESTION_URL(): string { return this.SERVER_URL + '/api/Questions'; }
-  public static get QUESTIONNAIREGAME_URL(): string { return this.SERVER_URL + '/api/NO LA USO'; }
+  public static get QUESTIONNAIREGAME_URL(): string { return this.SERVER_URL + '/api/QuestionnaireGames'; }
 
 
   public static get ANSWER_URL(): string { return this.SERVER_URL + '/api/answers'; }
@@ -46,6 +46,7 @@ export class AppConfig {
   public static get ASSISTANCE_URL(): string { return '/assistance'; }
   public static get QUESTIONNAIRES_URL(): string { return '/questionnaire'; }
   public static get QUESTIONS_URL(): string { return '/question'; }
+  public static get QUESTIONNAIRESGAME_URL(): string { return '/QuestionnairesGame'; }
 
   public static get ANSWERS_URL(): string { return '/answers'; }
   public static get CORRECTANSWERS_URL(): string { return '/correctAnswers'; }

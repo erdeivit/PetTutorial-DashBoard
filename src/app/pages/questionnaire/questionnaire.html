@@ -1,85 +1,9 @@
 <div class="questionnaire-content">
-  <button mat-raised-button (click)=openViewQuestionnairesDialog()>{{ 'QUESTIONNAIRES.MYQUESTIONNAIRES'|translate }}</button>
-  <button mat-raised-button (click)="openCreateQuestionnairesDialog()">{{ 'QUESTIONNAIRES.CREATE' | translate }}</button>
+  <button mat-raised-button
+    (click)=openViewQuestionnairesDialog()>{{ 'QUESTIONNAIRES.MYQUESTIONNAIRES'|translate }}</button>
+  <button mat-raised-button
+    (click)="openCreateQuestionnairesDialog()">{{ 'QUESTIONNAIRES.CREATE' | translate }}</button>
   <button mat-raised-button (click)="openViewQuestionsDialog()">{{ 'QUESTIONNAIRES.MYQUESTIONS' | translate }}</button>
-  <button mat-raised-button (click)="openCreateQuestionsDialog()">{{ 'QUESTIONNAIRES.NEWQUESTION' | translate }}</button>
+  <button mat-raised-button
+    (click)="openCreateQuestionsDialog()">{{ 'QUESTIONNAIRES.NEWQUESTION' | translate }}</button>
 </div>
-
-<mat-tab-group>
-  <mat-tab label="{{'QUESTIONNAIRES.MYQUESTIONNAIRES'|translate }}">
-    <h5 mat-subheader>{{'QUESTIONNAIRES.MYQUESTIONNAIRES'|translate }}</h5>
-    <mat-accordion>
-      <mat-expansion-panel *ngFor="let Questionnaire of questionnaires" hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{Questionnaire.name}}
-          </mat-panel-title>
-          <mat-panel-description>
-            {{Questionnaire.description}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div mat-dialog>
-          {{Questionnaire.question}}
-        </div>
-        <mat-action-row>
-          <button mat-button (click)="doSomething(Questionnaire.id)"> Your Text</button>
-        </mat-action-row>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </mat-tab>
-  <mat-tab label="{{ 'QUESTIONNAIRES.NEWQUESTION' | translate }}"> Content 2
-    <div class="form-group">
-      <mat-form-field>
-        <mat-select placeholder="{{ 'QUESTIONNAIRES.TYPEOFQUESTION' | translate }}">
-          <mat-option>{{ 'QUESTIONNAIRES.TYPEOFQUESTION1' | translate }}</mat-option>
-          <mat-option value="option1">{{ 'QUESTIONNAIRES.TYPEOFQUESTION2' | translate }}</mat-option>
-          <mat-option value="option2">{{ 'QUESTIONNAIRES.TYPEOFQUESTION3' | translate }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </mat-tab>
-  <mat-tab label="{{ 'QUESTIONNAIRES.MYQUESTIONS' | translate }}">
-
-    <!-- TODO:  PLANTEARSE AÑADR UN FILTRO DE CATEGORIA -->
-
-    <h5 mat-subheader>{{ 'QUESTIONNAIRES.MYQUESTIONS' | translate }}</h5>
-    <mat-accordion>
-      <mat-expansion-panel *ngFor="let quest of question" hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Categoria: {{quest.category}}
-          </mat-panel-title>
-          <mat-panel-description>
-            Descripcion: {{quest.statement}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div mat-dialog>
-          Dificultad de la pregunta: {{quest.difficulty}}
-        </div>
-        <div mat-dialog>
-          La respuesta 1: {{quest.answer1}}
-        </div>
-        <div mat-dialog>
-          La respuesta 2: {{quest.answer2}}
-        </div>
-        <div mat-dialog>
-          La respuesta 3: {{quest.answer3}}
-        </div>
-        <div mat-dialog>
-          La respuesta 4: {{quest.answer4}}
-        </div>
-        <div mat-dialog>
-          La respuesta 5: {{quest.answer5}}
-        </div>
-        <div mat-dialog>
-          La respuesta 6: {{quest.answer6}}
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </mat-tab>
-  <mat-tab label="Fourd"> Content 4
-
-
-
-  </mat-tab>
-</mat-tab-group>

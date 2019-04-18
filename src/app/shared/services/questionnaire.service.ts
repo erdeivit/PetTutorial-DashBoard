@@ -50,6 +50,17 @@ export class QuestionnaireService {
 
   }
 
+  public getMyQuestionnairesGame(id: number): Observable<QuestionnaireGame[]> {
+
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.TEACHER_URL + "/" + String(id) + AppConfig.QUESTIONNAIRESGAME_URL;
+    console.log(url);
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => QuestionnaireGame.toObjectArray(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+
+  }
+
   /**
    * This method returns all questionnaires of the logged
    * in user.
@@ -117,17 +128,48 @@ export class QuestionnaireService {
     return Observable.throw(errMsg);
   }
 
-  public saveQuestion(stringData: JSON): Observable<Questionnaire> {
+  public saveQuestion(stringData: JSON): Observable<Question> {
 
     const options = this.utilsService.getOptions();
 
     let url: string;
     url = AppConfig.QUESTION_URL;
+    console.log(url);
+    const postParams = stringData;
+    return this.http.post(url, postParams, options)
+      .map(response => {
+        this.utilsService.currentQuestion = Question.toObject(response.json());
+        return Question;
+      })
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+  public saveQuestionnaire(stringData: JSON): Observable<Questionnaire> {
+
+    const options = this.utilsService.getOptions();
+    console.log("STRINGDATA");
+    delete stringData['questionshtml']
+    let url: string;
+    url = AppConfig.QUESTIONNAIRE_URL;
     const postParams = stringData;
     return this.http.post(url, postParams, options)
       .map(response => {
         this.utilsService.currentQuestionnaire = Questionnaire.toObject(response.json());
         return Questionnaire;
+      })
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+
+  }
+  public saveQuestionnaireGame(stringData: JSON): Observable<QuestionnaireGame> {
+
+    const options = this.utilsService.getOptions();
+    let url: string;
+    url = AppConfig.QUESTIONNAIREGAME_URL;
+    delete stringData['questionnaireshtml']
+    const postParams = stringData;
+    return this.http.post(url, postParams, options)
+      .map(response => {
+        this.utilsService.currentQuestionnaireGame = QuestionnaireGame.toObject(response.json());
+        return QuestionnaireGame;
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
 

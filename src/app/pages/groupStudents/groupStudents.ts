@@ -52,7 +52,6 @@ export class GroupStudentsComponent implements OnInit {
   showGames() {
     this.router.navigate([this.returnUrl, this.groupId]);
 
-
   }
 
 

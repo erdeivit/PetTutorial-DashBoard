@@ -5,7 +5,7 @@
     "LOGOUT": "Logout",
     "LEGAL": "Legal warning",
     "PRIVACY": "Privacy",
-    "MARK": "Classpip ©2016-2017. Code licensed under an Apache-2 License"
+    "MARK": "Classpip ©2016-2019. Code licensed under an Apache-2 License"
   },
   "HOME": {
     "TITLE": "Home",
@@ -406,7 +406,7 @@
   },
 
   "COMPETITIONS": {
-    "TITLE": "Competiciones",
+    "TITLE": "Competitions",
     "SUBTITLE": "Tus competiciones:",
     "AVAILABLE": "Competiciones disponibles",
     "NONE_STUDENT": "No participas en ninguna competición.",
@@ -530,7 +530,7 @@
     "FINISHED": "Este torneo ha finalizado"
   },
   "TEAMS": {
-    "TITLE": "Creación de equipos",
+    "TITLE": "Teams",
     "INTRO": "Introduzca los nombres de los equipos que desee crear:",
     "TEAM": "Equipo",
     "GROUP": "Seleccione el grupo del cual desea crear los equipos",
@@ -541,5 +541,8 @@
     "FINISHED": "Los equipos han sido creados correctamente",
     "RETURN": "Volver a la página de la competición",
     "INNUMBER": "Enter a number"
+  },
+  "ASSISTANCE": {
+    "TITLE": "Assistance"
   }
 }

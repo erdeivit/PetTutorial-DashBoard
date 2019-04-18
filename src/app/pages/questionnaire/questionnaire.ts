@@ -1,17 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatFormFieldModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
-import { MatTableModule } from '@angular/material/table';
 import { Login, Group, Role, Questionnaire, Question, QuestionnaireGame } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingService, UtilsService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
-
+import { SelectionModel } from '@angular/cdk/collections';
 
 export interface DialogViewQuestionnaires {
-  // PARA SI QUIERO LLEVARME ALGUNA INFORMACION AL DIALOG
-  questionnaireshtml: Array<Questionnaire>;
-
 }
 @Component({
   selector: 'app-viewquestionnairesdialog',
@@ -32,9 +28,6 @@ export class ViewQuestionnairesDialogComponent {
 }
 
 export interface DialogViewQuestions {
-  // PARA SI QUIERO LLEVARME ALGUNA INFORMACION AL DIALOG
-  questionshtml: Array<Question>;
-
 }
 @Component({
   selector: 'app-viewquestionsdialogcomponent',
@@ -51,7 +44,7 @@ export class ViewQuestionsDialogComponent {
 }
 
 export interface DialogCreateQuestionnaires {
-  // PARA SI QUIERO LLEVARME ALGUNA INFORMACION AL DIALOG
+
 }
 @Component({
   selector: 'app-createquestionnairesdialogcomponent',
@@ -71,17 +64,8 @@ export class CreateQuestionnairesDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  public eleccion0() {
-    this.option1 = false;
-    this.option2 = false;
-  }
-  public eleccion1() {
-    this.option1 = true;
-    this.option2 = false;
-  }
-  public eleccion2() {
-    this.option1 = false;
-    this.option2 = true;
+  public myFn(id: string) {
+    console.log(id);
   }
 }
 
@@ -188,12 +172,7 @@ export class CreateQuestionsDialogComponent {
         this.respuesta5 = true;
         this.respuesta6 = true;
         break;
-
-
-
-
     }
-
   }
 }
 
@@ -279,15 +258,32 @@ export class QuestionnaireComponent implements OnInit {
           top: '70px',
           right: '300px'
         },
-        data: {}
+        data: { questionshtml: this.question }
       });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The CreateQuestionnairesDialogComponent was closed');
       console.log(result);
       //RECOGER DATOS AL CERRAR
+
+      if (result != undefined) {
+        //var obj = Object.values(result);
+        result["teacherId"] = this.utilsService.currentUser.userId;
+
+        this.questionnaireService.saveQuestionnaire(result).subscribe(
+          (() => {
+          }),
+          ((error: Response) => {
+            this.loadingService.hide();
+            this.alertService.show(error.toString());
+          }));
+        this.getMyQuestionnaires();
+      }
     });
+
+
   }
+
   public openCreateQuestionsDialog(): void {
     console.log('CreateQuestionsDialogComponent');
     const dialogRef = this.dialog.open(CreateQuestionsDialogComponent,
@@ -305,19 +301,18 @@ export class QuestionnaireComponent implements OnInit {
       console.log('The CreateQuestionsDialogComponent was closed');
       console.log(result);
 
-      //var obj = Object.values(result);
-      result["teacherId"] = this.utilsService.currentUser.userId;
-
-      this.questionnaireService.saveQuestion(result).subscribe(
-        (() => {
-        }),
-        ((error: Response) => {
-          this.loadingService.hide();
-          this.alertService.show(error.toString());
-        }));
-      //RECOGER DATOS AL CERRAR
-
-      this.getMyQuestions();
+      if (result != undefined) {
+        //var obj = Object.values(result);
+        result["teacherId"] = this.utilsService.currentUser.userId;
+        this.questionnaireService.saveQuestion(result).subscribe(
+          (() => {
+          }),
+          ((error: Response) => {
+            this.loadingService.hide();
+            this.alertService.show(error.toString());
+          }));
+        this.getMyQuestions();
+      }
     });
 
   }
@@ -330,6 +325,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   public getMyQuestionnaires() {
+
     this.questionnaireService.getMyQuestionnaires(this.utilsService.currentUser.userId).subscribe(
       ((Questionnaires: Questionnaire[]) => {
         this.questionnaires = Questionnaires;
@@ -342,6 +338,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   public getMyQuestions() {
+    console.log("getMYQUESTIONS");
     this.questionnaireService.getMyQuestions(this.utilsService.currentUser.userId).subscribe(
       ((Question: Question[]) => {
         this.question = Question;

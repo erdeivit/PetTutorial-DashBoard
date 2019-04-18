@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CdkTableModule } from '@angular/cdk/table';
-import { MatInputModule, MatTableModule, MatToolbarModule } from '@angular/material';
+import { MatInputModule, MatToolbarModule, } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -11,6 +11,7 @@ import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-tra
 import { NgxLoremIpsumModule } from 'ngx-lorem-ipsum';
 import { DatePipe } from '@angular/common';
 import { MatSortModule } from '@angular/material/sort';
+
 
 // aplication
 import { AppComponent } from './app.component';
@@ -43,7 +44,7 @@ import { JourneysTennisComponent } from './pages/competitions/tennis/journeys-te
 import { TournamentsComponent } from './pages/competitions/tennis/tournaments/tournaments';
 import { CreateCardComponent } from './pages/createCard/createCard';
 
-import { GamesComponent } from './pages/games/games';
+import { GamesComponent, CreateNewGameComponent } from './pages/games/games';
 
 // tslint:disable-next-line: max-line-length
 import { QuestionnaireComponent, ViewQuestionnairesDialogComponent, CreateQuestionnairesDialogComponent } from './pages/questionnaire/questionnaire';
@@ -121,7 +122,6 @@ import { GradeMatterRelComponent } from './pages/forms/grade-matter-rel/grade-ma
 import { GroupsFormComponent } from './pages/forms/groups-form/groups-form.component';
 import { GroupStudentsFormComponent } from './pages/forms/group-students-form/group-students-form.component';
 
-
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, AppConfig.LANG_PATH, AppConfig.LANG_EXT);
 }
@@ -155,7 +155,8 @@ export function createTranslateLoader(http: Http) {
     CreateQuestionnairesDialogComponent,
     CreateQuestionsDialogComponent,
     ViewQuestionsDialogComponent,
-    
+    CreateNewGameComponent,
+
     DeleteQuestionnaireComponent,
     CreatePointComponent,
     DeletePointComponent,
@@ -212,9 +213,7 @@ export function createTranslateLoader(http: Http) {
     MatToolbarModule,
     CdkTableModule,
     MatInputModule,
-    MatTableModule,
     ReactiveFormsModule,
-    MatTableModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     AppMaterialModule,
@@ -264,6 +263,6 @@ export function createTranslateLoader(http: Http) {
     ViewQuestionnairesDialogComponent,
     CreateQuestionnairesDialogComponent,
     CreateQuestionsDialogComponent,
-    ViewQuestionsDialogComponent]
+    ViewQuestionsDialogComponent, CreateNewGameComponent]
 })
 export class AppModule { }

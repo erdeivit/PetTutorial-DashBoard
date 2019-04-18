@@ -1,4 +1,45 @@
 <div class="groups-content">
-  <h5>MY GAMES</h5>
+  <button mat-raised-button (click)="openCreateNewGameComponent()">CREAR UN NUEVO JUEGO</button>
   <!--<button mat-raised-button >(click)="showGames(group)">{{ 'GROUP.MYGAMES |translate }}</button>-->
+  <br>
+  <h5>JUEGOS ACTIVOS</h5>
+
+  <style>
+    .example-headers-align .mat-expansion-panel-header-title,
+    .example-headers-align .mat-expansion-panel-header-description {
+      flex-basis: 0;
+    }
+
+    .example-headers-align .mat-expansion-panel-header-description {
+      justify-content: space-between;
+      align-items: center;
+    }
+
+  </style>
+  <div *ngIf="questionnaireGame">
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel *ngFor="let questGame of questionnaireGame" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{questGame.id}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{questGame.name}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div mat-dialog>
+          Tiempo de Pregunta {{questGame.question_time}}
+          <br>
+          Tiempo de Questionario {{questGame.questionnaire_time}}
+          <br>
+          Tiempo de Questionario {{questGame.start_date}}
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <!-- https://material.angular.io/components/expansion/examples -->
+  <!-- TAMBIEN TENGO UN EJEMPLO DE DATE -->
+
+
 </div>
