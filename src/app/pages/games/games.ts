@@ -15,9 +15,14 @@ export interface DialogCreateNewGame {
   templateUrl: 'createNewGame.html',
 })
 export class CreateNewGameComponent {
+  public team: boolean;
   constructor(
     public dialogRef: MatDialogRef<CreateNewGameComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogCreateNewGame) { }
+
+    @Inject(MAT_DIALOG_DATA) public data: DialogCreateNewGame) {
+    this.team = false;
+  }
+
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -25,6 +30,10 @@ export class CreateNewGameComponent {
   public getInformation(id: String) {
     console.log(id);
 
+  }
+  public teamMode(boolean: boolean) {
+    this.team = boolean;
+    console.log(this.team);
   }
 }
 
@@ -41,6 +50,7 @@ export class GamesComponent implements OnInit {
   public questionnaireGame: Array<QuestionnaireGame>;
   public questionnaires: Array<Questionnaire>;
 
+
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -54,7 +64,9 @@ export class GamesComponent implements OnInit {
     this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
 
+
   }
+
   public openCreateNewGameComponent(): void {
     console.log('ViewQuestionsDialogComponent');
     const dialogRef = this.dialog.open(CreateNewGameComponent,
@@ -65,7 +77,9 @@ export class GamesComponent implements OnInit {
           top: '70px',
           right: '300px'
         },
-        data: { questionnaireshtml: this.questionnaires }
+        data: {
+          questionnaireshtml: this.questionnaires
+        }
       });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -76,7 +90,7 @@ export class GamesComponent implements OnInit {
         //var obj = Object.values(result);
         result['teacherId'] = this.utilsService.currentUser.userId;
         result['start_date'] = new Date();
-        result['studentId'] = this.groupId;
+        result['groupId'] = this.groupId;
 
         this.questionnaireService.saveQuestionnaireGame(result).subscribe(
           (() => {

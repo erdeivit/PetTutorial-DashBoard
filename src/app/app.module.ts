@@ -207,12 +207,13 @@ export function createTranslateLoader(http: Http) {
     GroupStudentsFormComponent
   ],
   imports: [
+    MatFormFieldModule,
+    MatInputModule,
     BrowserModule,
     FormsModule,
     CommonModule,
     MatToolbarModule,
     CdkTableModule,
-    MatInputModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
@@ -221,7 +222,6 @@ export function createTranslateLoader(http: Http) {
     FormsModule,
     HttpModule,
     MatDialogModule,
-    MatFormFieldModule,
     routing,
     TranslateModule.forRoot({
       provide: TranslateLoader,

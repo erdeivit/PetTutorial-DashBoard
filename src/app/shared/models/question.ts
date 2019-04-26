@@ -14,10 +14,12 @@ export class Question {
   private _difficulty: string;
   private _category: string;
   private _explanation: string;
+  private _teacherId: string;
+  private _questionnaireId: string;
 
   // tslint:disable-next-line: max-line-length
   constructor(id?: string, statement?: string, answer1?: string, answer2?: string, answer3?: string, answer4?: string, answer5?: string, answer6?: string, correctanswer?: string, image?: string, difficulty?: string, category?: string,
-    explanation?: string) {
+    explanation?: string, teacherId?: string, questionnaireId?: string) {
     this._id = id;
     this._statement = statement;
     this._answer1 = answer1;
@@ -31,6 +33,8 @@ export class Question {
     this._difficulty = difficulty;
     this._category = category;
     this._explanation = explanation;
+    this._teacherId = teacherId;
+    this._questionnaireId = questionnaireId;
   }
 
   /* tslint:disable */
@@ -51,6 +55,9 @@ export class Question {
       result.difficulty = object.difficulty;
       result.category = object.category;
       result.explanation = object.explanation;
+      result.questionnaireId = object.questionnaireId;
+      result.teacherId = object.teacherId;
+
     }
     return result;
   }
@@ -160,5 +167,19 @@ export class Question {
 
   public set explanation(value: string) {
     this._explanation = value;
+  }
+  public get questionnaireId(): string {
+    return this._questionnaireId;
+  }
+
+  public set questionnaireId(value: string) {
+    this._questionnaireId = value;
+  }
+  public get teacherId(): string {
+    return this._teacherId;
+  }
+
+  public set teacherId(value: string) {
+    this._teacherId = value;
   }
 }

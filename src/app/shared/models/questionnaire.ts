@@ -7,12 +7,14 @@ export class Questionnaire {
   private _description: string;
   private _image: string;
   private _question: Question[];
+  private _teacherId: string;
 
-  constructor(id?: string, name?: string, description?: string, image?: string) {
+  constructor(id?: string, name?: string, description?: string, image?: string, teacherId?: string) {
     this._id = id;
     this._name = name;
     this._description = description;
     this._image = image;
+    this._teacherId = teacherId;
   }
 
   /* tslint:disable */
@@ -25,6 +27,7 @@ export class Questionnaire {
       result.description = object.description; // el campo object.DESCRIPTION tiene que ser el mismo que en  la BBDD
       result.image = object.image;
       result.question = object.questionId;
+      result.teacherId = object.teacherId;
     }
     return result;
   }
@@ -75,5 +78,11 @@ export class Questionnaire {
   }
   public set question(value: Question[]) {
     this._question = value;
+  }
+  public get teacherId(): string {
+    return this._teacherId;
+  }
+  public set teacherId(value: string) {
+    this._teacherId = value;
   }
 }
