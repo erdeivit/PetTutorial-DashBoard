@@ -303,7 +303,20 @@ export class QuestionnaireComponent implements OnInit {
 
       if (result != undefined) {
         //var obj = Object.values(result);
-        result["teacherId"] = this.utilsService.currentUser.userId;
+        result['teacherId'] = this.utilsService.currentUser.userId;
+        if (result['answer2']) {
+          //const answers = result['correctanswer'].split(',', 6);
+          if (result['correctanswer'].length > 1) {
+            result['type'] = 'multiAnswer';
+          }
+          else {
+            result['type'] = 'classic';
+          }
+        }
+        else {
+          result['type'] = 'openQuestion';
+        }
+
         this.questionnaireService.saveQuestion(result).subscribe(
           (() => {
           }),
