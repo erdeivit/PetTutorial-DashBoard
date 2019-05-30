@@ -34,6 +34,7 @@ export class GroupStudentsComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.groupId = params['id'];
     });
+    console.log(this.groupId);
     if (this.utilsService.role === Role.TEACHER) {
 
       this.loadingService.show();

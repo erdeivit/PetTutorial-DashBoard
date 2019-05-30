@@ -17,7 +17,7 @@ table {
 td,
 th {
   border: 1px solid #dddddd;
-  text-align: left;
+  text-align: center;
   padding: 8px;
 }
 
@@ -27,4 +27,73 @@ tr:nth-child(even) {
 
 .green {
   color: green;
+}
+
+.example-viewport {
+  height: 200px;
+  width: 200px;
+  border: 1px solid black;
+}
+
+.example-item {
+  height: 50px;
+}
+
+.my-class {
+  height: 400px;
+  width: 600px;
+  border-radius: 10px;
+  background: lightcyan;
+  color: #039be5;
+}
+
+.btn1 {
+  color: rgb(49, 46, 46) !important;
+  background-color: #3f51b5 !important;
+  border-radius: 10px 10px 10px 10px !important;
+  font-size: 16px !important;
+  width: 300px !important;
+  font-size: 24px !important;
+  padding: 32px 16px !important;
+  position: relative !important;
+  left: 50px !important;
+
+}
+
+.btn2 {
+  color: rgb(49, 46, 46) !important;
+  background-color: #3f51b5 !important;
+  border-radius: 10px 10px 10px 10px !important;
+  font-size: 16px !important;
+  width: 300px !important;
+  font-size: 24px !important;
+  padding: 32px 16px !important;
+  position: relative !important;
+  margin-left: 100px !important;
+}
+
+.btn3 {
+  color: rgb(49, 46, 46) !important;
+  background-color: #3f51b5 !important;
+  border-radius: 10px 10px 10px 10px !important;
+  font-size: 16px !important;
+  width: 300px !important;
+  font-size: 24px !important;
+  padding: 32px 16px !important;
+  position: relative !important;
+  margin-top: 70px !important;
+  margin-left: 50px !important;
+}
+
+.btn4 {
+  color: rgb(49, 46, 46) !important;
+  background-color: #3f51b5 !important;
+  border-radius: 10px 10px 10px 10px !important;
+  font-size: 16px !important;
+  width: 300px !important;
+  font-size: 24px !important;
+  padding: 32px 16px !important;
+  position: relative !important;
+  margin-top: 70px !important;
+  margin-left: 50px !important;
 }

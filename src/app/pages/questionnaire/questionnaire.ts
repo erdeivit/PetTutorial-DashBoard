@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatFormFieldModule } from '@angular/material';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
 import { Login, Group, Role, Questionnaire, Question, QuestionnaireGame } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
@@ -12,19 +13,35 @@ export interface DialogViewQuestionnaires {
 @Component({
   selector: 'app-viewquestionnairesdialog',
   templateUrl: 'viewQuestionnairesDialog.html',
+  styleUrls: ['./questionnaire.scss']
 })
 export class ViewQuestionnairesDialogComponent {
+  public Questions: Array<Question>;
   constructor(
     public dialogRef: MatDialogRef<ViewQuestionnairesDialogComponent>,
+    public questionnaireService: QuestionnaireService,
+    public alertService: AlertService,
+    public loadingService: LoadingService,
+
     @Inject(MAT_DIALOG_DATA) public data: DialogViewQuestionnaires) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-  public getInformation(id: String) {
+  public getInformation(id: string) {
     console.log(id);
+    this.questionnaireService.getQuestionsofQuestionnaire(id).subscribe(
+      ((Questions: Array<Question>) => {
+        this.Questions = Questions;
+        console.log(this.Questions);
+      }),
+      ((error: Response) => {
+        this.loadingService.hide();
+        this.alertService.show(error.toString());
+      }));
 
   }
+
 }
 
 export interface DialogViewQuestions {
@@ -32,6 +49,7 @@ export interface DialogViewQuestions {
 @Component({
   selector: 'app-viewquestionsdialogcomponent',
   templateUrl: 'viewQuestionsDialogComponent.html',
+  styleUrls: ['./questionnaire.scss']
 })
 export class ViewQuestionsDialogComponent {
   constructor(
@@ -84,6 +102,7 @@ export class CreateQuestionsDialogComponent {
   public respuesta4: boolean;
   public respuesta5: boolean;
   public respuesta6: boolean;
+  dificultad = 'ESCOJA UNA DIFICULTAD';
   constructor(
     public dialogRef: MatDialogRef<CreateQuestionsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogCreateQuestions) {
@@ -188,6 +207,7 @@ export class QuestionnaireComponent implements OnInit {
   public animal: string;
   public QuestionnaireNumber: string;
   public QuestionParameters: Array<string>;
+  public QuestionForm: FormGroup;
 
 
   //public myQuestions: Array<Question>;
@@ -205,12 +225,13 @@ export class QuestionnaireComponent implements OnInit {
     public utilsService: UtilsService,
     public loadingService: LoadingService,
     public questionnaireService: QuestionnaireService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private _formBuilder: FormBuilder) {
     this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
   }
   public openViewQuestionnairesDialog(): void {
-    console.log('openViewQuestionnairesDialog');
+    this.getMyQuestionnaires();
     const dialogRef = this.dialog.open(ViewQuestionnairesDialogComponent,
       {
         height: 'auto',
@@ -229,10 +250,10 @@ export class QuestionnaireComponent implements OnInit {
 
   }
   public openViewQuestionsDialog(): void {
-    console.log('ViewQuestionsDialogComponent');
+    this.getMyQuestions();
     const dialogRef = this.dialog.open(ViewQuestionsDialogComponent,
       {
-        height: 'auto',
+        height: '500px',
         width: '700px',
         position: {
           top: '70px',
@@ -249,10 +270,9 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   public openCreateQuestionnairesDialog(): void {
-    console.log('openCreateQuestionnairesDialog');
     const dialogRef = this.dialog.open(CreateQuestionnairesDialogComponent,
       {
-        height: 'auto',
+        height: '500px',
         width: '700px',
         position: {
           top: '70px',
@@ -262,40 +282,47 @@ export class QuestionnaireComponent implements OnInit {
       });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The CreateQuestionnairesDialogComponent was closed');
-      console.log(result);
       //RECOGER DATOS AL CERRAR
-
+      console.log(result);
       if (result != undefined) {
-        //var obj = Object.values(result);
-        result["teacherId"] = this.utilsService.currentUser.userId;
-
+        var idquestions = result['questionId'];
+        var intidquestions = [];
+        console.log(idquestions);
+        for (let i = 0; i < idquestions.length; i++) {
+          intidquestions[i] = parseInt(idquestions[i]);
+        }
+        console.log(intidquestions);
+        result['teacherId'] = this.utilsService.currentUser.userId;
+        result['questionId'] = intidquestions;
         this.questionnaireService.saveQuestionnaire(result).subscribe(
           (() => {
+            this.getMyQuestionnaires();
           }),
           ((error: Response) => {
             this.loadingService.hide();
             this.alertService.show(error.toString());
           }));
-        this.getMyQuestionnaires();
       }
     });
-
-
   }
 
   public openCreateQuestionsDialog(): void {
-    console.log('CreateQuestionsDialogComponent');
     const dialogRef = this.dialog.open(CreateQuestionsDialogComponent,
       {
         height: 'auto',
-        width: '700px',
+        width: '500px',
         position: {
           top: '70px',
-          right: '300px'
+          right: '400px'
         },
         data: {}
       });
+
+    dialogRef.backdropClick().subscribe(() => {
+      // Close the dialog
+      console.log("CLOSE");
+      dialogRef.close();
+    })
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The CreateQuestionsDialogComponent was closed');
@@ -305,7 +332,6 @@ export class QuestionnaireComponent implements OnInit {
         //var obj = Object.values(result);
         result['teacherId'] = this.utilsService.currentUser.userId;
         if (result['answer2']) {
-          //const answers = result['correctanswer'].split(',', 6);
           if (result['correctanswer'].length > 1) {
             result['type'] = 'multiAnswer';
           }
@@ -315,31 +341,44 @@ export class QuestionnaireComponent implements OnInit {
         }
         else {
           result['type'] = 'openQuestion';
+          result['correctanswer'] = result['answer1'];
         }
 
         this.questionnaireService.saveQuestion(result).subscribe(
           (() => {
+            this.getMyQuestions();
           }),
           ((error: Response) => {
             this.loadingService.hide();
             this.alertService.show(error.toString());
           }));
-        this.getMyQuestions();
       }
     });
 
   }
 
+  public saveQuestion() {
+    console.log("SAVE");
+  }
   public ngOnInit(): void {
 
     this.getMyQuestionnaires();
     this.getMyQuestions();
 
+    // Defining 3 forms:
+    this.QuestionForm = this._formBuilder.group({
+      statement: ['', Validators.required],
+      image: ['', Validators.required],
+      difficulty: ['', Validators.required],
+      category: ['', Validators.required],
+      explantion: ['', Validators.required],
+      respuesta: ['', Validators.required]
+    });
   }
 
   public getMyQuestionnaires() {
 
-    this.questionnaireService.getMyQuestionnaires(this.utilsService.currentUser.userId).subscribe(
+    this.questionnaireService.getMyQuestionnaires(String(this.utilsService.currentUser.userId)).subscribe(
       ((Questionnaires: Questionnaire[]) => {
         this.questionnaires = Questionnaires;
         console.log(this.questionnaires);
@@ -352,7 +391,7 @@ export class QuestionnaireComponent implements OnInit {
 
   public getMyQuestions() {
     console.log("getMYQUESTIONS");
-    this.questionnaireService.getMyQuestions(this.utilsService.currentUser.userId).subscribe(
+    this.questionnaireService.getMyQuestions(String(this.utilsService.currentUser.userId)).subscribe(
       ((Question: Question[]) => {
         this.question = Question;
         console.log(this.question);

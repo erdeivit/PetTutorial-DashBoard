@@ -11,49 +11,68 @@
 
 </style>
 <mat-dialog-content>
-  <mat-form-field appearance="legacy">
-    <input matInput type="text" [(ngModel)]="data.name" placeholder="Nombre del juego" required>
+  <mat-form-field style="width:400px !important" appearance="legacy">
+    <input style="width:400px !important" matInput type="text" [(ngModel)]="data.name" placeholder="Nombre del juego"
+      required>
   </mat-form-field>
-  <br>
-  <mat-form-field appearance="outline">
-    <input matInput [(ngModel)]="data.question_time" placeholder="Tiempo de pregunta">
+  <mat-form-field style="width:400px !important">
+    <mat-select style="width:400px !important" placeholder="¿Quieres incluir tiempo?" required>
+      <mat-option (click)="tiempo(0)" value="0">Tiempo por cada pregunta</mat-option>
+      <mat-option (click)="tiempo(1)" value="Respuesta Abierta">Tiempo por el questionario</mat-option>
+      <mat-option (click)="tiempo(2)" value="2">No</mat-option>
+    </mat-select>
   </mat-form-field>
-  <br>
-  <mat-form-field appearance="outline">
-    <input matInput [(ngModel)]="data.questionnaire_time" placeholder="Tiempo de questionario total">
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="questiontime">
+    <input style="width:400px !important" matInput [(ngModel)]="data.question_time" placeholder="Tiempo de pregunta"
+      required>
   </mat-form-field>
-  <br>
-  ¿Jugar en equipos?<mat-select placeholder="¿Jugar en equipos?" [(ngModel)]="data.teamMode">
-    <mat-option (click)="teamMode(false)" value="0">Individual</mat-option>
-    <mat-option (click)="teamMode(true)">Equipos</mat-option>
-  </mat-select>
-  <mat-select placeholder="Select" *ngIf="team" [(ngModel)]="data.teamMode">
-    <mat-option value="1">Cada miembro del equipo con su dipositivo</mat-option>
-    <mat-option value="2">Cada equipo con un dispositivo</mat-option>
-  </mat-select>
-  Tipo de Juego <mat-select placeholder="Tipo de Juego" *ngIf="team" [(ngModel)]="data.gameMode">
-    <mat-option value="QuizPip">QuizPip</mat-option>
-    <mat-option value="1by1"> 1 por 1</mat-option>
-    <mat-option value="Qlasspip">Questionario en línea</mat-option>
-    <mat-option value="FlipCardsPip">Pregunta/Respuesta</mat-option>
-    <mat-option value="TimeToLearn">Pregunta aleatoria en cualquier momento</mat-option>
-    <mat-option value="TrivialClip"> Juego del Trivial</mat-option>
-  </mat-select>
-  <br>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.finish_date" [matDatepicker]="picker" placeholder="Fecha limite para responder">
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="questionnairetime">
+    <input style="width:400px !important" matInput [(ngModel)]="data.questionnaire_time"
+      placeholder="Tiempo de questionario total" required>
+  </mat-form-field>
+  <mat-form-field style="width:400px !important">
+    <mat-select style="width:400px !important" placeholder="¿Jugar en equipos?" [(ngModel)]="data.teamMode" required>
+      <mat-option (click)="teamModeSelect(false)" value="1">Individual</mat-option>
+      <mat-option (click)="teamModeSelect(true)" value="-1">Equipos</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field style="width:400px !important" *ngIf="team" required>
+    <mat-select style="width:400px !important" placeholder="Uno o múltiplos dispositivos?" [(ngModel)]="data.teamMode2">
+      <mat-option value="2">Cada miembro del equipo con su dipositivo</mat-option>
+      <mat-option value="3">Cada equipo con un dispositivo</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field style="width:400px !important">
+    <mat-select style="width:400px !important" placeholder="Tipo de Juego" [(ngModel)]="data.gameMode" required>
+      <mat-option value="QuizPip">QuizPip</mat-option>
+      <mat-option value="1by1">Pregunta a Pregunta</mat-option>
+      <mat-option value="Qlasspip">Questionario en línea</mat-option>
+      <mat-option value="FlipCardsPip">Pregunta/Respuesta</mat-option>
+      <mat-option value="TimeToLearn">Pregunta aleatoria en cualquier momento</mat-option>
+      <mat-option value="TrivialClip"> Juego del Trivial</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field style="width:400px !important">
+    <input style="width:400px !important" matInput [(ngModel)]="data.start_date" [matDatepicker]="picker"
+      placeholder="Fecha de inicio para responder" required>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
+  <mat-form-field style="width:400px !important">
+    <input style="width:400px !important" matInput [(ngModel)]="data.finish_date" [matDatepicker]="picker2"
+      placeholder="Fecha final para responder" required>
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Selecciona el questionnario a utilizar" [(ngModel)]="data.questionnaireId" required>
+      <mat-option *ngFor="let Questionnaire of data.questionnaireshtml" value={{Questionnaire.id}}>
+        {{Questionnaire.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
   <br>
-
-  <br>
-  <mat-select placeholder="Selecciona las respuestas correctas" [(ngModel)]="data.questionnaireId">
-    <mat-option *ngFor="let Questionnaire of data.questionnaireshtml" value={{Questionnaire.id}}>
-      {{Questionnaire.name}}</mat-option>
-  </mat-select> <br>
   <button [mat-dialog-close]="data" mat-raised-button color="primary">Crear</button>
 </mat-dialog-content>
 
-<!-- https://material.angular.io/components/expansion/examples -->
+<!--https://material.angular.io/components/expansion/examples -->
 <!-- TAMBIEN TENGO UN EJEMPLO DE DATE>-->

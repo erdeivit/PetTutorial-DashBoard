@@ -7,6 +7,7 @@ import { LoginComponent } from './pages/login/login';
 import { HomeComponent } from './pages/home/home';
 import { GroupsComponent } from './pages/groups/groups';
 import { GamesComponent } from './pages/games/games';
+import { GamesResultComponent } from './pages/gamesResult/gamesResult';
 import { PointsBadgesComponent } from './pages/pointsbadges/pointsbadges';
 import { CollectionsComponent } from './pages/collections/collections';
 import { CollectionStudentComponent } from './pages/collectionStudent/collectionStudent';
@@ -17,15 +18,6 @@ import { AssistanceComponent } from './pages/assistance/assistance';
 
 
 import { QuestionnaireComponent } from './pages/questionnaire/questionnaire';
-import { ViewQuestionnariesComponent } from './pages/questionnaire/view_questionnaires/view_questionnaires';
-import { CreateQuestionComponent } from './pages/questionnaire/create_question/create_question';
-import { ViewQuestionsComponent } from './pages/questionnaire/view_questions/view_questions';
-import { CreateQuestionnaireComponent } from './pages/questionnaire/create_questionnaire/create_questionnaire';
-
-
-
-
-
 
 
 import { CreatePointComponent } from './pages/createPoint/createPoint';
@@ -80,6 +72,7 @@ const appRoutes: Routes = [
 
   { path: 'groupStudents/:id', component: GroupStudentsComponent, canActivate: [AuthGuard] },
   { path: 'myGames/:id', component: GamesComponent, canActivate: [AuthGuard] },
+  { path: 'myGames/:id/showResult', component: GamesResultComponent, canActivate: [AuthGuard] },
 
 
   { path: 'schooldetails/:id', component: SchoolDetailsComponent, canActivate: [AuthGuard] },
@@ -100,10 +93,6 @@ const appRoutes: Routes = [
   { path: 'viewcard', component: ViewCardComponent, canActivate: [AuthGuard] },
 
   { path: 'questionnaire', component: QuestionnaireComponent, canActivate: [AuthGuard] },
-  { path: 'questionnaire/viewquestionaires', component: ViewQuestionnariesComponent, canActivate: [AuthGuard] },
-  { path: 'questionnaire/createquestionnaire', component: CreateQuestionnaireComponent, canActivate: [AuthGuard] },
-  { path: 'questionnaire/viewquestions', component: ViewQuestionsComponent, canActivate: [AuthGuard] },
-  { path: 'questionnaire/createquestion', component: CreateQuestionComponent, canActivate: [AuthGuard] },
 
 
 

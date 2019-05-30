@@ -1,0 +1,52 @@
+<mat-form-field style="width:400px !important;margin:20px;">
+  <mat-select style="width:400px !important" placeholder="¿Selecciona un cuestionario?">
+    <mat-option *ngFor="let quest of questionnaireGame" (click)="seleccionarcuestionario(quest.name)"
+      value="{{quest.name}}">{{quest.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div class="groups-content" *ngIf="selectedQuestionnaire.length>=1">
+  <table>
+    <tr width="35">
+      <th>Id estudiante</th>
+      <th>Nota final</th>
+      <th>Respuestas acertadas</th>
+      <th>Respuestas falladas</th>
+      <th>Respuestas del usuario</th>
+    </tr>
+    <tr *ngFor="let result of selectedQuestionnaire">
+      <td>{{result.studentId}}</td>
+      <td>{{result.finalNote}}</td>
+      <td>{{result.numAnswerCorrect}} </td>
+      <td>{{result.numAnswerNoCorrect}}</td>
+      <td>{{result.userAnswers}}</td>
+    </tr>
+  </table>
+</div>
+<div class="groups-content" *ngIf="selectedQuestionnaire.length<1 || !selectedQuestionnaire ===undefined ">
+  SIN RESULTADOS
+</div>
+
+
+<!-- ME PETA AQUI Y NO SE PORQUE
+
+<div class="groupStudent-content">
+  <table>
+    <tr width="35">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <tr *ngFor="let result of resultQuestionnaire">
+      <td><img src="{{result.avatar.image}}" width="50" height="50"></td>
+      <td>{{result.id}}</td>
+      <td>{{result.name}}</td>
+      <td>{{result.surname}}</td>
+      <td>{{result.email}}</td>
+    </tr>
+  </table>
+</div>
+-->

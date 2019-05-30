@@ -10,7 +10,7 @@
   }
 
 </style>
-<div *ngIf="data.questionnaireshtml">
+<mat-dialog-content>
   <mat-accordion class="example-headers-align">
     <mat-expansion-panel *ngFor="let Questionnaire of data.questionnaireshtml" hideToggle>
       <mat-expansion-panel-header (click)="getInformation(Questionnaire.id)">
@@ -22,11 +22,23 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div mat-dialog>
-        {{Questionnaire.question}}
+        <table>
+          <tr width="35">
+            <th>Imagen</th>
+            <th>Id</th>
+            <th>Categoria</th>
+            <th>Enunciado</th>
+          </tr>
+          <tr *ngFor="let quest of Questions">
+            <td><img src="{{quest.image}}" width="50" height="50"></td>
+            <td>{{quest.id}}</td>
+            <td>{{quest.category}}</td>
+            <td>{{quest.statement}}</td>
+          </tr>
+        </table>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
-</div>
-
+</mat-dialog-content>
 <!-- https://material.angular.io/components/expansion/examples -->
 <!-- TAMBIEN TENGO UN EJEMPLO DE DATE -->

@@ -1,9 +1,16 @@
 <div class="questionnaire-content">
-  <button mat-raised-button
-    (click)=openViewQuestionnairesDialog()>{{ 'QUESTIONNAIRES.MYQUESTIONNAIRES'|translate }}</button>
-  <button mat-raised-button
-    (click)="openCreateQuestionnairesDialog()">{{ 'QUESTIONNAIRES.CREATE' | translate }}</button>
-  <button mat-raised-button (click)="openViewQuestionsDialog()">{{ 'QUESTIONNAIRES.MYQUESTIONS' | translate }}</button>
-  <button mat-raised-button
-    (click)="openCreateQuestionsDialog()">{{ 'QUESTIONNAIRES.NEWQUESTION' | translate }}</button>
+  <button class="btn1" mat-raised-button
+    (click)=openViewQuestionnairesDialog()>{{ 'QUESTIONNAIRES.MYQUESTIONNAIRES'|translate }}<br> <img
+      src="https://test.cambridgeinstitute.net/wptestnivel/wp-content/uploads/2017/03/01_icono_test_EN.png" width="80"
+      height="80"></button>
+  <button class="btn2" mat-raised-button
+    (click)="openCreateQuestionnairesDialog()">{{ 'QUESTIONNAIRES.CREATE' | translate }}<br> <img
+      src="https://image.flaticon.com/icons/png/512/1430/1430566.png" width="80" height="80"></button>
+  <br>
+  <button class="btn3" mat-raised-button
+    (click)="openViewQuestionsDialog()">{{ 'QUESTIONNAIRES.MYQUESTIONS' | translate }} <br> <img
+      src="https://img.icons8.com/metro/420/questions.png" width="80" height="80"></button>
+  <button class="btn4" mat-raised-button
+    (click)="openCreateQuestionsDialog()">{{ 'QUESTIONNAIRES.NEWQUESTION' | translate }} <br> <img
+      src="https://image.flaticon.com/icons/png/512/27/27472.png" width="80" height="80"></button>
 </div>

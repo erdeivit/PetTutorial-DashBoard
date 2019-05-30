@@ -11,19 +11,21 @@
 
 </style>
 <mat-dialog-content>
-  <mat-form-field appearance="outline">
-    <input matInput [(ngModel)]="data.name" placeholder="Nombre del Cuestionario">
+  <mat-form-field style="width:400px !important" appearance="outline">
+    <input style="width:400px !important" matInput [(ngModel)]="data.name" placeholder="Nombre del Cuestionario"
+      required>
   </mat-form-field>
   <br>
-  <mat-form-field appearance="outline">
-    <input matInput [(ngModel)]="data.description" placeholder="Descripcion del Cuestionario">
+  <mat-form-field style="width:400px !important" appearance="outline">
+    <input style="width:400px !important" matInput [(ngModel)]="data.description"
+      placeholder="Descripcion del Cuestionario" required>
   </mat-form-field>
   <br>
-  <mat-form-field appearance="outline">
-    <input matInput [(ngModel)]="data.image" placeholder="Imagen del Cuestionario">
+  <mat-form-field style="width:400px !important" appearance="outline">
+    <input style="width:400px !important" matInput [(ngModel)]="data.image" placeholder="Imagen del Cuestionario"
+      required>
   </mat-form-field>
   <br>
-  Selecciona las preguntas que quieres incluir al questionario
   <br>
   <table>
     <tr width="35">
@@ -41,8 +43,9 @@
   </table>
   <br>
   <br>
-  <mat-form-field>
-    <mat-select placeholder="Selecciona las preguntas" [(ngModel)]="data.questionId" multiple>
+  <mat-form-field style="width:400px !important">
+    <mat-select style="width:400px !important" placeholder="Seleccionas las preguntas del cuestionario"
+      [(ngModel)]="data.questionId" multiple>
       <mat-option *ngFor="let quest of data.questionshtml" value={{quest.id}}>
         {{quest.statement}}</mat-option>
     </mat-select>

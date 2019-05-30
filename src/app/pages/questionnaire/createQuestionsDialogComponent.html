@@ -11,71 +11,78 @@
 
 </style>
 <mat-dialog-content>
-  <mat-form-field appearance="legacy">
-    <input matInput type="text" [(ngModel)]="data.statement" placeholder="Enunciado de la pregunta" required>
+  <h1>Creando una pregunta...</h1>
+  <mat-form-field style="width:400px !important" appearance="legacy">
+    <input style="width:400px !important" matInput type="text" [(ngModel)]="data.statement"
+      placeholder="Enunciado de la pregunta" required>
   </mat-form-field>
   <br>
-  <mat-form-field appearance="outline">
-    <input matInput [(ngModel)]="data.image" placeholder="Introduzca la url de la imagen">
+  <mat-form-field style="width:400px !important" appearance="outline">
+    <input style="width:400px !important" matInput [(ngModel)]="data.image" placeholder="Introduzca una imagen(URL)"
+      required>
   </mat-form-field>
   <br>
-  <mat-form-field appearance="outline">
-    <input matInput [(ngModel)]="data.difficulty" placeholder="Dificultad de la pregunta">
+  <mat-form-field style="width:400px !important" appearance="legacy">
+    <input style="width:400px !important" matInput type="text" [(ngModel)]="data.category"
+      placeholder="Categoria de la pregunta" required>
+  </mat-form-field>
+  <mat-form-field style="width:400px !important">
+    <mat-select style="width:400px !important" style="font-size: 15px;" placeholder="Dificultad de la pregunta"
+      [(ngModel)]="data.difficulty" required>
+      <mat-option value="Hard">Difícil</mat-option>
+      <mat-option value="Medium">Medio</mat-option>
+      <mat-option value="Easy">Fácil</mat-option>
+    </mat-select>
   </mat-form-field>
   <br>
-  <mat-form-field appearance="outline">
-    <input matInput [(ngModel)]="data.category" placeholder="Categoria de la pregunta">
+  <mat-form-field style="width:400px !important" appearance="outline">
+    <input style="width:400px !important" matInput [(ngModel)]="data.explanation" placeholder="Argumente la respuesta"
+      required>
   </mat-form-field>
   <br>
-  <mat-form-field appearance="outline">
-    <input matInput [(ngModel)]="data.explanation" placeholder="Argumente la respuesta" required>
+  <mat-form-field style="width:400px !important">
+    <mat-select style="width:400px !important" placeholder="¿Cuantas respuestas quieres?" required>
+      <mat-option (click)="numrespuestas(0)" value="0">0</mat-option>
+      <mat-option (click)="numrespuestas(1)" value="Respuesta Abierta">Respuesta Abierta</mat-option>
+      <mat-option (click)="numrespuestas(2)" value="2">2</mat-option>
+      <mat-option (click)="numrespuestas(3)" value="3">3</mat-option>
+      <mat-option (click)="numrespuestas(4)" value="4">4</mat-option>
+      <mat-option (click)="numrespuestas(5)" value="5">5</mat-option>
+      <mat-option (click)="numrespuestas(6)" value="6">6</mat-option>
+    </mat-select>
   </mat-form-field>
   <br>
-
-  ¿Cuantas respuestas quieres?<mat-select placeholder="¿Cuantas respuestas quieres?">
-    <mat-option (click)="numrespuestas(0)" value="0">0</mat-option>
-    <mat-option (click)="numrespuestas(1)" value="Respuesta Abierta">Respuesta Abierta</mat-option>
-    <mat-option (click)="numrespuestas(2)" value="2">2</mat-option>
-    <mat-option (click)="numrespuestas(3)" value="3">3</mat-option>
-    <mat-option (click)="numrespuestas(4)" value="4">4</mat-option>
-    <mat-option (click)="numrespuestas(5)" value="5">5</mat-option>
-    <mat-option (click)="numrespuestas(6)" value="6">6</mat-option>
-  </mat-select>
-  <mat-form-field appearance="outline" *ngIf="respuesta1" required>
-    <input matInput [(ngModel)]="data.answer1" placeholder="Respuesta número 1">
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta1" required>
+    <input style="width:400px !important" matInput [(ngModel)]="data.answer1" placeholder="Respuesta número 1">
+  </mat-form-field>
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta2">
+    <input style="width:400px !important" matInput [(ngModel)]="data.answer2" placeholder="Respuesta número 2">
+  </mat-form-field>
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta3">
+    <input style="width:400px !important" matInput [(ngModel)]="data.answer3" placeholder="Respuesta número 3">
+  </mat-form-field>
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta4">
+    <input style="width:400px !important" matInput [(ngModel)]="data.answer4" placeholder="Respuesta número 4">
+  </mat-form-field>
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta5">
+    <input style="width:400px !important" matInput [(ngModel)]="data.answer5" placeholder="Respuesta número 5">
+  </mat-form-field>
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta6">
+    <input style="width:400px !important" matInput [(ngModel)]="data.answer6" placeholder="Respuesta número 6">
+  </mat-form-field>
+  <mat-form-field style="width:400px !important" *ngIf="respuesta2">
+    <mat-select style="width:400px !important" placeholder="Selecciona las respuestas correctas"
+      [(ngModel)]="data.correctanswer" multiple required>
+      <mat-option *ngIf="respuesta1" value={{data.answer1}}>{{data.answer1}}</mat-option>
+      <mat-option *ngIf="respuesta2" value={{data.answer2}}>{{data.answer2}}</mat-option>
+      <mat-option *ngIf="respuesta3" value={{data.answer3}}>{{data.answer3}}</mat-option>
+      <mat-option *ngIf="respuesta4" value={{data.answer4}}>{{data.answer4}}</mat-option>
+      <mat-option *ngIf="respuesta5" value={{data.answer5}}>{{data.answer5}}</mat-option>
+      <mat-option *ngIf="respuesta6" value={{data.answer6}}>{{data.answer6}}</mat-option>
+    </mat-select>
   </mat-form-field>
   <br>
-  <mat-form-field appearance="outline" *ngIf="respuesta2">
-    <input matInput [(ngModel)]="data.answer2" placeholder="Respuesta número 2">
-  </mat-form-field>
-  <br>
-  <mat-form-field appearance="outline" *ngIf="respuesta3">
-    <input matInput [(ngModel)]="data.answer3" placeholder="Respuesta número 3">
-  </mat-form-field>
-  <br>
-  <mat-form-field appearance="outline" *ngIf="respuesta4">
-    <input matInput [(ngModel)]="data.answer4" placeholder="Respuesta número 4">
-  </mat-form-field>
-  <br>
-  <mat-form-field appearance="outline" *ngIf="respuesta5">
-    <input matInput [(ngModel)]="data.answer5" placeholder="Respuesta número 5">
-  </mat-form-field>
-  <br>
-  <mat-form-field appearance="outline" *ngIf="respuesta6">
-    <input matInput [(ngModel)]="data.answer6" placeholder="Respuesta número 6">
-  </mat-form-field>
-  <br>
-  <mat-select *ngIf="respuesta1" placeholder="Selecciona las respuestas correctas" [(ngModel)]="data.correctanswer"
-    multiple>
-    <mat-option *ngIf="respuesta1" value={{data.answer1}}>{{data.answer1}}</mat-option>
-    <mat-option *ngIf="respuesta2" value={{data.answer2}}>{{data.answer2}}</mat-option>
-    <mat-option *ngIf="respuesta3" value={{data.answer3}}>{{data.answer3}}</mat-option>
-    <mat-option *ngIf="respuesta4" value={{data.answer4}}>{{data.answer4}}</mat-option>
-    <mat-option *ngIf="respuesta5" value={{data.answer5}}>{{data.answer5}}</mat-option>
-    <mat-option *ngIf="respuesta6" value={{data.answer6}}>{{data.answer6}}</mat-option>
-  </mat-select>
-  <br>
-  <button [mat-dialog-close]="data" mat-raised-button color="primary">Crear</button>
+  <button [mat-dialog-close]="data" mat-raised-button color="primary" click="saveQuestion()">Crear</button>
 </mat-dialog-content>
 
 <!-- https://material.angular.io/components/expansion/examples -->

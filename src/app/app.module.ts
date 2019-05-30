@@ -11,6 +11,7 @@ import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-tra
 import { NgxLoremIpsumModule } from 'ngx-lorem-ipsum';
 import { DatePipe } from '@angular/common';
 import { MatSortModule } from '@angular/material/sort';
+import { MAT_DATE_LOCALE } from '@angular/material';
 
 
 // aplication
@@ -45,16 +46,11 @@ import { TournamentsComponent } from './pages/competitions/tennis/tournaments/to
 import { CreateCardComponent } from './pages/createCard/createCard';
 
 import { GamesComponent, CreateNewGameComponent } from './pages/games/games';
+import { GamesResultComponent } from './pages/gamesResult/gamesResult';
 
 // tslint:disable-next-line: max-line-length
 import { QuestionnaireComponent, ViewQuestionnairesDialogComponent, CreateQuestionnairesDialogComponent } from './pages/questionnaire/questionnaire';
 import { CreateQuestionsDialogComponent, ViewQuestionsDialogComponent } from './pages/questionnaire/questionnaire';
-import { ViewQuestionnariesComponent } from './pages/questionnaire/view_questionnaires/view_questionnaires';
-import { ViewQuestionsComponent } from './pages/questionnaire/view_questions/view_questions';
-import { CreateQuestionComponent } from './pages/questionnaire/create_question/create_question';
-import { CreateQuestionnaireComponent } from './pages/questionnaire/create_questionnaire/create_questionnaire';
-
-
 
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
 
@@ -109,7 +105,8 @@ import { SchoolComponent } from './pages/school/school.component';
 import { TeacherHomeComponent } from './pages/teacher-home/teacher-home.component';
 import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { SchoolFormComponent } from './pages/forms/school-form/school-form.component';
-import { MatPaginatorModule, MatDialogModule, MatFormFieldModule } from '@angular/material';
+import { MatPaginatorModule, MatDialogModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 import { SchoolDetailsComponent } from './pages/school-details/school-details.component';
 import { TeacherFormComponent } from './pages/forms/teacher-form/teacher-form.component';
@@ -145,12 +142,9 @@ export function createTranslateLoader(http: Http) {
     DeleteCollectionComponent,
 
     GamesComponent,
+    GamesResultComponent,
 
     QuestionnaireComponent,
-    ViewQuestionnariesComponent,
-    CreateQuestionnaireComponent,
-    CreateQuestionComponent,
-    ViewQuestionsComponent,
     ViewQuestionnairesDialogComponent,
     CreateQuestionnairesDialogComponent,
     CreateQuestionsDialogComponent,
@@ -256,7 +250,8 @@ export function createTranslateLoader(http: Http) {
     LevelService,
     RewardService,
     TeacherService,
-    StudentService
+    StudentService,
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmationDialogComponent,

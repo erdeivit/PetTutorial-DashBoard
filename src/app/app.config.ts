@@ -15,11 +15,10 @@ export class AppConfig {
   public static get QUESTIONNAIRE_URL(): string { return this.SERVER_URL + '/api/Questionnaires'; }
   public static get QUESTION_URL(): string { return this.SERVER_URL + '/api/Questions'; }
   public static get QUESTIONNAIREGAME_URL(): string { return this.SERVER_URL + '/api/QuestionnaireGames'; }
-
+  public static get RESULTQUESTIONNAIRE_URL(): string { return this.SERVER_URL + '/api/ResultQuestionnaires'; }
 
   public static get ANSWER_URL(): string { return this.SERVER_URL + '/api/answers'; }
   public static get CORRECTANSWER_URL(): string { return this.SERVER_URL + '/api/correctAnswers'; }
-  public static get RESULTQUESTIONNAIRE_URL(): string { return this.SERVER_URL + '/api/ResultQuestionnaires'; }
   public static get POINT_URL(): string { return this.SERVER_URL + '/api/points'; }
   public static get BADGE_URL(): string { return this.SERVER_URL + '/api/badges'; }
   public static get RANGE_URL(): string { return this.SERVER_URL + '/api/ranges'; }
@@ -47,6 +46,7 @@ export class AppConfig {
   public static get QUESTIONNAIRES_URL(): string { return '/questionnaire'; }
   public static get QUESTIONS_URL(): string { return '/question'; }
   public static get QUESTIONNAIRESGAME_URL(): string { return '/QuestionnairesGame'; }
+  public static get QUESGAME_URL(): string { return '/questionnaireGame'; }
 
   public static get ANSWERS_URL(): string { return '/answers'; }
   public static get CORRECTANSWERS_URL(): string { return '/correctAnswers'; }

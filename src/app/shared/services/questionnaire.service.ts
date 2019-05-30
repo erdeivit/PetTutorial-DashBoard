@@ -9,6 +9,7 @@ import { Login } from '../models/login';
 import { Question } from '../models/question';
 import { Questionnaire } from '../models/questionnaire';
 import { QuestionnaireGame } from '../models/questionnaireGame';
+import { ResultQuestionnaire } from '../models/resultQuestionnaire';
 import { Student } from '../models/student';
 import { CorrectAnswer } from '../models/correctAnswer';
 import { TranslateService } from 'ng2-translate/ng2-translate';
@@ -29,20 +30,30 @@ export class QuestionnaireService {
    * logged in user into the application
    * @return {Array<Questionnaire>} returns the list of questionnaires
    */
-  public getMyQuestionnaires(id: number): Observable<Questionnaire[]> {
+  public getMyQuestionnaires(id: string): Observable<Questionnaire[]> {
 
     const options = this.utilsService.getOptions();
-    const url: string = AppConfig.TEACHER_URL + "/" + String(id) + AppConfig.QUESTIONNAIRES_URL;
+    const url: string = AppConfig.TEACHER_URL + "/" + id + AppConfig.QUESTIONNAIRES_URL;
     console.log(url);
     return this.http.get(url, options)
       .map((response: Response, index: number) => Questionnaire.toObjectArray(response.json()))
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }
-
-  public getMyQuestions(id: number): Observable<Question[]> {
+  public getQuestionnaireOfQUestionnaireGame(id: string): Observable<Questionnaire> {
 
     const options = this.utilsService.getOptions();
-    const url: string = AppConfig.TEACHER_URL + "/" + String(id) + AppConfig.QUESTIONS_URL;
+    const url: string = AppConfig.QUESTIONNAIRE_URL + "/" + id;
+    console.log(url);
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => Questionnaire.toObject(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+
+  }
+
+  public getMyQuestions(id: string): Observable<Question[]> {
+
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.TEACHER_URL + "/" + id + AppConfig.QUESTIONS_URL;
     console.log(url);
     return this.http.get(url, options)
       .map((response: Response, index: number) => Question.toObjectArray(response.json()))
@@ -50,16 +61,90 @@ export class QuestionnaireService {
 
   }
 
-  public getMyQuestionnairesGame(id: number): Observable<QuestionnaireGame[]> {
+  public getQuestionsofQuestionnaire(id: string): Observable<Array<Question>> {
+
+    var ret: Array<Question> = new Array<Question>();
+    return Observable.create(observer => {
+      this.getQuestionnaire(id).subscribe(
+        questionnaire => {
+          questionnaire.question.forEach(id => {
+            this.getQuestion(id).subscribe(
+              question => {
+                // this.getQuestionCorrectAnswers(question.id).subscribe(
+                // correctAnswer => {
+                // question.correctAnswer = correctAnswer;
+                ret.push(question);
+                observer.next(ret);
+                observer.complete();
+                // }, error => observer.error(error))
+              }, error => observer.error(error))
+          });
+        }, error => observer.error(error)
+      )
+    });
+  }
+  public getQuestionnaire(id: string): Observable<Questionnaire> {
+    let options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+
+    var url: string = AppConfig.QUESTIONNAIRE_URL + '/' + id;
+
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => {
+        let questionnaire: Questionnaire = Questionnaire.toObject(response.json())
+        this.utilsService.currentQuestionnaire = questionnaire;
+        return questionnaire;
+      })
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+
+  }
+  public getResults(): Observable<ResultQuestionnaire[]> {
+
+    let options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+    var url: string = AppConfig.RESULTQUESTIONNAIRE_URL;
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => ResultQuestionnaire.toObjectArray(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
+  public getQuestion(id: Question): Observable<Question> {
+
+    let options: RequestOptions = new RequestOptions({
+      headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
+    });
+    var url: string = AppConfig.QUESTION_URL + '/' + id;
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => {
+        let question: Question = Question.toObject(response.json())
+        return question;
+      })
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
+  public getMyQuestionnairesGame(id: string): Observable<QuestionnaireGame[]> {
 
     const options = this.utilsService.getOptions();
-    const url: string = AppConfig.TEACHER_URL + "/" + String(id) + AppConfig.QUESTIONNAIRESGAME_URL;
+    const url: string = AppConfig.TEACHER_URL + "/" + id + AppConfig.QUESTIONNAIRESGAME_URL;
     console.log(url);
+    return this.http.get(url, options)
+      .map((response: Response, index: number) => QuestionnaireGame.toObjectArray(response.json()))
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+
+  public getGroupQuestionnairesGame(id: string): Observable<QuestionnaireGame[]> {
+
+    const options = this.utilsService.getOptions();
+    const url: string = AppConfig.GROUP_URL + "/" + id + AppConfig.QUESGAME_URL;
+    console.log("LA URL" + url);
     return this.http.get(url, options)
       .map((response: Response, index: number) => QuestionnaireGame.toObjectArray(response.json()))
       .catch((error: Response) => this.utilsService.handleAPIError(error));
 
   }
+
 
   /**
    * This method returns all questionnaires of the logged
