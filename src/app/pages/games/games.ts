@@ -19,12 +19,14 @@ export class CreateNewGameComponent {
   public team: boolean;
   public questiontime: boolean;
   public questionnairetime: boolean;
+  public selectime: boolean;
   constructor(
     public dialogRef: MatDialogRef<CreateNewGameComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogCreateNewGame) {
     this.team = false;
     this.questiontime = false;
     this.questionnairetime = false;
+    this.selectime = false;
   }
 
 
@@ -39,16 +41,27 @@ export class CreateNewGameComponent {
   public tiempo(i: number) {
     switch (i) {
       case 0:
-        this.questiontime = true;
-        this.questionnairetime = false;
+        this.questiontime = false;
+        this.questionnairetime = true;
+        this.selectime = false;
         break;
       case 1:
-        this.questionnairetime = true;
+        this.selectime = true;
+        this.questionnairetime = false;
         this.questiontime = false;
         break;
       case 2:
         this.questionnairetime = false;
+        this.questiontime = true;
+        break;
+      case 3:
+        this.questionnairetime = true;
         this.questiontime = false;
+        break;
+      case 9:
+        this.questionnairetime = false;
+        this.questiontime = false;
+        this.selectime = false;
         break;
     }
   }
@@ -72,8 +85,6 @@ export class GamesComponent implements OnInit {
   public questionnaire: Questionnaire;
   public resultQuestionnaire: Array<ResultQuestionnaire>;
   public results: boolean;
-
-
 
   constructor(
     public route: ActivatedRoute,
@@ -153,8 +164,15 @@ export class GamesComponent implements OnInit {
     this.questionnaireService.getResults().subscribe(
       ((resultQuestionnaire: ResultQuestionnaire[]) => {
         this.resultQuestionnaire = resultQuestionnaire;
+        console.log(this.resultQuestionnaire);
         if (this.resultQuestionnaire.length > 0) {
-          this.results = true;
+          for (let result of this.resultQuestionnaire) {
+            console.log(result.questionnaireGame.groupId);
+            console.log(this.groupId);
+            if (result.questionnaireGame.groupId == this.groupId) {
+              this.results = true;
+            }
+          }
         }
       }),
       ((error: Response) => {
@@ -213,11 +231,10 @@ export class GamesComponent implements OnInit {
     const date = new Date();
     this.activeQuestionnaireGame = [];
     this.deadQuestionnaireGame = [];
-    console.log(new Date().getTime());
+    this.programmedQuestionnaireGame = [];
     for (let QuestionarioGame of this.questionnaireGame) {
       var diff = new Date(QuestionarioGame.finish_date).getTime() - date.getTime();
       var diff2 = new Date(QuestionarioGame.start_date).getTime() - date.getTime();
-      console.log(diff);
       // tslint:disable-next-line: max-line-length
       QuestionarioGame['str_date'] = new Date(QuestionarioGame.start_date).getDate() + '/' + (new Date(QuestionarioGame.start_date).getMonth() + 1) + '/' + new Date(QuestionarioGame.start_date).getFullYear();
       QuestionarioGame['fnsh_date'] = new Date(QuestionarioGame.finish_date).getDate() + '/' + (new Date(QuestionarioGame.finish_date).getMonth() + 1) + '/' + new Date(QuestionarioGame.finish_date).getFullYear();
@@ -233,9 +250,6 @@ export class GamesComponent implements OnInit {
         this.deadQuestionnaireGame.push(QuestionarioGame);
       }
     }
-    console.log("ACTIVOS");
-    console.log(this.activeQuestionnaireGame);
-    console.log("MUERTOS" + this.deadQuestionnaireGame);
   }
 
 }

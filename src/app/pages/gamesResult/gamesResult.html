@@ -12,41 +12,37 @@
       <th>Nota final</th>
       <th>Respuestas acertadas</th>
       <th>Respuestas falladas</th>
-      <th>Respuestas del usuario</th>
+      <th>Respuesta usuario</th>
     </tr>
     <tr *ngFor="let result of selectedQuestionnaire">
       <td>{{result.studentId}}</td>
       <td>{{result.finalNote}}</td>
       <td>{{result.numAnswerCorrect}} </td>
       <td>{{result.numAnswerNoCorrect}}</td>
-      <td>{{result.userAnswers}}</td>
+      <td>
+        <div *ngFor="let answer of result.userAnswers;let i =index">
+          <p *ngIf="answer !==null">Respuesta pregunta {{i+1}} : {{answer}}</p>
+          <p *ngIf="answer ===null">Respuesta pregunta {{i+1}} : SIN RESPUESTAS</p>
+        </div>
+      </td>
     </tr>
   </table>
 </div>
-<div class="groups-content" *ngIf="selectedQuestionnaire.length<1 || !selectedQuestionnaire ===undefined ">
+<div class=" groups-content" *ngIf="selectedQuestionnaire.length<1 || !selectedQuestionnaire ===undefined ">
   SIN RESULTADOS
 </div>
 
 
 <!-- ME PETA AQUI Y NO SE PORQUE
-
-<div class="groupStudent-content">
-  <table>
-    <tr width="35">
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
+ <tr *ngFor="let result of selectedQuestionnaire">
+      <td [attr.rowspan]="result.numTotalOfQuestions">{{result.studentId}}</td>
+      <td [attr.rowspan]="result.numTotalOfQuestions">{{result.finalNote}}</td>
+      <td [attr.rowspan]="result.numTotalOfQuestions">{{result.numAnswerCorrect}} </td>
+      <td [attr.rowspan]="result.numTotalOfQuestions">{{result.numAnswerNoCorrect}}</td>
+      <td *ngFor="let answer of result.userAnswers;let i=index">Respuesta {{i}}: {{answer}}</td>
     </tr>
 
-    <tr *ngFor="let result of resultQuestionnaire">
-      <td><img src="{{result.avatar.image}}" width="50" height="50"></td>
-      <td>{{result.id}}</td>
-      <td>{{result.name}}</td>
-      <td>{{result.surname}}</td>
-      <td>{{result.email}}</td>
+ <tr *ngFor="let answer of result.userAnswers;let i=index">
+      <td>Respuesta {{i}}: {{answer}}</td>
     </tr>
-  </table>
-</div>
 -->
