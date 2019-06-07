@@ -6,7 +6,6 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { MatInputModule, MatToolbarModule, } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 import { NgxLoremIpsumModule } from 'ngx-lorem-ipsum';
 import { DatePipe } from '@angular/common';
@@ -210,7 +209,6 @@ export function createTranslateLoader(http: Http) {
     CdkTableModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    FlexLayoutModule,
     AppMaterialModule,
     ReactiveFormsModule,
     FormsModule,

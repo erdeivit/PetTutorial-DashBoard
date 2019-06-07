@@ -25,16 +25,36 @@
     <input style="width:400px !important" matInput [(ngModel)]="data.image" placeholder="Imagen del Cuestionario"
       required>
   </mat-form-field>
+  <mat-form-field style="width:400px !important">
+    <mat-select style="width:400px !important" placeholder="Filtrar por categoria">
+      <mat-option (click)="filterbycategory(cat,data.questionshtml)" *ngFor="let cat of data.category" value={{cat}}>
+        {{cat}}</mat-option>
+    </mat-select>
+  </mat-form-field>
   <br>
   <br>
-  <table>
+  <table *ngIf="!filteredquestions">
     <tr width="35">
       <th>Imagen</th>
       <th>Id</th>
       <th>Categoria</th>
       <th>Enunciado</th>
     </tr>
-    <tr *ngFor="let quest of data.questionshtml ;let i=index" (click)=" myFn(quest.id)">
+    <tr *ngFor="let quest of data.questionshtml ;let i=index">
+      <td><img src="{{quest.image}}" width="50" height="50"></td>
+      <td>{{quest.id}}</td>
+      <td>{{quest.category}}</td>
+      <td>{{quest.statement}}</td>
+    </tr>
+  </table>
+  <table *ngIf="filteredquestions">
+    <tr width="35">
+      <th>Imagen</th>
+      <th>Id</th>
+      <th>Categoria</th>
+      <th>Enunciado</th>
+    </tr>
+    <tr *ngFor="let quest of filteredquestions ;let i=index">
       <td><img src="{{quest.image}}" width="50" height="50"></td>
       <td>{{quest.id}}</td>
       <td>{{quest.category}}</td>

@@ -72,18 +72,21 @@ export interface DialogCreateQuestionnaires {
 export class CreateQuestionnairesDialogComponent {
   public option1: boolean;
   public option2: boolean;
+  public filteredquestions: Array<Question>;
   constructor(
     public dialogRef: MatDialogRef<CreateQuestionnairesDialogComponent>,
+    public questionnaireService: QuestionnaireService,
+    public alertService: AlertService,
+    public utilsService: UtilsService,
+    public loadingService: LoadingService,
     @Inject(MAT_DIALOG_DATA) public data: DialogCreateQuestionnaires) {
-    this.option1 = false;
-    this.option2 = false;
   }
-
   onNoClick(): void {
     this.dialogRef.close();
   }
-  public myFn(id: string) {
-    console.log(id);
+  public filterbycategory(category: string, questions: Array<Question>) {
+    this.filteredquestions = questions.filter(item => item.category == category);
+    console.log(this.filteredquestions);
   }
 }
 
@@ -94,20 +97,15 @@ export interface DialogCreateQuestions { }
   styleUrls: ['./questionnaire.scss']
 })
 export class CreateQuestionsDialogComponent {
-  public option1: boolean;
-  public option2: boolean;
   public respuesta1: boolean;
   public respuesta2: boolean;
   public respuesta3: boolean;
   public respuesta4: boolean;
   public respuesta5: boolean;
   public respuesta6: boolean;
-  dificultad = 'ESCOJA UNA DIFICULTAD';
   constructor(
     public dialogRef: MatDialogRef<CreateQuestionsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogCreateQuestions) {
-    this.option1 = false;
-    this.option2 = false;
     this.respuesta1 = false;
     this.respuesta2 = false;
     this.respuesta3 = false;
@@ -119,19 +117,6 @@ export class CreateQuestionsDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  public eleccion0() {
-    this.option1 = false;
-    this.option2 = false;
-  }
-  public eleccion1() {
-    this.option1 = true;
-    this.option2 = false;
-  }
-  public eleccion2() {
-    this.option1 = false;
-    this.option2 = true;
-  }
-
   public numrespuestas(i: number) {
     console.log(i);
     switch (i) {
@@ -203,11 +188,10 @@ export class CreateQuestionsDialogComponent {
 export class QuestionnaireComponent implements OnInit {
 
   public questionnaires: Array<Questionnaire>;
-  public question: Array<Question>;
+  public questions: Array<Question>;
   public animal: string;
   public QuestionnaireNumber: string;
-  public QuestionParameters: Array<string>;
-  public QuestionForm: FormGroup;
+  public arr_categories: Array<string> = [];
 
 
   //public myQuestions: Array<Question>;
@@ -259,7 +243,7 @@ export class QuestionnaireComponent implements OnInit {
           top: '70px',
           right: '300px'
         },
-        data: { questionshtml: this.question }
+        data: { questionshtml: this.questions }
       });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -270,6 +254,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   public openCreateQuestionnairesDialog(): void {
+    this.getCategories();
     const dialogRef = this.dialog.open(CreateQuestionnairesDialogComponent,
       {
         height: '500px',
@@ -278,7 +263,10 @@ export class QuestionnaireComponent implements OnInit {
           top: '70px',
           right: '300px'
         },
-        data: { questionshtml: this.question }
+        data: {
+          questionshtml: this.questions,
+          category: this.arr_categories
+        }
       });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -304,6 +292,7 @@ export class QuestionnaireComponent implements OnInit {
           }));
       }
     });
+
   }
 
   public openCreateQuestionsDialog(): void {
@@ -355,8 +344,26 @@ export class QuestionnaireComponent implements OnInit {
       }
     });
 
-  }
 
+  }
+  public getCategories() {
+    var encontrado: boolean = false;
+    this.arr_categories = [];
+    this.arr_categories.push(this.questions[0].category);
+    console.log(this.questions);
+    for (let question of this.questions) {
+      for (var i = 0; i < this.arr_categories.length; i++) {
+        if (this.arr_categories[i] === question.category) {
+          encontrado = true;
+        }
+      }
+      if (!encontrado) {
+        this.arr_categories.push(question.category);
+      }
+      encontrado = false;
+    }
+    console.log(this.arr_categories);
+  }
   public saveQuestion() {
     console.log("SAVE");
   }
@@ -364,16 +371,6 @@ export class QuestionnaireComponent implements OnInit {
 
     this.getMyQuestionnaires();
     this.getMyQuestions();
-
-    // Defining 3 forms:
-    this.QuestionForm = this._formBuilder.group({
-      statement: ['', Validators.required],
-      image: ['', Validators.required],
-      difficulty: ['', Validators.required],
-      category: ['', Validators.required],
-      explantion: ['', Validators.required],
-      respuesta: ['', Validators.required]
-    });
   }
 
   public getMyQuestionnaires() {
@@ -393,8 +390,8 @@ export class QuestionnaireComponent implements OnInit {
     console.log("getMYQUESTIONS");
     this.questionnaireService.getMyQuestions(String(this.utilsService.currentUser.userId)).subscribe(
       ((Question: Question[]) => {
-        this.question = Question;
-        console.log(this.question);
+        this.questions = Question;
+        console.log(this.questions);
       }),
       ((error: Response) => {
         this.loadingService.hide();
