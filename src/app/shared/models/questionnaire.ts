@@ -1,7 +1,6 @@
 import { Question } from './question';
 
 export class Questionnaire {
-
   private _id: string;
   private _name: string;
   private _description: string;
@@ -20,7 +19,7 @@ export class Questionnaire {
   /* tslint:disable */
   static toObject(object: any): Questionnaire {
     /* tslint:enable */
-    let result: Questionnaire = new Questionnaire();
+    const result: Questionnaire = new Questionnaire();
     if (object != null) {
       result.id = object.id;
       result.name = object.name;
@@ -35,7 +34,7 @@ export class Questionnaire {
   /* tslint:disable */
   static toObjectArray(object: any): Array<Questionnaire> {
     /* tslint:enable */
-    let resultArray: Array<Questionnaire> = new Array<Questionnaire>();
+    const resultArray: Array<Questionnaire> = new Array<Questionnaire>();
     if (object != null) {
       for (let i = 0; i < object.length; i++) {
         resultArray.push(Questionnaire.toObject(object[i]));

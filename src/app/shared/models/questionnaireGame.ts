@@ -3,7 +3,6 @@ import { Student } from './student';
 import { Teacher } from './teacher';
 
 export class QuestionnaireGame {
-
   private _id: string;
   private _name: string;
   private _start_date: Date;
@@ -44,7 +43,7 @@ export class QuestionnaireGame {
   /* tslint:disable */
   static toObject(object: any): QuestionnaireGame {
     /* tslint:enable */
-    let result: QuestionnaireGame = new QuestionnaireGame();
+    const result: QuestionnaireGame = new QuestionnaireGame();
     if (object != null) {
       result.id = object.id;
       result.name = object.name;
@@ -70,7 +69,7 @@ export class QuestionnaireGame {
   /* tslint:disable */
   static toObjectArray(object: any): Array<QuestionnaireGame> {
     /* tslint:enable */
-    let resultArray: Array<QuestionnaireGame> = new Array<QuestionnaireGame>();
+    const resultArray: Array<QuestionnaireGame> = new Array<QuestionnaireGame>();
     if (object != null) {
       for (let i = 0; i < object.length; i++) {
         resultArray.push(QuestionnaireGame.toObject(object[i]));

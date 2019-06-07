@@ -1,17 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CdkTableModule } from '@angular/cdk/table';
-import { MatInputModule, MatToolbarModule, } from '@angular/material';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 import { NgxLoremIpsumModule } from 'ngx-lorem-ipsum';
 import { DatePipe } from '@angular/common';
-import { MatSortModule } from '@angular/material/sort';
-import { MAT_DATE_LOCALE } from '@angular/material';
-
 
 // aplication
 import { AppComponent } from './app.component';
@@ -27,7 +23,6 @@ import { PointsBadgesComponent } from './pages/pointsbadges/pointsbadges';
 import { CollectionsComponent } from './pages/collections/collections';
 import { CollectionComponent } from './pages/collection/collection';
 import { CollectionStudentComponent } from './pages/collectionStudent/collectionStudent';
-
 import { CompetitionsComponent } from './pages/competitions/competitions';
 import { CreateTeamsComponent } from './pages/create-teams/create-teams';
 // pages (competitions)
@@ -44,27 +39,26 @@ import { JourneysTennisComponent } from './pages/competitions/tennis/journeys-te
 import { TournamentsComponent } from './pages/competitions/tennis/tournaments/tournaments';
 import { CreateCardComponent } from './pages/createCard/createCard';
 
+// GAMES URL
 import { GamesComponent, CreateNewGameComponent } from './pages/games/games';
 import { GamesResultComponent } from './pages/gamesResult/gamesResult';
 
+// QUESTIONNAIRES URL
 // tslint:disable-next-line: max-line-length
 import { QuestionnaireComponent, ViewQuestionnairesDialogComponent, CreateQuestionnairesDialogComponent } from './pages/questionnaire/questionnaire';
 import { CreateQuestionsDialogComponent, ViewQuestionsDialogComponent } from './pages/questionnaire/questionnaire';
-
 import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
+import { MAT_DATE_LOCALE } from '@angular/material';
+import { MatInputModule, MatToolbarModule, } from '@angular/material';
 
 import { ViewCardComponent } from './pages/viewcard/viewcard';
-
-
 import { CreatePointComponent } from './pages/createPoint/createPoint';
 import { DeletePointComponent } from './pages/deletePoint/deletePoint';
 import { ViewPointsComponent } from './pages/viewpoints/viewpoints';
 import { ViewBadgesComponent } from './pages/viewbadges/viewbadges';
 import { CreateBadgeComponent } from './pages/createBadge/createBadge';
 import { DeleteBadgeComponent } from './pages/deleteBadge/deleteBadge';
-
 import { AssistanceComponent } from './pages/assistance/assistance';
-
 import { LanguageComponent } from './pages/language/language';
 
 // shared (components)
@@ -208,7 +202,6 @@ export function createTranslateLoader(http: Http) {
     MatToolbarModule,
     CdkTableModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     AppMaterialModule,
     ReactiveFormsModule,
     FormsModule,

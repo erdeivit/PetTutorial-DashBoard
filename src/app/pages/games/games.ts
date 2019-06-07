@@ -1,41 +1,32 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Login, Group, Role, Student, QuestionnaireGame, Questionnaire, ResultQuestionnaire } from '../../shared/models/index';
+import { Login, Student, QuestionnaireGame, Questionnaire, ResultQuestionnaire } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
-import { Route, ActivatedRoute, Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatFormFieldModule } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
-export interface DialogCreateNewGame {
-  // PARA SI QUIERO LLEVARME ALGUNA INFORMACION AL DIALOG
-  questionnaireshtml: Array<Questionnaire>;
-
-}
+// tslint:disable-next-line: no-empty-interface
+export interface DialogCreateNewGame { }
 @Component({
   selector: 'app-createnewgame',
   templateUrl: 'createNewGame.html',
   styleUrls: ['./games.scss']
 })
 export class CreateNewGameComponent {
-  public team: boolean;
-  public questiontime: boolean;
-  public questionnairetime: boolean;
-  public selectime: boolean;
+  public team = false;
+  public questiontime = false;
+  public questionnairetime = false;
+  public selectime = false;
   constructor(
     public dialogRef: MatDialogRef<CreateNewGameComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogCreateNewGame) {
-    this.team = false;
-    this.questiontime = false;
-    this.questionnairetime = false;
-    this.selectime = false;
-  }
-
+    @Inject(MAT_DIALOG_DATA) public data: DialogCreateNewGame) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
+
   public teamModeSelect(boolean: boolean) {
     this.team = boolean;
-    console.log(this.team);
   }
 
   public tiempo(i: number) {
@@ -73,19 +64,18 @@ export class CreateNewGameComponent {
   styleUrls: ['./games.scss']
 })
 export class GamesComponent implements OnInit {
-  public returnUrl: string;
+  public returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
   public groupId: string;
   public students: Array<Student>;
   public sub: {};
-  public questionnaireGame: Array<QuestionnaireGame>;
+  public questionnaireGame: Array<QuestionnaireGame> = [];
   public questionnaires: Array<Questionnaire>;
-  public activeQuestionnaireGame: Array<QuestionnaireGame>;
-  public deadQuestionnaireGame: Array<QuestionnaireGame>;
-  public programmedQuestionnaireGame: Array<QuestionnaireGame>;
+  public activeQuestionnaireGame: Array<QuestionnaireGame> = [];
+  public deadQuestionnaireGame: Array<QuestionnaireGame> = [];
+  public programmedQuestionnaireGame: Array<QuestionnaireGame> = [];
   public questionnaire: Questionnaire;
   public resultQuestionnaire: Array<ResultQuestionnaire>;
-  public results: boolean;
-
+  public results = false;
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -99,8 +89,12 @@ export class GamesComponent implements OnInit {
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
   }
 
+  /**
+   * Returns the questionnaires with the one level information of the current
+   * logged in user into the application
+   * @return {Array<Questionnaire>} returns the list of questionnaires
+   */
   public openCreateNewGameComponent(): void {
-    console.log('ViewQuestionsDialogComponent');
     const dialogRef = this.dialog.open(CreateNewGameComponent,
       {
         height: 'auto',
@@ -115,12 +109,7 @@ export class GamesComponent implements OnInit {
       });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //console.log(result);
-
-      if (result != undefined) {
-        //var obj = Object.values(result);
-        console.log(result['teamMode']);
+      if (result !== undefined) {
         result['teacherId'] = this.utilsService.currentUser.userId;
         result['questionnaireId'] = parseInt(result['questionnaireId'], 10);
         result['groupId'] = this.groupId;
@@ -137,39 +126,37 @@ export class GamesComponent implements OnInit {
             this.loadingService.hide();
             this.alertService.show(error.toString());
           }));
-        console.log("DESPUES DE RELLENAR MAS CAMPOS");
-        console.log(result);
-
       }
     });
   }
 
+  /**
+   * Returns the questionnaires with the one level information of the current
+   * logged in user into the application
+   * @return {Array<Questionnaire>} returns the list of questionnaires
+   */
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       this.groupId = params['id'];
     });
     this.loadingService.show();
-    this.questionnaireGame = [];
-    this.activeQuestionnaireGame = [];
-    this.programmedQuestionnaireGame = [];
-    this.deadQuestionnaireGame = [];
-    this.results = false;
     this.getMyQuestionnaires();
     this.getGroupQuestionnairesGame(this.groupId);
     this.getResults();
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
   }
 
+  /**
+   * Returns the questionnaires with the one level information of the current
+   * logged in user into the application
+   * @return {Array<Questionnaire>} returns the list of questionnaires
+   */
   public getResults() {
     this.questionnaireService.getResults().subscribe(
       ((resultQuestionnaire: ResultQuestionnaire[]) => {
         this.resultQuestionnaire = resultQuestionnaire;
-        console.log(this.resultQuestionnaire);
         if (this.resultQuestionnaire.length > 0) {
-          for (let result of this.resultQuestionnaire) {
-            console.log(result.questionnaireGame.groupId);
-            console.log(this.groupId);
-            if (result.questionnaireGame.groupId == this.groupId) {
+          for (const result of this.resultQuestionnaire) {
+            if (result.questionnaireGame.groupId === this.groupId) {
               this.results = true;
             }
           }
@@ -181,20 +168,35 @@ export class GamesComponent implements OnInit {
       }));
 
   }
+
+  /**
+   * Returns the questionnaires with the one level information of the current
+   * logged in user into the application
+   * @return {Array<Questionnaire>} returns the list of questionnaires
+   */
   public getInformation(id: string) {
     this.getQuestionnaireOfQUestionnaireGame(id);
   }
 
+  /**
+   * Returns the questionnaires with the one level information of the current
+   * logged in user into the application
+   * @return {Array<Questionnaire>} returns the list of questionnaires
+   */
   public ShowResults() {
     this.returnUrl = this.route.snapshot.url.join('/') + '/showResult';
     this.router.navigate([this.returnUrl]);
   }
 
+  /**
+   * Returns the questionnaires with the one level information of the current
+   * logged in user into the application
+   * @return {Array<Questionnaire>} returns the list of questionnaires
+   */
   public getQuestionnaireOfQUestionnaireGame(id: string) {
     this.questionnaireService.getQuestionnaireOfQUestionnaireGame(id).subscribe(
-      ((Questionnaire: Questionnaire) => {
-        this.questionnaire = Questionnaire;
-        console.log(Questionnaire);
+      ((valueQuestionnaire: Questionnaire) => {
+        this.questionnaire = valueQuestionnaire;
       }),
       ((error: Response) => {
         this.loadingService.hide();
@@ -202,11 +204,15 @@ export class GamesComponent implements OnInit {
       }));
   }
 
+  /**
+   * Returns the questionnaires with the one level information of the current
+   * logged in user into the application
+   * @return {Array<Questionnaire>} returns the list of questionnaires
+   */
   public getMyQuestionnaires() {
     this.questionnaireService.getMyQuestionnaires(String(this.utilsService.currentUser.userId)).subscribe(
       ((Questionnaires: Questionnaire[]) => {
         this.questionnaires = Questionnaires;
-        console.log(this.questionnaires);
       }),
       ((error: Response) => {
         this.loadingService.hide();
@@ -214,11 +220,15 @@ export class GamesComponent implements OnInit {
       }));
   }
 
+  /**
+     * Returns the questionnaires with the one level information of the current
+     * logged in user into the application
+     * @return {Array<Questionnaire>} returns the list of questionnaires
+     */
   public getGroupQuestionnairesGame(id: string) {
     this.questionnaireService.getGroupQuestionnairesGame(id).subscribe(
       ((QuestionnairesGame: QuestionnaireGame[]) => {
         this.questionnaireGame = QuestionnairesGame;
-        console.log(this.questionnaireGame);
         this.getActivos();
       }),
       ((error: Response) => {
@@ -227,30 +237,32 @@ export class GamesComponent implements OnInit {
       }));
   }
 
+  /**
+   * Returns the questionnaires with the one level information of the current
+   * logged in user into the application
+   * @return {Array<Questionnaire>} returns the list of questionnaires
+   */
   public getActivos() {
     const date = new Date();
     this.activeQuestionnaireGame = [];
     this.deadQuestionnaireGame = [];
     this.programmedQuestionnaireGame = [];
-    for (let QuestionarioGame of this.questionnaireGame) {
-      var diff = new Date(QuestionarioGame.finish_date).getTime() - date.getTime();
-      var diff2 = new Date(QuestionarioGame.start_date).getTime() - date.getTime();
+    for (const QuestionarioGame of this.questionnaireGame) {
+      const diff = new Date(QuestionarioGame.finish_date).getTime() - date.getTime();
+      const diff2 = new Date(QuestionarioGame.start_date).getTime() - date.getTime();
       // tslint:disable-next-line: max-line-length
       QuestionarioGame['str_date'] = new Date(QuestionarioGame.start_date).getDate() + '/' + (new Date(QuestionarioGame.start_date).getMonth() + 1) + '/' + new Date(QuestionarioGame.start_date).getFullYear();
       QuestionarioGame['fnsh_date'] = new Date(QuestionarioGame.finish_date).getDate() + '/' + (new Date(QuestionarioGame.finish_date).getMonth() + 1) + '/' + new Date(QuestionarioGame.finish_date).getFullYear();
       if (diff >= 0) {
         if (diff2 >= 0) {
           this.programmedQuestionnaireGame.push(QuestionarioGame);
-        }
-        else {
+        } else {
           this.activeQuestionnaireGame.push(QuestionarioGame);
         }
-      }
-      else {
+      } else {
         this.deadQuestionnaireGame.push(QuestionarioGame);
       }
     }
   }
-
 }
 

@@ -31,18 +31,3 @@
 <div class=" groups-content" *ngIf="selectedQuestionnaire.length<1 || !selectedQuestionnaire ===undefined ">
   SIN RESULTADOS
 </div>
-
-
-<!-- ME PETA AQUI Y NO SE PORQUE
- <tr *ngFor="let result of selectedQuestionnaire">
-      <td [attr.rowspan]="result.numTotalOfQuestions">{{result.studentId}}</td>
-      <td [attr.rowspan]="result.numTotalOfQuestions">{{result.finalNote}}</td>
-      <td [attr.rowspan]="result.numTotalOfQuestions">{{result.numAnswerCorrect}} </td>
-      <td [attr.rowspan]="result.numTotalOfQuestions">{{result.numAnswerNoCorrect}}</td>
-      <td *ngFor="let answer of result.userAnswers;let i=index">Respuesta {{i}}: {{answer}}</td>
-    </tr>
-
- <tr *ngFor="let answer of result.userAnswers;let i=index">
-      <td>Respuesta {{i}}: {{answer}}</td>
-    </tr>
--->

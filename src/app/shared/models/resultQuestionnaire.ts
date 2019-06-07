@@ -1,7 +1,6 @@
 import { QuestionnaireGame } from './questionnaireGame';
 
 export class ResultQuestionnaire {
-
   private _questionnaireGame: QuestionnaireGame;
   private _numAnswerCorrect: string;
   private _numAnswerNoCorrect: string;
@@ -9,7 +8,6 @@ export class ResultQuestionnaire {
   private _userAnswers: Array<string>;
   private _studentId: string;
   private _numTotalOfQuestions: number;
-
 
   constructor(questionnaireGame?: QuestionnaireGame, numAnswerCorrect?: string, numAnswerNoCorrect?:
     string, finalNote?: string, userAnswers?: Array<string>, studentId?: string, numTotalOfQuestions?: number) {
@@ -25,7 +23,7 @@ export class ResultQuestionnaire {
   /* tslint:disable */
   static toObject(object: any): ResultQuestionnaire {
     /* tslint:enable */
-    let result: ResultQuestionnaire = new ResultQuestionnaire();
+    const result: ResultQuestionnaire = new ResultQuestionnaire();
     if (object != null) {
       result.questionnaireGame = object.questionnaireGame;
       result.numAnswerCorrect = object.numAnswerCorrect;
@@ -41,7 +39,7 @@ export class ResultQuestionnaire {
   /* tslint:disable */
   static toObjectArray(object: any): Array<ResultQuestionnaire> {
     /* tslint:enable */
-    let resultArray: Array<ResultQuestionnaire> = new Array<ResultQuestionnaire>();
+    const resultArray: Array<ResultQuestionnaire> = new Array<ResultQuestionnaire>();
     if (object != null) {
       for (let i = 0; i < object.length; i++) {
         resultArray.push(ResultQuestionnaire.toObject(object[i]));
@@ -93,6 +91,7 @@ export class ResultQuestionnaire {
   public set userAnswers(value: Array<string>) {
     this._userAnswers = value;
   }
+
   public get numTotalOfQuestions(): number {
     return this._numTotalOfQuestions;
   }

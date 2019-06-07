@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { MatTableModule } from '@angular/material/table';
     MatStepperModule,
     MatDialogModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   exports: [
     MatFormFieldModule,
@@ -73,7 +75,8 @@ import { MatTableModule } from '@angular/material/table';
     MatStepperModule,
     MatDialogModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
 })
 export class AppMaterialModule { }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Login, Group, Role, Student } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
 import { LoadingService, UtilsService, GroupService, AlertService } from '../../shared/services/index';
-import { Route, ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-groups',
@@ -13,8 +13,7 @@ export class GroupStudentsComponent implements OnInit {
   public groupId: string;
   public returnUrl: string;
   public students: Array<Student>;
-  public sub: any;
-
+  public sub: {};
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -22,21 +21,17 @@ export class GroupStudentsComponent implements OnInit {
     public utilsService: UtilsService,
     public loadingService: LoadingService,
     public groupService: GroupService) {
-
     this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
-
   }
 
   ngOnInit(): void {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/myGames';
-
     this.sub = this.route.params.subscribe(params => {
       this.groupId = params['id'];
     });
-    console.log(this.groupId);
-    if (this.utilsService.role === Role.TEACHER) {
 
+    if (this.utilsService.role === Role.TEACHER) {
       this.loadingService.show();
       this.groupService.getMyGroupStudents(this.groupId).subscribe(
         ((st: Array<Student>) => {
@@ -52,9 +47,5 @@ export class GroupStudentsComponent implements OnInit {
 
   showGames() {
     this.router.navigate([this.returnUrl, this.groupId]);
-
   }
-
-
-
 }

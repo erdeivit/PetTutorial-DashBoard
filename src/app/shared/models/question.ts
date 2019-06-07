@@ -1,6 +1,4 @@
-
 export class Question {
-
   private _statement: string;
   private _id: string;
   private _answer1: string;
@@ -42,7 +40,7 @@ export class Question {
   /* tslint:disable */
   static toObject(object: any): Question {
     /* tslint:enable */
-    let result: Question = new Question();
+    const result: Question = new Question();
     if (object != null) {
       result.id = object.id;
       result.statement = object.statement;
@@ -60,7 +58,6 @@ export class Question {
       result.questionnaireId = object.questionnaireId;
       result.teacherId = object.teacherId;
       result.type = object.type;
-
     }
     return result;
   }
@@ -68,7 +65,7 @@ export class Question {
   /* tslint:disable */
   static toObjectArray(object: any): Array<Question> {
     /* tslint:enable */
-    let resultArray: Array<Question> = new Array<Question>();
+    const resultArray: Array<Question> = new Array<Question>();
     if (object != null) {
       for (let i = 0; i < object.length; i++) {
         resultArray.push(Question.toObject(object[i]));
@@ -100,6 +97,7 @@ export class Question {
   public set answer1(value: string) {
     this._answer1 = value;
   }
+
   public get answer2(): (string) {
     return this._answer2;
   }
@@ -114,6 +112,7 @@ export class Question {
   public set answer3(value: string) {
     this._answer3 = value;
   }
+
   public get answer4(): (string) {
     return this._answer4;
   }
@@ -128,6 +127,7 @@ export class Question {
   public set answer5(value: string) {
     this._answer5 = value;
   }
+
   public get answer6(): (string) {
     return this._answer6;
   }
@@ -135,6 +135,7 @@ export class Question {
   public set answer6(value: string) {
     this._answer6 = value;
   }
+
   public get correctanswer(): (string) {
     return this._correctanswer;
   }
@@ -157,6 +158,7 @@ export class Question {
   public set difficulty(value: string) {
     this._difficulty = value;
   }
+
   public get category(): string {
     return this._category;
   }
@@ -164,6 +166,7 @@ export class Question {
   public set category(value: string) {
     this._category = value;
   }
+
   public get explanation(): string {
     return this._explanation;
   }
@@ -171,6 +174,7 @@ export class Question {
   public set explanation(value: string) {
     this._explanation = value;
   }
+
   public get questionnaireId(): string {
     return this._questionnaireId;
   }
@@ -185,6 +189,7 @@ export class Question {
   public set teacherId(value: string) {
     this._teacherId = value;
   }
+
   public get type(): string {
     return this._type;
   }
