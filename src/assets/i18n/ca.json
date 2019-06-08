@@ -166,7 +166,7 @@
     "DESCRIPTION": "Descripció del qüestionari",
     "IMAGE": "Imatge del qüestionari (URL)",
     "FILTERBYCATEGORY": "Filtrar per categoria",
-    "SELECTQUESTIONS": "Selecciona el qüestionari",
+    "SELECTQUESTIONS": "Selecciona les preguntes",
     "CREATE": "Crear",
     "TABLEIMAGE": "Imatge",
     "TABLEID": "Identificador",

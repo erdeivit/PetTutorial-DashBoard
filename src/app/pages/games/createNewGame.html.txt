@@ -1,0 +1,28 @@
+Module created by David Hernández on QP 2018/19 (Feb19 - Jun19) Contact: erdeivit@gmail.com
+
+In this html you can configure all type of games. Now we can only configure the questionnaireGames:
+
+The different configuration you can set is:
+
+- Type of game:
+    1.Quizpip: Classical way to answer a questionnaire. All the question will be display on the screen and you
+    will have to answer all of them until you press the Submit button or the time passed away.
+    2.Question by Question: On the screen will appear one question each time. When you answer the question and
+    press the submit button (or the time passed away) will appear the next question.
+    3.Qlasspip (Not implemented yet): It is thought to be similar to kahoot.
+    4.FlipCardsPip: This mode is focused on the study. The question will appear on the screen and when you think
+    that you guess the question, you will be able to know the answer (passing the mouse over there).
+    5.TimeToLearn (Not implemented yet): It is though to launch a question (through bar notificacion) which will
+    give points to the student. It can appear at any time (8:00-22:00).
+    6.TrivialClip (Not implemented yet): It is thought to be similiar to a Trivial game.
+
+- Play on teams (Not used yet):
+  -Individual.
+  -Teams. There are two options. All the time with one device, or every memeber whit his smarthphone (All the marks
+  will be sum and divide to make the mean).
+
+
+
+
+
+

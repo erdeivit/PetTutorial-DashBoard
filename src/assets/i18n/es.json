@@ -300,7 +300,7 @@
     "DESCRIPTION": "Descripción del cuestionario",
     "IMAGE": "Imagen del cuestionario (URL)",
     "FILTERBYCATEGORY": "Filtrar por categoria",
-    "SELECTQUESTIONS": "Selecciona el cuestionario",
+    "SELECTQUESTIONS": "Selecciona la/s pregunta/s",
     "CREATE": "Crear",
     "TABLEIMAGE": "Imagen",
     "TABLEID": "Identificador",

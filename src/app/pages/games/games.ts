@@ -112,7 +112,7 @@ export class GamesComponent implements OnInit {
         if (result['teamMode'] === '-1') {
           result['teamMode'] = result['teamMode2'];
         }
-        this.questionnaireService.saveQuestionnaireGame(result).subscribe(
+        this.questionnaireService.postQuestionnaireGame(result).subscribe(
           (() => {
             this.ngOnInit();
           }),
@@ -131,7 +131,7 @@ export class GamesComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.groupId = params['id'];
     });
-    this.loadingService.show();
+    this.loadingService.hide();
     this.getTeacherQuestionnaires();
     this.getGroupQuestionnairesGame(this.groupId);
     this.getResults();

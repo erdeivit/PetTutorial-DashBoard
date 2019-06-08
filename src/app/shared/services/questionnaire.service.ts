@@ -65,7 +65,7 @@ export class QuestionnaireService {
       this.getQuestionnaire(idQuestionnaire).subscribe(
         questionnaire => {
           questionnaire.question.forEach(idQuestion => {
-            this.getQuestion(idQuestion.id).subscribe(
+            this.getQuestion(idQuestion).subscribe(
               question => {
                 ret.push(question);
                 observer.next(ret);
@@ -114,7 +114,7 @@ export class QuestionnaireService {
   * Returns the information of a question
   * @return {Array<Question>}
   */
-  public getQuestion(idQuestion: string): Observable<Question> {
+  public getQuestion(idQuestion: Question): Observable<Question> {
     const options: RequestOptions = new RequestOptions({
       headers: this.utilsService.setAuthorizationHeader(new Headers(), this.utilsService.currentUser.id)
     });
@@ -155,7 +155,7 @@ export class QuestionnaireService {
   * Save a Question in the BBDD
   * @return {<Question>}
   */
-  public saveQuestion(questionJSON: JSON): Observable<Question> {
+  public postQuestion(questionJSON: JSON): Observable<Question> {
     const options = this.utilsService.getOptions();
     let url: string;
     url = AppConfig.QUESTION_URL;
@@ -172,7 +172,7 @@ export class QuestionnaireService {
     * Save a Questionnaire in the BBDD
     * @return {<Questionnaire>}
     */
-  public saveQuestionnaire(QuestionnaireJSON: JSON): Observable<Questionnaire> {
+  public postQuestionnaire(QuestionnaireJSON: JSON): Observable<Questionnaire> {
     const options = this.utilsService.getOptions();
     delete QuestionnaireJSON['questionshtml'];
     let url: string;
@@ -191,7 +191,7 @@ export class QuestionnaireService {
   * Save a QuestionnaireGame in the BBDD
   * @return {<QuestionnaireGame>}
   */
-  public saveQuestionnaireGame(questionnaireGameJSON: JSON): Observable<QuestionnaireGame> {
+  public postQuestionnaireGame(questionnaireGameJSON: JSON): Observable<QuestionnaireGame> {
     const options = this.utilsService.getOptions();
     let url: string;
     url = AppConfig.QUESTIONNAIREGAME_URL;

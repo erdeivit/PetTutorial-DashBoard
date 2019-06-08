@@ -1,1 +1,20 @@
-Module created by David Hernández. Contact: erdeivit@gmail.com
+Module created by David Hernández on QP 2018/19 (Feb19 - Jun19) Contact: erdeivit@gmail.com
+
+This module will become one of the main of the project, because one important point of the applicacion
+is to play different types of games.
+
+On 07/06/2018 we have:
+- You can see what active games (now all related with questionnaires) we have, and we can sort by:
+  - Active games (The finish date does not pass).
+  - Programmed games (The start date does not pass).
+  - Finish games (The finish date pass).
+
+Clicking in one game, you can know what is it about.
+
+There are also two buttons:
+   - The first one that is create a game which sends you to createNewGame.html.
+   - The other one is "watch results" which sends you to gamesResultComponent.
+
+
+REMEMBER THAT ALL THIS GAMES ARE CREATED IN RELATION WITH ONE SPECIFIC GROUPID, BECAUSE PREVIOUSLY WE HAD SELECTED
+ONE GROUP. SO THE GAMES AND THE RESULTS ARE ONLY FOR THIS GROUP.

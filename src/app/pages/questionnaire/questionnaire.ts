@@ -41,7 +41,7 @@ export class ViewQuestionnairesDialogComponent {
 export interface DialogViewQuestions { }
 @Component({
   selector: 'app-viewquestionsdialogcomponent',
-  templateUrl: 'viewQuestionsDialogComponent.html',
+  templateUrl: 'viewQuestionsDialog.html',
   styleUrls: ['./questionnaire.scss']
 })
 export class ViewQuestionsDialogComponent {
@@ -57,8 +57,8 @@ export class ViewQuestionsDialogComponent {
 // tslint:disable-next-line: no-empty-interface
 export interface DialogCreateQuestionnaires { }
 @Component({
-  selector: 'app-createquestionnairesdialogcomponent',
-  templateUrl: 'createQuestionnairesDialogComponent.html',
+  selector: 'app-createquestionnairesdialog',
+  templateUrl: 'createQuestionnairesDialog.html',
   styleUrls: ['./questionnaire.scss']
 })
 export class CreateQuestionnairesDialogComponent {
@@ -83,8 +83,8 @@ export class CreateQuestionnairesDialogComponent {
 // tslint:disable-next-line: no-empty-interface
 export interface DialogCreateQuestions { }
 @Component({
-  selector: 'app-createquestionsdialogcomponent',
-  templateUrl: 'createQuestionsDialogComponent.html',
+  selector: 'app-createquestionsdialog',
+  templateUrl: 'createQuestionsDialog.html',
   styleUrls: ['./questionnaire.scss']
 })
 export class CreateQuestionsDialogComponent {
@@ -246,7 +246,7 @@ export class QuestionnaireComponent implements OnInit {
         }
         result['teacherId'] = this.utilsService.currentUser.userId;
         result['questionId'] = intidquestions;
-        this.questionnaireService.saveQuestionnaire(result).subscribe(
+        this.questionnaireService.postQuestionnaire(result).subscribe(
           (() => {
             this.getTeacherQuestions();
           }),
@@ -287,7 +287,7 @@ export class QuestionnaireComponent implements OnInit {
           result['type'] = 'openQuestion';
           result['correctanswer'] = result['answer1'];
         }
-        this.questionnaireService.saveQuestion(result).subscribe(
+        this.questionnaireService.postQuestion(result).subscribe(
           (() => {
             this.getTeacherQuestions();
           }),

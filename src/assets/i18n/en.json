@@ -165,7 +165,7 @@
     "DESCRIPTION": "Description",
     "IMAGE": "Image (URL)",
     "FILTERBYCATEGORY": "Filter by category",
-    "SELECTQUESTIONS": "Select the questionnaire",
+    "SELECTQUESTIONS": "Select questions",
     "CREATE": "Create",
     "TABLEIMAGE": "Image",
     "TABLEID": "Identifier",
