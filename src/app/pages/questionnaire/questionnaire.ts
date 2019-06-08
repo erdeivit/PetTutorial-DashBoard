@@ -88,12 +88,12 @@ export interface DialogCreateQuestions { }
   styleUrls: ['./questionnaire.scss']
 })
 export class CreateQuestionsDialogComponent {
-  public respuesta1 = false;
-  public respuesta2 = false;
-  public respuesta3 = false;
-  public respuesta4 = false;
-  public respuesta5 = false;
-  public respuesta6 = false;
+  public findRespuesta1 = false;
+  public findRespuesta2 = false;
+  public findRespuesta3 = false;
+  public findRespuesta4 = false;
+  public findRespuesta5 = false;
+  public findRespuesta6 = false;
   constructor(
     public dialogRef: MatDialogRef<CreateQuestionsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogCreateQuestions) {
@@ -106,60 +106,60 @@ export class CreateQuestionsDialogComponent {
   public numberOfAnswers(number: number) {
     switch (number) {
       case 0:
-        this.respuesta1 = false;
-        this.respuesta2 = false;
-        this.respuesta3 = false;
-        this.respuesta4 = false;
-        this.respuesta5 = false;
-        this.respuesta6 = false;
+        this.findRespuesta1 = false;
+        this.findRespuesta2 = false;
+        this.findRespuesta3 = false;
+        this.findRespuesta4 = false;
+        this.findRespuesta5 = false;
+        this.findRespuesta6 = false;
         break;
       case 1:
-        this.respuesta1 = true;
-        this.respuesta2 = false;
-        this.respuesta3 = false;
-        this.respuesta4 = false;
-        this.respuesta5 = false;
-        this.respuesta6 = false;
+        this.findRespuesta1 = true;
+        this.findRespuesta2 = false;
+        this.findRespuesta3 = false;
+        this.findRespuesta4 = false;
+        this.findRespuesta5 = false;
+        this.findRespuesta6 = false;
         break;
       case 2:
-        this.respuesta1 = true;
-        this.respuesta2 = true;
-        this.respuesta3 = false;
-        this.respuesta4 = false;
-        this.respuesta5 = false;
-        this.respuesta6 = false;
+        this.findRespuesta1 = true;
+        this.findRespuesta2 = true;
+        this.findRespuesta3 = false;
+        this.findRespuesta4 = false;
+        this.findRespuesta5 = false;
+        this.findRespuesta6 = false;
         break;
       case 3:
-        this.respuesta1 = true;
-        this.respuesta2 = true;
-        this.respuesta3 = true;
-        this.respuesta4 = false;
-        this.respuesta5 = false;
-        this.respuesta6 = false;
+        this.findRespuesta1 = true;
+        this.findRespuesta2 = true;
+        this.findRespuesta3 = true;
+        this.findRespuesta4 = false;
+        this.findRespuesta5 = false;
+        this.findRespuesta6 = false;
         break;
       case 4:
-        this.respuesta1 = true;
-        this.respuesta2 = true;
-        this.respuesta3 = true;
-        this.respuesta4 = true;
-        this.respuesta5 = false;
-        this.respuesta6 = false;
+        this.findRespuesta1 = true;
+        this.findRespuesta2 = true;
+        this.findRespuesta3 = true;
+        this.findRespuesta4 = true;
+        this.findRespuesta5 = false;
+        this.findRespuesta6 = false;
         break;
       case 5:
-        this.respuesta1 = true;
-        this.respuesta2 = true;
-        this.respuesta3 = true;
-        this.respuesta4 = true;
-        this.respuesta5 = true;
-        this.respuesta6 = false;
+        this.findRespuesta1 = true;
+        this.findRespuesta2 = true;
+        this.findRespuesta3 = true;
+        this.findRespuesta4 = true;
+        this.findRespuesta5 = true;
+        this.findRespuesta6 = false;
         break;
       case 6:
-        this.respuesta1 = true;
-        this.respuesta2 = true;
-        this.respuesta3 = true;
-        this.respuesta4 = true;
-        this.respuesta5 = true;
-        this.respuesta6 = true;
+        this.findRespuesta1 = true;
+        this.findRespuesta2 = true;
+        this.findRespuesta3 = true;
+        this.findRespuesta4 = true;
+        this.findRespuesta5 = true;
+        this.findRespuesta6 = true;
         break;
     }
   }
@@ -204,7 +204,7 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
-  public openViewQuestionsDialog(): void {
+  public openViedwQuestionsDialog(): void {
     this.getTeacherQuestions();
     const dialogRef = this.dialog.open(ViewQuestionsDialogComponent,
       {

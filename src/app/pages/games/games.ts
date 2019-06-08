@@ -13,10 +13,10 @@ export interface DialogCreateNewGame { }
   styleUrls: ['./games.scss']
 })
 export class CreateNewGameComponent {
-  public team = false;
-  public questiontime = false;
-  public questionnairetime = false;
-  public selectime = false;
+  public findTeam = false;
+  public findQuestiontime = false;
+  public findQuestionnairetime = false;
+  public findSelectime = false;
   constructor(
     public dialogRef: MatDialogRef<CreateNewGameComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogCreateNewGame) { }
@@ -25,34 +25,34 @@ export class CreateNewGameComponent {
     this.dialogRef.close();
   }
 
-  public teamModeSelect(boolean: boolean) {
-    this.team = boolean;
+  public teamModeSelect(findTeam: boolean) {
+    this.findTeam = findTeam;
   }
 
-  public timeSelect(i: number) {
-    switch (i) {
+  public timeSelect(numSelect: number) {
+    switch (numSelect) {
       case 0:
-        this.questiontime = false;
-        this.questionnairetime = true;
-        this.selectime = false;
+        this.findQuestiontime = false;
+        this.findQuestionnairetime = true;
+        this.findSelectime = false;
         break;
       case 1:
-        this.selectime = true;
-        this.questionnairetime = false;
-        this.questiontime = false;
+        this.findSelectime = true;
+        this.findQuestionnairetime = false;
+        this.findQuestiontime = false;
         break;
       case 2:
-        this.questionnairetime = false;
-        this.questiontime = true;
+        this.findQuestionnairetime = false;
+        this.findQuestiontime = true;
         break;
       case 3:
-        this.questionnairetime = true;
-        this.questiontime = false;
+        this.findQuestionnairetime = true;
+        this.findQuestiontime = false;
         break;
       case 9:
-        this.questionnairetime = false;
-        this.questiontime = false;
-        this.selectime = false;
+        this.findQuestionnairetime = false;
+        this.findQuestiontime = false;
+        this.findSelectime = false;
         break;
     }
   }

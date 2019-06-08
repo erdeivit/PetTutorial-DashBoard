@@ -41,39 +41,39 @@
     </mat-select>
   </mat-form-field>
   <br>
-  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta1" required>
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="findRespuesta1" required>
     <input style="width:400px !important" matInput [(ngModel)]="data.answer1"
       placeholder="{{'QUESTION.ANSWER1'|translate}}">
   </mat-form-field>
-  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta2">
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="findRespuesta2">
     <input style="width:400px !important" matInput [(ngModel)]="data.answer2"
       placeholder="{{'QUESTION.ANSWER2'|translate}}">
   </mat-form-field>
-  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta3">
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="findRespuesta3">
     <input style="width:400px !important" matInput [(ngModel)]="data.answer3"
       placeholder="{{'QUESTION.ANSWER3'|translate}}">
   </mat-form-field>
-  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta4">
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="findRespuesta4">
     <input style="width:400px !important" matInput [(ngModel)]="data.answer4"
       placeholder="{{'QUESTION.ANSWER4'|translate}}">
   </mat-form-field>
-  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta5">
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="findRespuesta5">
     <input style="width:400px !important" matInput [(ngModel)]="data.answer5"
       placeholder="{{'QUESTION.ANSWER5'|translate}}">
   </mat-form-field>
-  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta6">
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="findRespuesta6">
     <input style="width:400px !important" matInput [(ngModel)]="data.answer6"
       placeholder="{{'QUESTION.ANSWER6'|translate}}">
   </mat-form-field>
   <mat-form-field style="width:400px !important" *ngIf="respuesta2">
     <mat-select style="width:400px !important" placeholder="{{'QUESTION.CORRECTANSWERS'|translate}}"
       [(ngModel)]="data.correctanswer" multiple required>
-      <mat-option *ngIf="respuesta1" value={{data.answer1}}>{{data.answer1}}</mat-option>
-      <mat-option *ngIf="respuesta2" value={{data.answer2}}>{{data.answer2}}</mat-option>
-      <mat-option *ngIf="respuesta3" value={{data.answer3}}>{{data.answer3}}</mat-option>
-      <mat-option *ngIf="respuesta4" value={{data.answer4}}>{{data.answer4}}</mat-option>
-      <mat-option *ngIf="respuesta5" value={{data.answer5}}>{{data.answer5}}</mat-option>
-      <mat-option *ngIf="respuesta6" value={{data.answer6}}>{{data.answer6}}</mat-option>
+      <mat-option *ngIf="findRespuesta1" value={{data.answer1}}>{{data.answer1}}</mat-option>
+      <mat-option *ngIf="findRespuesta2" value={{data.answer2}}>{{data.answer2}}</mat-option>
+      <mat-option *ngIf="findRespuesta3" value={{data.answer3}}>{{data.answer3}}</mat-option>
+      <mat-option *ngIf="findRespuesta4" value={{data.answer4}}>{{data.answer4}}</mat-option>
+      <mat-option *ngIf="findRespuesta5" value={{data.answer5}}>{{data.answer5}}</mat-option>
+      <mat-option *ngIf="findRespuesta6" value={{data.answer6}}>{{data.answer6}}</mat-option>
     </mat-select>
   </mat-form-field>
   <br>

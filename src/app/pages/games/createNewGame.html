@@ -14,18 +14,18 @@
       <mat-option (click)="timeSelect(9)" value="TrivialClip">{{'GAMES.TrivialClip'|translate}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field *ngIf="selectime" style="width:400px !important">
+  <mat-form-field *ngIf="findSelectime" style="width:400px !important">
     <mat-select style="width:400px !important" placeholder="{{'GAMES.TIMEQUESTION'|translate}}" required>
       <mat-option (click)="timeSelect(2)" value="Tiempo de pregunta">{{'GAMES.TIMEINQUESTION'|translate}}</mat-option>
       <mat-option (click)="timeSelect(3)" value="Tiempo de cuestionario">{{'GAMES.TIMEINQUESTIONNAIRE'|translate</mat-option>
       <mat-option (click)="timeSelect(9)">{{'TIMENO'|translate}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="questiontime">
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="findQuestiontime">
     <input type="number" style="width:400px !important" matInput [(ngModel)]="data.question_time"
       placeholder="{{'GAMES.QUESTIONTIMETEXT'|translate}}">
   </mat-form-field>
-  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="questionnairetime">
+  <mat-form-field style="width:400px !important" appearance="outline" *ngIf="findQuestionnairetime">
     <input type="number" style="width:400px !important" matInput [(ngModel)]="data.questionnaire_time"
       placeholder="{{'GAMES.QUESTIONNAIRETIMETEXT'|translate}}">
   </mat-form-field>
@@ -36,7 +36,7 @@
       <mat-option (click)="teamModeSelect(true)" value="-1">{{'GAMES.TEAMS'|translate}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field style="width:400px !important" *ngIf="team" required>
+  <mat-form-field style="width:400px !important" *ngIf="findTeam" required>
     <mat-select style="width:400px !important" placeholder="{{'GAMES.ONEORMOREDEVICE'|translate}}"
       [(ngModel)]="data.teamMode2">
       <mat-option value="2">{{'GAMES.ONEDEVICE'|translate}}</mat-option>
