@@ -1,22 +1,22 @@
 <mat-dialog-content>
-  <h1>Creando una pregunta...</h1>
+  <h1>{{'QUESTION.CREATING'|translate}}</h1>
   <mat-form-field style="width:400px !important" appearance="legacy">
     <input style="width:400px !important" matInput type="text" [(ngModel)]="data.statement"
-      placeholder="Enunciado de la pregunta" required>
+      placeholder="{{'QUESTION.STATEMENT'|translate}}" required>
   </mat-form-field>
   <br>
   <mat-form-field style="width:400px !important" appearance="outline">
-    <input style="width:400px !important" matInput [(ngModel)]="data.image" placeholder="Introduzca una imagen(URL)"
+    <input style="width:400px !important" matInput [(ngModel)]="data.image" placeholder="{{'QUESTION.IMAGE'|translate}}"
       required>
   </mat-form-field>
   <br>
   <mat-form-field style="width:400px !important" appearance="legacy">
     <input style="width:400px !important" matInput type="text" [(ngModel)]="data.category"
-      placeholder="Categoria de la pregunta" required>
+      placeholder="{{'QUESTION.CATEGORY'|translate}}" required>
   </mat-form-field>
   <mat-form-field style="width:400px !important">
-    <mat-select style="width:400px !important" style="font-size: 15px;" placeholder="Dificultad de la pregunta"
-      [(ngModel)]="data.difficulty" required>
+    <mat-select style="width:400px !important" style="font-size: 15px;"
+      placeholder="{{'QUESTION.DIFFICULTY'|translate}}" [(ngModel)]="data.difficulty" required>
       <mat-option value="Hard">Difícil</mat-option>
       <mat-option value="Medium">Medio</mat-option>
       <mat-option value="Easy">Fácil</mat-option>
@@ -24,42 +24,49 @@
   </mat-form-field>
   <br>
   <mat-form-field style="width:400px !important" appearance="outline">
-    <input style="width:400px !important" matInput [(ngModel)]="data.explanation" placeholder="Argumente la respuesta"
-      required>
+    <input style="width:400px !important" matInput [(ngModel)]="data.explanation"
+      placeholder="{{'QUESTION.ANSWERWHY'|translate}}" required>
   </mat-form-field>
   <br>
   <mat-form-field style="width:400px !important">
-    <mat-select style="width:400px !important" placeholder="¿Cuantas respuestas quieres?" required>
-      <mat-option (click)="numrespuestas(0)" value="0">0</mat-option>
-      <mat-option (click)="numrespuestas(1)" value="Respuesta Abierta">Respuesta Abierta</mat-option>
-      <mat-option (click)="numrespuestas(2)" value="2">2</mat-option>
-      <mat-option (click)="numrespuestas(3)" value="3">3</mat-option>
-      <mat-option (click)="numrespuestas(4)" value="4">4</mat-option>
-      <mat-option (click)="numrespuestas(5)" value="5">5</mat-option>
-      <mat-option (click)="numrespuestas(6)" value="6">6</mat-option>
+    <mat-select style="width:400px !important" placeholder="{{'QUESTION.NUMBEROFANSWERS'|translate}}" required>
+      <mat-option (click)="numberOfAnswers(0)" value="0">0</mat-option>
+      <mat-option (click)="numberOfAnswers(1)" value="Respuesta Abierta">{{'QUESTION.OPENANSWER'|translate}}
+      </mat-option>
+      <mat-option (click)="numberOfAnswers(2)" value="2">2</mat-option>
+      <mat-option (click)="numberOfAnswers(3)" value="3">3</mat-option>
+      <mat-option (click)="numberOfAnswers(4)" value="4">4</mat-option>
+      <mat-option (click)="numberOfAnswers(5)" value="5">5</mat-option>
+      <mat-option (click)="numberOfAnswers(6)" value="6">6</mat-option>
     </mat-select>
   </mat-form-field>
   <br>
   <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta1" required>
-    <input style="width:400px !important" matInput [(ngModel)]="data.answer1" placeholder="Respuesta número 1">
+    <input style="width:400px !important" matInput [(ngModel)]="data.answer1"
+      placeholder="{{'QUESTION.ANSWER1'|translate}}">
   </mat-form-field>
   <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta2">
-    <input style="width:400px !important" matInput [(ngModel)]="data.answer2" placeholder="Respuesta número 2">
+    <input style="width:400px !important" matInput [(ngModel)]="data.answer2"
+      placeholder="{{'QUESTION.ANSWER2'|translate}}">
   </mat-form-field>
   <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta3">
-    <input style="width:400px !important" matInput [(ngModel)]="data.answer3" placeholder="Respuesta número 3">
+    <input style="width:400px !important" matInput [(ngModel)]="data.answer3"
+      placeholder="{{'QUESTION.ANSWER3'|translate}}">
   </mat-form-field>
   <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta4">
-    <input style="width:400px !important" matInput [(ngModel)]="data.answer4" placeholder="Respuesta número 4">
+    <input style="width:400px !important" matInput [(ngModel)]="data.answer4"
+      placeholder="{{'QUESTION.ANSWER4'|translate}}">
   </mat-form-field>
   <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta5">
-    <input style="width:400px !important" matInput [(ngModel)]="data.answer5" placeholder="Respuesta número 5">
+    <input style="width:400px !important" matInput [(ngModel)]="data.answer5"
+      placeholder="{{'QUESTION.ANSWER5'|translate}}">
   </mat-form-field>
   <mat-form-field style="width:400px !important" appearance="outline" *ngIf="respuesta6">
-    <input style="width:400px !important" matInput [(ngModel)]="data.answer6" placeholder="Respuesta número 6">
+    <input style="width:400px !important" matInput [(ngModel)]="data.answer6"
+      placeholder="{{'QUESTION.ANSWER6'|translate}}">
   </mat-form-field>
   <mat-form-field style="width:400px !important" *ngIf="respuesta2">
-    <mat-select style="width:400px !important" placeholder="Selecciona las respuestas correctas"
+    <mat-select style="width:400px !important" placeholder="{{'QUESTION.CORRECTANSWERS'|translate}}"
       [(ngModel)]="data.correctanswer" multiple required>
       <mat-option *ngIf="respuesta1" value={{data.answer1}}>{{data.answer1}}</mat-option>
       <mat-option *ngIf="respuesta2" value={{data.answer2}}>{{data.answer2}}</mat-option>
@@ -70,5 +77,6 @@
     </mat-select>
   </mat-form-field>
   <br>
-  <button [mat-dialog-close]="data" mat-raised-button color="primary" click="saveQuestion()">Crear</button>
+  <button [mat-dialog-close]="data" mat-raised-button color="primary"
+    click="saveQuestion()">"{{'QUESTION.CREATE'|translate}}"</button>
 </mat-dialog-content>

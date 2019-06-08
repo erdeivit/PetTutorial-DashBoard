@@ -47,7 +47,6 @@ import { GamesResultComponent } from './pages/gamesResult/gamesResult';
 // tslint:disable-next-line: max-line-length
 import { QuestionnaireComponent, ViewQuestionnairesDialogComponent, CreateQuestionnairesDialogComponent } from './pages/questionnaire/questionnaire';
 import { CreateQuestionsDialogComponent, ViewQuestionsDialogComponent } from './pages/questionnaire/questionnaire';
-import { DeleteQuestionnaireComponent } from './pages/deleteQuestionnaire/deleteQuestionnaire';
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { MatInputModule, MatToolbarModule, } from '@angular/material';
 
@@ -144,7 +143,6 @@ export function createTranslateLoader(http: Http) {
     ViewQuestionsDialogComponent,
     CreateNewGameComponent,
 
-    DeleteQuestionnaireComponent,
     CreatePointComponent,
     DeletePointComponent,
     CreateBadgeComponent,

@@ -1,21 +1,23 @@
 <mat-dialog-content>
+  <h1>{{'QUESTIONNAIRE.CREATING'|translate}}</h1>
   <mat-form-field style="width:400px !important" appearance="outline">
-    <input style="width:400px !important" matInput [(ngModel)]="data.name" placeholder="Nombre del Cuestionario"
-      required>
+    <input style="width:400px !important" matInput [(ngModel)]="data.name"
+      placeholder="{{'QUESTIONNAIRE.NAME'|translate}}" required>
   </mat-form-field>
   <br>
   <mat-form-field style="width:400px !important" appearance="outline">
     <input style="width:400px !important" matInput [(ngModel)]="data.description"
-      placeholder="Descripcion del Cuestionario" required>
+      placeholder="{{'QUESTIONNAIRE.DESCRIPTION'|translate}}" required>
   </mat-form-field>
   <br>
   <mat-form-field style="width:400px !important" appearance="outline">
-    <input style="width:400px !important" matInput [(ngModel)]="data.image" placeholder="Imagen del Cuestionario"
-      required>
+    <input style="width:400px !important" matInput [(ngModel)]="data.image"
+      placeholder="{{'QUESTIONNAIRE.IMAGE'|translate}}" required>
   </mat-form-field>
   <mat-form-field style="width:400px !important">
-    <mat-select style="width:400px !important" placeholder="Filtrar por categoria">
-      <mat-option (click)="filterbycategory(cat,data.questionshtml)" *ngFor="let cat of data.category" value={{cat}}>
+    <mat-select style="width:400px !important" placeholder="{{'QUESTIONNAIRE.FILTERBYCATEGORY'|translate}}">
+      <mat-option (click)="selectQuestionsfilterbycategory(cat,data.questionshtml)" *ngFor="let cat of data.category"
+        value={{cat}}>
         {{cat}}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -52,12 +54,12 @@
   <br>
   <br>
   <mat-form-field style="width:400px !important">
-    <mat-select style="width:400px !important" placeholder="Seleccionas las preguntas del cuestionario"
+    <mat-select style="width:400px !important" placeholder="{{'QUESTIONNAIRE.SELECTQUESTIONS'|translate}}"
       [(ngModel)]="data.questionId" multiple>
       <mat-option *ngFor="let quest of data.questionshtml" value={{quest.id}}>
         {{quest.statement}}</mat-option>
     </mat-select>
   </mat-form-field>
   <br>
-  <button [mat-dialog-close]="data" mat-raised-button color="primary">Crear</button>
+  <button [mat-dialog-close]="data" mat-raised-button color="primary">{{'QUESTIONNAIRE.CREATE'|translate}}</button>
 </mat-dialog-content>

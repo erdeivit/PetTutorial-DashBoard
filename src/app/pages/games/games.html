@@ -1,14 +1,14 @@
 <div class="groups-content">
-  <button class="btn1" mat-raised-button (click)="openCreateNewGameComponent()">CREAR UN NUEVO JUEGO</button>
-  <button class="btn1" *ngIf="results" mat-raised-button (click)="ShowResults()">VER
-    RESULTADOS</button>
+  <button class="btn1" mat-raised-button (click)="openCreateNewGameComponent()">{{'GAMES.NEWGAME'|translate}}</button>
+  <button class="btn1" *ngIf="results" mat-raised-button
+    (click)="ShowResults()">{{'GAMES.SEERESULTS'|translate}}</button>
   <!--<button mat-raised-button >(click)="showGames(group)">{{ 'GROUP.MYGAMES |translate }}</button>-->
   <br>
-  <h5 *ngIf="activeQuestionnaireGame">JUEGOS ACTIVOS</h5>
-  <div *ngIf="activeQuestionnaireGame">
+  <h5 *ngIf="activeQuestionnairesGame">{{'GAMES.ACTIVEQUESTIONNAIRES'|translate}}</h5>
+  <div *ngIf="activeQuestionnairesGame">
     <mat-accordion class="example-headers-align">
-      <mat-expansion-panel *ngFor="let questGame of activeQuestionnaireGame" hideToggle>
-        <mat-expansion-panel-header (click)="getInformation(questGame.questionnaireId)">
+      <mat-expansion-panel *ngFor="let questGame of activeQuestionnairesGame" hideToggle>
+        <mat-expansion-panel-header (click)="getQuestionnaireOfQuestionnaireGame(questGame.questionnaireId)">
           <mat-panel-title>
             {{questGame.id}}
           </mat-panel-title>
@@ -18,9 +18,9 @@
         </mat-expansion-panel-header>
         <table>
           <tr width="35">
-            <th>Tipo de Juego</th>
-            <th>Fecha inicio</th>
-            <th>Fecha límite</th>
+            <th>{{'GAMES.TABLETYPEOFGAME'|translate}}</th>
+            <th>{{'GAMES.TABLESTARTDATE'|translate}}</th>
+            <th>{{'GAMES.TABLEFINISHDATE'|translate}}</th>
           </tr>
           <tr>
             <td>{{questGame.gameMode}}</td>
@@ -30,10 +30,10 @@
         </table>
         <table *ngIf="questionnaire">
           <tr width="35">
-            <th>Id</th>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
+            <th>{{'GAMES.TABLE_QUESTIONNAIREID'|translate}}</th>
+            <th>{{'GAMES.TABLE_QUESTIONNAIREIMAGE'|translate}}</th>
+            <th>{{'GAMES.TABLE_QUESTIONNAIRENAME'|translate}}</th>
+            <th>{{'GAMES.TABLE_QUESTIONNAIREDESCRIPTION'|translate}}</th>
           </tr>
           <tr>
             <td>{{questionnaire.id}}</td>
@@ -45,11 +45,11 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
-  <h5 *ngIf="programmedQuestionnaireGame">JUEGOS PROGRAMADOS</h5>
-  <div *ngIf="programmedQuestionnaireGame">
+  <h5 *ngIf="programmedQuestionnairesGame">{{'GAMES.PROGRAMMEDQUESTIONNAIRES'|translate}}</h5>
+  <div *ngIf="programmedQuestionnairesGame">
     <mat-accordion class="example-headers-align">
-      <mat-expansion-panel *ngFor="let questGame of programmedQuestionnaireGame" hideToggle>
-        <mat-expansion-panel-header (click)="getInformation(questGame.questionnaireId)">
+      <mat-expansion-panel *ngFor="let questGame of programmedQuestionnairesGame" hideToggle>
+        <mat-expansion-panel-header (click)="getQuestionnaireOfQuestionnaireGame(questGame.questionnaireId)">
           <mat-panel-title>
             {{questGame.id}}
           </mat-panel-title>
@@ -59,9 +59,9 @@
         </mat-expansion-panel-header>
         <table>
           <tr width="35">
-            <th>Tipo de Juego</th>
-            <th>Fecha inicio</th>
-            <th>Fecha límite</th>
+            <th>{{'GAMES.TABLETYPEOFGAME'|translate}}</th>
+            <th>{{'GAMES.TABLESTARTDATE'|translate}}</th>
+            <th>{{'GAMES.TABLEFINISHDATE'|translate}}</th>
           </tr>
           <tr>
             <td>{{questGame.gameMode}}</td>
@@ -71,10 +71,10 @@
         </table>
         <table *ngIf="questionnaire">
           <tr width="35">
-            <th>Id</th>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
+            <th>{{'GAMES.TABLE_QUESTIONNAIREID'|translate}}</th>
+            <th>{{'GAMES.TABLE_QUESTIONNAIREIMAGE'|translate}}</th>
+            <th>{{'GAMES.TABLE_QUESTIONNAIRENAME'|translate}}</th>
+            <th>{{'GAMES.TABLE_QUESTIONNAIREDESCRIPTION'|translate}}</th>
           </tr>
           <tr>
             <td>{{questionnaire.id}}</td>
@@ -86,11 +86,12 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
-  <h5 *ngIf="deadQuestionnaireGame">JUEGOS ACABADOS</h5>
-  <div *ngIf="deadQuestionnaireGame">
+  <h5 *ngIf="deadQuestionnairesGame">{{'GAMES.FINISHQUESTIONNAIRES'|translate}}</h5>
+  <div *ngIf="deadQuestionnairesGame">
     <mat-accordion class="example-headers-align">
-      <mat-expansion-panel *ngFor="let questGame of deadQuestionnaireGame" hideToggle>
-        <mat-expansion-panel-header (click)="getInformation(questGame.id,questGame.questionnaireId)">
+      <mat-expansion-panel *ngFor="let questGame of deadQuestionnairesGame" hideToggle>
+        <mat-expansion-panel-header
+          (click)="getQuestionnaireOfQuestionnaireGame(questGame.id,questGame.questionnaireId)">
           <mat-panel-title>
             {{questGame.id}}
           </mat-panel-title>
@@ -100,9 +101,9 @@
         </mat-expansion-panel-header>
         <table>
           <tr width="35">
-            <th>Tipo de Juego</th>
-            <th>Fecha inicio</th>
-            <th>Fecha límite</th>
+            <th>{{'GAMES.TABLETYPEOFGAME'|translate}}</th>
+            <th>{{'GAMES.TABLESTARTDATE'|translate}}</th>
+            <th>{{'GAMES.TABLEFINISHDATE'|translate}}</th>
           </tr>
           <tr>
             <td>{{questGame.gameMode}}</td>
@@ -116,10 +117,10 @@
         </table>
         <table *ngIf="questionnaire">
           <tr width="35">
-            <th>Id</th>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
+            <th>{{'GAMES.TABLE_QUESTIONNAIREID'|translate}}</th>
+            <th>{{'GAMES.TABLE_QUESTIONNAIREIMAGE'|translate}}</th>
+            <th>{{'GAMES.TABLE_QUESTIONNAIRENAME'|translate}}</th>
+            <th>{{'GAMES.TABLE_QUESTIONNAIREDESCRIPTION'|translate}}</th>
           </tr>
           <tr>
             <td>{{questionnaire.id}}</td>
@@ -131,9 +132,4 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
-
-  <!-- https://material.angular.io/components/expansion/examples -->
-  <!-- TAMBIEN TENGO UN EJEMPLO DE DATE -->
-
-
 </div>

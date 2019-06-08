@@ -1,64 +1,67 @@
 <mat-dialog-content>
   <mat-form-field style="width:400px !important" appearance="legacy">
-    <input style="width:400px !important" matInput type="text" [(ngModel)]="data.name" placeholder="Nombre del juego"
-      required>
+    <input style="width:400px !important" matInput type="text" [(ngModel)]="data.name"
+      placeholder="{{ 'GAMES.NAMEGAME' | translate }}" required>
   </mat-form-field>
   <mat-form-field style="width:400px !important">
-    <mat-select style="width:400px !important" placeholder="Seleccione tipo de cuestionario" [(ngModel)]="data.gameMode"
+    <mat-select style="width:400px !important" placeholder="{{'GAMES.GAMETYPE'|translate}}" [(ngModel)]="data.gameMode"
       required>
-      <mat-option (click)="tiempo(0)" value="QuizPip">QuizPip</mat-option>
-      <mat-option (click)="tiempo(1)" value="1by1">Pregunta a Pregunta</mat-option>
-      <mat-option (click)="tiempo(9)" value="Qlasspip">Questionario en línea</mat-option>
-      <mat-option (click)="tiempo(9)" value="FlipCardsPip">Pregunta/Respuesta</mat-option>
-      <mat-option (click)="tiempo(9)" value="TimeToLearn">Pregunta aleatoria en cualquier momento</mat-option>
-      <mat-option (click)="tiempo(9)" value="TrivialClip"> Juego del Trivial</mat-option>
+      <mat-option (click)="timeSelect(0)" value="QuizPip">{{'GAMES.QUIZPIP'|translate}}</mat-option>
+      <mat-option (click)="timeSelect(1)" value="1by1">{{'GAMES.1by1'|translate}}</mat-option>
+      <mat-option (click)="timeSelect(9)" value="Qlasspip">{{'GAMES.Qlasspip'|translate}}</mat-option>
+      <mat-option (click)="timeSelect(9)" value="FlipCardsPip">{{'GAMES.FlipCardsPip'|translate}}</mat-option>
+      <mat-option (click)="timeSelect(9)" value="TimeToLearn">{{'GAMES.TimeToLearn'|translate}}</mat-option>
+      <mat-option (click)="timeSelect(9)" value="TrivialClip">{{'GAMES.TrivialClip'|translate}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field *ngIf="selectime" style="width:400px !important">
-    <mat-select style="width:400px !important" placeholder="¿Quieres tiempo?" required>
-      <mat-option (click)="tiempo(2)" value="Tiempo de pregunta">Tiempo de pregunta</mat-option>
-      <mat-option (click)="tiempo(3)" value="Tiempo de cuestionario">Tiempo de cuestionario</mat-option>
-      <mat-option (click)="tiempo(9)">Sin tiempo</mat-option>
+    <mat-select style="width:400px !important" placeholder="{{'GAMES.TIMEQUESTION'|translate}}" required>
+      <mat-option (click)="timeSelect(2)" value="Tiempo de pregunta">{{'GAMES.TIMEINQUESTION'|translate}}</mat-option>
+      <mat-option (click)="timeSelect(3)" value="Tiempo de cuestionario">{{'GAMES.TIMEINQUESTIONNAIRE'|translate</mat-option>
+      <mat-option (click)="timeSelect(9)">{{'TIMENO'|translate}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field style="width:400px !important" appearance="outline" *ngIf="questiontime">
     <input type="number" style="width:400px !important" matInput [(ngModel)]="data.question_time"
-      placeholder="Tiempo de pregunta en segundos (Opcional)">
+      placeholder="{{'GAMES.QUESTIONTIMETEXT'|translate}}">
   </mat-form-field>
   <mat-form-field style="width:400px !important" appearance="outline" *ngIf="questionnairetime">
     <input type="number" style="width:400px !important" matInput [(ngModel)]="data.questionnaire_time"
-      placeholder="Tiempo de questionario total en segundos (Opcional)">
+      placeholder="{{'GAMES.QUESTIONNAIRETIMETEXT'|translate}}">
   </mat-form-field>
   <mat-form-field style="width:400px !important">
-    <mat-select style="width:400px !important" placeholder="¿Jugar en equipos?" [(ngModel)]="data.teamMode" required>
-      <mat-option (click)="teamModeSelect(false)" value="1">Individual</mat-option>
-      <mat-option (click)="teamModeSelect(true)" value="-1">Equipos</mat-option>
+    <mat-select style="width:400px !important" placeholder="{{'GAMES.INTEAMS'|translate}}" [(ngModel)]="data.teamMode"
+      required>
+      <mat-option (click)="teamModeSelect(false)" value="1">{{'GAMES.INDIVIDUAL'|translate}}</mat-option>
+      <mat-option (click)="teamModeSelect(true)" value="-1">{{'GAMES.TEAMS'|translate}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field style="width:400px !important" *ngIf="team" required>
-    <mat-select style="width:400px !important" placeholder="Uno o múltiplos dispositivos?" [(ngModel)]="data.teamMode2">
-      <mat-option value="2">Cada miembro del equipo con su dipositivo</mat-option>
-      <mat-option value="3">Cada equipo con un dispositivo</mat-option>
+    <mat-select style="width:400px !important" placeholder="{{'GAMES.ONEORMOREDEVICE'|translate}}"
+      [(ngModel)]="data.teamMode2">
+      <mat-option value="2">{{'GAMES.ONEDEVICE'|translate}}</mat-option>
+      <mat-option value="3">{{'GAMES.ALLONEDEVICE'|translate}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field style="width:400px !important">
     <input style="width:400px !important" matInput [(ngModel)]="data.start_date" [matDatepicker]="picker"
-      placeholder="Fecha de inicio para responder" required>
+      placeholder="{{'GAMES.STARTDATE'|translate}}" required>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
   <mat-form-field style="width:400px !important">
     <input style="width:400px !important" matInput [(ngModel)]="data.finish_date" [matDatepicker]="picker2"
-      placeholder="Fecha final para responder" required>
+      placeholder="{{'GAMES.FINISHDATE'|translate}}" required>
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2></mat-datepicker>
   </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Selecciona el questionnario a utilizar" [(ngModel)]="data.questionnaireId" required>
+  <mat-form-field style="width:400px !important">
+    <mat-select style="width:400px !important" placeholder="{{'GAMES.TYPEOFQUESTIONNAIRE'|translate}}"
+      [(ngModel)]="data.questionnaireId" required>
       <mat-option *ngFor="let Questionnaire of data.questionnaireshtml" value={{Questionnaire.id}}>
         {{Questionnaire.name}}</mat-option>
     </mat-select>
   </mat-form-field>
   <br>
-  <button [mat-dialog-close]="data" mat-raised-button color="primary">Crear</button>
+  <button [mat-dialog-close]="data" mat-raised-button color="primary">{{'GAMES.CREATEBUTTON'|translate}}</button>
 </mat-dialog-content>

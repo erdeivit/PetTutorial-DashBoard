@@ -29,7 +29,7 @@ export class CreateNewGameComponent {
     this.team = boolean;
   }
 
-  public tiempo(i: number) {
+  public timeSelect(i: number) {
     switch (i) {
       case 0:
         this.questiontime = false;
@@ -66,15 +66,14 @@ export class CreateNewGameComponent {
 export class GamesComponent implements OnInit {
   public returnUrl: string = this.route.snapshot.queryParams['returnUrl'];
   public groupId: string;
-  public students: Array<Student>;
   public sub: {};
   public questionnaireGame: Array<QuestionnaireGame> = [];
   public questionnaires: Array<Questionnaire>;
-  public activeQuestionnaireGame: Array<QuestionnaireGame> = [];
-  public deadQuestionnaireGame: Array<QuestionnaireGame> = [];
-  public programmedQuestionnaireGame: Array<QuestionnaireGame> = [];
+  public activeQuestionnairesGame: Array<QuestionnaireGame>;
+  public deadQuestionnairesGame: Array<QuestionnaireGame>;
+  public programmedQuestionnairesGame: Array<QuestionnaireGame>;
   public questionnaire: Questionnaire;
-  public resultQuestionnaire: Array<ResultQuestionnaire>;
+  public resultsQuestionnaire: Array<ResultQuestionnaire>;
   public results = false;
   constructor(
     public route: ActivatedRoute,
@@ -89,11 +88,6 @@ export class GamesComponent implements OnInit {
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
   }
 
-  /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
   public openCreateNewGameComponent(): void {
     const dialogRef = this.dialog.open(CreateNewGameComponent,
       {
@@ -131,31 +125,27 @@ export class GamesComponent implements OnInit {
   }
 
   /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
+   * FIRST METHOD THAT IS FIRED WHEN ENTER TO THE COMPONENT
    */
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       this.groupId = params['id'];
     });
     this.loadingService.show();
-    this.getMyQuestionnaires();
+    this.getTeacherQuestionnaires();
     this.getGroupQuestionnairesGame(this.groupId);
     this.getResults();
   }
 
   /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
+     * TO ACTIVE THE RESULTS BUTTON, IF THERE ARE RESULTS
+     */
   public getResults() {
     this.questionnaireService.getResults().subscribe(
       ((resultQuestionnaire: ResultQuestionnaire[]) => {
-        this.resultQuestionnaire = resultQuestionnaire;
-        if (this.resultQuestionnaire.length > 0) {
-          for (const result of this.resultQuestionnaire) {
+        this.resultsQuestionnaire = resultQuestionnaire;
+        if (this.resultsQuestionnaire.length > 0) {
+          for (const result of this.resultsQuestionnaire) {
             if (result.questionnaireGame.groupId === this.groupId) {
               this.results = true;
             }
@@ -169,32 +159,8 @@ export class GamesComponent implements OnInit {
 
   }
 
-  /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
-  public getInformation(id: string) {
-    this.getQuestionnaireOfQUestionnaireGame(id);
-  }
-
-  /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
-  public ShowResults() {
-    this.returnUrl = this.route.snapshot.url.join('/') + '/showResult';
-    this.router.navigate([this.returnUrl]);
-  }
-
-  /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
-  public getQuestionnaireOfQUestionnaireGame(id: string) {
-    this.questionnaireService.getQuestionnaireOfQUestionnaireGame(id).subscribe(
+  public getQuestionnaireOfQuestionnaireGame(id_questionnaireGame: string) {
+    this.questionnaireService.getQuestionnaireOfQUestionnaireGame(id_questionnaireGame).subscribe(
       ((valueQuestionnaire: Questionnaire) => {
         this.questionnaire = valueQuestionnaire;
       }),
@@ -205,12 +171,15 @@ export class GamesComponent implements OnInit {
   }
 
   /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
-  public getMyQuestionnaires() {
-    this.questionnaireService.getMyQuestionnaires(String(this.utilsService.currentUser.userId)).subscribe(
+     * TO GO TO RESULTS PAGE
+     */
+  public ShowResults() {
+    this.returnUrl = this.route.snapshot.url.join('/') + '/showResult';
+    this.router.navigate([this.returnUrl]);
+  }
+
+  public getTeacherQuestionnaires() {
+    this.questionnaireService.getTeacherQuestionnaires(String(this.utilsService.currentUser.userId)).subscribe(
       ((Questionnaires: Questionnaire[]) => {
         this.questionnaires = Questionnaires;
       }),
@@ -220,16 +189,11 @@ export class GamesComponent implements OnInit {
       }));
   }
 
-  /**
-     * Returns the questionnaires with the one level information of the current
-     * logged in user into the application
-     * @return {Array<Questionnaire>} returns the list of questionnaires
-     */
-  public getGroupQuestionnairesGame(id: string) {
-    this.questionnaireService.getGroupQuestionnairesGame(id).subscribe(
+  public getGroupQuestionnairesGame(id_Group: string) {
+    this.questionnaireService.getGroupQuestionnairesGame(id_Group).subscribe(
       ((QuestionnairesGame: QuestionnaireGame[]) => {
         this.questionnaireGame = QuestionnairesGame;
-        this.getActivos();
+        this.getStateOfQuestionnaires();
       }),
       ((error: Response) => {
         this.loadingService.hide();
@@ -237,16 +201,11 @@ export class GamesComponent implements OnInit {
       }));
   }
 
-  /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
-  public getActivos() {
+  public getStateOfQuestionnaires() {
     const date = new Date();
-    this.activeQuestionnaireGame = [];
-    this.deadQuestionnaireGame = [];
-    this.programmedQuestionnaireGame = [];
+    this.activeQuestionnairesGame = [];
+    this.deadQuestionnairesGame = [];
+    this.programmedQuestionnairesGame = [];
     for (const QuestionarioGame of this.questionnaireGame) {
       const diff = new Date(QuestionarioGame.finish_date).getTime() - date.getTime();
       const diff2 = new Date(QuestionarioGame.start_date).getTime() - date.getTime();
@@ -255,12 +214,12 @@ export class GamesComponent implements OnInit {
       QuestionarioGame['fnsh_date'] = new Date(QuestionarioGame.finish_date).getDate() + '/' + (new Date(QuestionarioGame.finish_date).getMonth() + 1) + '/' + new Date(QuestionarioGame.finish_date).getFullYear();
       if (diff >= 0) {
         if (diff2 >= 0) {
-          this.programmedQuestionnaireGame.push(QuestionarioGame);
+          this.programmedQuestionnairesGame.push(QuestionarioGame);
         } else {
-          this.activeQuestionnaireGame.push(QuestionarioGame);
+          this.activeQuestionnairesGame.push(QuestionarioGame);
         }
       } else {
-        this.deadQuestionnaireGame.push(QuestionarioGame);
+        this.deadQuestionnairesGame.push(QuestionarioGame);
       }
     }
   }

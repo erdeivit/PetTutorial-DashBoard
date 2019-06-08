@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Login, QuestionnaireGame, ResultQuestionnaire } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
-import { LoadingService, UtilsService, GroupService, AlertService, QuestionnaireService } from '../../shared/services/index';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { LoadingService, UtilsService, AlertService, QuestionnaireService } from '../../shared/services/index';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-gamesresult',
@@ -11,49 +10,38 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./gamesResult.scss']
 })
 export class GamesResultComponent implements OnInit {
-  public returnUrl: string;
   public groupId: string;
-  public questionnaireGame: Array<QuestionnaireGame> = [];
+  public questionnairesGame: Array<QuestionnaireGame> = [];
   public sub: {};
-  public resultQuestionnaire: Array<ResultQuestionnaire> = [];
+  public resultQuestionnaires: Array<ResultQuestionnaire> = [];
   public teacherResults: Array<ResultQuestionnaire> = [];
-  public selectedQuestionnaire: Array<ResultQuestionnaire> = [];
+  public selectQuestionnaires: Array<ResultQuestionnaire> = [];
   constructor(
     public route: ActivatedRoute,
-    public router: Router,
     public alertService: AlertService,
     public utilsService: UtilsService,
     public loadingService: LoadingService,
-    public groupService: GroupService,
-    public questionnaireService: QuestionnaireService,
-    public dialog: MatDialog) {
+    public questionnaireService: QuestionnaireService) {
     this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
   }
 
   /**
-     * Returns the questionnaires with the one level information of the current
-     * logged in user into the application
-     * @return {Array<Questionnaire>} returns the list of questionnaires
+     * FIRST METHOD THAT IS FIRED WHEN ENTER TO THE COMPONENT
      */
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       this.groupId = params['id'];
     });
     this.getGroupQuestionnairesGame(this.groupId);
-    this.getResults();
+    this.getResultsOfQuestionnaires();
   }
 
-  /**
-     * Returns the questionnaires with the one level information of the current
-     * logged in user into the application
-     * @return {Array<Questionnaire>} returns the list of questionnaires
-     */
-  public getResults() {
+  public getResultsOfQuestionnaires() {
     this.questionnaireService.getResults().subscribe(
       ((resultQuestionnaire: ResultQuestionnaire[]) => {
-        this.resultQuestionnaire = resultQuestionnaire;
-        for (const result of this.resultQuestionnaire) {
+        this.resultQuestionnaires = resultQuestionnaire;
+        for (const result of this.resultQuestionnaires) {
           if (parseInt(result.questionnaireGame.teacherId, 10) === this.utilsService.currentUser.userId) {
             this.teacherResults.push(result);
           }
@@ -65,15 +53,10 @@ export class GamesResultComponent implements OnInit {
       }));
   }
 
-  /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
-  public getGroupQuestionnairesGame(id: string) {
-    this.questionnaireService.getGroupQuestionnairesGame(id).subscribe(
+  public getGroupQuestionnairesGame(idGroup: string) {
+    this.questionnaireService.getGroupQuestionnairesGame(idGroup).subscribe(
       ((QuestionnairesGame: QuestionnaireGame[]) => {
-        this.questionnaireGame = QuestionnairesGame;
+        this.questionnairesGame = QuestionnairesGame;
       }),
       ((error: Response) => {
         this.loadingService.hide();
@@ -81,16 +64,11 @@ export class GamesResultComponent implements OnInit {
       }));
   }
 
-  /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
-  public seleccionarcuestionario(name: string) {
-    this.selectedQuestionnaire = [];
+  public selectQuestionnaire(nameOfQuestionnaire: string) {
+    this.selectQuestionnaires = [];
     for (const quest of this.teacherResults) {
-      if (quest.questionnaireGame.name === name) {
-        this.selectedQuestionnaire.push(quest);
+      if (quest.questionnaireGame.name === nameOfQuestionnaire) {
+        this.selectQuestionnaires.push(quest);
       }
     }
   }

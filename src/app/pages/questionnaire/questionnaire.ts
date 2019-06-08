@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ɵCodegenComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Login, Questionnaire, Question } from '../../shared/models/index';
 import { AppConfig } from '../../app.config';
@@ -25,13 +25,8 @@ export class ViewQuestionnairesDialogComponent {
     this.dialogRef.close();
   }
 
-  /**
-     * Returns the questionnaires with the one level information of the current
-     * logged in user into the application
-     * @return {Array<Questionnaire>} returns the list of questionnaires
-     */
-  public getInformation(id: string) {
-    this.questionnaireService.getQuestionsofQuestionnaire(id).subscribe(
+  public getQuestionsofQuestionnaire(idQuestionnaire: string) {
+    this.questionnaireService.getQuestionsofQuestionnaire(idQuestionnaire).subscribe(
       ((Questions: Array<Question>) => {
         this.Questions = Questions;
       }),
@@ -60,17 +55,13 @@ export class ViewQuestionsDialogComponent {
 }
 
 // tslint:disable-next-line: no-empty-interface
-export interface DialogCreateQuestionnaires {
-
-}
+export interface DialogCreateQuestionnaires { }
 @Component({
   selector: 'app-createquestionnairesdialogcomponent',
   templateUrl: 'createQuestionnairesDialogComponent.html',
   styleUrls: ['./questionnaire.scss']
 })
 export class CreateQuestionnairesDialogComponent {
-  public option1: boolean;
-  public option2: boolean;
   public filteredquestions: Array<Question>;
   constructor(
     public dialogRef: MatDialogRef<CreateQuestionnairesDialogComponent>,
@@ -83,7 +74,8 @@ export class CreateQuestionnairesDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  public filterbycategory(category: string, questions: Array<Question>) {
+
+  public selectQuestionsfilterbycategory(category: string, questions: Array<Question>) {
     this.filteredquestions = questions.filter(item => item.category === category);
   }
 }
@@ -110,13 +102,9 @@ export class CreateQuestionsDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
-  public numrespuestas(i: number) {
-    switch (i) {
+
+  public numberOfAnswers(number: number) {
+    switch (number) {
       case 0:
         this.respuesta1 = false;
         this.respuesta2 = false;
@@ -185,9 +173,7 @@ export class CreateQuestionsDialogComponent {
 export class QuestionnaireComponent implements OnInit {
   public questionnaires: Array<Questionnaire>;
   public questions: Array<Question>;
-  public animal: string;
-  public QuestionnaireNumber: string;
-  public arr_categories: Array<string> = [];
+  public categories: Array<string> = [];
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -199,13 +185,9 @@ export class QuestionnaireComponent implements OnInit {
     this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
   }
-  /**
-     * Returns the questionnaires with the one level information of the current
-     * logged in user into the application
-     * @return {Array<Questionnaire>} returns the list of questionnaires
-     */
+
   public openViewQuestionnairesDialog(): void {
-    this.getMyQuestionnaires();
+    this.getTeacherQuestions();
     const dialogRef = this.dialog.open(ViewQuestionnairesDialogComponent,
       {
         height: 'auto',
@@ -222,13 +204,8 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
-  /**
-     * Returns the questionnaires with the one level information of the current
-     * logged in user into the application
-     * @return {Array<Questionnaire>} returns the list of questionnaires
-     */
   public openViewQuestionsDialog(): void {
-    this.getMyQuestions();
+    this.getTeacherQuestions();
     const dialogRef = this.dialog.open(ViewQuestionsDialogComponent,
       {
         height: '500px',
@@ -244,11 +221,6 @@ export class QuestionnaireComponent implements OnInit {
     });
   }
 
-  /**
-     * Returns the questionnaires with the one level information of the current
-     * logged in user into the application
-     * @return {Array<Questionnaire>} returns the list of questionnaires
-     */
   public openCreateQuestionnairesDialog(): void {
     this.getCategories();
     const dialogRef = this.dialog.open(CreateQuestionnairesDialogComponent,
@@ -261,7 +233,7 @@ export class QuestionnaireComponent implements OnInit {
         },
         data: {
           questionshtml: this.questions,
-          category: this.arr_categories
+          category: this.categories
         }
       });
 
@@ -276,7 +248,7 @@ export class QuestionnaireComponent implements OnInit {
         result['questionId'] = intidquestions;
         this.questionnaireService.saveQuestionnaire(result).subscribe(
           (() => {
-            this.getMyQuestionnaires();
+            this.getTeacherQuestions();
           }),
           ((error: Response) => {
             this.loadingService.hide();
@@ -287,11 +259,6 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
-  /**
-     * Returns the questionnaires with the one level information of the current
-     * logged in user into the application
-     * @return {Array<Questionnaire>} returns the list of questionnaires
-     */
   public openCreateQuestionsDialog(): void {
     const dialogRef = this.dialog.open(CreateQuestionsDialogComponent,
       {
@@ -322,7 +289,7 @@ export class QuestionnaireComponent implements OnInit {
         }
         this.questionnaireService.saveQuestion(result).subscribe(
           (() => {
-            this.getMyQuestions();
+            this.getTeacherQuestions();
           }),
           ((error: Response) => {
             this.loadingService.hide();
@@ -334,45 +301,33 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
-  /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
   public getCategories() {
-    let encontrado = false;
-    this.arr_categories = [];
-    this.arr_categories.push(this.questions[0].category);
+    let categoryfind = false;
+    this.categories = [];
+    this.categories.push(this.questions[0].category);
     for (const question of this.questions) {
-      for (let i = 0; i < this.arr_categories.length; i++) {
-        if (this.arr_categories[i] === question.category) {
-          encontrado = true;
+      for (let i = 0; i < this.categories.length; i++) {
+        if (this.categories[i] === question.category) {
+          categoryfind = true;
         }
       }
-      if (!encontrado) {
-        this.arr_categories.push(question.category);
+      if (!categoryfind) {
+        this.categories.push(question.category);
       }
-      encontrado = false;
+      categoryfind = false;
     }
   }
 
   /**
-   * Returns the questionnaires with the one level information of the current
-   * logged in user into the application
-   * @return {Array<Questionnaire>} returns the list of questionnaires
-   */
+       * FIRST METHOD THAT IS FIRED WHEN ENTER TO THE COMPONENT
+       */
   public ngOnInit(): void {
-    this.getMyQuestionnaires();
-    this.getMyQuestions();
+    this.getTeacherQuestionnaires();
+    this.getTeacherQuestions();
   }
 
-  /**
-     * Returns the questionnaires with the one level information of the current
-     * logged in user into the application
-     * @return {Array<Questionnaire>} returns the list of questionnaires
-     */
-  public getMyQuestionnaires() {
-    this.questionnaireService.getMyQuestionnaires(String(this.utilsService.currentUser.userId)).subscribe(
+  public getTeacherQuestionnaires() {
+    this.questionnaireService.getTeacherQuestionnaires(String(this.utilsService.currentUser.userId)).subscribe(
       ((Questionnaires: Questionnaire[]) => {
         this.questionnaires = Questionnaires;
       }),
@@ -382,13 +337,8 @@ export class QuestionnaireComponent implements OnInit {
       }));
   }
 
-  /**
-     * Returns the questionnaires with the one level information of the current
-     * logged in user into the application
-     * @return {Array<Questionnaire>} returns the list of questionnaires
-     */
-  public getMyQuestions() {
-    this.questionnaireService.getMyQuestions(String(this.utilsService.currentUser.userId)).subscribe(
+  public getTeacherQuestions() {
+    this.questionnaireService.getTeacherQuestions(String(this.utilsService.currentUser.userId)).subscribe(
       ((valueQuestion: Question[]) => {
         this.questions = valueQuestion;
       }),
