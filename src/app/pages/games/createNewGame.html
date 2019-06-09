@@ -17,7 +17,8 @@
   <mat-form-field *ngIf="findSelectime" style="width:400px !important">
     <mat-select style="width:400px !important" placeholder="{{'GAMES.TIMEQUESTION'|translate}}" required>
       <mat-option (click)="timeSelect(2)" value="Tiempo de pregunta">{{'GAMES.TIMEINQUESTION'|translate}}</mat-option>
-      <mat-option (click)="timeSelect(3)" value="Tiempo de cuestionario">{{'GAMES.TIMEINQUESTIONNAIRE'|translate</mat-option>
+      <mat-option (click)="timeSelect(3)" value="Tiempo de cuestionario">{{'GAMES.TIMEINQUESTIONNAIRE'|translate}}
+      </mat-option>
       <mat-option (click)="timeSelect(9)">{{'TIMENO'|translate}}</mat-option>
     </mat-select>
   </mat-form-field>

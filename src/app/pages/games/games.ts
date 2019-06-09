@@ -146,7 +146,8 @@ export class GamesComponent implements OnInit {
         this.resultsQuestionnaire = resultQuestionnaire;
         if (this.resultsQuestionnaire.length > 0) {
           for (const result of this.resultsQuestionnaire) {
-            if (result.questionnaireGame.groupId === this.groupId) {
+            // tslint:disable-next-line: triple-equals  (this.groupId is number, result. is string)
+            if (result.questionnaireGame.groupId == this.groupId) {
               this.results = true;
             }
           }
