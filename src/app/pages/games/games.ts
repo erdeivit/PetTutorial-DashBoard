@@ -49,7 +49,11 @@ export class CreateNewGameComponent {
         this.findQuestionnairetime = true;
         this.findQuestiontime = false;
         break;
-      case 9:
+      case 4:
+        this.findQuestionnairetime = false;
+        this.findQuestiontime = false;
+        break;
+      case 999:
         this.findQuestionnairetime = false;
         this.findQuestiontime = false;
         this.findSelectime = false;

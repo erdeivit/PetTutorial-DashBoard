@@ -8,18 +8,20 @@
       required>
       <mat-option (click)="timeSelect(0)" value="QuizPip">{{'GAMES.QUIZPIP'|translate}}</mat-option>
       <mat-option (click)="timeSelect(1)" value="1by1">{{'GAMES.1by1'|translate}}</mat-option>
-      <mat-option (click)="timeSelect(9)" value="Qlasspip">{{'GAMES.Qlasspip'|translate}}</mat-option>
-      <mat-option (click)="timeSelect(9)" value="FlipCardsPip">{{'GAMES.FlipCardsPip'|translate}}</mat-option>
-      <mat-option (click)="timeSelect(9)" value="TimeToLearn">{{'GAMES.TimeToLearn'|translate}}</mat-option>
-      <mat-option (click)="timeSelect(9)" value="TrivialClip">{{'GAMES.TrivialClip'|translate}}</mat-option>
+      <mat-option (click)="timeSelect(999)" value="Qlasspip">{{'GAMES.Qlasspip'|translate}}</mat-option>
+      <mat-option (click)="timeSelect(999)" value="FlipCardsPip">{{'GAMES.FlipCardsPip'|translate}}</mat-option>
+      <mat-option (click)="timeSelect(999)" value="TimeToLearn">{{'GAMES.TimeToLearn'|translate}}</mat-option>
+      <mat-option (click)="timeSelect(999)" value="TrivialClip">{{'GAMES.TrivialClip'|translate}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field *ngIf="findSelectime" style="width:400px !important">
     <mat-select style="width:400px !important" placeholder="{{'GAMES.TIMEQUESTION'|translate}}" required>
-      <mat-option (click)="timeSelect(2)" value="Tiempo de pregunta">{{'GAMES.TIMEINQUESTION'|translate}}</mat-option>
-      <mat-option (click)="timeSelect(3)" value="Tiempo de cuestionario">{{'GAMES.TIMEINQUESTIONNAIRE'|translate}}
+      <mat-option (click)="timeSelect(2)" value="{{'GAMES.TIMEINQUESTION'|translate}}">
+        {{'GAMES.TIMEINQUESTION'|translate}}</mat-option>
+      <mat-option (click)="timeSelect(3)" value="{{'GAMES.TIMEINQUESTIONNAIRE'|translate}}">
+        {{'GAMES.TIMEINQUESTIONNAIRE'|translate}}
       </mat-option>
-      <mat-option (click)="timeSelect(9)">{{'TIMENO'|translate}}</mat-option>
+      <mat-option (click)="timeSelect(4)" value="{{'GAMES.TIMENO'|translate}}">{{'GAMES.TIMENO'|translate}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field style="width:400px !important" appearance="outline" *ngIf="findQuestiontime">
