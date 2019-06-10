@@ -204,7 +204,7 @@ export class QuestionnaireComponent implements OnInit {
 
   }
 
-  public openViedwQuestionsDialog(): void {
+  public openViewQuestionsDialog(): void {
     this.getTeacherQuestions();
     const dialogRef = this.dialog.open(ViewQuestionsDialogComponent,
       {
@@ -248,7 +248,7 @@ export class QuestionnaireComponent implements OnInit {
         result['questionId'] = intidquestions;
         this.questionnaireService.postQuestionnaire(result).subscribe(
           (() => {
-            this.getTeacherQuestions();
+            this.getTeacherQuestionnaires();
           }),
           ((error: Response) => {
             this.loadingService.hide();

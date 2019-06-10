@@ -131,7 +131,7 @@
     "SELECT": "Selecciona un estudiant"
   },
   "QUESTION": {
-    "CREATING": "Creant una nova pregunta",
+    "CREATING": "Creant pregunta",
     "STATEMENT": "Escriu l'enunciat",
     "IMAGE": "Imatge (URL)",
     "CATEGORY": "Categoria",
@@ -147,8 +147,8 @@
     "ANSWER6": "Resposta número 6",
     "CORRECTANSWERS": "Selecciona la/es resposta/es correctes",
     "CREATE": "CREAR",
-    "TABLECATEGORY": "Categoria",
-    "TABLESTATEMENT": "Enunciat",
+    "TABLECATEGORY": "Categoria: ",
+    "TABLESTATEMENT": "Enunciat: ",
     "TABLEIMAGE": "Imatge",
     "TABLETYPEOFQUESTION": "Tipus",
     "TABLEDIFFICULTY": "Dificultat",
@@ -157,7 +157,7 @@
   },
   "QUESTIONNAIRE": {
     "TITLE": "Qüestionaris",
-    "CREATING": "Creant un nou qüestionari",
+    "CREATING": "Creant un qüestionari",
     "MYQUESTIONNAIRES": "Els meus qüestionaris",
     "NEWQUESTIONNAIRE": "Crear qüestionari",
     "MYQUESTIONS": "Les meves preguntes",

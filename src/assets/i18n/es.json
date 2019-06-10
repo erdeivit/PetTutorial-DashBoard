@@ -265,7 +265,7 @@
     "SELECT": "Selecciona a un estudiante"
   },
   "QUESTION": {
-    "CREATING": "Creando una nueva pregunta",
+    "CREATING": "Creando pregunta",
     "STATEMENT": "Enunciado",
     "IMAGE": "Imagen (URL)",
     "CATEGORY": "Categoria",
@@ -281,8 +281,8 @@
     "ANSWER6": "Respuesta número 6",
     "CORRECTANSWERS": "Selecciona la/s respuesta/s correctas",
     "CREATE": "CREAR",
-    "TABLECATEGORY": "Categoria",
-    "TABLESTATEMENT": "Enunciado",
+    "TABLECATEGORY": "Categoria: ",
+    "TABLESTATEMENT": "Enunciado: ",
     "TABLEIMAGE": "Imagen",
     "TABLETYPEOFQUESTION": "Tipo",
     "TABLEDIFFICULTY": "Dificultad",
@@ -291,7 +291,7 @@
   },
   "QUESTIONNAIRE": {
     "TITLE": "Cuestionarios",
-    "CREATING": "Creando un nuevo cuestionario",
+    "CREATING": "Creando un cuestionario",
     "MYQUESTIONNAIRES": "Mis cuestionarios",
     "NEWQUESTIONNAIRE": "Crear cuestionario",
     "MYQUESTIONS": "Mis preguntas",

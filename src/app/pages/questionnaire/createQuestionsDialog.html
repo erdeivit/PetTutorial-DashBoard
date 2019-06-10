@@ -65,7 +65,7 @@
     <input style="width:400px !important" matInput [(ngModel)]="data.answer6"
       placeholder="{{'QUESTION.ANSWER6'|translate}}">
   </mat-form-field>
-  <mat-form-field style="width:400px !important" *ngIf="respuesta2">
+  <mat-form-field style="width:400px !important" *ngIf="findRespuesta2">
     <mat-select style="width:400px !important" placeholder="{{'QUESTION.CORRECTANSWERS'|translate}}"
       [(ngModel)]="data.correctanswer" multiple required>
       <mat-option *ngIf="findRespuesta1" value={{data.answer1}}>{{data.answer1}}</mat-option>
@@ -78,5 +78,5 @@
   </mat-form-field>
   <br>
   <button [mat-dialog-close]="data" mat-raised-button color="primary"
-    click="saveQuestion()">"{{'QUESTION.CREATE'|translate}}"</button>
+    click="saveQuestion()">{{'QUESTION.CREATE'|translate}}</button>
 </mat-dialog-content>

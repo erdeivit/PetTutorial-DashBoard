@@ -21,7 +21,7 @@
       <td>{{result.numAnswerNoCorrect}}</td>
       <td>
         <div *ngFor="let answer of result.userAnswers;let i =index">
-          <p *ngIf="answer !==null">{{'GAMES.TABLEANSWERQUESTION'|translate}} {{i+1}} : {{answer}}</p>
+          <p *ngIf="answer !==null ">{{'GAMES.TABLEANSWERQUESTION'|translate}} {{i+1}} : {{answer}}</p>
           <p *ngIf="answer ===null">{{'GAMES.TABLEANSWERQUESTION'|translate}} {{i+1}} :
             {{'GAMES.TABLENOANSWER'|translate}}</p>
         </div>
