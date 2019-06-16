@@ -1,0 +1,32 @@
+<mat-dialog-content>
+  <div class="groups-content">
+    <mat-toolbar color="primary">
+      {{'GAMES.USERANSWERS'|translate}}
+      <button class="btn5" mat-raised-button (click)="exit()"><i class="material-icons">close</i></button>
+    </mat-toolbar>
+    <br>
+    <table>
+      <tr width="35">
+        <th>Número Pregunta</th>
+        <th>Respuesta ususario</th>
+      </tr>
+      <tr *ngFor="let answer of data.useranswers;let i = index">
+        <td>{{i+1}}</td>
+        <td>
+          <div>
+            <p *ngIf="answer !==null ">{{answer}}</p>
+            <p *ngIf="answer ===null">{{'GAMES.TABLENOANSWER'|translate}}</p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</mat-dialog-content>
+
+<!--
+<div *ngFor="let answer of result.userAnswers;let i =index">
+            <p *ngIf="answer !==null ">{{'GAMES.TABLEANSWERQUESTION'|translate}} {{i+1}} : {{answer}}</p>
+            <p *ngIf="answer ===null">{{'GAMES.TABLEANSWERQUESTION'|translate}} {{i+1}} :
+              {{'GAMES.TABLENOANSWER'|translate}}</p>
+          </div>
+-->

@@ -8,13 +8,14 @@ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  height: 90% !important;
 }
 
 td,
 th {
   border: 1px solid #dddddd;
   text-align: center;
-  padding: 8px;
+  padding: 5px;
 }
 
 tr:nth-child(even) {
@@ -27,6 +28,48 @@ tr:nth-child(even) {
   border-radius: 10px 10px 10px 10px !important;
   font-size: 16px !important;
   width: auto !important;
-  font-size: 16px !important;
   padding: 10px 12px !important;
+}
+
+.btn2 {
+  color: rgb(49, 46, 46) !important;
+  background-color: #3f51b5 !important;
+  border-radius: 5px 5px 5px 5px !important;
+  font-size: 12px !important;
+  width: auto !important;
+  padding: 4px 6px !important;
+  left: 600px;
+}
+
+.my-centered-dialog {
+  max-width: 80vw !important;
+
+  .mat-dialog-container {
+    max-width: none !important;
+  }
+}
+
+.btn3 {
+  color: rgb(49, 46, 46) !important;
+  background-color: #3f51b5 !important;
+  border-radius: 5px 5px 5px 5px !important;
+  font-size: 12px !important;
+  width: auto !important;
+  padding: 4px 6px !important;
+}
+
+.btn4 {
+  background-color: #3f51b5 !important;
+  font-size: 12px !important;
+  width: auto !important;
+  padding: 4px 6px !important;
+  left: 350px;
+}
+
+.btn5 {
+  background-color: #3f51b5 !important;
+  font-size: 12px !important;
+  width: auto !important;
+  padding: 4px 6px !important;
+  left: 300px;
 }

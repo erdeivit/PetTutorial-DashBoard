@@ -152,7 +152,9 @@
     "TABLETYPEOFQUESTION": "Type",
     "TABLEDIFFICULTY": "Difficulty",
     "TABLECORRECTANSWER": "Correct answer",
-    "TABLEANSWER": "Answers"
+    "TABLEANSWER": "Answers",
+    "EXIT": "EXIT",
+    "NEWCATEGORY": "NEW CATEGORY"
   },
   "QUESTIONNAIRE": {
     "TITLE": "Questionnaires",
@@ -168,9 +170,13 @@
     "SELECTQUESTIONS": "Select questions",
     "CREATE": "Create",
     "TABLEIMAGE": "Image",
-    "TABLEID": "Identifier",
+    "TABLEID": "Id",
     "TABLECATEGORY": "Category",
-    "TABLESTATEMENT": "Statement"
+    "TABLESTATEMENT": "Statement",
+    "CLOSEBUTTON": "CLOSE",
+    "NOFILTER": "Without filter",
+    "VIEWQUESTIONNAIRE": "My questionnaires",
+    "VIEWQUESTION": "My questions"
   },
   "GAMES": {
     "NAMEGAME": "Name of the game",
@@ -199,6 +205,7 @@
     "CREATEBUTTON": "Create",
     "NEWGAME": "CREATE A GAME",
     "SEERESULTS": "WATCH THE RESULTS",
+    "SEEANSWERS": "WATCH ANSWERS",
     "ACTIVEQUESTIONNAIRES": "ACTIVE GAMES",
     "TABLETYPEOFGAME": "Type of game",
     "TABLESTARTDATE": "Start date",
@@ -212,12 +219,22 @@
     "SELECTQUESTIONNAIRE": "Select one questionnaire",
     "TABLEIDSTUDENT": "Student identifier",
     "TABLEFINALMARK": "Final mark",
+    "TABLETOTALOFQUESTIONS": "Number of questions",
     "TABLEANSWERSCORRECT": "Correct answers",
     "TABLEANSWERSNOCORRECT": "Wrong answers",
     "TABLEUSERANSWERS": "Student answers",
     "TABLEANSWERQUESTION": "Answer number",
     "TABLENOANSWER": "NOT ANSWERED",
-    "TABLENORESULTS": "WITHOUT RESULTS"
+    "TABLENORESULTS": "WITHOUT RESULTS",
+    "GOBACK": "GO BACK",
+    "USERANSWERS": "Student answers",
+    "GAMERESULTS": "Game results",
+    "QUIZPIPINFORMATION": "Classical way to answer a questionnaire. All the question will be displayed on the screen. Students will press submit button unless the time pass away.",
+    "1BY1INFORMATION": "On the screen will appear one question each time. Students answer the question and when they press the submit button (or the time passed away) will appear the next question.",
+    "QLASSPIPINFORMATION": "(Not implemented yet): It is thought to be similar to kahoot.",
+    "FLIPCARDSPIPINFORMATION": "This mode is focused on the study. The question will appear on the screen and when students think that they guess the question, they will be able to know the answer (passing the mouse over there).",
+    "TIMETOLEARNINFORMATION": "(Not implemented yet). It is thought to launch a question (through bar notificacion) which will give points to the student. It can appear at any time (8:00-22:00).",
+    "TRIVIALCLIPINFORMATION": "(Not implemented yet). It is thought to be similiar to a Trivial game."
   },
 
   "ERROR": {

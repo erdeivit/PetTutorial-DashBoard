@@ -1,7 +1,12 @@
 <mat-dialog-content>
+  <mat-toolbar color="primary">
+    {{'QUESTIONNAIRE.VIEWQUESTIONNAIRE'|translate}}
+    <button class="btn5" mat-raised-button (click)="exit()"><i class="material-icons">close</i></button>
+  </mat-toolbar>
+  <br>
   <mat-accordion class="example-headers-align">
     <mat-expansion-panel *ngFor="let Questionnaire of data.questionnaireshtml" hideToggle>
-      <mat-expansion-panel-header (click)="getQuestionsofQuestionnaire(Questionnaire.id)">
+      <mat-expansion-panel-header class="left-aligned-header" (click)="getQuestionsofQuestionnaire(Questionnaire.id)">
         <mat-panel-title>
           {{Questionnaire.name}}
         </mat-panel-title>
@@ -12,19 +17,18 @@
       <div mat-dialog>
         <table>
           <tr width="35">
-            <th>{{'QUESTIONNAIRE.TABLEIMAGE'|translate}}</th>
-            <th>{{'QUESTIONNAIRE.TABLEID'|translate}}</th>
-            <th>{{'QUESTIONNAIRE.TABLECATEGORY'|translate}}</th>
+            <th style="max-width: 10px!important">{{'QUESTIONNAIRE.TABLEID'|translate}}</th>
             <th>{{'QUESTIONNAIRE.TABLESTATEMENT'|translate}}</th>
+            <th style="max-width: 25px!important">{{'QUESTION.TABLEDIFFICULTY'|translate}}</th>
           </tr>
           <tr *ngFor="let quest of Questions">
-            <td><img src="{{quest.image}}" width="50" height="50"></td>
-            <td>{{quest.id}}</td>
-            <td>{{quest.category}}</td>
-            <td>{{quest.statement}}</td>
+            <td style="max-width: 10px!important">{{quest.id}}</td>
+            <td class="ellipsis">{{quest.statement}}</td>
+            <td style="max-width: 25px!important">{{quest.difficulty}}</td>
           </tr>
         </table>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
+  <br>
 </mat-dialog-content>

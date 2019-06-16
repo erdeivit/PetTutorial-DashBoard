@@ -22,7 +22,6 @@ export class QuestionnaireService {
    * @return {Array<Questionnaire>}
    */
   public getTeacherQuestionnaires(idTeacher: string): Observable<Questionnaire[]> {
-
     const options = this.utilsService.getOptions();
     const url: string = AppConfig.TEACHER_URL + '/' + idTeacher + AppConfig.QUESTIONNAIRES_URL;
     return this.http.get(url, options)
@@ -155,11 +154,27 @@ export class QuestionnaireService {
   * Save a Question in the BBDD
   * @return {<Question>}
   */
-  public postQuestion(questionJSON: JSON): Observable<Question> {
+  // tslint:disable-next-line: max-line-length
+  public postQuestion(statement: string, answer1: string, answer2: string, answer3: string, answer4: string, answer5: string, answer6: string, correctanswer: string, image: string, difficulty: string, category: string, explanation: string, type: string): Observable<Question> {
     const options = this.utilsService.getOptions();
     let url: string;
     url = AppConfig.QUESTION_URL;
-    const postParams = questionJSON;
+    const postParams = {
+      'statement': statement,
+      'answer1': answer1,
+      'answer2': answer2,
+      'answer3': answer3,
+      'answer4': answer4,
+      'answer5': answer5,
+      'answer6': answer6,
+      'correctanswer': correctanswer,
+      'image': image,
+      'difficulty': difficulty,
+      'category': category,
+      'explanation': explanation,
+      'type': type,
+      'teacherId': this.utilsService.currentUser.userId
+    };
     return this.http.post(url, postParams, options)
       .map(response => {
         this.utilsService.currentQuestion = Question.toObject(response.json());
@@ -201,6 +216,16 @@ export class QuestionnaireService {
       .map(response => {
         this.utilsService.currentQuestionnaireGame = QuestionnaireGame.toObject(response.json());
         return QuestionnaireGame;
+      })
+      .catch((error: Response) => this.utilsService.handleAPIError(error));
+  }
+  public deleteQuestion(questionId: number): Observable<Question> {
+    const options = this.utilsService.getOptions();
+    const deleteUrl = AppConfig.TEACHER_URL + '/' + questionId;
+
+    return this.http.delete(deleteUrl, options)
+      .map(response => {
+        return response;
       })
       .catch((error: Response) => this.utilsService.handleAPIError(error));
   }

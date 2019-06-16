@@ -1,12 +1,26 @@
 <mat-dialog-content>
+  <mat-toolbar color="primary">
+    {{'GAMES.USERANSWERS'|translate}}
+    <button class="btn5" mat-raised-button (click)="exit()"><i class="material-icons">close</i></button>
+  </mat-toolbar>
+  <br>
   <mat-accordion class="example-headers-align">
-    <mat-expansion-panel *ngFor="let quest of data.questionshtml" hideToggle>
-      <mat-expansion-panel-header>
+    <mat-form-field style="width:400px !important">
+      <mat-select style="width:400px !important" placeholder="{{'QUESTIONNAIRE.FILTERBYCATEGORY'|translate}}">
+        <mat-option (click)="selectQuestionsfilterbycategory('ALL',data.questionshtml)"
+          value="{{'QUESTIONNAIRE.NOFILTER'|translate}}">{{'QUESTIONNAIRE.NOFILTER'|translate}}</mat-option>
+        <mat-option (click)="selectQuestionsfilterbycategory(cat,data.questionshtml)" *ngFor="let cat of data.category"
+          value={{cat}}>{{cat}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-expansion-panel *ngFor="let quest of filteredquestions" hideToggle>
+      <mat-expansion-panel-header class="left-aligned-header">
         <mat-panel-title *ngIf="quest.category">
-          {{'QUESTION.TABLECATEGORY'|translate}} {{quest.category}}
+          {{quest.category}}
         </mat-panel-title>
-        <mat-panel-description *ngIf="quest.statement">
-          {{'QUESTION.TABLESTATEMENT'|translate}} {{quest.statement}}
+        <mat-panel-description fxLayout="row" fxFlex fxLayoutAlign="start center" fxLayoutGap="10px" class="ellipsis2"
+          *ngIf="quest.statement">
+          {{quest.statement}}
         </mat-panel-description>
       </mat-expansion-panel-header>
       <table>
@@ -16,6 +30,8 @@
           <th> {{'QUESTION.TABLETYPEOFQUESTION'|translate}}</th>
           <th> {{'QUESTION.TABLECORRECTANSWER'|translate}}</th>
           <th> {{'QUESTION.TABLEANSWER'|translate}}</th>
+          <th> EDIT</th>
+          <th> DELETE</th>
         </tr>
         <tr>
           <td><img src="{{quest.image}}" width="50" height="50"></td>
@@ -25,8 +41,11 @@
           <td>{{quest.answer1}} {{quest.answer2}} {{quest.answer3}} {{quest.answer4}} {{quest.answer5}}
             {{quest.answer6}}
           </td>
+          <td><button class="btn7" mat-raised-button><i class="material-icons">edit</i></button></td>
+          <td><button class="btn6" mat-raised-button><i class="material-icons">delete</i></button></td>
         </tr>
       </table>
     </mat-expansion-panel>
   </mat-accordion>
+  <br>
 </mat-dialog-content>

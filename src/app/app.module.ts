@@ -40,8 +40,7 @@ import { TournamentsComponent } from './pages/competitions/tennis/tournaments/to
 import { CreateCardComponent } from './pages/createCard/createCard';
 
 // GAMES URL
-import { GamesComponent, CreateNewGameComponent } from './pages/games/games';
-import { GamesResultComponent } from './pages/gamesResult/gamesResult';
+import { GamesComponent, CreateNewGameComponent, ViewResultsComponent, ViewAnswersComponent } from './pages/games/games';
 
 // QUESTIONNAIRES URL
 // tslint:disable-next-line: max-line-length
@@ -134,7 +133,6 @@ export function createTranslateLoader(http: Http) {
     DeleteCollectionComponent,
 
     GamesComponent,
-    GamesResultComponent,
 
     QuestionnaireComponent,
     ViewQuestionnairesDialogComponent,
@@ -142,6 +140,8 @@ export function createTranslateLoader(http: Http) {
     CreateQuestionsDialogComponent,
     ViewQuestionsDialogComponent,
     CreateNewGameComponent,
+    ViewResultsComponent,
+    ViewAnswersComponent,
 
     CreatePointComponent,
     DeletePointComponent,
@@ -247,6 +247,6 @@ export function createTranslateLoader(http: Http) {
     ViewQuestionnairesDialogComponent,
     CreateQuestionnairesDialogComponent,
     CreateQuestionsDialogComponent,
-    ViewQuestionsDialogComponent, CreateNewGameComponent]
+    ViewQuestionsDialogComponent, CreateNewGameComponent, ViewResultsComponent, ViewAnswersComponent]
 })
 export class AppModule { }

@@ -12,7 +12,7 @@ The different configuration you can set is:
     3.Qlasspip (Not implemented yet): It is thought to be similar to kahoot.
     4.FlipCardsPip: This mode is focused on the study. The question will appear on the screen and when you think
     that you guess the question, you will be able to know the answer (passing the mouse over there).
-    5.TimeToLearn (Not implemented yet): It is though to launch a question (through bar notificacion) which will
+    5.TimeToLearn (Not implemented yet): It is thought to launch a question (through bar notificacion) which will
     give points to the student. It can appear at any time (8:00-22:00).
     6.TrivialClip (Not implemented yet): It is thought to be similiar to a Trivial game.
 

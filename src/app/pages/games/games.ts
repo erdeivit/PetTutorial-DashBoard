@@ -61,6 +61,57 @@ export class CreateNewGameComponent {
     }
   }
 }
+// tslint:disable-next-line: no-empty-interface
+export interface DialogViewAnswers { }
+@Component({
+  selector: 'app-viewresults',
+  templateUrl: 'gamesAnswers.html',
+  styleUrls: ['./games.scss']
+})
+export class ViewAnswersComponent {
+  constructor(
+    public dialogRef: MatDialogRef<ViewAnswersComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogViewAnswers) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  exit() {
+    this.dialogRef.close();
+  }
+}
+
+// tslint:disable-next-line: no-empty-interface
+export interface DialogViewResults { }
+@Component({
+  selector: 'app-viewresults',
+  templateUrl: 'gamesResult.html',
+  styleUrls: ['./games.scss']
+})
+export class ViewResultsComponent {
+  constructor(
+    public dialogRef: MatDialogRef<ViewResultsComponent>,
+    public dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: DialogViewResults) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  viewAnswers(usersAnswers: Array<Questionnaire>) {
+    const dialogRef = this.dialog.open(ViewAnswersComponent,
+      {
+        height: 'auto',
+        width: '700px',
+        panelClass: 'my-centered-dialog',
+        data: { useranswers: usersAnswers }
+      });
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+  exit() {
+    this.dialogRef.close();
+  }
+}
 
 @Component({
   selector: 'app-games',
@@ -78,6 +129,7 @@ export class GamesComponent implements OnInit {
   public programmedQuestionnairesGame: Array<QuestionnaireGame>;
   public questionnaire: Questionnaire;
   public resultsQuestionnaire: Array<ResultQuestionnaire>;
+  public resultsofQuestionnaireGame: Array<ResultQuestionnaire>;
   public results = false;
   constructor(
     public route: ActivatedRoute,
@@ -127,6 +179,32 @@ export class GamesComponent implements OnInit {
       }
     });
   }
+  public openViewResultsComponent(): void {
+    console.log(this.resultsofQuestionnaireGame);
+    const dialogRef = this.dialog.open(ViewResultsComponent,
+      {
+        height: 'auto',
+        width: '700px',
+        panelClass: 'my-centered-dialog',
+        data: { prueba: this.resultsofQuestionnaireGame }
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  public openViewAnswersComponent(userAnswers: Array<Questionnaire>): void {
+    const dialogRef = this.dialog.open(ViewAnswersComponent,
+      {
+        height: 'auto',
+        width: '700px',
+        panelClass: 'my-centered-dialog',
+        data: { useranswers: userAnswers }
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
 
   /**
    * FIRST METHOD THAT IS FIRED WHEN ENTER TO THE COMPONENT
@@ -145,14 +223,14 @@ export class GamesComponent implements OnInit {
      * TO ACTIVE THE RESULTS BUTTON, IF THERE ARE RESULTS
      */
   public getResults() {
+    this.resultsQuestionnaire = [];
     this.questionnaireService.getResults().subscribe(
       ((resultQuestionnaire: ResultQuestionnaire[]) => {
-        this.resultsQuestionnaire = resultQuestionnaire;
-        if (this.resultsQuestionnaire.length > 0) {
-          for (const result of this.resultsQuestionnaire) {
+        if (resultQuestionnaire.length > 0) {
+          for (const result of resultQuestionnaire) {
             // tslint:disable-next-line: triple-equals  (this.groupId is number, result. is string)
             if (result.questionnaireGame.groupId == this.groupId) {
-              this.results = true;
+              this.resultsQuestionnaire.push(result);
             }
           }
         }
@@ -164,7 +242,7 @@ export class GamesComponent implements OnInit {
 
   }
 
-  public getQuestionnaireOfQuestionnaireGame(id_questionnaireGame: string) {
+  public getQuestionnaireOfQuestionnaireGame(id_questionnaireGame: string, nameOfQuestionnaireGame: string) {
     this.questionnaireService.getQuestionnaireOfQUestionnaireGame(id_questionnaireGame).subscribe(
       ((valueQuestionnaire: Questionnaire) => {
         this.questionnaire = valueQuestionnaire;
@@ -173,14 +251,20 @@ export class GamesComponent implements OnInit {
         this.loadingService.hide();
         this.alertService.show(error.toString());
       }));
+    this.showResultButton(nameOfQuestionnaireGame);
   }
 
-  /**
-     * TO GO TO RESULTS PAGE
-     */
-  public ShowResults() {
-    this.returnUrl = this.route.snapshot.url.join('/') + '/showResult';
-    this.router.navigate([this.returnUrl]);
+  public showResultButton(nameOfQuestionnaireGame: string) {
+    this.results = false;
+    this.resultsofQuestionnaireGame = [];
+    console.log(nameOfQuestionnaireGame);
+    console.log(this.resultsQuestionnaire);
+    for (const quest of this.resultsQuestionnaire) {
+      if (quest.questionnaireGame.name === nameOfQuestionnaireGame) {
+        this.resultsofQuestionnaireGame.push(quest);
+        this.results = true;
+      }
+    }
   }
 
   public getTeacherQuestionnaires() {

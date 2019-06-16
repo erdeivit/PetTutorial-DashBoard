@@ -350,10 +350,23 @@ app-root>.container {
     font-weight: 700;
   }
 
+
 }
 
+//IN GLOBAL STYLES
+.left-aligned-header>.mat-content {
+  justify-content: flex-start;
+}
 
+.mat-content>mat-panel-title,
+.mat-content>mat-panel-description {
+  flex: 0 0 auto;
+}
 
+.mat-tooltip.tooltip {
+  background-color: #3f51b5 !important;
+  font-size: 16px !important;
+}
 
 @import './tablet';
 @import './desktop';

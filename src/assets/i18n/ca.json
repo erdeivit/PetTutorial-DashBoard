@@ -153,7 +153,9 @@
     "TABLETYPEOFQUESTION": "Tipus",
     "TABLEDIFFICULTY": "Dificultat",
     "TABLECORRECTANSWER": "Resposta correcta",
-    "TABLEANSWER": "Respostes"
+    "TABLEANSWER": "Respostes",
+    "EXIT": "SORTIR",
+    "NEWCATEGORY": "NOVA CATEGORIA"
   },
   "QUESTIONNAIRE": {
     "TITLE": "Qüestionaris",
@@ -169,9 +171,13 @@
     "SELECTQUESTIONS": "Selecciona les preguntes",
     "CREATE": "Crear",
     "TABLEIMAGE": "Imatge",
-    "TABLEID": "Identificador",
+    "TABLEID": "Id",
     "TABLECATEGORY": "Categoria",
-    "TABLESTATEMENT": "Enunciat"
+    "TABLESTATEMENT": "Enunciat",
+    "CLOSEBUTTON": "TANCAR",
+    "NOFILTER": "Sense filtre",
+    "VIEWQUESTIONNAIRE": "Els meus qüestionaris",
+    "VIEWQUESTION": "Les meves preguntes"
   },
   "GAMES": {
     "NAMEGAME": "Nom del joc",
@@ -200,6 +206,7 @@
     "CREATEBUTTON": "Crear el joc",
     "NEWGAME": "CREAR UN JOC",
     "SEERESULTS": "VEURE ELS RESULTATS",
+    "SEEANSWERS": "VEURE RESPOSTES",
     "ACTIVEQUESTIONNAIRES": "JOCS ACTIUS",
     "TABLETYPEOFGAME": "Tipus de joc",
     "TABLESTARTDATE": "Data d'inici",
@@ -213,12 +220,22 @@
     "SELECTQUESTIONNAIRE": "Selecciona un qüestionari",
     "TABLEIDSTUDENT": "Identificador del estudiant",
     "TABLEFINALMARK": "Nota final",
+    "TABLETOTALOFQUESTIONS": "Número de preguntes",
     "TABLEANSWERSCORRECT": "Respostes correctes",
     "TABLEANSWERSNOCORRECT": "Respostes incorrectes",
     "TABLEUSERANSWERS": "Respostes del usuari",
     "TABLEANSWERQUESTION": "Resposta número",
     "TABLENOANSWER": "SENSE RESPOSTA",
-    "TABLENORESULTS": "SENSE RESULTATS"
+    "TABLENORESULTS": "SENSE RESULTATS",
+    "GOBACK": "SORTIR",
+    "USERANSWERS": "Respostes del estudiant",
+    "GAMERESULTS": "Resultats del joc",
+    "QUIZPIPINFORMATION": "El més clasic model de respondre un cuestionari. Totes les preguntes apareixeran a la pantalla. L'alumna les haurá de respondre i prémer el botó de enviar (o fins que s'acabi el temps).",
+    "1BY1INFORMATION": "En la pantalla apareixerà una pregunta cada cop. Els estudiants haurán de anar respondre 1 per 1 sense posibilitat de tornar.",
+    "QLASSPIPINFORMATION": "(ENCARA NO ESTA IMPLEMENTAT): S'ha pensat que fossi semblant al joc del kahoot.",
+    "FLIPCARDSPIPINFORMATION": "Aquest joc esta enfocat a estudiar. La pregunta apareixerà en la pantalla (sense respostes). Quan l'alumne pensi que sap la resposta, podrá veure-la passant-hi el ratolí per sobre la pregunta.",
+    "TIMETOLEARNINFORMATION": "(ENCARA NO ESTA IMPLEMENTAT). S'ha pensat que apareierà una notificació al móbil en un moment aleatori del día (8:00 - 22:00). Quan més ràpid respongui l'alumne, més punts hi guanyarà.",
+    "TRIVIALCLIPINFORMATION": "(ENCARA NO ESTA IMPLEMENTAT). S'ha pensat que fossi semblant al joc del Trivial."
   },
   "ERROR": {
     "EMPTYFIELDS": "Cal omplir tots els camps correctament",

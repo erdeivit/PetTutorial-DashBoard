@@ -17,49 +17,42 @@
   <mat-form-field style="width:400px !important">
     <mat-select style="width:400px !important" placeholder="{{'QUESTIONNAIRE.FILTERBYCATEGORY'|translate}}">
       <mat-option (click)="selectQuestionsfilterbycategory(cat,data.questionshtml)" *ngFor="let cat of data.category"
-        value={{cat}}>
-        {{cat}}</mat-option>
+        value={{cat}}>{{cat}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <br>
-  <br>
   <table *ngIf="!filteredquestions">
-    <tr width="35">
-      <th>Imagen</th>
-      <th>Id</th>
-      <th>Categoria</th>
-      <th>Enunciado</th>
-    </tr>
-    <tr *ngFor="let quest of data.questionshtml ;let i=index">
-      <td><img src="{{quest.image}}" width="50" height="50"></td>
-      <td>{{quest.id}}</td>
-      <td>{{quest.category}}</td>
-      <td>{{quest.statement}}</td>
+    <tr>
+      <th style="max-width: 10px!important">{{'QUESTIONNAIRE.TABLEID'|translate}}</th>
+      <th>{{'QUESTIONNAIRE.TABLESTATEMENT'|translate}}</th>
+      <th style="max-width: 25px!important">{{'QUESTION.TABLEDIFFICULTY'|translate}}</th>
     </tr>
   </table>
   <table *ngIf="filteredquestions">
-    <tr width="35">
-      <th>Imagen</th>
-      <th>Id</th>
-      <th>Categoria</th>
-      <th>Enunciado</th>
+    <tr>
+      <th style="max-width: 10px!important">{{'QUESTIONNAIRE.TABLEID'|translate}}</th>
+      <th>{{'QUESTIONNAIRE.TABLESTATEMENT'|translate}}</th>
+      <th style="max-width: 25px!important">{{'QUESTION.TABLEDIFFICULTY'|translate}}</th>
     </tr>
     <tr *ngFor="let quest of filteredquestions ;let i=index">
-      <td><img src="{{quest.image}}" width="50" height="50"></td>
-      <td>{{quest.id}}</td>
-      <td>{{quest.category}}</td>
-      <td>{{quest.statement}}</td>
+      <td style="max-width: 10px!important">{{quest.id}}</td>
+      <td class="ellipsis">{{quest.statement}}</td>
+      <td style="max-width: 25px!important">{{quest.difficulty}}</td>
     </tr>
   </table>
   <br>
-  <br>
   <mat-form-field style="width:400px !important">
-    <mat-select style="width:400px !important" placeholder="{{'QUESTIONNAIRE.SELECTQUESTIONS'|translate}}"
+    <mat-select #selector style="width:400px !important" placeholder="{{'QUESTIONNAIRE.SELECTQUESTIONS'|translate}}"
       [(ngModel)]="data.questionId" multiple>
+      <button mat-raised-button color="primary"
+        (click)="selector.close()">{{'QUESTIONNAIRE.CLOSEBUTTON'|translate}}</button>
       <mat-option *ngFor="let quest of data.questionshtml" value={{quest.id}}>
         {{quest.statement}}</mat-option>
+      <button mat-raised-button color="primary"
+        (click)="selector.close()">{{'QUESTIONNAIRE.CLOSEBUTTON'|translate}}</button>
     </mat-select>
   </mat-form-field>
   <br>
   <button [mat-dialog-close]="data" mat-raised-button color="primary">{{'QUESTIONNAIRE.CREATE'|translate}}</button>
+  <button style="position:relative!important;margin-left:225px!important;" mat-raised-button color="primary"
+    (click)="exit()">{{'QUESTION.EXIT'|translate}}</button>
 </mat-dialog-content>

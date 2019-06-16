@@ -14,8 +14,6 @@ import { TranslateService } from 'ng2-translate';
   styleUrls: ['./createPoint.scss']
 })
 export class CreatePointComponent implements OnInit {
-
-
   public name: string;
   public value: number;
   public newPoint: Point;
@@ -42,7 +40,6 @@ export class CreatePointComponent implements OnInit {
     this.dialogRef.close();
   }
   createPoint(): void {
-
     if (this.name === '' || !this.value || this.image === '') {
       this.alertService.show(this.translateService.instant('ERROR.EMPTYFIELDS'));
     } else {

@@ -1,14 +1,12 @@
 <div class="groups-content">
   <button class="btn1" mat-raised-button (click)="openCreateNewGameComponent()">{{'GAMES.NEWGAME'|translate}}</button>
-  <button class="btn1" *ngIf="results" mat-raised-button
-    (click)="ShowResults()">{{'GAMES.SEERESULTS'|translate}}</button>
-  <!--<button mat-raised-button >(click)="showGames(group)">{{ 'GROUP.MYGAMES |translate }}</button>-->
   <br>
   <h5 *ngIf="activeQuestionnairesGame">{{'GAMES.ACTIVEQUESTIONNAIRES'|translate}}</h5>
   <div *ngIf="activeQuestionnairesGame">
     <mat-accordion class="example-headers-align">
       <mat-expansion-panel *ngFor="let questGame of activeQuestionnairesGame" hideToggle>
-        <mat-expansion-panel-header (click)="getQuestionnaireOfQuestionnaireGame(questGame.questionnaireId)">
+        <mat-expansion-panel-header class="left-aligned-header"
+          (click)="getQuestionnaireOfQuestionnaireGame(questGame.questionnaireId,questGame.name)">
           <mat-panel-title>
             {{questGame.id}}
           </mat-panel-title>
@@ -17,7 +15,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <table>
-          <tr width="35">
+          <tr width="20">
             <th>{{'GAMES.TABLETYPEOFGAME'|translate}}</th>
             <th>{{'GAMES.TABLESTARTDATE'|translate}}</th>
             <th>{{'GAMES.TABLEFINISHDATE'|translate}}</th>
@@ -29,19 +27,22 @@
           </tr>
         </table>
         <table *ngIf="questionnaire">
-          <tr width="35">
+          <tr width="20">
             <th>{{'GAMES.TABLE_QUESTIONNAIREID'|translate}}</th>
-            <th>{{'GAMES.TABLE_QUESTIONNAIREIMAGE'|translate}}</th>
             <th>{{'GAMES.TABLE_QUESTIONNAIRENAME'|translate}}</th>
             <th>{{'GAMES.TABLE_QUESTIONNAIREDESCRIPTION'|translate}}</th>
           </tr>
           <tr>
             <td>{{questionnaire.id}}</td>
-            <td><img src="{{questionnaire.image}}" width="50" height="50"></td>
             <td>{{questionnaire.name}}</td>
             <td>{{questionnaire.description}}</td>
           </tr>
         </table>
+        <br *ngIf="results">
+        <button *ngIf="results" class="btn2" mat-raised-button
+          (click)="openViewResultsComponent()">{{'GAMES.SEERESULTS'|translate}}</button>
+        <br *ngIf="results">
+        <br *ngIf="results">
       </mat-expansion-panel>
     </mat-accordion>
   </div>
@@ -49,7 +50,8 @@
   <div *ngIf="programmedQuestionnairesGame">
     <mat-accordion class="example-headers-align">
       <mat-expansion-panel *ngFor="let questGame of programmedQuestionnairesGame" hideToggle>
-        <mat-expansion-panel-header (click)="getQuestionnaireOfQuestionnaireGame(questGame.questionnaireId)">
+        <mat-expansion-panel-header
+          (click)="getQuestionnaireOfQuestionnaireGame(questGame.questionnaireId,questGame.name)">
           <mat-panel-title>
             {{questGame.id}}
           </mat-panel-title>
@@ -58,7 +60,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <table>
-          <tr width="35">
+          <tr width="20">
             <th>{{'GAMES.TABLETYPEOFGAME'|translate}}</th>
             <th>{{'GAMES.TABLESTARTDATE'|translate}}</th>
             <th>{{'GAMES.TABLEFINISHDATE'|translate}}</th>
@@ -70,19 +72,22 @@
           </tr>
         </table>
         <table *ngIf="questionnaire">
-          <tr width="35">
+          <tr width="20">
             <th>{{'GAMES.TABLE_QUESTIONNAIREID'|translate}}</th>
-            <th>{{'GAMES.TABLE_QUESTIONNAIREIMAGE'|translate}}</th>
             <th>{{'GAMES.TABLE_QUESTIONNAIRENAME'|translate}}</th>
             <th>{{'GAMES.TABLE_QUESTIONNAIREDESCRIPTION'|translate}}</th>
           </tr>
           <tr>
             <td>{{questionnaire.id}}</td>
-            <td><img src="{{questionnaire.image}}" width="50" height="50"></td>
             <td>{{questionnaire.name}}</td>
             <td>{{questionnaire.description}}</td>
           </tr>
         </table>
+        <br *ngIf="results">
+        <button *ngIf="results" class="btn2" mat-raised-button
+          (click)="ShowResults()">{{'GAMES.SEERESULTS'|translate}}</button>
+        <br *ngIf="results">
+        <br *ngIf="results">
       </mat-expansion-panel>
     </mat-accordion>
   </div>
@@ -91,7 +96,7 @@
     <mat-accordion class="example-headers-align">
       <mat-expansion-panel *ngFor="let questGame of deadQuestionnairesGame" hideToggle>
         <mat-expansion-panel-header
-          (click)="getQuestionnaireOfQuestionnaireGame(questGame.id,questGame.questionnaireId)">
+          (click)="getQuestionnaireOfQuestionnaireGame(questGame.id,questGame.questionnaireId,questGame.name)">
           <mat-panel-title>
             {{questGame.id}}
           </mat-panel-title>
@@ -100,7 +105,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <table>
-          <tr width="35">
+          <tr width="20">
             <th>{{'GAMES.TABLETYPEOFGAME'|translate}}</th>
             <th>{{'GAMES.TABLESTARTDATE'|translate}}</th>
             <th>{{'GAMES.TABLEFINISHDATE'|translate}}</th>
@@ -118,17 +123,20 @@
         <table *ngIf="questionnaire">
           <tr width="35">
             <th>{{'GAMES.TABLE_QUESTIONNAIREID'|translate}}</th>
-            <th>{{'GAMES.TABLE_QUESTIONNAIREIMAGE'|translate}}</th>
             <th>{{'GAMES.TABLE_QUESTIONNAIRENAME'|translate}}</th>
             <th>{{'GAMES.TABLE_QUESTIONNAIREDESCRIPTION'|translate}}</th>
           </tr>
           <tr>
             <td>{{questionnaire.id}}</td>
-            <td><img src="{{questionnaire.image}}" width="50" height="50"></td>
             <td>{{questionnaire.name}}</td>
             <td>{{questionnaire.description}}</td>
           </tr>
         </table>
+        <br *ngIf="results">
+        <button *ngIf="results" class="btn2" mat-raised-button
+          (click)="ShowResults()">{{'GAMES.SEERESULTS'|translate}}</button>
+        <br *ngIf="results">
+        <br *ngIf="results">
       </mat-expansion-panel>
     </mat-accordion>
   </div>

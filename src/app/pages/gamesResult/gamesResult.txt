@@ -1,5 +1,0 @@
-Module created by David Hernández on QP 2018/19 (Feb19 - Jun19) Contact: erdeivit@gmail.com
-
-There is a select where you can choose each questionnaire and display the results.
-You have a table where appears the important information as: final mark, user answers, number of right answers...
-

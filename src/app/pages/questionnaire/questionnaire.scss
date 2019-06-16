@@ -97,3 +97,48 @@ tr:nth-child(even) {
   margin-top: 70px !important;
   margin-left: 50px !important;
 }
+
+.my-centered-dialog {
+  max-width: 80vw !important;
+
+  .mat-dialog-container {
+    max-width: none !important;
+  }
+}
+
+.ellipsis {
+  max-width: 40px !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+.ellipsis2 {
+  max-width: 700px !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+
+}
+
+.btn5 {
+  background-color: #3f51b5 !important;
+  font-size: 12px !important;
+  width: auto !important;
+  padding: 4px 6px !important;
+  left: 300px;
+}
+
+.btn6 {
+  background-color: #CD0006 !important;
+  border-radius: 5px 5px 5px 5px !important;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn7 {
+  background-color: green !important;
+  border-radius: 5px 5px 5px 5px !important;
+  opacity: 0.6;
+  cursor: not-allowed;
+}

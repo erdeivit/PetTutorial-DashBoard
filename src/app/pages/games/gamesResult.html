@@ -1,0 +1,38 @@
+<mat-dialog-content>
+  <div class="groups-content">
+    <mat-toolbar color="primary">
+      {{'GAMES.GAMERESULTS'|translate}}
+      <button class="btn4" mat-raised-button (click)="exit()"><i class="material-icons">close</i></button>
+    </mat-toolbar>
+    <br>
+    <table>
+      <tr width="35">
+        <th>{{'GAMES.TABLEIDSTUDENT'|translate}}</th>
+        <th>{{'GAMES.TABLEFINALMARK'|translate}}</th>
+        <th>{{'GAMES.TABLETOTALOFQUESTIONS'|translate}}</th>
+        <th>{{'GAMES.TABLEANSWERSCORRECT'|translate}}</th>
+        <th>{{'GAMES.TABLEANSWERSNOCORRECT'|translate}}</th>
+        <th>{{'GAMES.TABLEUSERANSWERS'|translate}}</th>
+      </tr>
+      <tr *ngFor="let result of data.prueba">
+        <td>{{result.studentId}}</td>
+        <td>{{result.finalNote}}</td>
+        <td>{{result.numTotalOfQuestions}}</td>
+        <td>{{result.numAnswerCorrect}} </td>
+        <td>{{result.numAnswerNoCorrect}}</td>
+        <td>
+          <button class="btn3" mat-raised-button
+            (click)="viewAnswers(result.userAnswers)">{{'GAMES.SEEANSWERS'|translate}}</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</mat-dialog-content>
+
+<!--
+<div *ngFor="let answer of result.userAnswers;let i =index">
+            <p *ngIf="answer !==null ">{{'GAMES.TABLEANSWERQUESTION'|translate}} {{i+1}} : {{answer}}</p>
+            <p *ngIf="answer ===null">{{'GAMES.TABLEANSWERQUESTION'|translate}} {{i+1}} :
+              {{'GAMES.TABLENOANSWER'|translate}}</p>
+          </div>
+-->

@@ -7,7 +7,6 @@ import { LoginComponent } from './pages/login/login';
 import { HomeComponent } from './pages/home/home';
 import { GroupsComponent } from './pages/groups/groups';
 import { GamesComponent } from './pages/games/games';
-import { GamesResultComponent } from './pages/gamesResult/gamesResult';
 import { PointsBadgesComponent } from './pages/pointsbadges/pointsbadges';
 import { CollectionsComponent } from './pages/collections/collections';
 import { CollectionStudentComponent } from './pages/collectionStudent/collectionStudent';
@@ -72,7 +71,6 @@ const appRoutes: Routes = [
 
   { path: 'groupStudents/:id', component: GroupStudentsComponent, canActivate: [AuthGuard] },
   { path: 'myGames/:id', component: GamesComponent, canActivate: [AuthGuard] },
-  { path: 'myGames/:id/showResult', component: GamesResultComponent, canActivate: [AuthGuard] },
 
 
   { path: 'schooldetails/:id', component: SchoolDetailsComponent, canActivate: [AuthGuard] },
