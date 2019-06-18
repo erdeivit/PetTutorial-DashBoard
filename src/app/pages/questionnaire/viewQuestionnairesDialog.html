@@ -20,11 +20,17 @@
             <th style="max-width: 10px!important">{{'QUESTIONNAIRE.TABLEID'|translate}}</th>
             <th>{{'QUESTIONNAIRE.TABLESTATEMENT'|translate}}</th>
             <th style="max-width: 25px!important">{{'QUESTION.TABLEDIFFICULTY'|translate}}</th>
+            <th style="max-width: 25px!important"> EDIT</th>
+            <th style="max-width: 25px!important"> DELETE</th>
           </tr>
           <tr *ngFor="let quest of Questions">
             <td style="max-width: 10px!important">{{quest.id}}</td>
             <td class="ellipsis">{{quest.statement}}</td>
             <td style="max-width: 25px!important">{{quest.difficulty}}</td>
+            <td style="max-width: 25px!important"><button class="btn7" mat-raised-button><i
+                  class="material-icons">edit</i></button></td>
+            <td style="max-width: 25px!important"><button class="btn6" mat-raised-button><i
+                  class="material-icons">delete</i></button></td>
           </tr>
         </table>
       </div>
