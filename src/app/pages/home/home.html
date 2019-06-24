@@ -1,11 +1,13 @@
 <div class="home-content">
-
+  <button mat-button color="primary" size="70px" (click)="showMascota()">{{'MASCOTAS.VER'|translate}}</button>
+  <br>
   <app-admin-home *ngIf="isAdminProfile && profile" [profile]="profile"></app-admin-home>
 
   <app-teacher-home *ngIf="isTeacherProfile && (profile && school && allPoints)" [profile]="profile" [school]="school"
     [allPoints]="allPoints"></app-teacher-home>
 
-  <app-student-home *ngIf="isStudentProfile && (profile && reward && rank && studentPoints && school)" [profile]="profile"
-    [reward]="reward" [rank]="rank" [studentPoints]="studentPoints" [school]="school"></app-student-home>
+  <app-student-home *ngIf="isStudentProfile && (profile && reward && rank && studentPoints && school)"
+    [profile]="profile" [reward]="reward" [rank]="rank" [studentPoints]="studentPoints" [school]="school">
+  </app-student-home>
 
 </div>

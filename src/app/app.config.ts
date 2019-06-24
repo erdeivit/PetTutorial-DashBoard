@@ -4,6 +4,7 @@ export class AppConfig {
 
   // Server connection
   public static get SERVER_URL(): string { return environment.api; }
+  public static get PET_URL(): string { return '/pet'; }
   public static get TEACHER_URL(): string { return this.SERVER_URL + '/api/teachers'; }
   public static get STUDENT_URL(): string { return this.SERVER_URL + '/api/students'; }
   public static get SCHOOLADMIN_URL(): string { return this.SERVER_URL + '/api/schooladministrators'; }

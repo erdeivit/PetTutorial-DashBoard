@@ -49,10 +49,13 @@ import { CreateCollectionComponent } from './pages/createCollection/createCollec
 import { GroupStudentsComponent } from './pages/groupStudents/groupStudents';
 import { SchoolDetailsComponent } from './pages/school-details/school-details.component';
 
+import { PetComponent } from './pages/pet/pet';
+
 const appRoutes: Routes = [
 
   // authenticated pages
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'myPet', component: PetComponent, canActivate: [AuthGuard] },
   { path: 'groups', component: GroupsComponent, canActivate: [AuthGuard] },
   { path: 'create-teams', component: CreateTeamsComponent, canActivate: [AuthGuard] },
   { path: 'competitions', component: CompetitionsComponent, canActivate: [AuthGuard] },

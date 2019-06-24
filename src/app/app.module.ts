@@ -77,7 +77,7 @@ import {
   CollectionService, PointService, PointRelationService,
   BadgeService, BadgeRelationService, LevelService,
   RewardService, CompetitionService, JourneyService,
-  MatchesService, TeamService, TeacherService
+  MatchesService, TeamService, TeacherService, PetService
 } from './shared/services/index';
 
 // rxjs
@@ -110,6 +110,8 @@ import { GradeMatterRelComponent } from './pages/forms/grade-matter-rel/grade-ma
 import { GroupsFormComponent } from './pages/forms/groups-form/groups-form.component';
 import { GroupStudentsFormComponent } from './pages/forms/group-students-form/group-students-form.component';
 
+import { PetComponent } from './pages/pet/pet'
+
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, AppConfig.LANG_PATH, AppConfig.LANG_EXT);
 }
@@ -117,6 +119,8 @@ export function createTranslateLoader(http: Http) {
 @NgModule({
   declarations: [
     AppComponent,
+
+    PetComponent,
 
     // pages
     LoginComponent,
@@ -214,6 +218,7 @@ export function createTranslateLoader(http: Http) {
     NgxLoremIpsumModule
   ],
   providers: [
+    PetService,
     AuthGuard,
     AvatarService,
     AlertService,

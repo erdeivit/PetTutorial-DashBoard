@@ -29,3 +29,4 @@ export * from './journey';
 export * from './match';
 export * from './team';
 export * from './reward';
+export * from './pet';

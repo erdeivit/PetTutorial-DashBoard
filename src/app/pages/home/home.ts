@@ -14,6 +14,7 @@ import {
 import { AppConfig } from '../../app.config';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Reward } from '../../shared/models/reward';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -51,15 +52,19 @@ export class HomeComponent implements OnInit {
     public badgeService: BadgeService,
     public badgeRelationService: BadgeRelationService,
     public levelService: LevelService,
-    public rewarService: RewardService
+    public rewarService: RewardService,
+    public router: Router,
+    public route: ActivatedRoute,
   ) {
 
     this.utilsService.currentUser = Login.toObject(localStorage.getItem(AppConfig.LS_USER));
     this.utilsService.role = Number(localStorage.getItem(AppConfig.LS_ROLE));
   }
 
+  showMascota() {
+    this.router.navigate([this.route.snapshot.queryParams['returnUrl'] || '/myPet']);
+  }
   ngOnInit(): void {
-
     this.loadingService.show();
     this.userService.getMyProfile().subscribe(
       ((profile: Profile) => {
